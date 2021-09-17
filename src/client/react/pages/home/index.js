@@ -22,7 +22,7 @@ class HomePage extends Component {
      		<div className="route-content home-route">
                 {this.renderHead()}
 
-                Home
+                Nailey
 			</div>
 				
 		);
