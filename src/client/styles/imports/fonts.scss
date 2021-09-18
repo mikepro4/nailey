@@ -72,6 +72,28 @@
     font-style: normal;
 }
 
-//
+// Elgoc 
 
+@font-face {
+    font-family: 'E';
+    src: url('../../../static/fonts/E-Thin.woff2') format('woff2'),
+        url('../../../static/fonts/E-Thin.woff') format('font-woff');
+    font-weight: 200;
+    font-style: normal;
+}
 
+@font-face {
+    font-family: 'E';
+    src: url('../../../static/fonts/E-Light.woff2') format('woff2'),
+        url('../../../static/fonts/E-Light.woff') format('font-woff');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'E';
+    src: url('../../../static/fonts/E-Regular.woff2') format('woff2'),
+        url('../../../static/fonts/E-Regular.woff') format('font-woff');
+    font-weight: 400;
+    font-style: normal;
+}
