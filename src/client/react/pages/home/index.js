@@ -17,7 +17,6 @@ class HomePage extends Component {
     )
 
 	render() {
-        
 		return (
      		<div className="route-content home-route">
                 {this.renderHead()}
