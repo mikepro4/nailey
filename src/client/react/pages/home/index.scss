@@ -24,6 +24,34 @@
     color: #A89479;
     font-size: 0.9vw;
     margin: 10px 0 40px 0;
+
+    @media only screen and (max-width: 1800px) {
+        font-size: 1vw;
+    }
+
+    @media only screen and (max-width: 1680px) {
+        font-size: 1.1vw;
+    }
+
+    @media only screen and (max-width: 1500px) {
+        font-size: 1.2vw;
+    }
+
+    @media only screen and (max-width: 1300px) {
+        font-size: 1.3vw;
+    }
+
+    @media only screen and (max-width: 1200px) {
+        font-size: 1.4vw;
+    }
+
+    @media only screen and (max-width: 1000px) {
+        font-size: 1.6vw;
+    }
+
+    @media only screen and (max-width: 800px) {
+        font-size: 1.7vw;
+    }
 }
 
 .animation-text-wipe {

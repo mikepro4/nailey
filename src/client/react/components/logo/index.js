@@ -4,6 +4,9 @@ import { withRouter, Link } from "react-router-dom";
 import classNames from "classnames"
 import { motion } from "framer-motion";
 
+import Leyla from "../svg/leyla"
+import Nailey from "../svg/nailey"
+
 class Logo extends Component {
 
 	render() {
@@ -33,7 +36,7 @@ class Logo extends Component {
                         animate="visible"
                         variants={logo}
                     >
-                        <Link to="/" className="app-logo-name">Nailey</Link>
+                        <Link to="/" className="app-logo-name"><Nailey/></Link>
                     </motion.div>
                 </div>
             </div>
