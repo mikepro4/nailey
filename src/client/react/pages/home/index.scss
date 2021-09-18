@@ -1,0 +1,48 @@
+.hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-content-container {
+    text-align: center;
+}
+
+.hero-title {
+    font-family: "G", sans-serif;
+    font-size: 5.7vw;
+    font-weight: 400;
+    background: linear-gradient(to right, rgba(204, 183, 153, 0.98), rgba(219, 197, 171, 0.92) 100%);
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    // background-size: 500% 500%;
+    background-position: center center;
+}
+
+.hero-subTitle {
+    color: #A89479;
+    font-size: 0.9vw;
+    margin: 10px 0 40px 0;
+}
+
+.animation-text-wipe {
+    -webkit-mask-image: linear-gradient(to left, #0000 25%, #000 75%);
+    -webkit-mask-size: 500%;
+    -webkit-mask-position: 100%;
+}
+
+.animation-text-wipe.animate-in {
+    animation: text-wipe 2s 0.3s linear forwards;
+}
+
+
+@keyframes text-wipe {
+    0% {
+        -webkit-mask-position: 100%;
+    }
+
+    100% {
+        -webkit-mask-position: 0%;
+    }
+}
