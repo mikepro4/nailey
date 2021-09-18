@@ -9,19 +9,21 @@ class HomePage extends Component {
     state = {
 	}
 
-    renderHead = () => (
+    renderHead = (pageTitle) => (
 		<Helmet>
-			<title>Nailey – Your Nail Artist</title>
-			<meta property="og:title" content="Homepage" />
+			<title>{pageTitle}</title>
+			<meta property="og:title" content={pageTitle} />
 		</Helmet>
     )
 
 	render() {
+        let pageTitle = this.props.app.site.title + " – " + this.props.app.site.subtitle + " | Home"
+
 		return (
      		<div className="route-content home-route">
-                {this.renderHead()}
+                {this.renderHead(pageTitle)}
 
-                <div className="placeholder">Nailey</div>
+                <div className="placeholder">{this.props.app.site.title}</div>
 			</div>
 				
 		);

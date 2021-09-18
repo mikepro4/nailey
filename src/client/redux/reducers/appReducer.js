@@ -17,33 +17,79 @@ export const initialState = {
     menuOpen: false,
     user: null,
     site: {
-        name: "Nailey",
+        title: "Nailey",
         subtitle: "Your nail artist",
         description: "Manicure, pedicure, nail extensions services delivered with care, love & passion",
-        bookingUrl: "https://www.mikhail.co/",
-        socialMediaImage: ""
-    },
-    home: {
-        title: "Home",
-        blocks: []
-    },
-    pages: [
-        {
-            id: "services",
-            title: "Services",
-            blocks: []
+        socialMediaImage: "",
+        ctaText: "Book Appointment",
+        ctaUrl: "https://www.mikhail.co/",
+        style: {
+            headerType: "",
+            backgroundColor: "",
+            textColor: "",
+            normalLinkColor: "",
+            hoverLinkColor: "",
+            activeLinkColor: "",
+            logoColor: "",
+            mobileHeaderBackgroundColor: "",
+            buttons: [
+                {
+                    type: "regular",
+                    normalBackgroundColor: "",
+                    normalTextColor: "",
+                    hoverBackgroundColor: "",
+                    hoverTextColor: "",
+                    activeBackgroundColor: "",
+                    activeTextColor: ""
+                },
+                {
+                    type: "minimal",
+                    normalBackgroundColor: "",
+                    normalTextColor: "",
+                    hoverBackgroundColor: "",
+                    hoverTextColor: "",
+                    activeBackgroundColor: "",
+                    activeTextColor: ""
+                },
+                {
+                    type: "extra",
+                    normalBackgroundColor: "",
+                    normalTextColor: "",
+                    hoverBackgroundColor: "",
+                    hoverTextColor: "",
+                    activeBackgroundColor: "",
+                    activeTextColor: ""
+                }
+            ]
         },
-        {
-            id: "contact",
-            title: "Contact",
-            blocks: []
-        },
-        {
-            id: "about",
-            title: "About",
-            blocks: []
-        }
-    ]
+        pages: [
+            {
+                id: 0,
+                title: "Home",
+                url: "/",
+                blocks: []
+            },
+            {
+                id: 1,
+                title: "Services",
+                url: "/services",
+                blocks: []
+            },
+            {
+                id: 2,
+                title: "Contact",
+                url: "/contact",
+                blocks: []
+            },
+            {
+                id: 3,
+                title: "About",
+                url: "/about",
+                blocks: []
+            }
+        ]
+    },
+    updatedSite: {}
 };
 
 export const appReducer = (state = initialState, action) => {
