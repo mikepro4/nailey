@@ -5,21 +5,48 @@ import classNames from "classnames"
 import MainLinks from "../main_links"
 import Logo from "../logo"
 import Button from "../button"
+import { motion } from "framer-motion";
 
 class Header extends Component {
 
 	render() {
+        const logo = {
+            visible: { 
+                y: 0, 
+                opacity: 1, 
+                transition: {
+                    type: "spring",
+                    stiffness: 122,
+                    damping: 22,
+                    delay: 0.3
+                } 
+            },
+            hidden: { 
+                opacity: 0 
+            },
+        }
+
         return (
             <div 
                 className={classNames({
                     "app-header": true
                 })}
             >
-                <MainLinks />
-                <Logo/>
-                <div className="header-right">
-                    <Button/>
+                <div className="header-wrapper">
+                    <MainLinks />
+                    <Logo/>
+
+                    <div className="header-right">
+                        <motion.div
+                            initial="hidden"
+                            animate="visible"
+                            variants={logo}
+                        >
+                            <Button/>
+                        </motion.div>
+                    </div>
                 </div>
+               
             </div>
         );
 	}

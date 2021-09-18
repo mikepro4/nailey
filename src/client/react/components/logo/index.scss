@@ -8,7 +8,20 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: "E", sans-serif;
-    font-size: 62px;
-    font-weight: 300;
+   
+
+    .logo-wrapper {
+        position: relative;
+        overflow: hidden;
+        display: inline-block;
+        white-space: nowrap;
+        // height: 75px;
+
+        .app-logo-name {
+            font-family: "E", sans-serif;
+            font-size: 62px;
+            font-weight: 300;
+            // line-height: 70px;
+        }
+    }
 }

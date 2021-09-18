@@ -53,7 +53,6 @@ class MainLinks extends Component {
                 } 
             },
             hidden: { 
-                y: 50, 
                 opacity: 0 
             },
         }
