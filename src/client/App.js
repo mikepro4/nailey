@@ -8,6 +8,8 @@ import { FocusStyleManager } from "@blueprintjs/core";
 
 FocusStyleManager.onlyShowFocusOnTabs();
 
+import Scroll from "./react/components/scroll"
+
 class App extends Component {
 	state = {
 		appVisible: false
@@ -30,6 +32,8 @@ class App extends Component {
                         {renderRoutes(this.props.route.routes)}
                     </div>
                 </div>
+
+                <Scroll/>
 			</div>
 		)
 	}
