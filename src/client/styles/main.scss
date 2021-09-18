@@ -13,7 +13,11 @@
 
 @import "../App.scss";
 
-@import "../react/pages//home/index.scss";
+// Pages
+@import "../react/pages/home/index.scss";
+
+// Components
+@import "../react/components/header/index.scss";
 
 html {
 	touch-action: manipulation;

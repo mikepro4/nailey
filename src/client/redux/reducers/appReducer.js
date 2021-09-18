@@ -23,68 +23,25 @@ export const initialState = {
         socialMediaImage: "",
         ctaText: "Book Appointment",
         ctaUrl: "https://www.mikhail.co/",
-        style: {
-            headerType: "",
-            backgroundColor: "",
-            textColor: "",
-            normalLinkColor: "",
-            hoverLinkColor: "",
-            activeLinkColor: "",
-            logoColor: "",
-            mobileHeaderBackgroundColor: "",
-            buttons: [
-                {
-                    type: "regular",
-                    normalBackgroundColor: "",
-                    normalTextColor: "",
-                    hoverBackgroundColor: "",
-                    hoverTextColor: "",
-                    activeBackgroundColor: "",
-                    activeTextColor: ""
-                },
-                {
-                    type: "minimal",
-                    normalBackgroundColor: "",
-                    normalTextColor: "",
-                    hoverBackgroundColor: "",
-                    hoverTextColor: "",
-                    activeBackgroundColor: "",
-                    activeTextColor: ""
-                },
-                {
-                    type: "extra",
-                    normalBackgroundColor: "",
-                    normalTextColor: "",
-                    hoverBackgroundColor: "",
-                    hoverTextColor: "",
-                    activeBackgroundColor: "",
-                    activeTextColor: ""
-                }
-            ]
-        },
         pages: [
             {
                 id: 0,
                 title: "Home",
-                url: "/",
                 blocks: []
             },
             {
                 id: 1,
                 title: "Services",
-                url: "/services",
                 blocks: []
             },
             {
                 id: 2,
                 title: "Contact",
-                url: "/contact",
                 blocks: []
             },
             {
                 id: 3,
                 title: "About",
-                url: "/about",
                 blocks: []
             }
         ]
