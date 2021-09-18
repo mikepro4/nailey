@@ -2,22 +2,17 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
 import classNames from "classnames"
-import MainLinks from "../main_links"
-import Logo from "../logo"
-import Button from "../button"
 
-class Header extends Component {
+class Logo extends Component {
 
 	render() {
         return (
             <div 
                 className={classNames({
-                    "app-header": true
+                    "app-logo": true
                 })}
             >
-                <MainLinks />
-                <Logo/>
-                <Button/>
+                Nailey
             </div>
         );
 	}
@@ -31,4 +26,4 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, {
-})(withRouter(Header));
+})(withRouter(Logo));

@@ -31,7 +31,7 @@ class MainLinks extends Component {
                 when: "beforeChildren",
                 transition: {
                     duration: 0.2,
-                    delayChildren: 2.5,
+                    delayChildren: 0,
                     staggerChildren: 0.1,
 
                 }
@@ -61,28 +61,31 @@ class MainLinks extends Component {
           
         return(
             <div className = "main-links-container" >
-                    <motion.ul
-                        className={classNames({ "active": !(this.props.location.pathname == "/") }, "main-links")}
-                        initial="hidden"
-                        animate="visible"
-                        variants={list}
-                    >
-                        {links.map((link, i) => {
-                            return (
-                                <motion.li
+                <motion.ul
+                    className={classNames({ "active": !(this.props.location.pathname == "/") }, "main-links")}
+                    initial="hidden"
+                    animate="visible"
+                    variants={list}
+                >
+                    {links.map((link, i) => {
+                        return (
+                            <li
+                                key={link.url}
+                                className={classNames("main-link-container", {
+                                    "main-link-active": this.isActivePath(link.url)
+                                })}
+                            >   
+                                <motion.div
                                     variants={item}
-                                    key={link.url}
-                                    className={classNames("main-link-container", {
-                                        "main-link-active": this.isActivePath(link.url)
-                                    })}
                                 >
                                     <Link to={link.url} className="main-link">
                                         <span className="main-link-label">{link.name}</span>
                                     </Link>
-                                </motion.li>
-                            )
-                        })}
-                    </motion.ul>
+                                </motion.div>
+                            </li>
+                        )
+                    })}
+                </motion.ul>
             </div >
         );
     }

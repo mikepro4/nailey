@@ -1,0 +1,12 @@
+.main-links-container {
+    .main-links {
+        display: flex;
+
+        .main-link-container {
+            height: 20px;
+            overflow: hidden;
+            margin-right: 24px;
+            display: block;
+        }
+    }
+}
