@@ -3,12 +3,10 @@ import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
 import { renderRoutes } from "react-router-config";
 import classNames from "classnames";
-
 import { FocusStyleManager } from "@blueprintjs/core";
+import Scroll from "./react/components/scroll"
 
 FocusStyleManager.onlyShowFocusOnTabs();
-
-import Scroll from "./react/components/scroll"
 
 class App extends Component {
 	state = {
