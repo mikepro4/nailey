@@ -14,9 +14,36 @@ export const initialState = {
 	clientHeight: 0,
 	totalScrolledPixels: 0,
 	scrollTo: null,
-	theme: "dark",
     menuOpen: false,
-    user: null
+    user: null,
+    site: {
+        name: "Nailey",
+        subtitle: "Your nail artist",
+        description: "Manicure, pedicure, nail extensions services delivered with care, love & passion",
+        bookingUrl: "https://www.mikhail.co/",
+        socialMediaImage: ""
+    },
+    home: {
+        title: "Home",
+        blocks: []
+    },
+    pages: [
+        {
+            id: "services",
+            title: "Services",
+            blocks: []
+        },
+        {
+            id: "contact",
+            title: "Contact",
+            blocks: []
+        },
+        {
+            id: "about",
+            title: "About",
+            blocks: []
+        }
+    ]
 };
 
 export const appReducer = (state = initialState, action) => {
