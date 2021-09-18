@@ -75,7 +75,45 @@ a {
     color: $black;
 
     &:hover {
-        color: $aman
+        color: $black
+    }
+}
+
+.line-hover {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    white-space: nowrap;
+    transition: all .8s $mikhailEasing;
+    line-height: 1.4em;
+
+    span {
+        transition: all 2s $mikhailEasing;
+    }
+
+    &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: $black;
+        margin-top: -1px;
+        transform: translateX(-108%);
+        transition: transform 2s $mikhailEasing;
+        -webkit-transition-delay: .1s;
+        transition-delay: .1s;
+        opacity: 0;
+    }
+
+    &:hover {
+
+      &:after {
+        transform: translateX(108%);
+        opacity: 1;
+      }
     }
 }
 

@@ -77,7 +77,7 @@ class MainLinks extends Component {
                                 <motion.div
                                     variants={item}
                                 >
-                                    <Link to={link.url} className="main-link">
+                                    <Link to={link.url} className="main-link line-hover ">
                                         <span className="main-link-label">{link.name}</span>
                                     </Link>
                                 </motion.div>
