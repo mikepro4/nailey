@@ -12,7 +12,7 @@ class Logo extends Component {
                     "app-logo": true
                 })}
             >
-                Nailey
+                <Link to="/">Nailey</Link>
             </div>
         );
 	}

@@ -30,9 +30,9 @@ class MainLinks extends Component {
                 opacity: 1,
                 when: "beforeChildren",
                 transition: {
-                    duration: 0.2,
+                    duration: 1,
                     delayChildren: 0,
-                    staggerChildren: 0.1,
+                    staggerChildren: 0.05,
 
                 }
             },
@@ -46,7 +46,6 @@ class MainLinks extends Component {
                 y: 0, 
                 opacity: 1, 
                 transition: {
-                    duration: 0.2,
                     type: "spring",
                     stiffness: 122,
                     damping: 22,

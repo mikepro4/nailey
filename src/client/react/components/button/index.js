@@ -12,7 +12,7 @@ class Button extends Component {
                     "app-cta": true
                 })}
             >
-                Book
+                Book appointment
             </div>
         );
 	}

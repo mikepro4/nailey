@@ -31,8 +31,8 @@ body {
 	padding: 0;
 	background: $offWhite;
     color: $black;
-	font-family: "Inter", sans-serif;
-	font-weight: 400;
+	font-family: "A", sans-serif;
+	font-weight: 300;
 	-webkit-font-smoothing: subpixel-antialiased;
 	// -webkit-overflow-scrolling: touch;
 	width: 100%;
@@ -45,6 +45,8 @@ body {
 	overflow-y: auto;
 	overflow-x: hidden;
     transition: opacity 1s;
+    font-size: 18px;
+    letter-spacing: 0.34px;
 }
 
 * {
@@ -70,7 +72,11 @@ body {
 
 a {
 	text-decoration: none !important;
-	font-weight: 400;
+    color: $black;
+
+    &:hover {
+        color: $aman
+    }
 }
 
 .app {

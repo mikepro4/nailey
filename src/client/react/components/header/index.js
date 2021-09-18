@@ -17,7 +17,9 @@ class Header extends Component {
             >
                 <MainLinks />
                 <Logo/>
-                <Button/>
+                <div className="header-right">
+                    <Button/>
+                </div>
             </div>
         );
 	}

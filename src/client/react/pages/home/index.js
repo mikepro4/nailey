@@ -23,7 +23,7 @@ class HomePage extends Component {
      		<div className="route-content home-route">
                 {this.renderHead(pageTitle)}
 
-                <div className="placeholder">{this.props.app.site.title}</div>
+                <div className="placeholder"></div>
 			</div>
 				
 		);
