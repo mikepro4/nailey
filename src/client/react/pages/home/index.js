@@ -119,7 +119,7 @@ class HomePage extends Component {
                         className="image-2"
                         imageId={2}
                         isVisible={this.state.isVisible}
-                        slowDown={3}
+                        slowDown={2}
                         order={1}
                     />
 
@@ -127,7 +127,7 @@ class HomePage extends Component {
                         className="image-3"
                         imageId={3}
                         isVisible={this.state.isVisible}
-                        slowDown={10}
+                        slowDown={15}
                         order={1}
                     />
 
@@ -185,6 +185,30 @@ class HomePage extends Component {
                             </div>
                         </div>
                     </div>
+
+                    <Image
+                        className="image-5"
+                        imageId={1}
+                        isVisible={this.state.isVisible}
+                        slowDown={10}
+                        order={1}
+                    />
+
+                    <Image
+                        className="image-6"
+                        imageId={1}
+                        isVisible={this.state.isVisible}
+                        slowDown={4}
+                        order={1}
+                    />
+
+                    <Image
+                        className="image-7"
+                        imageId={1}
+                        isVisible={this.state.isVisible}
+                        slowDown={6}
+                        order={1}
+                    />
                 </div>
 
                 <div className="section-text-content">
@@ -208,6 +232,16 @@ class HomePage extends Component {
                             </div>
                         </div>
                     </div>
+
+                    <Image
+                        className="image-8"
+                        imageId={1}
+                        isVisible={this.state.isVisible}
+                        slowDown={7}
+                        order={1}
+                    />
+
+                   
                 </div>
 
                 <div className="placeholder"></div>

@@ -123,8 +123,38 @@
     // }
 }
 
+.image-5 {
+    top: -20%;
+    left: -7%;
+    height: 350px;
+    width: 350px;
+}
+
+.image-6 {
+    top: -15%;
+    left: 25%;
+    height: 280px;
+    width: 280px;
+}
+
+.image-7 {
+    bottom: 35%;
+    left: 7%;
+    height: 180px;
+    width: 180px;
+}
+
+.image-8 {
+    top: -25%;
+    right: 10%;
+    height: 450px;
+    width: 450px;
+}
+
+
+
 .section-hero {
-    height: 980px;
+    height: 930px;
     max-width: $maxWidth;
     margin: 0 auto;
     position: relative;
@@ -150,7 +180,7 @@
 }
 
 .section-text-content {
-    height: 700px;
+    height: 750px;
     margin: 0 auto;
     max-width: $maxWidth;
     position: relative;
