@@ -70,45 +70,49 @@ class HomePage extends Component {
                 {this.renderHead(pageTitle)}
 
                 <div className="placeholder">
+                    <div className="screen">
+                        <div 
+                            className="hero-container"
+                            style={{
+                                height: this.props.app.clientHeight + "px"
+                            }}
+                        >
 
-                    <div 
-                        className="hero-container"
-                        style={{
-                            height: this.props.app.clientHeight-400 + "px"
-                        }}
-                    >
-
-                        <div className="hero-content-container">
-                            <motion.div 
-                                className="hero-title animation-text-wipe animate-in"
-                                initial="hidden"
-                                animate="visible"
-                                variants={heroTitle}
-                            >
-                                {this.props.app.site.subtitle}
-                            </motion.div>
-                            <motion.div 
-                                className="hero-subtitle"
-                                initial="hidden"
-                                animate="visible"
-                                variants={heroSubtitle}
-                            >
-                                {this.props.app.site.description}
-                            </motion.div>
-                            <motion.div 
-                                className="hero-button"
-                                initial="hidden"
-                                animate="visible"
-                                variants={heroButton}
-                            >
-                                <Button
-                                    label={this.props.app.site.ctaText}
-                                    linkUrl={this.props.app.site.ctaUrl}
-                                    onClick={() => {alert("lol")}}
-                                />
-                            </motion.div>
+                            <div className="hero-content-container">
+                                <motion.div 
+                                    className="hero-title animation-text-wipe animate-in"
+                                    initial="hidden"
+                                    animate="visible"
+                                    variants={heroTitle}
+                                >
+                                    {this.props.app.site.subtitle}
+                                </motion.div>
+                                <motion.div 
+                                    className="hero-subtitle"
+                                    initial="hidden"
+                                    animate="visible"
+                                    variants={heroSubtitle}
+                                >
+                                    {this.props.app.site.description}
+                                </motion.div>
+                                <motion.div 
+                                    className="hero-button"
+                                    initial="hidden"
+                                    animate="visible"
+                                    variants={heroButton}
+                                >
+                                    <Button
+                                        label={this.props.app.site.ctaText}
+                                        linkUrl={this.props.app.site.ctaUrl}
+                                        onClick={() => {alert("lol")}}
+                                    />
+                                </motion.div>
+                            </div>
                         </div>
                     </div>
+
+                    <div className="screen"></div>
+                    <div className="screen"></div>
 
                 </div>
 			</div>

@@ -128,3 +128,14 @@ a {
 	height: 3000px;
 	width: 100%;
 }
+
+
+.screen {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 970px;
+    border-bottom: 1px solid red;
+  }
+  
