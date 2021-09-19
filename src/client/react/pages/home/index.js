@@ -5,6 +5,7 @@ import { Helmet } from "react-helmet";
 import classNames from "classnames"
 import { motion } from "framer-motion";
 import Button from "../../components/button"
+import Image from "../../components/image"
 
 class HomePage extends Component {
 
@@ -109,6 +110,50 @@ class HomePage extends Component {
                                 </motion.div>
                             </div>
                         </div>
+
+                        <Image
+                            isVisible={this.state.isVisible}
+                            top={150}
+                            left={-120}
+                            height={222}
+                            width={222}
+                            screen={0}
+                            slowDown={6}
+                            order={1}
+                        />
+
+                        <Image
+                            isVisible={this.state.isVisible}
+                            top={250}
+                            right={-170}
+                            height={335}
+                            width={335}
+                            screen={0}
+                            slowDown={2}
+                            order={1}
+                        />
+
+                        <Image
+                            isVisible={this.state.isVisible}
+                            bottom={150}
+                            height={300}
+                            left={150}
+                            width={300}
+                            screen={0}
+                            slowDown={8}
+                            order={1}
+                        />
+
+                        <Image
+                            isVisible={this.state.isVisible}
+                            bottom={-100}
+                            height={400}
+                            right={300}
+                            width={400}
+                            screen={0}
+                            slowDown={4}
+                            order={1}
+                        />
                     </div>
 
                     <div className="screen"></div>
