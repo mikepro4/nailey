@@ -17,7 +17,7 @@ class Image extends Component {
     }
 
     getPose() {
-        if (this.props.loadedImages[this.props.imageId] && this.refs.image_container) {
+        if (this.refs.image_container) {
             let node = this.refs[this.props.imageId]
             let bodyHeight = document.getElementById("body").clientHeight
             if (node && (this.refs.image_container.offsetTop <= (this.props.totalScrolledPixels + (bodyHeight / 0.9)))) {
@@ -142,13 +142,14 @@ class Image extends Component {
             <div
                 className={classNames({ "grid-image": true }, this.props.className)}
                 style={{
-                    top: !this.props.bottom && `calc(${this.getScreenHeight()}px + ${this.calcTop()}px)`,
+                    // top: !this.props.bottom && `calc(${this.getScreenHeight()}px + ${this.calcTop()}px)`,
+                    // top: this.props.top,
                     // height: this.getHeight() + "px",
-                    height: this.props.height,
-                    width: this.props.width,
-                    left: this.props.left,
-                    right: this.props.right,
-                    bottom: this.props.bottom,
+                    // height: this.props.height,
+                    // width: this.props.width,
+                    // left: this.props.left,
+                    // right: this.props.right,
+                    // bottom: this.props.bottom,
                     transform: this.imageTransform()
                 }}
                 ref="image_container"

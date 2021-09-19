@@ -70,96 +70,148 @@ class HomePage extends Component {
      		<div className="route-content home-route">
                 {this.renderHead(pageTitle)}
 
-                <div className="placeholder">
-                    <div className="screen">
-                        <div 
-                            className="hero-container"
-                            style={{
-                                height: this.props.app.clientHeight + "px"
-                            }}
-                        >
+                <div className="section-hero">
+                    <div 
+                        className="hero-container"
+                    >
 
-                            <div className="hero-content-container">
-                                <motion.div 
-                                    className="hero-title animation-text-wipe animate-in"
-                                    initial="hidden"
-                                    animate="visible"
-                                    variants={heroTitle}
-                                >
-                                    {this.props.app.site.subtitle}
-                                </motion.div>
-                                <motion.div 
-                                    className="hero-subtitle"
-                                    initial="hidden"
-                                    animate="visible"
-                                    variants={heroSubtitle}
-                                >
-                                    {this.props.app.site.description}
-                                </motion.div>
-                                <motion.div 
-                                    className="hero-button"
-                                    initial="hidden"
-                                    animate="visible"
-                                    variants={heroButton}
-                                >
-                                    <Button
-                                        label={this.props.app.site.ctaText}
-                                        linkUrl={this.props.app.site.ctaUrl}
-                                        onClick={() => {alert("lol")}}
-                                    />
-                                </motion.div>
-                            </div>
+                        <div className="hero-content-container">
+                            <motion.div 
+                                className="hero-title animation-text-wipe animate-in"
+                                initial="hidden"
+                                animate="visible"
+                                variants={heroTitle}
+                            >
+                                {this.props.app.site.subtitle}
+                            </motion.div>
+                            <motion.div 
+                                className="hero-subtitle"
+                                initial="hidden"
+                                animate="visible"
+                                variants={heroSubtitle}
+                            >
+                                {this.props.app.site.description}
+                            </motion.div>
+                            <motion.div 
+                                className="hero-button"
+                                initial="hidden"
+                                animate="visible"
+                                variants={heroButton}
+                            >
+                                <Button
+                                    label={this.props.app.site.ctaText}
+                                    linkUrl={this.props.app.site.ctaUrl}
+                                    onClick={() => {alert("lol")}}
+                                />
+                            </motion.div>
                         </div>
-
-                        <Image
-                            isVisible={this.state.isVisible}
-                            top={150}
-                            left={-120}
-                            height={222}
-                            width={222}
-                            screen={0}
-                            slowDown={6}
-                            order={1}
-                        />
-
-                        <Image
-                            isVisible={this.state.isVisible}
-                            top={250}
-                            right={-170}
-                            height={335}
-                            width={335}
-                            screen={0}
-                            slowDown={2}
-                            order={1}
-                        />
-
-                        <Image
-                            isVisible={this.state.isVisible}
-                            bottom={150}
-                            height={300}
-                            left={150}
-                            width={300}
-                            screen={0}
-                            slowDown={8}
-                            order={1}
-                        />
-
-                        <Image
-                            isVisible={this.state.isVisible}
-                            bottom={-100}
-                            height={400}
-                            right={300}
-                            width={400}
-                            screen={0}
-                            slowDown={4}
-                            order={1}
-                        />
                     </div>
 
-                    <div className="screen"></div>
-                    <div className="screen"></div>
+                    <Image
+                        className="image-1"
+                        imageId={1}
+                        isVisible={this.state.isVisible}
+                        slowDown={6}
+                        order={1}
+                    />
 
+                    <Image
+                        className="image-2"
+                        imageId={2}
+                        isVisible={this.state.isVisible}
+                        slowDown={3}
+                        order={1}
+                    />
+
+                    <Image
+                        className="image-3"
+                        imageId={3}
+                        isVisible={this.state.isVisible}
+                        slowDown={10}
+                        order={1}
+                    />
+
+                    <Image
+                        className="image-4"
+                        imageId={4}
+                        isVisible={this.state.isVisible}
+                        slowDown={3.5}
+                        order={1}
+                    />
                 </div>
+
+                <div className="section-text-content">
+                    <div className="text-container-wrapper">
+                        <div className="text-container text-container-left">
+                            <div className="text-content-headline-container">
+                                <div className="text-content-headline-number">01</div>
+                                <div className="text-content-headline">Care</div>
+                            </div>
+
+                            <div className="text-content-description">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                                    Nulla mauris orci, facilisis eget quam nec, convallis dignissim nisl. 
+                                    Maecenas vel lorem in turpis cursus fringilla. In in efficitur mauris, et 
+                                    maximus nisl. Nulla eget mauris a augue porttitor egestas nec vestibulum libero. 
+                                </p>
+
+                                <p>Curabitur pulvinar egestas orci. Fusce hendrerit est ac ligula eleifend, vitae 
+                                    bibendum ipsum dignissim. Vivamus sagittis felis gravida ornare hendrerit. 
+                                    Sed nec metus non ante ullamcorper convallis. </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <div className="section-text-content">
+                    <div className="text-container-wrapper">
+                        <div className="text-container text-container-right">
+                            <div className="text-content-headline-container">
+                                <div className="text-content-headline-number">02</div>
+                                <div className="text-content-headline">Love</div>
+                            </div>
+
+                            <div className="text-content-description">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                                    Nulla mauris orci, facilisis eget quam nec, convallis dignissim nisl. 
+                                    Maecenas vel lorem in turpis cursus fringilla. In in efficitur mauris, et 
+                                    maximus nisl. Nulla eget mauris a augue porttitor egestas nec vestibulum libero. 
+                                </p>
+                                
+                                <p>Curabitur pulvinar egestas orci. Fusce hendrerit est ac ligula eleifend, vitae 
+                                    bibendum ipsum dignissim. Vivamus sagittis felis gravida ornare hendrerit. 
+                                    Sed nec metus non ante ullamcorper convallis. </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="section-text-content">
+                    <div className="text-container-wrapper">
+                        <div className="text-container text-container-left">
+                            <div className="text-content-headline-container">
+                                <div className="text-content-headline-number">03</div>
+                                <div className="text-content-headline">Passion</div>
+                            </div>
+
+                            <div className="text-content-description">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                                    Nulla mauris orci, facilisis eget quam nec, convallis dignissim nisl. 
+                                    Maecenas vel lorem in turpis cursus fringilla. In in efficitur mauris, et 
+                                    maximus nisl. Nulla eget mauris a augue porttitor egestas nec vestibulum libero. 
+                                </p>
+                                
+                                <p>Curabitur pulvinar egestas orci. Fusce hendrerit est ac ligula eleifend, vitae 
+                                    bibendum ipsum dignissim. Vivamus sagittis felis gravida ornare hendrerit. 
+                                    Sed nec metus non ante ullamcorper convallis. </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="placeholder"></div>
+
 			</div>
 				
 		);
