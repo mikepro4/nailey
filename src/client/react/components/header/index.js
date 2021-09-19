@@ -42,7 +42,11 @@ class Header extends Component {
                             animate="visible"
                             variants={logo}
                         >
-                            <Button/>
+                            <Button
+                                label={this.props.app.site.ctaText}
+                                linkUrl={this.props.app.site.ctaUrl}
+                                minimal={true}
+                            />
                         </motion.div>
                     </div>
                 </div>
@@ -54,7 +58,8 @@ class Header extends Component {
 
 function mapStateToProps(state) {
 	return {
-		user: state.app.user,
+        user: state.app.user,
+        app: state.app,
         location: state.router.location,
 	};
 }

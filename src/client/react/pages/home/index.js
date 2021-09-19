@@ -4,6 +4,7 @@ import { withRouter, Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import classNames from "classnames"
 import { motion } from "framer-motion";
+import Button from "../../components/button"
 
 class HomePage extends Component {
 
@@ -59,7 +60,7 @@ class HomePage extends Component {
                 } 
             },
             hidden: { 
-                scale: 0.99,
+                scale: 1,
                 opacity: 0
             },
         }
@@ -100,7 +101,11 @@ class HomePage extends Component {
                                 animate="visible"
                                 variants={heroButton}
                             >
-                                Book Appointment
+                                <Button
+                                    label={this.props.app.site.ctaText}
+                                    linkUrl={this.props.app.site.ctaUrl}
+                                    onClick={() => {alert("lol")}}
+                                />
                             </motion.div>
                         </div>
                     </div>

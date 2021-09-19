@@ -19,7 +19,11 @@
     .header-right {
         position: relative;
         z-index: 2;
-        height: 30px;
-        overflow: hidden;
+
+        .main-button {
+            width: 222px
+        }
+        // height: 30px;
+        // overflow: hidden;
     }
 }

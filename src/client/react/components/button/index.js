@@ -1,29 +1,62 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { withRouter, Link } from "react-router-dom";
 import classNames from "classnames"
+import { Link } from "react-router-dom";
 
 class Button extends Component {
+    state = {
+        isVisible: false
+    };
 
-	render() {
+    componentDidUpdate(prevprops) {
+    }
+
+    componentDidMount() {
+    }
+
+    isLink() {
+        return this.props.linkUrl && this.props.linkUrl.length > 0
+    }
+
+    getButtonLabel() {
+        if (this.props.label) {
+            return <span className="main-button-text">{this.props.label}</span>
+        } else {
+            return
+        }
+    }
+
+    render() {
+        let buttonClasses = classNames({
+            "main-button": true,
+            "main-button-link": this.isLink(),
+            "main-button-minimal": this.props.minimal,
+            "main-button-regular": this.props.regular,
+            "main-button-extra": this.props.extra,
+        })
+
+        if (this.isLink()) {
+            return (
+                <a href={this.props.linkUrl} target="_blank" className={buttonClasses} title={this.props.title}>
+                    {this.getButtonLabel()}
+                </a>
+            )
+        }
+
         return (
-            <div 
-                className={classNames({
-                    "app-cta": true
-                })}
+            <button 
+                className={buttonClasses} 
+                title={this.props.title}
+                onClick={this.props.onClick}
             >
-                Book appointment
-            </div>
-        );
-	}
+                {this.getButtonLabel()}
+            </button>
+        )
+    }
 }
 
-function mapStateToProps(state) {
-	return {
-		user: state.app.user,
-        location: state.router.location,
-	};
+function mapStateToProps({ app }) {
+    return {};
 }
 
-export default connect(mapStateToProps, {
-})(withRouter(Button));
+export default connect(mapStateToProps, {})(Button);

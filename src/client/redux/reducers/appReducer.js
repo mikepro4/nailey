@@ -21,7 +21,7 @@ export const initialState = {
         subtitle: "Your nail artist",
         description: "Manicure, pedicure, nail extensions services delivered with care, love & passion",
         socialMediaImage: "",
-        ctaText: "Book Appointment",
+        ctaText: "Book appointment",
         ctaUrl: "https://www.mikhail.co/",
         pages: [
             {

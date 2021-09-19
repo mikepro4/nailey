@@ -36,7 +36,7 @@ class Logo extends Component {
                         animate="visible"
                         variants={logo}
                     >
-                        <Link to="/" className="app-logo-name"><Nailey/></Link>
+                        <Link to="/" className="app-logo-name"><Leyla/></Link>
                     </motion.div>
                 </div>
             </div>
