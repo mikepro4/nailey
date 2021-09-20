@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { motion } from "framer-motion";
 import Image from "../../components/image"
+import ArrowLink from "../../components/svg/arrow-link"
 
 class Section4 extends Component {
     state = {
@@ -14,7 +15,7 @@ class Section4 extends Component {
         if (this.refs.screen) {
             let node = this.refs.screen
             let bodyHeight = this.props.clientHeight
-            if (node && (this.refs.screen.offsetTop <= (this.props.totalScrolledPixels + (bodyHeight / 0.9)))) {
+            if (node && (this.refs.screen.offsetTop <= (this.props.totalScrolledPixels + (bodyHeight / 2.2)))) {
                 return "enter"
             } else {
                 return "exit"
@@ -60,6 +61,71 @@ class Section4 extends Component {
             }),
         }
 
+
+        const epicLinkLine = {
+            exit: i => ({
+                opacity: 0,
+                width: 0
+            }),
+            enter: i => ({ 
+                width: "100%",
+                opacity: 1,
+                transition: {
+                    duration: 1,
+                    easing: "cubic-bezier(.19,1,.22,1)"
+                },
+            }),
+        }
+
+        const epicLinkText = {
+            exit: i => ({
+                opacity: 0
+            }),
+            enter: i => ({ 
+                opacity: 1,
+                transition: {
+                    opacity: {
+                        duration: 1,
+                        delay:  i * 0.15,
+                    }, 
+                    easing: "cubic-bezier(.19,1,.22,1)"
+                },
+            }),
+        }
+
+        const epicLinkArrow= {
+            exit: i => ({
+                scale: 0
+            }),
+            enter: i => ({ 
+                opacity: 1,
+                scale: 1,
+                transition: {
+                    type: "spring",
+                    stiffness: 122,
+                    damping: 22,
+                    delay:  i * 0.15,
+                },
+            }),
+        }
+
+        const epicLinkLabel= {
+            exit: i => ({
+                opacity: 0
+            }),
+            enter: i => ({ 
+                opacity: 1,
+                transition: {
+                    opacity: {
+                        duration: 1,
+                        delay:  i * 0.15,
+                    }, 
+                    easing: "cubic-bezier(.19,1,.22,1)"
+                },
+            }),
+        }
+
+
         return (
             <div className="epic-section-container" ref="screen">
                 <div className="section-epic-headline" ref="screen">
@@ -87,6 +153,59 @@ class Section4 extends Component {
                     </div>
 
                     
+                </div>
+
+                <div className="section-social-media">
+
+                        <motion.div
+                            initial="exit"
+                            className="epic-link-label"
+                            variants={epicLinkLabel}
+                            animate={this.getPose()}
+                            custom={1}
+                            
+                        >
+                            Follow for recent work & updates:
+                        </motion.div>
+
+                        <div className="epic-social-media-link-container">
+                            <div className="epic-social-media-line-wrapper">
+                                <motion.div
+                                    initial="exit"
+                                    className="epic-link-line"
+                                    variants={epicLinkLine}
+                                    animate={this.getPose()}
+                                    custom={8}
+                                    
+                                />
+                            </div>
+                            
+                            <motion.div
+                                initial="exit"
+                                className="epic-link-text"
+                                variants={epicLinkText}
+                                animate={this.getPose()}
+                                custom={5}
+                                
+                            > 
+                                <a className="line-hover" href="https://www.mikhail.co/">Instagram</a>
+                            </motion.div>
+
+                            <motion.div
+                                initial="exit"
+                                className="epic-link-arrow"
+                                variants={epicLinkArrow}
+                                animate={this.getPose()}
+                                custom={8}
+                                
+                            >
+                                <ArrowLink/>
+                            </motion.div>
+                        </div>
+
+                        
+                        
+
                 </div>
                 <div className="epic-images-container">
                     <Image
