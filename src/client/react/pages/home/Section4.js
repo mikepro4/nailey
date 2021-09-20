@@ -103,13 +103,12 @@ class Section4 extends Component {
                         order={1}
                     />  
 
-                        <Image
+                        {/* <Image
                         className="image-13"
                         imageId={1}
                         isVisible={isVisible}
                         slowDown={2.1}
-                        order={1}
-                    />  
+                        order={1} */}
                 </div>
                 
             </div>
