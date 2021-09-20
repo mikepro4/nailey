@@ -4,6 +4,10 @@
     max-width: $maxWidth;
     margin: 250px auto 0 auto;
 
+    @media only screen and (max-width: 1700px) {
+        max-width: 100%;
+    }
+
     
     .epic-image {
         position: absolute;
