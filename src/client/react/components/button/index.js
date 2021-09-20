@@ -32,7 +32,7 @@ class Button extends Component {
             "main-button-link": this.isLink(),
             "main-button-minimal": this.props.minimal,
             "main-button-regular": this.props.regular,
-            "main-button-extra": this.props.extra,
+            "extra": this.props.extra,
         })
 
         if (this.isLink()) {

@@ -11,6 +11,7 @@ import Section2 from "./Section2"
 import Section3 from "./Section3"
 import Section4 from "./Section4"
 import Section5 from "./Section5"
+import Section6 from "./Section6"
 
 class HomePage extends Component {
 
@@ -63,7 +64,7 @@ class HomePage extends Component {
                     headline={headline}
                 />
                 
-                <Section5
+                {/* <Section5
                     headline={headline}
                     headline="Lifestyle"
                     description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mauris orci, facilisis eget quam nec, convallis dignissim nisl. Maecenas vel lorem in turpis cursus fringilla. In in efficitur mauris, et maximus nisl. Nulla eget mauris a augue porttitor egestas nec vestibulum libero."
@@ -82,12 +83,10 @@ class HomePage extends Component {
                     headline="Fun"
                     description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mauris orci, facilisis eget quam nec, convallis dignissim nisl. Maecenas vel lorem in turpis cursus fringilla. In in efficitur mauris, et maximus nisl. Nulla eget mauris a augue porttitor egestas nec vestibulum libero."
                     alignment="left"
-                />
+                /> */}
 
+                <Section6/>
 
-                <div className="placeholder">
-                    
-                </div>
             </div>
 				
 		);

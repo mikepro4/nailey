@@ -20,6 +20,7 @@
     border: 1px solid $black;
     background: $black;
     color: $white;
+    transition: all 1s;
   
     &:before {
       content: "";
@@ -54,6 +55,29 @@
 
         &:hover {
             color: $black;
+        }
+
+        &.extra {
+            font-size: 133px;
+            font-family: "E", sans-serif;
+            height: auto;
+            text-transform: none;
+            display: inline-block;
+            width: auto;
+            padding: 3.9rem 0.8em;
+
+            .main-button-text {
+                // animation: breathe 3s infinite alternate forwards;
+            }
+
+            &:hover {
+                .main-button-text {
+                    // animation: breathe 3s infinite alternate forwards;
+                    letter-spacing: 3.5px;
+                }
+                // color: #D8C3A8;
+                // border: 1px solid #D8C3A8
+            }
         }
     }
   
@@ -108,4 +132,14 @@
     //   }
     // }
   }
+
+  @keyframes breathe {
+    0% {
+        letter-spacing: 1.3px;
+    }
+
+    100% {
+        letter-spacing: 3px;
+    }
+}
   
