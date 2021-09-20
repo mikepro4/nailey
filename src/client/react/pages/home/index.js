@@ -9,6 +9,7 @@ import SectionHero from "./SectionHero"
 import Section1 from "./Section1"
 import Section2 from "./Section2"
 import Section3 from "./Section3"
+import Section4 from "./Section4"
 
 class HomePage extends Component {
 
@@ -56,6 +57,14 @@ class HomePage extends Component {
                 <Section3
                     headline={headline}
                 />
+
+                <Section4
+                    headline={headline}
+                />
+
+                <div className="placeholder">
+                    
+                </div>
             </div>
 				
 		);
