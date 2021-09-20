@@ -208,8 +208,6 @@ class Section4 extends Component {
                                 <ArrowLink/>
                             </motion.div>
                         </div>
-
-                        
                         
 
                 </div>
@@ -245,13 +243,6 @@ class Section4 extends Component {
                         slowDown={2.2}
                         order={9}
                     />  
-
-                        {/* <Image
-                        className="image-13"
-                        imageId={1}
-                        isVisible={isVisible}
-                        slowDown={2.1}
-                        order={1} */}
                 </div>
                 
             </div>
