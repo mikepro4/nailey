@@ -125,7 +125,7 @@ class Image extends Component {
                     easing: "cubic-bezier(.19,1,.22,1)"
                 },
             }),
-          }
+        }
 
         let imageVariants = {
             exit: {

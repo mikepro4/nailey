@@ -6,6 +6,7 @@ import classNames from "classnames"
 
 import Image from "../../components/image"
 import SectionHero from "./SectionHero"
+import Section1 from "./Sectino1"
 
 class HomePage extends Component {
 
@@ -21,36 +22,30 @@ class HomePage extends Component {
 
 	render() {
         let pageTitle = this.props.app.site.title + " – " + this.props.app.site.subtitle + " | Home"
-
+        const headline = {
+            exit: i => ({
+                opacity: 0,
+            }),
+            enter: i => ({ 
+                opacity: 1,
+                scale: 1,
+                translateY: 0,
+                transition: {
+                    duration: 2,
+                    delay:  i * 0.15,
+                    easing: "cubic-bezier(.19,1,.22,1)"
+                },
+            }),
+        }
 		return (
      		<div className="route-content home-route">
                 {this.renderHead(pageTitle)}
 
                 <SectionHero />
 
-                <div className="section-text-content">
-                    <div className="text-container-wrapper">
-                        <div className="text-container text-container-left">
-                            <div className="text-content-headline-container">
-                                <div className="text-content-headline-number">01</div>
-                                <div className="text-content-headline">Care</div>
-                            </div>
-
-                            <div className="text-content-description">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                                    Nulla mauris orci, facilisis eget quam nec, convallis dignissim nisl. 
-                                    Maecenas vel lorem in turpis cursus fringilla. In in efficitur mauris, et 
-                                    maximus nisl. Nulla eget mauris a augue porttitor egestas nec vestibulum libero. 
-                                </p>
-
-                                <p>Curabitur pulvinar egestas orci. Fusce hendrerit est ac ligula eleifend, vitae 
-                                    bibendum ipsum dignissim. Vivamus sagittis felis gravida ornare hendrerit. 
-                                    Sed nec metus non ante ullamcorper convallis. </p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
+                <Section1
+                    headline={headline}
+                />
 
                 <div className="section-text-content">
                     <div className="text-container-wrapper">
