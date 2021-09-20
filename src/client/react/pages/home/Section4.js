@@ -11,11 +11,17 @@ class Section4 extends Component {
     componentDidMount() {
     }
 
-    getPose() {
+    getPose(element) {
+        let ratio = 0.9
+
+        if (element) {
+            ratio = 2.4
+        }
+
         if (this.refs.screen) {
             let node = this.refs.screen
             let bodyHeight = this.props.clientHeight
-            if (node && (this.refs.screen.offsetTop <= (this.props.totalScrolledPixels + (bodyHeight / 2.2)))) {
+            if (node && (this.refs.screen.offsetTop <= (this.props.totalScrolledPixels + (bodyHeight / ratio)))) {
                 return "enter"
             } else {
                 return "exit"
@@ -42,17 +48,17 @@ class Section4 extends Component {
 
         const epicHeadline = {
             exit: i => ({
-                webkitMaskPosition: "180%",
+                WebkitMaskPosition: "180%",
                 opacity: 0
             }),
             enter: i => ({ 
-                webkitMaskPosition: "140%",
+                WebkitMaskPosition: "140%",
                 opacity: 1,
                 transition: {
                     opacity: {
                         duration: 3
                     }, 
-                        webkitMaskPosition: {
+                        WebkitMaskPosition: {
                             duration: 4
                         }
                     ,
@@ -161,7 +167,7 @@ class Section4 extends Component {
                             initial="exit"
                             className="epic-link-label"
                             variants={epicLinkLabel}
-                            animate={this.getPose()}
+                            animate={this.getPose(true)}
                             custom={1}
                             
                         >
@@ -174,7 +180,7 @@ class Section4 extends Component {
                                     initial="exit"
                                     className="epic-link-line"
                                     variants={epicLinkLine}
-                                    animate={this.getPose()}
+                                    animate={this.getPose(true)}
                                     custom={8}
                                     
                                 />
@@ -184,7 +190,7 @@ class Section4 extends Component {
                                 initial="exit"
                                 className="epic-link-text"
                                 variants={epicLinkText}
-                                animate={this.getPose()}
+                                animate={this.getPose(true)}
                                 custom={5}
                                 
                             > 
@@ -195,7 +201,7 @@ class Section4 extends Component {
                                 initial="exit"
                                 className="epic-link-arrow"
                                 variants={epicLinkArrow}
-                                animate={this.getPose()}
+                                animate={this.getPose(true)}
                                 custom={8}
                                 
                             >
@@ -213,7 +219,7 @@ class Section4 extends Component {
                         imageId={1}
                         isVisible={isVisible}
                         slowDown={4}
-                        order={1}
+                        order={6}
                     />
 
                     <Image
@@ -221,7 +227,7 @@ class Section4 extends Component {
                         imageId={1}
                         isVisible={isVisible}
                         slowDown={2.5}
-                        order={1}
+                        order={8}
                     />
 
                     <Image
@@ -229,7 +235,7 @@ class Section4 extends Component {
                         imageId={1}
                         isVisible={isVisible}
                         slowDown={3.5}
-                        order={1}
+                        order={7}
                     />
 
                     <Image
@@ -237,7 +243,7 @@ class Section4 extends Component {
                         imageId={1}
                         isVisible={isVisible}
                         slowDown={2.2}
-                        order={1}
+                        order={9}
                     />  
 
                         {/* <Image
