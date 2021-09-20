@@ -3,9 +3,9 @@ import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import classNames from "classnames"
-import { motion } from "framer-motion";
-import Button from "../../components/button"
+
 import Image from "../../components/image"
+import SectionHero from "./SectionHero"
 
 class HomePage extends Component {
 
@@ -22,123 +22,11 @@ class HomePage extends Component {
 	render() {
         let pageTitle = this.props.app.site.title + " – " + this.props.app.site.subtitle + " | Home"
 
-        const heroTitle = {
-            visible: { 
-                scale: 1, 
-                transition: {
-                    duration: 1,
-                    delay: 0.3
-                } 
-            },
-            hidden: { 
-                scale: 0.99
-            },
-        }
-
-        const heroSubtitle = {
-            visible: { 
-                scale: 1, 
-                y: 0,
-                opacity: 1,
-                transition: {
-                    duration: 1,
-                    delay: 0.55
-                } 
-            },
-            hidden: { 
-                scale: 0.99,
-                opacity: 0
-            },
-        }
-
-        const heroButton = {
-            visible: { 
-                scale: 1, 
-                opacity: 1,
-                transition: {
-                    duration: 1,
-                    delay: 0.65
-                } 
-            },
-            hidden: { 
-                scale: 1,
-                opacity: 0
-            },
-        }
-
 		return (
      		<div className="route-content home-route">
                 {this.renderHead(pageTitle)}
 
-                <div className="section-hero">
-                    <div 
-                        className="hero-container"
-                    >
-
-                        <div className="hero-content-container">
-                            <motion.div 
-                                className="hero-title animation-text-wipe animate-in"
-                                initial="hidden"
-                                animate="visible"
-                                variants={heroTitle}
-                            >
-                                {this.props.app.site.subtitle}
-                            </motion.div>
-                            <motion.div 
-                                className="hero-subtitle"
-                                initial="hidden"
-                                animate="visible"
-                                variants={heroSubtitle}
-                            >
-                                {this.props.app.site.description}
-                            </motion.div>
-                            <motion.div 
-                                className="hero-button"
-                                initial="hidden"
-                                animate="visible"
-                                variants={heroButton}
-                            >
-                                <Button
-                                    label={this.props.app.site.ctaText}
-                                    linkUrl={this.props.app.site.ctaUrl}
-                                    onClick={() => {alert("lol")}}
-                                />
-                            </motion.div>
-                        </div>
-                    </div>
-
-                    <Image
-                        className="image-1"
-                        imageId={1}
-                        isVisible={this.state.isVisible}
-                        slowDown={3}
-                        order={1}
-                    />
-
-                    <Image
-                        className="image-2"
-                        imageId={2}
-                        isVisible={this.state.isVisible}
-                        slowDown={2}
-                        order={1}
-                    />
-
-                    <Image
-                        className="image-3"
-                        imageId={3}
-                        isVisible={this.state.isVisible}
-                        slowDown={15}
-                        order={1}
-                    />
-
-                    <Image
-                        className="image-4"
-                        imageId={4}
-                        isVisible={this.state.isVisible}
-                        slowDown={3.5}
-                        order={1}
-                    />
-                </div>
+                <SectionHero />
 
                 <div className="section-text-content">
                     <div className="text-container-wrapper">
@@ -238,11 +126,13 @@ class HomePage extends Component {
                         imageId={1}
                         isVisible={this.state.isVisible}
                         slowDown={7}
-                        order={1}
+                        order={12}
                     />
 
                    
                 </div>
+
+
 
                 <div className="placeholder"></div>
 

@@ -6,10 +6,16 @@ import { motion } from "framer-motion";
 
 class Image extends Component {
     state = {
+        isVisible: false
     };
 
     componentDidUpdate(prevprops) {
-    }
+        if(this.props.isVisible == true && this.state.isVisible == false) {
+          this.setState({
+            isVisible: true
+          })
+        }
+      }
 
     componentDidMount() {
         if (!this.props.loadedImages[this.props.imageId]) {
@@ -20,7 +26,7 @@ class Image extends Component {
         if (this.refs.image_container) {
             let node = this.refs[this.props.imageId]
             let bodyHeight = document.getElementById("body").clientHeight
-            if (node && (this.refs.image_container.offsetTop <= (this.props.totalScrolledPixels + (bodyHeight / 0.9)))) {
+            if ( node && (this.refs.image_container.offsetTop <= (this.props.totalScrolledPixels + (bodyHeight / 0.7)))) {
                 return "enter"
             } else {
                 return "exit"
@@ -92,23 +98,35 @@ class Image extends Component {
     }
 
     mayberRenderImage() {
-        if (this.props.loadedImages[this.props.imageId] && this.refs.image_container) {
+        if (this.refs.image_container) {
             return (
                 <div className="image-wrapper"
                     ref={this.props.imageId}
-                    style={{
-                        backgroundImage: `url(${this.props.loadedImages[this.props.imageId].imageDetails.display_resources[2].src})`
-                    }}
                 >
-                    <span className="info">
-                        {this.props.className} – {this.props.imageId} - {this.refs.image_container.offsetTop}
-                    </span>
                 </div>
             )
         }
     }
 
     render() {
+
+        const variants = {
+            exit: i => ({
+                opacity: 0,
+                scale: 1.1,
+            }),
+            enter: order => ({ 
+                opacity: 1,
+                scale: 1,
+                translateY: 0,
+                transition: {
+                    duration: 2,
+                    delay: 0.5 + order * 0.15,
+                    easing: "cubic-bezier(.19,1,.22,1)"
+                },
+            }),
+          }
+
         let imageVariants = {
             exit: {
                 opacity: 0,
@@ -121,18 +139,18 @@ class Image extends Component {
                 translateY: 0,
                 transition: {
                     scale: {
-                        duration: 3000
+                        duration: 0.2
                     },
                     opacity: {
-                        duration: 2000,
+                        duration: 0.2,
         
                     },
                     translateY: {
-                        duration: 2000,
+                        duration: 0.2,
                         easing: "cubic-bezier(.19,1,.22,1)"
                     },
                     delay: ({ custom }) => {
-                        return custom * 300
+                        return custom * 1000
                     }
                 },
                 
@@ -159,7 +177,7 @@ class Image extends Component {
                     initial="exit"
                     className="image-container"
                     custom={this.props.order}
-                    variants={imageVariants}
+                    variants={variants}
                     animate={this.getPose()}
                 >
                     {this.mayberRenderImage()}
