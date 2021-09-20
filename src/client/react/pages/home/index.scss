@@ -290,6 +290,10 @@
     position: relative;
     transform: translateX(120%);
 
+    .epic-headline-wrapper {
+        will-change: transform;
+    }
+
 
     .epic-headline {
         font-family: "E", sans-serif;
