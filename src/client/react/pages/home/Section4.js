@@ -26,7 +26,6 @@ class Section4 extends Component {
 
     headlineTransform = () => {
         let transform = `translate(-${this.props.totalScrolledPixels-100 / 1.2- this.props.clientWidth * 0.1}px, ${this.props.totalScrolledPixels / 10.5}px)`
-        console.log(transform)
 
         return transform
     }
@@ -39,7 +38,27 @@ class Section4 extends Component {
             isVisible = true
         }
 
-        console.log(this.props.clientWidth)
+
+        const epicHeadline = {
+            exit: i => ({
+                webkitMaskPosition: "180%",
+                opacity: 0
+            }),
+            enter: i => ({ 
+                webkitMaskPosition: "140%",
+                opacity: 1,
+                transition: {
+                    opacity: {
+                        duration: 3
+                    }, 
+                        webkitMaskPosition: {
+                            duration: 4
+                        }
+                    ,
+                    easing: "cubic-bezier(.19,1,.22,1)"
+                },
+            }),
+        }
 
         return (
             <div className="epic-section-container" ref="screen">
@@ -55,10 +74,9 @@ class Section4 extends Component {
                             <motion.div
                                 initial="exit"
                                 className="epic-headline"
-                                variants={this.props.headline}
+                                variants={epicHeadline}
                                 animate={this.getPose()}
                                 custom={1}
-                                
                                 
                             >
                                 Your favorite secret

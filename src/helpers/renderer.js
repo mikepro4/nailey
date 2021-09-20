@@ -50,7 +50,7 @@ export default (
 	const content = renderToString(
 		<Provider store={reduxStore}>
 			<ConnectedRouter history={history}>
-				<div>{renderRoutes(Router)}</div>
+				<div className="app-container">{renderRoutes(Router)}</div>
 			</ConnectedRouter>
 		</Provider>
 	);

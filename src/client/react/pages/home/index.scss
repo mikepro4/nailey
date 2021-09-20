@@ -281,7 +281,7 @@
 }
 
 .section-epic-headline {
-    
+    width: 100%;
     margin: 0 auto;
     position: relative;
     display: flex;
@@ -296,18 +296,29 @@
 
 
     .epic-headline {
-        font-family: "E", sans-serif;
-        font-size: 320px;
+        font-size: 173px;
         position: absolute;
         white-space: nowrap;
-        
+
+        font-family: "G", sans-serif;
+        // font-size: 5.7vw;
+        font-weight: 400;
+        background: linear-gradient(to right, rgba(204, 183, 153, 0.98), rgba(219, 197, 171, 0.92) 100%);
+    
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        // background-size: 500% 500%;
+        background-position: center center;
+        -webkit-mask-image: linear-gradient(to left, #0000 25%, #000 75%);
+        -webkit-mask-size: 500%;
+    
     }
 
-    @media only screen and (max-width: 1800px) {
+    @media only screen and (max-width: 1700px) {
         transform: translateX(150%);
 
         .epic-headline {
-            font-size: 270px;
+            font-size: 160px;
         }
     }
 
@@ -315,7 +326,7 @@
         transform: translateX(170%);
 
         .epic-headline {
-            font-size: 270px;
+            font-size: 140px;
         }
     }
 
@@ -323,7 +334,7 @@
         transform: translateX(190%);
 
         .epic-headline {
-            font-size: 222px;
+            font-size: 120px;
         }
     }
 
