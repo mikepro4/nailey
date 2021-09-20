@@ -6,7 +6,8 @@ import classNames from "classnames"
 
 import Image from "../../components/image"
 import SectionHero from "./SectionHero"
-import Section1 from "./Sectino1"
+import Section1 from "./Section1"
+import Section2 from "./Section2"
 
 class HomePage extends Component {
 
@@ -47,52 +48,9 @@ class HomePage extends Component {
                     headline={headline}
                 />
 
-                <div className="section-text-content">
-                    <div className="text-container-wrapper">
-                        <div className="text-container text-container-right">
-                            <div className="text-content-headline-container">
-                                <div className="text-content-headline-number">02</div>
-                                <div className="text-content-headline">Love</div>
-                            </div>
-
-                            <div className="text-content-description">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                                    Nulla mauris orci, facilisis eget quam nec, convallis dignissim nisl. 
-                                    Maecenas vel lorem in turpis cursus fringilla. In in efficitur mauris, et 
-                                    maximus nisl. Nulla eget mauris a augue porttitor egestas nec vestibulum libero. 
-                                </p>
-                                
-                                <p>Curabitur pulvinar egestas orci. Fusce hendrerit est ac ligula eleifend, vitae 
-                                    bibendum ipsum dignissim. Vivamus sagittis felis gravida ornare hendrerit. 
-                                    Sed nec metus non ante ullamcorper convallis. </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <Image
-                        className="image-5"
-                        imageId={1}
-                        isVisible={this.state.isVisible}
-                        slowDown={10}
-                        order={1}
-                    />
-
-                    <Image
-                        className="image-6"
-                        imageId={1}
-                        isVisible={this.state.isVisible}
-                        slowDown={4}
-                        order={1}
-                    />
-
-                    <Image
-                        className="image-7"
-                        imageId={1}
-                        isVisible={this.state.isVisible}
-                        slowDown={6}
-                        order={1}
-                    />
-                </div>
+                <Section2
+                    headline={headline}
+                />
 
                 <div className="section-text-content">
                     <div className="text-container-wrapper">
