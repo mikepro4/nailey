@@ -14,7 +14,7 @@ class Section2 extends Component {
         if (this.refs.screen) {
             let node = this.refs.screen
             let bodyHeight = this.props.clientHeight
-            if (node && (this.refs.screen.offsetTop <= (this.props.totalScrolledPixels + (bodyHeight / 0.9)))) {
+            if (node && (this.refs.screen.offsetTop <= (this.props.totalScrolledPixels + (bodyHeight / 1.2)))) {
                 return "enter"
             } else {
                 return "exit"
@@ -35,7 +35,7 @@ class Section2 extends Component {
         return (
             <div className="section-text-content" ref="screen">
                     <div className="text-container-wrapper">
-                        <div className="text-container text-container-right">
+                        <div className="text-container text-container-left">
                             <div className="text-content-headline-container">
 
                                 <motion.div
@@ -45,7 +45,7 @@ class Section2 extends Component {
                                     animate={this.getPose()}
                                     custom={1}
                                 >
-                                    02
+                                    03
                                 </motion.div>
 
                                 <motion.div
@@ -55,7 +55,7 @@ class Section2 extends Component {
                                     animate={this.getPose()}
                                     custom={3}
                                 >
-                                    Love
+                                    Passion
                                 </motion.div>
                             </div>
 
@@ -81,27 +81,11 @@ class Section2 extends Component {
                     </div>
 
                     <Image
-                        className="image-5"
+                        className="image-8"
                         imageId={1}
                         isVisible={isVisible}
-                        slowDown={10}
-                        order={1}
-                    />
-
-                    <Image
-                        className="image-6"
-                        imageId={1}
-                        isVisible={isVisible}
-                        slowDown={4}
-                        order={3}
-                    />
-
-                    <Image
-                        className="image-7"
-                        imageId={1}
-                        isVisible={isVisible}
-                        slowDown={6}
-                        order={6}
+                        slowDown={7}
+                        order={9}
                     />
                     
                 </div>
