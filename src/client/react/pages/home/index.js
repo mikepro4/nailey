@@ -59,12 +59,29 @@ class HomePage extends Component {
                     headline={headline}
                 />
 
-                <Section4
+                {/* <Section4
                     headline={headline}
-                />
+                /> */}
                 
                 <Section5
                     headline={headline}
+                    headline="Lifestyle"
+                    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mauris orci, facilisis eget quam nec, convallis dignissim nisl. Maecenas vel lorem in turpis cursus fringilla. In in efficitur mauris, et maximus nisl. Nulla eget mauris a augue porttitor egestas nec vestibulum libero."
+                    alignment="left"
+                />
+
+                <Section5
+                    headline={headline}
+                    headline="Lifestyle"
+                    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mauris orci, facilisis eget quam nec, convallis dignissim nisl. Maecenas vel lorem in turpis cursus fringilla. In in efficitur mauris, et maximus nisl. Nulla eget mauris a augue porttitor egestas nec vestibulum libero."
+                    alignment="right"
+                />
+
+                <Section5
+                    headline={headline}
+                    headline="Lifestyle"
+                    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mauris orci, facilisis eget quam nec, convallis dignissim nisl. Maecenas vel lorem in turpis cursus fringilla. In in efficitur mauris, et maximus nisl. Nulla eget mauris a augue porttitor egestas nec vestibulum libero."
+                    alignment="left"
                 />
 
 

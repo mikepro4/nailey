@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { motion } from "framer-motion";
 import Image from "../../components/image"
 import ArrowLink from "../../components/svg/arrow-link"
+import classNames from "classnames";
 
 class Section5 extends Component {
     state = {
@@ -16,7 +17,7 @@ class Section5 extends Component {
         if (this.refs.screen) {
             let node = this.refs.screen
             let bodyHeight = this.props.clientHeight
-            if (node && (this.refs.screen.offsetTop <= (this.props.totalScrolledPixels + ((bodyHeight) / 0.9)))) {
+            if (node && (this.refs.screen.offsetTop <= (this.props.totalScrolledPixels + ((bodyHeight) / 1.2)))) {
                 return "enter"
             } else {
                 return "exit"
@@ -88,7 +89,7 @@ class Section5 extends Component {
                 opacity: 0,
             }),
             enter: i => ({ 
-                width: "100%",
+                width: "calc(100% - 100px)",
                 opacity: 1,
                 transition: {
                     type: "spring",
@@ -100,7 +101,15 @@ class Section5 extends Component {
         }
 
         return (
-            <div className="epic-image-container description-left" ref="screen">
+            <div 
+                className="epic-image-container description-left" 
+                className={classNames({
+                    "epic-image-container": true,
+                    "description-left": this.props.alignment =="left",
+                    "description-right": this.props.alignment =="right"
+                })}
+                ref="screen"
+            >
 
                 <motion.div
                     initial="exit"
@@ -130,7 +139,7 @@ class Section5 extends Component {
                             custom={3}
                             
                         >
-                            Lyfestyle
+                            {this.props.headline}
                         </motion.div>
 
                         <motion.div
@@ -141,8 +150,7 @@ class Section5 extends Component {
                             custom={4}
                             
                         >
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mauris orci, facilisis eget quam nec, convallis dignissim nisl. Maecenas vel lorem in turpis cursus fringilla. 
-                            In in efficitur mauris, et maximus nisl. Nulla eget mauris a augue porttitor egestas nec vestibulum libero. 
+                            {this.props.description}
                         </motion.div>
                     </div>
                     

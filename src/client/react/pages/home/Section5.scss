@@ -1,24 +1,21 @@
 .epic-image-container {
     position: relative;
-    height: 880px;
+    height: 900px;
     max-width: $maxWidth;
     margin: 250px auto 0 auto;
 
+    
     .epic-image {
         position: absolute;
         top: 0;
         left: 0;
-        right: -0;
         bottom: 0;
-        margin-left: 100px;
         background: rgba($black, 0.1);
         z-index: 1;
     }
 
     .epic-description {
         position: absolute;
-        bottom: -100px;
-        left: 0;
         background: white;
         z-index: 2;
         overflow: hidden;
@@ -42,4 +39,27 @@
             margin: 0;
         }
     }
+
+    &.description-left {
+        .epic-image {
+            margin-left: 100px;
+        }
+
+        .epic-description {
+            bottom: -100px;
+            left: 0;
+        }
+    }
+
+    &.description-right {
+        .epic-image {
+            margin-right: 200px;
+        }
+
+        .epic-description {
+            bottom: -100px;
+            left: calc(100% - 750px);
+        }
+    }
+
 }
