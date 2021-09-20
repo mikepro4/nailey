@@ -42,7 +42,8 @@ class Section4 extends Component {
         console.log(this.props.clientWidth)
 
         return (
-            <div className="section-epic-headline" ref="screen">
+            <div className="epic-section-container" ref="screen">
+                <div className="section-epic-headline" ref="screen">
                     <div className="epic-headline-container">
                         <div 
                             className="epic-headline-wrapper"
@@ -69,6 +70,49 @@ class Section4 extends Component {
 
                     
                 </div>
+                <div className="epic-images-container">
+                    <Image
+                        className="image-9"
+                        imageId={1}
+                        isVisible={isVisible}
+                        slowDown={4}
+                        order={1}
+                    />
+
+                    <Image
+                        className="image-10"
+                        imageId={1}
+                        isVisible={isVisible}
+                        slowDown={2.5}
+                        order={1}
+                    />
+
+                    <Image
+                        className="image-11"
+                        imageId={1}
+                        isVisible={isVisible}
+                        slowDown={3.5}
+                        order={1}
+                    />
+
+                    <Image
+                        className="image-12"
+                        imageId={1}
+                        isVisible={isVisible}
+                        slowDown={2.2}
+                        order={1}
+                    />  
+
+                        <Image
+                        className="image-13"
+                        imageId={1}
+                        isVisible={isVisible}
+                        slowDown={2.1}
+                        order={1}
+                    />  
+                </div>
+                
+            </div>
         )
     }
 }

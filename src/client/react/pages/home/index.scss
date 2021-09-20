@@ -151,6 +151,43 @@
     width: 450px;
 }
 
+.image-9 {
+    top: -47%;
+    left: -10%;
+    height: 480px;
+    width: 480px;
+}
+
+.image-10 {
+    bottom: -30%;
+    left: 10%;
+    height: 370px;
+    width: 370px;
+}
+
+.image-11 {
+    bottom: -20%;
+    right: 5%;
+    height: 350px;
+    width: 350px;
+}
+
+.image-12 {
+    bottom: -20%;
+    right: 35%;
+    height: 222px;
+    width: 222px;
+}
+
+.image-13 {
+    top: -200%;
+    left: 40%;
+    height: 250px;
+    width: 250px;
+}
+
+
+
 
 
 .section-hero {
@@ -244,7 +281,7 @@
 }
 
 .section-epic-headline {
-    height: 300px;
+    
     margin: 0 auto;
     position: relative;
     display: flex;
@@ -291,6 +328,15 @@
 
 
 
-.epic-headline-container {
+.epic-section-container {
+    position: relative;
     // transform: translateX(-100px);
+
+    .epic-images-container {
+        max-width: $maxWidth;
+        max-width: 1650px;
+        margin: 0 auto;
+        position: relative;
+        height: 300px;
+    }
 }
