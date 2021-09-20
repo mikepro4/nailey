@@ -244,23 +244,52 @@
 }
 
 .section-epic-headline {
-    height: 900px;
+    height: 300px;
     margin: 0 auto;
     position: relative;
     display: flex;
     margin: 0 auto;
     max-width: $maxWidth;
     position: relative;
-    transform: translateX(100%);
-}
+    transform: translateX(120%);
 
-.epic-headline {
-    font-family: "E", sans-serif;
-    font-size: 320px;
-    position: absolute;
-    white-space: nowrap;
+
+    .epic-headline {
+        font-family: "E", sans-serif;
+        font-size: 320px;
+        position: absolute;
+        white-space: nowrap;
+        
+    }
+
+    @media only screen and (max-width: 1800px) {
+        transform: translateX(150%);
+
+        .epic-headline {
+            font-size: 270px;
+        }
+    }
+
+    @media only screen and (max-width: 1500px) {
+        transform: translateX(170%);
+
+        .epic-headline {
+            font-size: 270px;
+        }
+    }
+
+    @media only screen and (max-width: 1400px) {
+        transform: translateX(190%);
+
+        .epic-headline {
+            font-size: 222px;
+        }
+    }
+
     
 }
+
+
 
 .epic-headline-container {
     // transform: translateX(-100px);

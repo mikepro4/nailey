@@ -25,7 +25,7 @@ class Section4 extends Component {
     }
 
     headlineTransform = () => {
-        let transform = `translate(-${this.props.totalScrolledPixels / 0.8 - this.props.clientWidth * 0.2}px, ${this.props.totalScrolledPixels / 10}px)`
+        let transform = `translate(-${this.props.totalScrolledPixels-100 / 1.2- this.props.clientWidth * 0.1}px, ${this.props.totalScrolledPixels / 10.5}px)`
         console.log(transform)
 
         return transform
@@ -45,6 +45,7 @@ class Section4 extends Component {
             <div className="section-epic-headline" ref="screen">
                     <div className="epic-headline-container">
                         <div 
+                            className="epic-headline-wrapper"
                             style={{
                                 transform: this.headlineTransform()
                             }}
