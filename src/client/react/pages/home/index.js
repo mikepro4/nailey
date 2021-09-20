@@ -111,7 +111,7 @@ class HomePage extends Component {
                         className="image-1"
                         imageId={1}
                         isVisible={this.state.isVisible}
-                        slowDown={6}
+                        slowDown={3}
                         order={1}
                     />
 
