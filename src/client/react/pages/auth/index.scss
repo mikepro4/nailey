@@ -81,7 +81,7 @@
     @for $i from 1 through 10 {
       .transition-element {
         &:nth-child(#{$i}) {
-          animation-delay: $i * 0.03s;
+          animation-delay: $i * 0.1s;
         }
       }
     }
@@ -96,7 +96,7 @@
     .auth-footer-link {
       left: 0;
       right: 0;
-      margin: 100px 0 0;
+      margin: 100px 0 100px 0;
       font-size: 13px;
       color: rgba($black, 0.5);
       display: flex;
@@ -111,3 +111,16 @@
     }
   }
   
+  .login-error {
+      margin-top: 150px;
+      font-size: 14px;
+      padding: 0 30px;
+      text-align: center;
+
+      .main-button {
+          margin-top: 20px !important;
+          max-width: 150px;
+          margin: 0 auto;
+          display: block;
+      }
+  }

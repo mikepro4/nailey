@@ -69,7 +69,7 @@ class Signup extends Component {
 				/>
 				<div className="auth-footer-link">
 					<span className="auth-footer-link-label">Already have an account?</span>
-					<Link to="/auth/login"><Button minimal="true" className={"small-button theme-" + this.props.theme} label="Login" /></Link>
+					<Link to="/auth/login"><Button minimal="true" className={"small-button transition-element theme-" + this.props.theme} label="Login" /></Link>
 				</div>
 
                 <Toaster position={Position.TOP_CENTER} ref="toaster" />
