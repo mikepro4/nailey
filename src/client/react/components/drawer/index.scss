@@ -1,22 +1,37 @@
 .app-drawer {
     position: fixed;
-    top: 0;
     left: 0;
-    bottom: 0;
-    right: 0;
-    z-index: 200;
-    display: flex;
-    align-items: flex-end;
+    bottom: 50px;
+    width: 650px;
+    z-index: 2;
+    height: 700px;
+    
 
-    .app-drawer-background {
+    @media only screen and (max-width: $mobile) {
+        height: inherit;
+        width: inherit;
         position: fixed;
         top: 0;
         left: 0;
         bottom: 0;
         right: 0;
-        z-index: 1;
-        background: rgba($black, 0.2);
+        z-index: 200;
+        display: flex;
+        align-items: flex-end;
+    }
+
+    .app-drawer-background {
         @extend .animation-fadeIn;
+        
+        @media only screen and (max-width: $mobile) {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            z-index: 1;
+            background: rgba($black, 0.2);
+        }
 
         &.hide {
             @extend .animation-fadeOut;
@@ -29,15 +44,12 @@
         position: relative;    
         overflow-y: auto;
         background: $white;
-        -webkit-backdrop-filter: blur(30px);
-        backdrop-filter: blur(30px);
         color: $black;
-        border-top-left-radius: 15px;
-        border-top-right-radius: 15px;
         z-index: 2;
         width: 100%;
         @extend .animation-slideDrawer;
         animation-delay: 0s;
+        box-shadow: 0px 4px 64px rgba(47, 47, 47, 0.04);
 
         &.hide {
             @extend .animation-hideDrawer;
@@ -264,6 +276,6 @@
     height: 85%;
 }
 
-.site-settings-drawer {
-    height: 80%;
-}
+// .site-settings-drawer {
+//     height: 80%;
+// }
