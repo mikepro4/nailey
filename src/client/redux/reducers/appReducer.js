@@ -12,7 +12,8 @@ import {
     DISABLE_EDIT,
     SHOW_DRAWER,
     HIDE_DRAWER,
-    UPDATE_COLLECTION
+    UPDATE_COLLECTION,
+    UNCHECK_ALL
 } from "../actions/types";
 
 export const initialState = {
@@ -55,7 +56,9 @@ export const initialState = {
         ]
     },
     updatedSite: {},
-    updateCollection: false
+    updateCollection: false,
+    uncheckAll: false,
+    dontUncheck: null
 };
 
 export const appReducer = (state = initialState, action) => {
@@ -106,6 +109,12 @@ export const appReducer = (state = initialState, action) => {
             return {
                 ...state,
                 updateCollection: action.payload
+            };
+        case UNCHECK_ALL:
+            return {
+                ...state,
+                uncheckAll: action.payload.status,
+                dontUncheck: action.payload.id
             };
         case SHOW_DRAWER:
             let drawer

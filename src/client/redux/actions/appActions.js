@@ -9,7 +9,8 @@ import {
     DISABLE_EDIT,
     SHOW_DRAWER,
     HIDE_DRAWER,
-    UPDATE_COLLECTION
+    UPDATE_COLLECTION,
+    UNCHECK_ALL
 } from "./types";
 
 import moment from "moment";
@@ -174,6 +175,23 @@ export const updateCollection = (update, success) => async (
         payload: update
     });
 };
+
+/////////////////////////////////////////////////
+
+export const uncheckAll = (status, id, success) => async (
+    dispatch,
+	getState,
+	api
+) => {
+    dispatch({
+        type: UNCHECK_ALL,
+        payload: {
+            status: status,
+            id: id
+        }
+    });
+};
+
 
 
 ///////////////////////////////////////////////////

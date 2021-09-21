@@ -6,6 +6,7 @@ import { Switch, Icon, Button, Classes, Intent, Position, Toaster } from "@bluep
 import * as _ from "lodash"
 import moment from "moment"
 
+import { uncheckAll } from "../../../../redux/actions/appActions"
 import { setMainSite } from "../../../../redux/actions/sitesActions"
 
 
@@ -23,8 +24,24 @@ class SiteView extends Component {
         }
     }
 
+    componentDidUpdate(prevprops) {
+        if(prevprops.app.uncheckAll !== this.props.app.uncheckAll) {
+            if(this.props.item._id !== this.props.app.dontUncheck) {
+                this.setState({
+                    isMain: false
+                })
+            }
+        }
+    }
+
     handleSwitchChange = (data) => {
+        this.props.uncheckAll(true, this.props.item._id)
+
         this.props.setMainSite(this.props.item,!this.state.isMain)
+
+        setTimeout(() => {
+                this.props.uncheckAll(false, this.props.app.dontUncheck)
+        }, 1000)
 
 
         this.setState({
@@ -64,6 +81,7 @@ class SiteView extends Component {
 
 function mapStateToProps(state) {
     return {
+        app: state.app,
         user: state.app.user,
         authenticated: state.auth.authenticated,
         clientWidth: state.app.clientWidth,
@@ -71,5 +89,6 @@ function mapStateToProps(state) {
 }
 
 export default withRouter(connect(mapStateToProps, {
-    setMainSite
+    setMainSite,
+    uncheckAll
 })(SiteView));
