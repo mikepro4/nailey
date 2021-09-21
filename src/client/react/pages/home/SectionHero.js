@@ -136,7 +136,7 @@ class SectionHero extends Component {
                         className="image-3"
                         imageId={3}
                         isVisible={isVisible}
-                        slowDown={15}
+                        slowDown={12}
                         order={3}
                     />
 
@@ -144,7 +144,7 @@ class SectionHero extends Component {
                         className="image-4"
                         imageId={4}
                         isVisible={isVisible}
-                        slowDown={3.5}
+                        slowDown={4.5}
                         order={4}
                     />
                 </div>

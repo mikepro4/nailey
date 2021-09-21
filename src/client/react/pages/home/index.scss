@@ -127,6 +127,7 @@
     right: -5%;
     height: 328px;
     width: 328px;
+    
 
     @media only screen and (max-width: $mobile) {
         display: none !important;
@@ -140,10 +141,10 @@
     width: 255px;
 
     @media only screen and (max-width: $mobile) {
-        bottom: -30%;
-        left: 0;
-        height: 160px;
-        width: 160px;
+        bottom: -20%;
+        left: 40px;
+        height: 115px;
+        width: 115px;
     }
 }
 
@@ -154,10 +155,10 @@
     width: 395px;
 
     @media only screen and (max-width: $mobile) {
-        bottom: -35%;
-        right: -15%;
-        height: 200px;
-        width: 200px;
+        bottom: -20%;
+        right: 40px;
+        height: 150px;
+        width: 150px;
     }
 
     // @media only screen and (min-width: 1700px) {
@@ -283,6 +284,12 @@
     display: flex;
     align-items: center;
 
+    @media only screen and (max-width: $mobile) {
+        padding: 20px;
+        align-items: flex-start;
+        margin-top: 200px;
+    }
+
     .text-container-wrapper {
         max-width: 1180px;
         margin: auto;
@@ -297,8 +304,18 @@
         max-width: 1180px;
         padding-left: 30px;
 
+        @media only screen and (max-width: $mobile) {
+            width: 100%;
+            max-width: 400px;
+            padding-right: 10px;
+        }
+
         &.text-container-right {
             margin-left: 50%;
+
+            @media only screen and (max-width: $mobile) {
+                margin-left: 0;
+            }
         }
 
         .text-content-headline-container {
@@ -309,6 +326,10 @@
                 top: 10px;
                 left: -30px;
                 font-size: 12px;
+
+                @media only screen and (max-width: $mobile) {
+                    left: -25px;
+                }
             }
 
             .text-content-headline {
@@ -317,6 +338,11 @@
                 font-family: "E", sans-serif;
                 letter-spacing: 0.5px;
                 margin-bottom: 20px;
+
+                @media only screen and (max-width: $mobile) {
+                    font-size: 80px;
+                    line-height: 80px;
+                }
             }
         }
 
@@ -331,6 +357,8 @@
                     font-size: 14px;
                     line-height: 22px;
                 }
+
+     
             }
         }
     }

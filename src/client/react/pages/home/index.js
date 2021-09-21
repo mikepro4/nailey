@@ -48,14 +48,14 @@ class HomePage extends Component {
 
                 <SectionHero />
 
-                {/* <Section1
+                <Section1
                     headline={headline}
                 />
 
                 <Section2
                     headline={headline}
                 />
-
+{/* 
                 <Section3
                     headline={headline}
                 />
