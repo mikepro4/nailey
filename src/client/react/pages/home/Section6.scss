@@ -2,7 +2,25 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 1000px;
+    height: 1400px;
     position: relative;
-    top: -200px
+    flex-direction: column;
+    top: -200px;
+    text-align: center;
+
+    .epic-footer-line-1{
+        font-family: "E", sans-serif;
+        font-size: 26px;
+        margin-bottom: 10px;
+        margin-top: 150px;
+    }
+
+    .epic-footer-line-2{
+        font-family: "E", sans-serif;
+        font-size: 66px;
+    }
+
+    .epic-footer-hasana {
+        margin-top: 150px;
+    }
 }

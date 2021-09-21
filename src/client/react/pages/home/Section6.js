@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { motion } from "framer-motion";
 import classNames from "classnames";
 import Button from "../../components/button"
+import Hasana from "../../components/svg/hasana"
 
 class Section6 extends Component {
     state = {
@@ -61,7 +62,7 @@ class Section6 extends Component {
                     className="epic-button-container"
                     variants={epicDescription}
                     animate={this.getPose()}
-                    custom={11}
+                    custom={1}
                 >
                     <Button
                         label={this.props.app.site.ctaText}
@@ -71,6 +72,38 @@ class Section6 extends Component {
                     />
 
                 </motion.div>
+
+                <motion.div
+                    initial="exit"
+                    className="epic-footer-line-1"
+                    variants={this.props.headline}
+                    animate={this.getPose()}
+                    custom={3}
+                >
+                    +1 (718) 510-4402
+                </motion.div>
+
+                <motion.div
+                    initial="exit"
+                    className="epic-footer-line-2"
+                    variants={this.props.headline}
+                    animate={this.getPose()}
+                    custom={4.5}
+                >
+                    222 East 3rd st, <br/>
+                    New York
+                </motion.div>
+
+                <motion.div
+                    initial="exit"
+                    className="epic-footer-hasana"
+                    variants={this.props.headline}
+                    animate={this.getPose()}
+                    custom={5.5}
+                >
+                    <Hasana />
+                </motion.div>
+                
                 
 
             </div>

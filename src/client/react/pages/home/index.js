@@ -85,7 +85,9 @@ class HomePage extends Component {
                     alignment="left"
                 /> */}
 
-                <Section6/>
+                <Section6
+                    headline={headline}
+                />
 
             </div>
 				
