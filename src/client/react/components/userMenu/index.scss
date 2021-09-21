@@ -1,0 +1,16 @@
+.user-menu {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 100;
+    display: flex;
+
+    .main-button {
+        margin: 0 20px 0 0;
+        width: 150px;
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}

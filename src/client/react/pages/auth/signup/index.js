@@ -59,22 +59,32 @@ class Signup extends Component {
 	};
 
 	render() {
-		return (
-			<div className={"auth-container theme-" + this.props.theme }>
-				<SignupForm
-					enableReinitialize="true"
-					loading={this.state.loading}
-                    onSubmit={this.handleFormSubmit.bind(this)}
-                    theme={this.props.theme}
-				/>
-				<div className="auth-footer-link">
-					<span className="auth-footer-link-label">Already have an account?</span>
-					<Link to="/auth/login"><Button minimal="true" className={"small-button transition-element theme-" + this.props.theme} label="Login" /></Link>
-				</div>
+        if(this.props.user) {
+            return(
+                <div className="login-error">
+                    Can't sign up – already logged in as {this.props.user.email}
+                    <Link to="/auth/logout" className="main-button ">Logout</Link>
+                </div>
+            )
+            
+        } else {
+            return (
+                <div className={"auth-container theme-" + this.props.theme }>
+                    <SignupForm
+                        enableReinitialize="true"
+                        loading={this.state.loading}
+                        onSubmit={this.handleFormSubmit.bind(this)}
+                        theme={this.props.theme}
+                    />
+                    <div className="auth-footer-link">
+                        <span className="auth-footer-link-label">Already have an account?</span>
+                        <Link to="/auth/login"><Button minimal="true" className={"small-button transition-element theme-" + this.props.theme} label="Login" /></Link>
+                    </div>
 
-                <Toaster position={Position.TOP_CENTER} ref="toaster" />
-			</div>
-		);
+                    <Toaster position={Position.TOP_CENTER} ref="toaster" />
+                </div>
+            );
+        }
 	}
 }
 
@@ -83,7 +93,8 @@ function mapStateToProps(state) {
 	return {
 		router: state.router,
 		theme: state.app.theme,
-		error: state.auth.error
+        error: state.auth.error,
+        user: state.app.user
 	};
 }
 

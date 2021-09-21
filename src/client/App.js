@@ -5,11 +5,13 @@ import { renderRoutes } from "react-router-config";
 import classNames from "classnames";
 import Scroll from "./react/components/scroll"
 import Header from "./react/components/header"
+import UserMenu from "./react/components/userMenu"
+import { FocusStyleManager } from "@blueprintjs/core";
 
 
 import { authUser, fetchCurrentUser, clearCurrentUser } from "../client/redux/actions/authActions"
 
-
+FocusStyleManager.onlyShowFocusOnTabs();
 
 class App extends Component {
 	state = {
@@ -25,6 +27,7 @@ class App extends Component {
     
     componentDidUpdate(prevprops) {
         if(prevprops.user !== this.props.user) {
+            // this.props.clearCurrentUser()
 		}
     }
     
@@ -55,6 +58,8 @@ class App extends Component {
                 </div>
 
                 <Scroll/>
+
+                {this.props.user && <UserMenu/>}
 			</div>
 		)
 	}
