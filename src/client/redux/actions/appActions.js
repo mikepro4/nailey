@@ -5,12 +5,47 @@ import {
 	UPDATE_TOTAL_SCROLLED_PIXELS,
 	SCROLL_TO,
     SCROLL_TO_RESET,
+    ENABLE_EDIT,
+    DISABLE_EDIT
 } from "./types";
 
 import moment from "moment";
 import * as _ from "lodash";
 import qs from "qs";
 import axios from "axios";
+
+
+/////////////////////////////////////////////////
+
+export const enableEdit = (success) => async (
+    dispatch,
+	getState,
+	api
+) => {
+    dispatch({
+        type: ENABLE_EDIT,
+    });
+
+	if (success) {
+		success();
+	}
+};
+
+export const disableEdit = (success) => async (
+    dispatch,
+	getState,
+	api
+) => {
+    dispatch({
+        type: DISABLE_EDIT,
+    });
+
+	if (success) {
+		success();
+	}
+};
+
+
 
 
 /////////////////////////////////////////////////

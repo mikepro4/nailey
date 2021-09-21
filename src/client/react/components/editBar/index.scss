@@ -1,0 +1,84 @@
+.edit-bar {
+    height: 100px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 64px rgba(47, 47, 47, 0.04);
+    position:fixed;
+    bottom: -100px;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    transition: all 0.7s $mikhailEasing;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+
+
+    &.visible {
+        bottom: 0;
+    }
+
+    .edit-bar-left {
+        display: flex;
+
+        .edit-bar-title {
+            font-weight: 500;
+            text-transform: uppercase;
+            font-weight: 600;
+            font-size: 13px;
+            line-height: 24px;
+            /* identical to box height, or 185% */
+            letter-spacing: 0.1em;
+            padding: 0 30px 0 10px;
+            display: block;
+            position: relative;
+            margin-right: 30px;
+
+            &:after {
+                content: "";
+                position: absolute;
+                top: -10px;
+                right: 0;
+                bottom: -10px;
+                width: 1px;
+                background: rgba($black, 0.05);
+            }
+
+            @media only screen and (max-width: $mobile) {
+                display: none;
+            }
+        }
+    }
+
+    ul.edit-bar-tab {
+        display: flex;
+
+        .edit-bar-single-tab {
+            margin-right: 30px;
+            font-size: 16px;
+            cursor: pointer;
+
+            @media only screen and (max-width: $mobile) {
+                margin-right: 15px;
+                font-size: 12px;
+            }
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+
+    .edit-bar-right {
+        display: flex;
+
+        .main-button { 
+            width: 150px;
+            margin:  0 0 0 20px;
+
+            @media only screen and (max-width: $mobile) {
+                width: 80px;
+            }
+        }
+    }
+}

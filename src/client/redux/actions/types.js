@@ -9,6 +9,9 @@ export const UPDATE_TOTAL_SCROLLED_PIXELS = "app/UPDATE_TOTAL_SCROLLED_PIXELS";
 export const SCROLL_TO = "app/SCROLL_TO";
 export const SCROLL_TO_RESET = "app/SCROLL_TO_RESET";
 
+export const ENABLE_EDIT = "app/ENABLE_EDIT";
+export const DISABLE_EDIT = "app/DISABLE_EDIT";
+
 // =============================================================================
 
 // Auth 

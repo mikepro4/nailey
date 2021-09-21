@@ -4,6 +4,7 @@
     right: 20px;
     z-index: 100;
     display: flex;
+    transition: all 0.7s $mikhailEasing;
 
     .main-button {
         margin: 0 20px 0 0;
@@ -12,5 +13,10 @@
         &:last-child {
             margin-right: 0;
         }
+    }
+
+    &.hidden {
+        transform: translateY(50px);
+        opacity: 0;
     }
 }

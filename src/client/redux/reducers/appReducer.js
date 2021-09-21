@@ -7,7 +7,9 @@ import {
     UPDATE_TOTAL_PIXELS,
     UPDATE_TOTAL_SCROLLED_PIXELS,
     FETCH_AUTH,
-    AUTH_CLEAR
+    AUTH_CLEAR,
+    ENABLE_EDIT,
+    DISABLE_EDIT
 } from "../actions/types";
 
 export const initialState = {
@@ -18,6 +20,7 @@ export const initialState = {
 	scrollTo: null,
     menuOpen: false,
     user: null,
+    edit: false,
     site: {
         title: "Nailey",
         subtitle: "Your nail artist",
@@ -53,6 +56,16 @@ export const initialState = {
 
 export const appReducer = (state = initialState, action) => {
 	switch (action.type) {
+        case ENABLE_EDIT:
+			return {
+				...state,
+				edit: true
+            }
+        case DISABLE_EDIT:
+            return {
+                ...state,
+                edit: false
+            }
 		case SHOW_APP_MENU:
 			return {
 				...state,
