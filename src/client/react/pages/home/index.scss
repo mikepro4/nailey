@@ -221,6 +221,14 @@
     right: 10%;
     height: 450px;
     width: 450px;
+
+    @media only screen and (max-width: $mobile) {
+        top: -100%;
+        left: 50%;
+        height: 300px;
+        width: 300px;
+        margin-left: -150px;
+    }
 }
 
 .image-9 {
@@ -320,7 +328,16 @@
         padding: 20px;
         align-items: flex-start;
         margin-top: 200px;
-        margin-bottom: 500px;
+        margin-bottom: 300px;
+
+        &.first-text {
+            margin-top: 250px;
+            margin-bottom: 450px;
+        }
+
+        &.last-text {
+            margin-top: 0;
+        }
      }
 
     .text-container-wrapper {

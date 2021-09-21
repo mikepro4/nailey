@@ -33,7 +33,7 @@ class Section2 extends Component {
         }
 
         return (
-            <div className="section-text-content" ref="screen">
+            <div className="section-text-content last-text" ref="screen">
                     <div className="text-container-wrapper">
                         <div className="text-container text-container-left">
                             <div className="text-content-headline-container">

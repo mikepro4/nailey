@@ -55,12 +55,12 @@ class HomePage extends Component {
                 <Section2
                     headline={headline}
                 />
-{/* 
+
                 <Section3
                     headline={headline}
                 />
 
-                <Section4
+                {/* <Section4
                     headline={headline}
                 /> */}
                 
