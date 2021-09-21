@@ -20,7 +20,7 @@
     }
 
     @media only screen and (max-width: 1450px) {
-        font-size: 65px;
+        font-size: 67px;
         line-height: 1.2em;
     }
 
@@ -43,7 +43,7 @@
 
     @media only screen and (max-width: $mobile) {
         max-width: 250px;
-        margin: 20px auto 40px auto;
+        margin: 25px auto 50px auto;
     }
 
     // @media only screen and (max-width: 1800px) {
@@ -134,7 +134,7 @@
     left: 10%;
     height: 255px;
     width: 255px;
-    
+
     @media only screen and (max-width: $mobile) {
         display: none !important;
     }
@@ -233,7 +233,7 @@
     }
 
     @media only screen and (max-width: $mobile) {
-        height: 650px;
+        height: 600px;
     }
     // border-bottom: 1px solid red;
     // border-left: 1px solid red;

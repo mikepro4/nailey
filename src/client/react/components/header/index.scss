@@ -7,6 +7,10 @@
     z-index: 100;
     padding: 0 50px;
 
+    @media only screen and (max-width: $mobile) {
+         height: 100px;
+    }
+
     .header-wrapper {
         max-width: $maxWidth;
         margin: 0 auto;
@@ -24,8 +28,14 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                margin: 110px 0 10px 0;
+                margin: 95px 0 10px 0;
                 text-align: center;
+            }
+
+            .app-logo-name { 
+                svg {
+                    width: 100px
+                }
             }
         }
     }

@@ -18,7 +18,6 @@ class Header extends Component {
                     type: "spring",
                     stiffness: 122,
                     damping: 22,
-                    delay: 0.3
                 } 
             },
             hidden: { 
