@@ -8,19 +8,40 @@
     top: -200px;
     text-align: center;
 
+    @media only screen and (max-width: $mobile) {
+        height: 700px;
+    }
+
     .epic-footer-line-1{
         font-family: "E", sans-serif;
         font-size: 26px;
         margin-bottom: 10px;
         margin-top: 150px;
+
+        @media only screen and (max-width: $mobile) {
+            font-size: 20px;
+            margin-top: 90px;
+        }
     }
 
     .epic-footer-line-2{
         font-family: "E", sans-serif;
         font-size: 66px;
+
+        @media only screen and (max-width: $mobile) {
+            font-size: 34px;
+        }
     }
 
     .epic-footer-hasana {
         margin-top: 150px;
+
+        @media only screen and (max-width: $mobile) {
+            margin-top: 60px;
+
+            svg {
+                width: 120px
+            }
+        }
     }
 }

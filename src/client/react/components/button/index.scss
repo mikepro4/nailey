@@ -79,6 +79,12 @@
                 // color: #D8C3A8;
                 // border: 1px solid #D8C3A8
             }
+
+            @media only screen and (max-width: $mobile) {
+                font-size: 30px;
+                font-weight: 400;
+                padding: 1.2rem 0.8em;
+            }
         }
     }
   
