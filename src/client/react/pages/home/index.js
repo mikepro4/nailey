@@ -48,7 +48,7 @@ class HomePage extends Component {
 
                 <SectionHero />
 
-                <Section1
+                {/* <Section1
                     headline={headline}
                 />
 
@@ -62,7 +62,7 @@ class HomePage extends Component {
 
                 <Section4
                     headline={headline}
-                />
+                /> */}
                 
                 {/* <Section5
                     headline={headline}
@@ -85,9 +85,9 @@ class HomePage extends Component {
                     alignment="left"
                 /> */}
 
-                <Section6
+                {/* <Section6
                     headline={headline}
-                />
+                /> */}
 
             </div>
 				

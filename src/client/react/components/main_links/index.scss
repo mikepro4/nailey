@@ -10,6 +10,10 @@
             overflow: hidden;
             margin-right: 30px;
             display: block;
+
+            &:last-child {
+                margin: 0;
+            }
         }
     }
 }
