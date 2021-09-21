@@ -238,10 +238,10 @@
     width: 480px;
 
     @media only screen and (max-width: $mobile) {
-        top: 47%;
+        top: -100%;
         left: -10%;
-        height: 480px;
-        width: 480px;
+        height: 300px;
+        width: 300px;
     }
 }
 
@@ -250,6 +250,13 @@
     left: 10%;
     height: 370px;
     width: 370px;
+
+    @media only screen and (max-width: $mobile) {
+        bottom: 55%;
+        left: 20%;
+        height: 222px;
+        width: 222px;
+    }
 }
 
 .image-11 {
@@ -257,6 +264,14 @@
     right: 5%;
     height: 350px;
     width: 350px;
+
+    @media only screen and (max-width: $mobile) {
+        bottom: auto;
+        top: -40%;
+        right: 0%;
+        height: 260px;
+        width: 260px;
+    }
 }
 
 .image-12 {
@@ -264,6 +279,13 @@
     right: 35%;
     height: 222px;
     width: 222px;
+
+    @media only screen and (max-width: $mobile) {
+        bottom: 20%;
+        right: 25%;
+        height: 115px;
+        width: 115px;
+    }
 }
 
 .image-13 {
@@ -499,12 +521,20 @@
     overflow: hidden;
     height: 2810px;
 
+    @media only screen and (max-width: $mobile) {
+        height: 3500px;
+    }
+
     .epic-images-container {
         max-width: $maxWidth;
         max-width: 1650px;
         margin: 0 auto;
         position: relative;
         height: 300px;
+
+        @media only screen and (max-width: $mobile) {
+            // height: auto;
+        }
     }
 }
 
