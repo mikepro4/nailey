@@ -1,6 +1,9 @@
 // reset
 @import "./imports/reset";
 
+@import "../../../node_modules/@blueprintjs/core/lib/css/blueprint.css";
+@import "../../../node_modules/@blueprintjs/core/lib/scss/variables.scss";
+
 // imports
 @import "./imports/colors";
 @import "./imports/fonts";
@@ -18,11 +21,13 @@
 @import "../react/components/logo/index.scss";
 @import "../react/components/main_links/index.scss";
 @import "../react/components/image/index.scss";
+@import "../react/components/form/BladeInput.scss";
 
 
 // Home Sections
 @import "../react/pages/home/Section5.scss";
 @import "../react/pages/home/Section6.scss";
+@import "../react/pages/auth/index.scss";
 
 html {
 	touch-action: manipulation;

@@ -5,7 +5,8 @@ import {
 	SHOW_APP_MENU,
 	HIDE_APP_MENU,
     UPDATE_TOTAL_PIXELS,
-	UPDATE_TOTAL_SCROLLED_PIXELS,
+    UPDATE_TOTAL_SCROLLED_PIXELS,
+    FETCH_AUTH
 } from "../actions/types";
 
 export const initialState = {
@@ -73,6 +74,11 @@ export const appReducer = (state = initialState, action) => {
                 ...state,
                 totalScrolledPixels: action.pixels
             };
+        case FETCH_AUTH:
+            return {
+                ...state,
+                user: action.payload
+            }
 		default:
 			return state;
 	}
