@@ -2,10 +2,14 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
 import classNames from "classnames"
-import { Icon, Button, Classes, Intent, Position, Toaster  } from "@blueprintjs/core";
+import { Icon, Classes, Intent, Position, Toaster  } from "@blueprintjs/core";
 
 import qs from "qs";
 import * as _ from "lodash"
+
+import { createSite } from "../../../../redux/actions/sitesActions"
+
+import Button from "../../button"
 
 
 class SiteSettings extends Component {
@@ -24,10 +28,19 @@ class SiteSettings extends Component {
             <div className={"app-drawer-content-container standard-drawer site-settings-drawer theme-" + this.props.theme}>
                 
                 <div className={"details-container theme-" + this.props.theme}>
-                    content
+                    <Button 
+                        label="create site"
+                        onClick={() => {
+                           this.props.createSite({
+                                metadata: {
+                                    title: "Untitled",
+                                    createdBy: this.props.user._id
+                                }
+                           }) 
+                        }}
+                    />
 
                     <div className="placeholder"></div>
-
                 </div>
             </div>
 
@@ -39,11 +52,11 @@ class SiteSettings extends Component {
 
 function mapStateToProps(state) {
 	return {
-        theme: state.app.theme,
         user: state.app.user,
         authenticated: state.auth.authenticated,
 	};
 }
 
 export default withRouter(connect(mapStateToProps, {
+    createSite
 })(SiteSettings));

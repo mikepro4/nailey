@@ -32,3 +32,9 @@ export const AUTH_CLEAR = "app/AUTH_CLEAR"
 
 // =============================================================================
 
+// Site 
+
+export const LOAD_SITE = "app/LOAD_SITE"
+export const CLEAR_SITE = "app/CLEAR_SITE"
+export const LOAD_NEW_SITE = "app/LOAD_NEW_SITE"
+export const CLEAR_NEW_SITE = "app/CLEAR_NEW_SITE"
