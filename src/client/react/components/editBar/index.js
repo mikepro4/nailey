@@ -79,7 +79,11 @@ class EditBar extends Component {
                 <Button
                         minimal="true"
                         label="Cancel"
-                        onClick={() => this.props.disableEdit()}
+                        onClick={() =>  {
+                                this.props.disableEdit()
+                                this.props.hideDrawer()
+                            }
+                        }
                     />
 
                     <Button
