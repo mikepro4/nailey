@@ -1,0 +1,39 @@
+.bp3-control {
+    margin-bottom: 0;
+
+    &.bp3-switch input ~ .bp3-control-indicator {
+        background: rgba($black, 0.2);
+    }
+    
+    &.bp3-switch:hover input ~ .bp3-control-indicator {
+        background: rgba($black, 0.5);
+    }
+    
+    &.bp3-switch:active input ~ .bp3-control-indicator {
+        background: rgba($black, 0.5);
+    }
+    
+    &.bp3-switch input:checked ~ .bp3-control-indicator {
+        background: $black;
+    }
+    
+    &.bp3-switch:hover input:checked ~ .bp3-control-indicator {
+        background: $black;
+    }
+    
+    &.bp3-switch:active input:checked ~ .bp3-control-indicator {
+        // background: $white !important;
+    }
+    
+    &.bp3-switch .bp3-control-indicator::before {
+        background: $white;
+        border: none;
+        box-shadow: none;
+    }
+
+    &.bp3-switch input:checked ~ .bp3-control-indicator::before {
+        background: $white;
+        border: none;
+        box-shadow: none;
+    }
+}

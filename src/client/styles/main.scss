@@ -9,6 +9,7 @@
 @import "./imports/fonts";
 @import "./imports/variables";
 @import "./imports/animations";
+@import "./imports/switch";
 
 @import "../App.scss";
 
@@ -25,7 +26,7 @@
 @import "../react/components/userMenu/index.scss";
 @import "../react/components/editBar/index.scss";
 @import "../react/components/drawer/index.scss";
-
+@import "../react/components/list/views/siteView.scss";
 
 // Home Sections
 @import "../react/pages/home/Section5.scss";

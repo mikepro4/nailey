@@ -1,0 +1,16 @@
+.site-view-container {
+    padding: 20px;
+    border-bottom: 1px solid rgba($black, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .site-view-left {
+        display: flex;
+        align-items: center;
+
+        .site-title {
+            margin-left: 5px;
+        }
+    }
+}

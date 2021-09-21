@@ -201,3 +201,20 @@ export const updateSite = (site, data, success) => async (
 
 // ===========================================================================
 
+
+export const setMainSite = (siteItem, main, success) => async (
+    dispatch,
+	getState,
+	api
+) => {
+    await api
+        .post("/sites/setMain", { main: main, site: siteItem })
+        .then(response => {
+            if (success) {
+                success(response.data);
+            }
+        })
+        .catch(() => {
+        });
+}
+

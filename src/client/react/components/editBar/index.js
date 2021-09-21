@@ -38,13 +38,14 @@ class EditBar extends Component {
     }
 
     renderSectionItems(section) {
-        let finalItem = this.state.sections.map((section) => {
+        let finalItem = this.state.sections.map((section, i) => {
             return(
                 <li 
                     className={classNames({
                         "edit-bar-single-tab": true,
                         "tab-active": this.props.app.drawerType == section.drawerType
                     })}
+                    key={i}
                     onClick={() =>  this.toggleDrawer(section.drawerType)
                 }>
                     {section.title}
