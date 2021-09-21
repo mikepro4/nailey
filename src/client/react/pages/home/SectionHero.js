@@ -28,12 +28,14 @@ class SectionHero extends Component {
     render() {
         const heroTitle = {
             visible: { 
+                opacity: 1,
                 scale: 1, 
                 transition: {
                     duration: 1,
                 } 
             },
             hidden: { 
+                opacity: 0,
                 scale: 0.99
             },
         }
@@ -113,37 +115,41 @@ class SectionHero extends Component {
                     </div>
                 </div>
 
-                <Image
-                    className="image-1"
-                    imageId={1}
-                    isVisible={isVisible}
-                    slowDown={3}
-                    order={1}
-                />
+                <div className="images-container"> 
+                    <Image
+                        className="image-1"
+                        imageId={1}
+                        isVisible={isVisible}
+                        slowDown={3}
+                        order={1}
+                    />
 
-                <Image
-                    className="image-2"
-                    imageId={2}
-                    isVisible={isVisible}
-                    slowDown={2}
-                    order={2}
-                />
+                    <Image
+                        className="image-2"
+                        imageId={2}
+                        isVisible={isVisible}
+                        slowDown={2}
+                        order={2}
+                    />
 
-                <Image
-                    className="image-3"
-                    imageId={3}
-                    isVisible={isVisible}
-                    slowDown={15}
-                    order={3}
-                />
+                    <Image
+                        className="image-3"
+                        imageId={3}
+                        isVisible={isVisible}
+                        slowDown={15}
+                        order={3}
+                    />
 
-                <Image
-                    className="image-4"
-                    imageId={4}
-                    isVisible={isVisible}
-                    slowDown={3.5}
-                    order={4}
-                />
+                    <Image
+                        className="image-4"
+                        imageId={4}
+                        isVisible={isVisible}
+                        slowDown={3.5}
+                        order={4}
+                    />
+                </div>
+
+                
             </div>
         )
     }

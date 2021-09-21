@@ -140,7 +140,10 @@
     width: 255px;
 
     @media only screen and (max-width: $mobile) {
-        display: none !important;
+        bottom: -30%;
+        left: 0;
+        height: 160px;
+        width: 160px;
     }
 }
 
@@ -151,7 +154,10 @@
     width: 395px;
 
     @media only screen and (max-width: $mobile) {
-        display: none !important;
+        bottom: -35%;
+        right: -15%;
+        height: 200px;
+        width: 200px;
     }
 
     // @media only screen and (min-width: 1700px) {
@@ -223,6 +229,14 @@
 }
 
 
+.images-container {
+    max-width: 400px;
+    margin: 0 auto;
+    height: 100%;
+    position: relative;
+
+}
+
 
 
 
@@ -238,6 +252,8 @@
 
     @media only screen and (max-width: $mobile) {
         height: 550px;
+        // height: inherit;
+        // overflow-x: hidden;
     }
     // border-bottom: 1px solid red;
     // border-left: 1px solid red;
