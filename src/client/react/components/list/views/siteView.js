@@ -2,13 +2,15 @@ import React, { ReactElement, useRef, useMemo, useState, useCallback, Component 
 import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
 import classNames from "classnames"
-import { Switch, Icon, Button, Classes, Intent, Position, Toaster } from "@blueprintjs/core";
+import { Switch, Icon, Classes, Intent, Position, Toaster } from "@blueprintjs/core";
 import * as _ from "lodash"
 import moment from "moment"
 import ContentEditable from 'react-contenteditable'
 
-import { uncheckAll } from "../../../../redux/actions/appActions"
-import { setMainSite, updateSiteProperty } from "../../../../redux/actions/sitesActions"
+import { uncheckAll, updateCollection } from "../../../../redux/actions/appActions"
+import { setMainSite, updateSiteProperty, createSite, deleteSite } from "../../../../redux/actions/sitesActions"
+
+import Button from "../../button"
 
 
 class SiteView extends Component {
@@ -82,14 +84,41 @@ class SiteView extends Component {
                 </div>
 
                 <div className="site-view-right">
-                    Edit delete
+                    
+
+                    <Button
+                        icon="trash"
+                        minimal={true}
+                        onClick={() => {
+                            this.props.deleteSite(this.props.item._id, this.props.item, () => {
+                                this.props.updateCollection(true)
+                            })
+                        }}
+                    />
+
+                    <Button
+                        icon="duplicate"
+                        minimal={true}
+                        onClick={() => {
+                            let finalItem = {
+                                ...this.props.item,
+                                metadata: {
+                                    ...this.props.item.metadata,
+                                    title: "Copy of " + this.props.item.metadata.title,
+                                    main: false
+                                }
+                            }
+                            this.props.createSite(finalItem, () => {
+                                this.props.updateCollection(true)
+                            })
+                        }}
+                    />
+
+                    <Button
+                        icon="edit"
+                    />
                 </div>
 
-                <div className="site-title">
-                    {/* {this.props.item._id}
-                    {this.props.item.metadata.title} {this.props.item.metadata.createdBy}  */}
-
-               </div>
             </div>
         )
         
@@ -108,5 +137,8 @@ function mapStateToProps(state) {
 export default withRouter(connect(mapStateToProps, {
     setMainSite,
     uncheckAll,
-    updateSiteProperty
+    updateSiteProperty,
+    createSite,
+    updateCollection,
+    deleteSite
 })(SiteView));

@@ -50,6 +50,8 @@
       }
     }
 
+    
+
     &.main-button-minimal {
         background: transparent;
         color: $black;
@@ -84,6 +86,31 @@
                 font-size: 30px;
                 font-weight: 400;
                 padding: 1.2rem 0.8em;
+            }
+        }
+    }
+
+    &.icon-button {
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        svg {
+            path {
+                fill: $white
+            }
+        }
+
+        &.main-button-minimal {
+            border: none;
+            background: rgba($black, 0.03);
+            svg {
+                path {
+                    fill: $black
+                }
             }
         }
     }

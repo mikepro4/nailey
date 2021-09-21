@@ -23,8 +23,8 @@ class EditBar extends Component {
                 drawerType: "page-settings"
             },
             {
-                title: "Sections",
-                drawerType: "sections-settings"
+                title: "Themes",
+                drawerType: "themes-settings"
             }
         ]
     }

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import classNames from "classnames"
 import { Link } from "react-router-dom";
+import { Switch, Icon, Classes, Intent, Position, Toaster } from "@blueprintjs/core";
 
 class Button extends Component {
     state = {
@@ -26,6 +27,15 @@ class Button extends Component {
         }
     }
 
+    getButtonIcon(icon) {
+        if(icon) {
+            return(
+                <Icon icon={icon} size="16"/>
+            )
+        }
+        
+    }
+
     render() {
         let buttonClasses = classNames({
             "main-button": true,
@@ -33,6 +43,7 @@ class Button extends Component {
             "main-button-minimal": this.props.minimal,
             "main-button-regular": this.props.regular,
             "extra": this.props.extra,
+            "icon-button": this.props.icon
         })
 
         if (this.isLink()) {
@@ -49,6 +60,7 @@ class Button extends Component {
                 title={this.props.title}
                 onClick={this.props.onClick}
             >
+                {this.getButtonIcon(this.props.icon)}
                 {this.getButtonLabel()}
             </button>
         )
