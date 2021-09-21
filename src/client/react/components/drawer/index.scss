@@ -159,7 +159,6 @@
 }
 
 .standard-drawer {
-    padding: 20px;
     max-height: 95%;
     overflow-y: auto;
 
@@ -244,50 +243,26 @@
     }
 
     .drawer-action-header {
-        // display: flex;
+        display: flex;
         position: sticky;
         top: 0;
-        // justify-content: space-between;
+        justify-content: space-between;
         width: 100%;
-        height: 60px;
-        padding-top: 20px;
         background: $white;
         z-index: 100;
         margin-bottom: 5px;
+        padding: 20px;
 
-        .action-close {
-            flex-grow: 0;
-            flex-shrink: 0;
-            position: relative;
-            z-index: 2;
+        .drawer-action-header-right {
+            width: 170px;
         }
 
-        .bp3-button.action-close {
-            width: 36px;
-            position: absolute;
-            left: -10px;
-            top: 16px;
-        }
-
-        .bp3-button.drawer-action-button {
-            width: 86px;
-            height: 36px;
-            position: absolute;
-            top: 15px;
-            right: -5px;
-            z-index: 2;
-        }
-
-        .drawer-action-title {
-            text-align: center;
-            position: relative;
-            top: 5px;
-            z-index: 1;
-            font-weight: 600;
-            font-size: 13px;
-            text-transform: uppercase;
-            color: $gray3;
-            letter-spacing: 0.64px;
+        .drawer-action-header-left {
+            width: 170px;
+            font-size: 36px;
+            font-family: "E", sans-serif;
+            display: flex;
+            align-items: center;
         }
     }
 }

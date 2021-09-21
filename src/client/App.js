@@ -10,7 +10,7 @@ import EditBar from "./react/components/editBar"
 import Drawer from "./react/components/drawer"
 import { FocusStyleManager } from "@blueprintjs/core";
 
-
+import { showDrawer} from "../client/redux/actions/appActions"
 import { authUser, fetchCurrentUser, clearCurrentUser } from "../client/redux/actions/authActions"
 
 FocusStyleManager.onlyShowFocusOnTabs();
@@ -22,6 +22,7 @@ class App extends Component {
 
 	componentDidMount() {
         this.auth()
+        this.props.showDrawer("site-settings")
     }
 
     componentWillUnmount() {
@@ -83,6 +84,7 @@ export default {
 	component: withRouter(connect(mapStateToProps, {
         authUser, 
         fetchCurrentUser, 
-        clearCurrentUser
+        clearCurrentUser,
+        showDrawer
 	})(App))
 };

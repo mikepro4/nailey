@@ -28,29 +28,37 @@ class SiteSettings extends Component {
     render() {
         return (
             <div className={"app-drawer-content-container standard-drawer site-settings-drawer theme-" + this.props.theme}>
-
-                <div className={"details-container theme-" + this.props.theme}>
-                    <Button
-                        label="Create site"
-                        onClick={() => {
-                            this.props.createSite({
-                                metadata: {
-                                    title: "Untitled",
-                                    createdBy: this.props.user._id
-                                }
-                            }, () => {
-                                this.props.updateCollection(true)
-                            })
-                        }}
-                    />
-
-                    <div className="placeholder">
-                        <ListResults
-                            type="site"
-                            resultType="site"
-                            searchCollection={this.props.searchSites}
-                        />
+                <div className={"drawer-action-header theme-" + this.props.theme}>
+                    
+                    <div className="drawer-action-header-left">
+                        7 sites
                     </div>
+
+                    <div className="drawer-action-header-right">
+                        <Button
+                            label="Create site"
+                            onClick={() => {
+                                this.props.createSite({
+                                    metadata: {
+                                        title: "Untitled",
+                                        createdBy: this.props.user._id
+                                    }
+                                }, () => {
+                                    this.props.updateCollection(true)
+                                })
+                            }}
+                        />
+                    
+                    </div>
+                </div>
+
+
+                <div className="placeholder">
+                    <ListResults
+                        type="site"
+                        resultType="site"
+                        searchCollection={this.props.searchSites}
+                    />
                 </div>
             </div>
 
