@@ -7,9 +7,53 @@ import Logo from "../logo"
 import Button from "../button"
 import { motion } from "framer-motion";
 
-import { disableEdit, showDrawer} from "../../../redux/actions/appActions"
+import { disableEdit, showDrawer, hideDrawer} from "../../../redux/actions/appActions"
+import siteView from "../list/views/siteView";
 
 class EditBar extends Component {
+
+    state = {
+        sections: [
+            {
+                title: "Site",
+                drawerType: "site-settings"
+            },
+            {
+                title: "Page",
+                drawerType: "page-settings"
+            },
+            {
+                title: "Sections",
+                drawerType: "sections-settings"
+            }
+        ]
+    }
+
+    toggleDrawer(drawer) {
+        if(this.props.app.drawerType == drawer) {
+            this.props.hideDrawer()
+        } else {
+            this.props.showDrawer(drawer)
+        }
+    }
+
+    renderSectionItems(section) {
+        let finalItem = this.state.sections.map((section) => {
+            return(
+                <li 
+                    className={classNames({
+                        "edit-bar-single-tab": true,
+                        "tab-active": this.props.app.drawerType == section.drawerType
+                    })}
+                    onClick={() =>  this.toggleDrawer(section.drawerType)
+                }>
+                    {section.title}
+                </li>
+            )
+        })
+
+        return finalItem
+    }
 
 	render() {
 
@@ -27,15 +71,7 @@ class EditBar extends Component {
                    </div>
 
                    <ul className="edit-bar-tab">
-                       <li className="edit-bar-single-tab" onClick={() =>  this.props.showDrawer("site-settings")}>
-                           Site
-                       </li>
-                       <li className="edit-bar-single-tab">
-                           Page
-                       </li>
-                       <li className="edit-bar-single-tab">
-                           Sections
-                       </li>
+                       {this.renderSectionItems()}
                    </ul>
                </div>
 
@@ -67,5 +103,6 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, {
     disableEdit,
-    showDrawer
+    showDrawer,
+    hideDrawer
 })(withRouter(EditBar));

@@ -31,7 +31,7 @@ class SiteSettings extends Component {
 
                 <div className={"details-container theme-" + this.props.theme}>
                     <Button
-                        label="create site"
+                        label="Create site"
                         onClick={() => {
                             this.props.createSite({
                                 metadata: {
