@@ -218,3 +218,31 @@ export const setMainSite = (siteItem, main, success) => async (
         });
 }
 
+export const updateSiteProperty = (siteItem, property, value, success) => async (
+    dispatch,
+	getState,
+	api
+) => {
+    
+    let newSite = {
+        ...siteItem,
+        metadata: {
+            ...siteItem.metadata,
+            [property]: value
+        }
+    }
+    await api
+        .post("/sites/update", {
+            siteId: newSite._id, 
+            metadata: newSite.metadata, 
+        })
+        .then(response => {
+            if (success) {
+                success(response.data);
+            }
+        })
+        .catch(() => {
+        });
+}
+
+

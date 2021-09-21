@@ -79,6 +79,7 @@
 		"react": "^17.0.1",
 		"react-addons-css-transition-group": "^15.6.2",
 		"react-anime": "2.1.0",
+		"react-contenteditable": "^3.3.6",
 		"react-dom": "^17.0.1",
 		"react-dropzone": "^11.3.2",
 		"react-helmet": "^6.1.0",

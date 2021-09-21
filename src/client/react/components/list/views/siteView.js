@@ -5,16 +5,27 @@ import classNames from "classnames"
 import { Switch, Icon, Button, Classes, Intent, Position, Toaster } from "@blueprintjs/core";
 import * as _ from "lodash"
 import moment from "moment"
+import ContentEditable from 'react-contenteditable'
 
 import { uncheckAll } from "../../../../redux/actions/appActions"
-import { setMainSite } from "../../../../redux/actions/sitesActions"
+import { setMainSite, updateSiteProperty } from "../../../../redux/actions/sitesActions"
 
 
 class SiteView extends Component {
 
-    state = {
-        isMain: false
-    }
+    constructor(props) {
+        super(props)
+        this.contentEditable = React.createRef();
+        this.state = {
+            html: this.props.item.metadata.title,
+            isMain: false
+        };
+    };
+
+    handleChange = evt => {
+        this.setState({html: evt.target.value});
+        this.props.updateSiteProperty(this.props.item, "title", evt.target.value)
+    };
 
     componentDidMount() {
         if(this.props.item.metadata.main) {
@@ -28,7 +39,8 @@ class SiteView extends Component {
         if(prevprops.app.uncheckAll !== this.props.app.uncheckAll) {
             if(this.props.item._id !== this.props.app.dontUncheck) {
                 this.setState({
-                    isMain: false
+                    isMain: false,
+                    html: this.props.item.metadata.title
                 })
             }
         }
@@ -60,12 +72,17 @@ class SiteView extends Component {
                         onChange={this.handleSwitchChange} 
                     />
                     <div className="site-title">
-                        {this.props.item.metadata.title}
+                        <ContentEditable
+                            className="title-editable"
+                            html={this.state.html} // innerHTML of the editable div
+                            disabled={false} // use true to disable edition
+                            onChange={this.handleChange} // handle innerHTML change
+                        />
                     </div>
                 </div>
 
                 <div className="site-view-right">
-
+                    Edit delete
                 </div>
 
                 <div className="site-title">
@@ -90,5 +107,6 @@ function mapStateToProps(state) {
 
 export default withRouter(connect(mapStateToProps, {
     setMainSite,
-    uncheckAll
+    uncheckAll,
+    updateSiteProperty
 })(SiteView));
