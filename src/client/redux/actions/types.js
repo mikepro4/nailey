@@ -12,6 +12,9 @@ export const SCROLL_TO_RESET = "app/SCROLL_TO_RESET";
 export const ENABLE_EDIT = "app/ENABLE_EDIT";
 export const DISABLE_EDIT = "app/DISABLE_EDIT";
 
+export const SHOW_DRAWER = "app/SHOW_DRAWER";
+export const HIDE_DRAWER = "app/HIDE_DRAWER";
+
 // =============================================================================
 
 // Auth 

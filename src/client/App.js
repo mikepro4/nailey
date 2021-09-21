@@ -7,6 +7,7 @@ import Scroll from "./react/components/scroll"
 import Header from "./react/components/header"
 import UserMenu from "./react/components/userMenu"
 import EditBar from "./react/components/editBar"
+import Drawer from "./react/components/drawer"
 import { FocusStyleManager } from "@blueprintjs/core";
 
 
@@ -60,6 +61,8 @@ class App extends Component {
 
                 <Scroll/>
 
+                {this.props.drawerOpen && <Drawer type={this.props.drawerType} />}
+
                 {this.props.user && <UserMenu/>}
                 <EditBar/>
 			</div>
@@ -71,6 +74,8 @@ function mapStateToProps(state) {
 		appReducer: state.appReducer,
         user: state.app.user,
         edit: state.app.edit,
+        drawerOpen: state.app.drawerOpen,
+        drawerType: state.app.drawerType
 	};
 }
 

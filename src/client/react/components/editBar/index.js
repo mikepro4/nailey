@@ -7,7 +7,7 @@ import Logo from "../logo"
 import Button from "../button"
 import { motion } from "framer-motion";
 
-import { disableEdit} from "../../../redux/actions/appActions"
+import { disableEdit, showDrawer} from "../../../redux/actions/appActions"
 
 class EditBar extends Component {
 
@@ -27,7 +27,7 @@ class EditBar extends Component {
                    </div>
 
                    <ul className="edit-bar-tab">
-                       <li className="edit-bar-single-tab">
+                       <li className="edit-bar-single-tab" onClick={() =>  this.props.showDrawer("site-settings")}>
                            Site
                        </li>
                        <li className="edit-bar-single-tab">
@@ -66,5 +66,6 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, {
-    disableEdit
+    disableEdit,
+    showDrawer
 })(withRouter(EditBar));

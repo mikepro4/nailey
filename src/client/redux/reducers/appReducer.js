@@ -2,22 +2,24 @@ import * as _ from "lodash";
 import update from "immutability-helper";
 
 import {
-	SHOW_APP_MENU,
-	HIDE_APP_MENU,
+    SHOW_APP_MENU,
+    HIDE_APP_MENU,
     UPDATE_TOTAL_PIXELS,
     UPDATE_TOTAL_SCROLLED_PIXELS,
     FETCH_AUTH,
     AUTH_CLEAR,
     ENABLE_EDIT,
-    DISABLE_EDIT
+    DISABLE_EDIT,
+    SHOW_DRAWER,
+    HIDE_DRAWER
 } from "../actions/types";
 
 export const initialState = {
     totalPixels: 0,
-	clientWidth: 0,
-	clientHeight: 0,
-	totalScrolledPixels: 0,
-	scrollTo: null,
+    clientWidth: 0,
+    clientHeight: 0,
+    totalScrolledPixels: 0,
+    scrollTo: null,
     menuOpen: false,
     user: null,
     edit: false,
@@ -55,34 +57,34 @@ export const initialState = {
 };
 
 export const appReducer = (state = initialState, action) => {
-	switch (action.type) {
+    switch (action.type) {
         case ENABLE_EDIT:
-			return {
-				...state,
-				edit: true
+            return {
+                ...state,
+                edit: true
             }
         case DISABLE_EDIT:
             return {
                 ...state,
                 edit: false
             }
-		case SHOW_APP_MENU:
-			return {
-				...state,
-				menuOpen: true
-			}
-		case HIDE_APP_MENU:
-			return {
-				...state,
-				menuOpen: false
-			}
+        case SHOW_APP_MENU:
+            return {
+                ...state,
+                menuOpen: true
+            }
+        case HIDE_APP_MENU:
+            return {
+                ...state,
+                menuOpen: false
+            }
         case UPDATE_TOTAL_PIXELS:
             return {
                 ...state,
                 totalPixels: action.total,
                 clientWidth: action.clientWidth,
                 clientHeight: action.clientHeight
-            } ;
+            };
         case UPDATE_TOTAL_SCROLLED_PIXELS:
             return {
                 ...state,
@@ -98,8 +100,30 @@ export const appReducer = (state = initialState, action) => {
                 ...state,
                 user: null
             }
-		default:
-			return state;
-	}
+        case SHOW_DRAWER:
+            let drawer
+
+            if (action.drawerData) {
+                drawer = action.drawerData
+            } else {
+                drawer = state.drawerData
+            }
+            return {
+                ...state,
+                drawerOpen: true,
+                drawerType: action.payload,
+                drawerData: drawer
+            }
+        case HIDE_DRAWER:
+            return {
+                ...state,
+                drawerOpen: false,
+                drawerType: null,
+                drawerData: null,
+                suggestions: []
+            }
+        default:
+            return state;
+    }
 };
 
