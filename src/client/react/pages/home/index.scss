@@ -236,6 +236,13 @@
     left: -10%;
     height: 480px;
     width: 480px;
+
+    @media only screen and (max-width: $mobile) {
+        top: 47%;
+        left: -10%;
+        height: 480px;
+        width: 480px;
+    }
 }
 
 .image-10 {
@@ -473,6 +480,14 @@
         }
     }
 
+    @media only screen and (max-width: $mobile) {
+        transform: translateX(190%);
+
+        .epic-headline {
+            font-size: 100px;
+        }
+    }
+
     
 }
 
@@ -508,8 +523,14 @@
     justify-content: center;
     flex-direction: column;
 
+    
+
     .epic-link-label {
         font-size: 18px;
+        white-space: nowrap;
+        @media only screen and (max-width: $mobile) {
+            font-size: 14px;
+        }
     }
 
     .epic-social-media-line-wrapper {
@@ -560,6 +581,22 @@
 
         .epic-link-text{
             font-size: 80px;
+        }
+    }
+
+    @media only screen and (max-width: $mobile) {
+        height: 700px;
+        margin-left: 0;
+        left: 30px;
+        width: 100%;
+
+        .epic-social-media-line-wrapper {
+            width: 30px;
+            margin-right: 20px;
+        }
+
+        .epic-link-text{
+            font-size: 60;
         }
     }
 }

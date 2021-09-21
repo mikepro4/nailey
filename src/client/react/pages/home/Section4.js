@@ -32,7 +32,29 @@ class Section4 extends Component {
     }
 
     headlineTransform = () => {
-        let transform = `translate(-${this.props.totalScrolledPixels-100 / 1.2- this.props.clientWidth * 0.1}px, ${this.props.totalScrolledPixels / 10.5}px)`
+        let finalSubtract 
+        let finalDivide 
+        let finalY
+
+        if(this.props.clientWidth < 800) {
+            finalSubtract = 3000
+        } else {
+            finalSubtract = 100
+        }
+
+        if(this.props.clientWidth < 800) {
+            finalDivide = 0.4
+        } else {
+            finalDivide = 1.2
+        }
+
+        if(this.props.clientWidth < 800) {
+            finalY = 100.5
+        } else {
+            finalY = 10.5
+        }
+
+        let transform = `translate(-${(this.props.totalScrolledPixels- finalSubtract) / finalDivide- this.props.clientWidth * 0.1}px, ${this.props.totalScrolledPixels /finalY}px)`
 
         return transform
     }
