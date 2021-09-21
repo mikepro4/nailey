@@ -17,7 +17,7 @@ class Section6 extends Component {
         if (this.refs.screen) {
             let node = this.refs.screen
             let bodyHeight = this.props.clientHeight
-            if (node && (this.refs.screen.offsetTop <= (this.props.totalScrolledPixels + ((bodyHeight) / 2.2)))) {
+            if (node && (this.refs.screen.offsetTop <= (this.props.totalScrolledPixels + ((bodyHeight) / 1.2)))) {
                 return "enter"
             } else {
                 return "exit"

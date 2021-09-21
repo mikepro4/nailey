@@ -2,15 +2,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 1400px;
+    height: 500px;
     position: relative;
     flex-direction: column;
     top: -200px;
     text-align: center;
+    margin-top: 500px;
 
     @media only screen and (max-width: $mobile) {
         height: 222px;
         justify-content: flex-start;
+        margin-top: 0;
     }
 
     .epic-footer-line-1{
