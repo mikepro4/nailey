@@ -8,7 +8,8 @@ import {
     ENABLE_EDIT,
     DISABLE_EDIT,
     SHOW_DRAWER,
-    HIDE_DRAWER
+    HIDE_DRAWER,
+    UPDATE_COLLECTION
 } from "./types";
 
 import moment from "moment";
@@ -144,6 +145,8 @@ export const showDrawer = (type, drawerData, success) => async (
 	document.body.classList.add("no-scroll");
 };
 
+/////////////////////////////////////////////////
+
 export const hideDrawer = (success) => async (
     dispatch,
 	getState,
@@ -158,4 +161,34 @@ export const hideDrawer = (success) => async (
 	}
 	document.body.classList.remove("no-scroll");
 };
+
+/////////////////////////////////////////////////
+
+export const updateCollection = (update, success) => async (
+    dispatch,
+	getState,
+	api
+) => {
+    dispatch({
+        type: UPDATE_COLLECTION,
+        payload: update
+    });
+};
+
+
+///////////////////////////////////////////////////
+
+export const updateQueryString = (
+	updatedState,
+	location,
+	history
+) => dispatch => {
+	let queryParams = qs.parse(location.search.substring(1));
+	const updatedQuery = _.assign({}, queryParams, updatedState);
+	const str = qs.stringify(updatedQuery);
+	history.push({
+		search: "?" + str
+	});
+};
+
 

@@ -11,7 +11,8 @@ import {
     ENABLE_EDIT,
     DISABLE_EDIT,
     SHOW_DRAWER,
-    HIDE_DRAWER
+    HIDE_DRAWER,
+    UPDATE_COLLECTION
 } from "../actions/types";
 
 export const initialState = {
@@ -53,7 +54,8 @@ export const initialState = {
             }
         ]
     },
-    updatedSite: {}
+    updatedSite: {},
+    updateCollection: false
 };
 
 export const appReducer = (state = initialState, action) => {
@@ -100,6 +102,11 @@ export const appReducer = (state = initialState, action) => {
                 ...state,
                 user: null
             }
+        case UPDATE_COLLECTION:
+            return {
+                ...state,
+                updateCollection: action.payload
+            };
         case SHOW_DRAWER:
             let drawer
 
