@@ -15,7 +15,7 @@
         align-items: center;
         height: 100%;
 
-        @media only screen and (max-width: 800px) {
+        @media only screen and (max-width: $mobile) {
             position: relative;
             align-items: flex-start;
             justify-content: center;
@@ -38,12 +38,12 @@
             width: 222px
         }
 
-        @media only screen and (max-width: 800px) {
+        @media only screen and (max-width: $mobile) {
             display: none;
         }
     }
 
-    @media only screen and (max-width: 800px) {
+    @media only screen and (max-width: $mobile) {
         position: relative;
     }
 }

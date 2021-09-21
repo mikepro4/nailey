@@ -18,6 +18,17 @@
     @media only screen and (max-width: 1450px) {
         font-size: 80px;
     }
+
+    @media only screen and (max-width: 1450px) {
+        font-size: 65px;
+        line-height: 1.2em;
+    }
+
+   
+
+    @media only screen and (max-width: $mobile) {
+        max-width: 300px;
+    }
 }
 
 .hero-subTitle {
@@ -28,6 +39,11 @@
 
     @media only screen and (max-width: 1450px) {
         font-size: 16px;
+    }
+
+    @media only screen and (max-width: $mobile) {
+        max-width: 250px;
+        margin: 20px auto 40px auto;
     }
 
     // @media only screen and (max-width: 1800px) {
@@ -96,6 +112,10 @@
     left: -5%;
     height: 270px;
     width: 270px;
+
+    @media only screen and (max-width: $mobile) {
+        display: none !important;
+    }
 }
 
 .image-2 {
@@ -103,6 +123,10 @@
     right: -5%;
     height: 328px;
     width: 328px;
+
+    @media only screen and (max-width: $mobile) {
+        display: none !important;
+    }
 }
 
 .image-3 {
@@ -110,6 +134,10 @@
     left: 10%;
     height: 255px;
     width: 255px;
+    
+    @media only screen and (max-width: $mobile) {
+        display: none !important;
+    }
 }
 
 .image-4 {
@@ -117,6 +145,10 @@
     right: 15%;
     height: 395px;
     width: 395px;
+
+    @media only screen and (max-width: $mobile) {
+        display: none !important;
+    }
 
     // @media only screen and (min-width: 1700px) {
     //     bottom: -30%;
@@ -198,6 +230,10 @@
 
     @media only screen and (max-width: 1450px) {
         height: 850px;
+    }
+
+    @media only screen and (max-width: $mobile) {
+        height: 650px;
     }
     // border-bottom: 1px solid red;
     // border-left: 1px solid red;
