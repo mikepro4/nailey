@@ -31,7 +31,7 @@ class MainLinks extends Component {
                 when: "beforeChildren",
                 transition: {
                     duration: 1,
-                    delayChildren: 0,
+                    delayChildren: 0.3,
                     staggerChildren: 0.05,
 
                 }

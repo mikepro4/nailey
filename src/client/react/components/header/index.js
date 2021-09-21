@@ -16,6 +16,7 @@ class Header extends Component {
                 opacity: 1, 
                 transition: {
                     type: "spring",
+                    delay: 0.5,
                     stiffness: 122,
                     damping: 22,
                 } 
