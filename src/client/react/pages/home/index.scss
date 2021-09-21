@@ -140,11 +140,18 @@
     height: 255px;
     width: 255px;
 
-    @media only screen and (max-width: $mobile) {
-        bottom: -20%;
+    // @media only screen and (max-width: $mobile) {
+    //     bottom: -30%;
+    //     left: 40px;
+    //     height: 115px;
+    //     width: 115px;
+    // }
+
+     @media only screen and (max-width: $mobile) {
+        bottom: -35%;
         left: 40px;
-        height: 115px;
-        width: 115px;
+        height: 222px;
+        width: 222px;
     }
 }
 
@@ -155,7 +162,7 @@
     width: 395px;
 
     @media only screen and (max-width: $mobile) {
-        bottom: -20%;
+        bottom: -30%;
         right: 40px;
         height: 150px;
         width: 150px;
@@ -171,6 +178,13 @@
     left: -7%;
     height: 350px;
     width: 350px;
+
+    @media only screen and (max-width: $mobile) {
+        top: -90%;
+        left: 40px;
+        height: 222px;
+        width: 222px;
+    }
 }
 
 .image-6 {
@@ -178,13 +192,28 @@
     left: 25%;
     height: 280px;
     width: 280px;
+
+    @media only screen and (max-width: $mobile) {
+        top: -85%;
+        right: 40px;
+        left: inherit;
+        height: 120px;
+        width: 120px;
+    }
 }
 
 .image-7 {
-    bottom: 40%;
+    bottom: 45%;
     left: 7%;
     height: 180px;
     width: 180px;
+
+    @media only screen and (max-width: $mobile) {
+        top: -45%;
+        left: 25%;
+        height: 90px;
+        width: 90px;
+    }
 }
 
 .image-8 {
@@ -231,10 +260,13 @@
 
 
 .images-container {
-    max-width: 400px;
     margin: 0 auto;
     height: 100%;
     position: relative;
+
+    @media only screen and (max-width: $mobile) {
+        max-width: 400px;
+    }
 
 }
 
@@ -288,7 +320,8 @@
         padding: 20px;
         align-items: flex-start;
         margin-top: 200px;
-    }
+        margin-bottom: 500px;
+     }
 
     .text-container-wrapper {
         max-width: 1180px;
