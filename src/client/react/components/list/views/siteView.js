@@ -8,7 +8,7 @@ import moment from "moment"
 import ContentEditable from 'react-contenteditable'
 
 import { uncheckAll, updateCollection } from "../../../../redux/actions/appActions"
-import { setMainSite, updateSiteProperty, createSite, deleteSite } from "../../../../redux/actions/sitesActions"
+import { setMainSite, updateSiteProperty, createSite, deleteSite, loadSite } from "../../../../redux/actions/sitesActions"
 
 import Button from "../../button"
 
@@ -26,7 +26,9 @@ class SiteView extends Component {
 
     handleChange = evt => {
         this.setState({html: evt.target.value});
-        this.props.updateSiteProperty(this.props.item, "title", evt.target.value)
+        this.props.updateSiteProperty(this.props.item, "title", evt.target.value, () => {
+            this.props.loadSite()
+        })
     };
 
     componentDidMount() {
@@ -51,7 +53,9 @@ class SiteView extends Component {
     handleSwitchChange = (data) => {
         this.props.uncheckAll(true, this.props.item._id)
 
-        this.props.setMainSite(this.props.item,!this.state.isMain)
+        this.props.setMainSite(this.props.item,!this.state.isMain, () => {
+            this.props.loadSite()
+        })
 
         setTimeout(() => {
                 this.props.uncheckAll(false, this.props.app.dontUncheck)
@@ -140,5 +144,6 @@ export default withRouter(connect(mapStateToProps, {
     updateSiteProperty,
     createSite,
     updateCollection,
-    deleteSite
+    deleteSite,
+    loadSite
 })(SiteView));

@@ -57,7 +57,7 @@ export const createSite = (siteItem, success) => async (
 
 
 
-export const loadSite = (id, success) => async (
+export const loadSite = (success) => async (
     dispatch,
 	getState,
 	api
@@ -65,7 +65,7 @@ export const loadSite = (id, success) => async (
 
 
     await api
-        .post("/sites/item", { siteId: id })
+        .post("/sites/main", { })
         .then(response => {
             if (success) {
                 success(response.data);
