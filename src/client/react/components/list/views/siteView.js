@@ -114,6 +114,7 @@ class SiteView extends Component {
                         onClick={() => {
                             this.props.deleteSite(this.props.item._id, this.props.item, () => {
                                 this.props.updateCollection(true)
+                                this.props.loadSite()
                             })
                         }}
                     />
@@ -132,6 +133,7 @@ class SiteView extends Component {
                             }
                             this.props.createSite(finalItem, () => {
                                 this.props.updateCollection(true)
+                                this.props.loadSite()
                             })
                         }}
                     />

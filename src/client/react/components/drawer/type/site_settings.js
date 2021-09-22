@@ -8,7 +8,7 @@ import qs from "qs";
 import * as _ from "lodash"
 
 import { updateCollection } from "../../../../redux/actions/appActions"
-import { createSite, searchSites } from "../../../../redux/actions/sitesActions"
+import { createSite, searchSites, loadSite} from "../../../../redux/actions/sitesActions"
 
 import Button from "../../button"
 import ListResults from "../../list"
@@ -31,7 +31,7 @@ class SiteSettings extends Component {
                 <div className={"drawer-action-header theme-" + this.props.theme}>
                     
                     <div className="drawer-action-header-left">
-                        7 sites
+                        {this.props.site.count} site{this.props.site.count > 1 ? "s" : ""}
                     </div>
 
                     <div className="drawer-action-header-right">
@@ -45,6 +45,7 @@ class SiteSettings extends Component {
                                     }
                                 }, () => {
                                     this.props.updateCollection(true)
+                                    this.props.loadSite()
                                 })
                             }}
                         />
@@ -70,6 +71,7 @@ class SiteSettings extends Component {
 
 function mapStateToProps(state) {
     return {
+        site: state.site,
         user: state.app.user,
         authenticated: state.auth.authenticated,
     };
@@ -78,5 +80,6 @@ function mapStateToProps(state) {
 export default withRouter(connect(mapStateToProps, {
     createSite,
     searchSites,
-    updateCollection
+    updateCollection,
+    loadSite
 })(SiteSettings));

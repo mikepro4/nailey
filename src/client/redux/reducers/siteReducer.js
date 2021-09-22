@@ -7,7 +7,8 @@ import {
 
 export const initialState = {
     currentSite: {},
-    newSite: {}
+    newSite: {},
+    count: 0
 };
 
   
@@ -15,7 +16,8 @@ export const siteReducer = function(state = initialState, action) {
     switch(action.type) {
         case LOAD_SITE:
             return { ...state,
-                currentSite: action.payload
+                currentSite: action.payload.main,
+                count: action.payload.count
             };
         case LOAD_NEW_SITE:
             return { ...state,
