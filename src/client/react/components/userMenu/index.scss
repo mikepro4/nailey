@@ -19,4 +19,14 @@
         transform: translateY(50px);
         opacity: 0;
     }
+
+    @media only screen and (max-width: $mobile) {
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background: $white;
+        display: flex;
+        justify-content: center;
+        padding: 20px;
+    }
 }
