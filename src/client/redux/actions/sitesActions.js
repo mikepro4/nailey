@@ -71,8 +71,6 @@ export const loadSite = (success) => async (
                 success(response.data);
             }
 
-            console.log(response.data)
-
             dispatch({
                 type: LOAD_SITE,
                 payload: response.data

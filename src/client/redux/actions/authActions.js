@@ -31,7 +31,6 @@ export const authUser = (success) => async (
 	getState,
 	api
 ) => {
-    console.log("auth")
     dispatch({
         type: AUTH_USER_SUCCESS,
     });

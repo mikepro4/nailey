@@ -72,8 +72,6 @@ export const loadTheme = (success) => async (
                 success(response.data);
             }
 
-            console.log(response.data)
-
             dispatch({
                 type: LOAD_THEME,
                 payload: response.data

@@ -37,7 +37,7 @@ export const configure = (
 
 	if (global.window !== undefined) {
 		composeArguments.push(
-			window.devToolsExtension ? window.devToolsExtension() : _ => _
+			window.devToolsExtension ? window.__REDUX_DEVTOOLS_EXTENSION__() : _ => _
 		);
 	}
 
