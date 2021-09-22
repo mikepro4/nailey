@@ -5,6 +5,8 @@ import { connectRouter } from "connected-react-router";
 import { authReducer } from "./authReducer";
 import { siteReducer } from "./siteReducer";
 import { themeReducer } from "./themeReducer";
+import { sectionReducer } from "./sectionReducer";
+import { productReducer } from "./productReducer";
 
 export default (history) => combineReducers({
     router: connectRouter(history),
@@ -12,5 +14,7 @@ export default (history) => combineReducers({
     app: appReducer,
     auth: authReducer,
     site: siteReducer,
-    theme: themeReducer
+    theme: themeReducer,
+    section: sectionReducer,
+    product: productReducer
 })

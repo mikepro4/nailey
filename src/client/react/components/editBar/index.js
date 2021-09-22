@@ -8,7 +8,6 @@ import Button from "../button"
 import { motion } from "framer-motion";
 
 import { disableEdit, showDrawer, hideDrawer} from "../../../redux/actions/appActions"
-import siteView from "../list/views/siteView";
 
 class EditBar extends Component {
 
@@ -29,6 +28,10 @@ class EditBar extends Component {
             {
                 title: "Sections",
                 drawerType: "section-settings"
+            },
+            {
+                title: "Products",
+                drawerType: "product-settings"
             }
         ]
     }

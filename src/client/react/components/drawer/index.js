@@ -13,6 +13,7 @@ import {
 import SiteSettings from "./type/site_settings"
 import ThemeSettings from "./type/theme_settings"
 import SectionSettings from "./type/section_settings"
+import ProductSettings from "./type/product_settings"
 
 class Drawer extends Component {
 
@@ -37,6 +38,8 @@ class Drawer extends Component {
                 return (<ThemeSettings hideDrawer={() => this.hideDrawer()} enablePortal/>)
             case "section-settings":
                 return (<SectionSettings hideDrawer={() => this.hideDrawer()} enablePortal/>)
+            case "product-settings":
+                return (<ProductSettings hideDrawer={() => this.hideDrawer()} enablePortal/>)
             default:
                 return ;
         }

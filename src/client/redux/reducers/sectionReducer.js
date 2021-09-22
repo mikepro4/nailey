@@ -11,7 +11,7 @@ export const initialState = {
 };
 
   
-export const themeReducer = function(state = initialState, action) {
+export const sectionReducer = function(state = initialState, action) {
     switch(action.type) {
         case LOAD_SECTION:
             return { ...state,

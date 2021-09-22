@@ -59,3 +59,12 @@ export const LOAD_SECTION = "app/LOAD_SECTION"
 export const CLEAR_SECTION = "app/CLEAR_SECTION"
 export const LOAD_NEW_SECTION = "app/LOAD_NEW_SECTION"
 export const CLEAR_NEW_SECTION = "app/CLEAR_NEW_SECTION"
+
+// =============================================================================
+
+// Product 
+
+export const LOAD_PRODUCT = "app/LOAD_PRODUCT"
+export const CLEAR_PRODUCT = "app/CLEAR_PRODUCT"
+export const LOAD_NEW_PRODUCT = "app/LOAD_NEW_PRODUCT"
+export const CLEAR_NEW_PRODUCT = "app/CLEAR_NEW_PRODUCT"

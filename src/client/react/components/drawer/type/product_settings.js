@@ -8,14 +8,14 @@ import qs from "qs";
 import * as _ from "lodash"
 
 import { updateCollection, uncheckAll } from "../../../../redux/actions/appActions"
-import { createSection, searchSections, loadSection, deleteSection, updateSectionProperty, setMainSection} from "../../../../redux/actions/sectionsActions"
+import { createProduct, searchProducts, loadProduct, deleteProduct, updateProductProperty, setMainProduct} from "../../../../redux/actions/productsActions"
 import { loadSite} from "../../../../redux/actions/sitesActions"
 
 import Button from "../../button"
 import ListResults from "../../list"
 
 
-class SectionSettings extends Component {
+class ProductSettings extends Component {
 
     state = {
         loading: false
@@ -27,8 +27,8 @@ class SectionSettings extends Component {
     
 
     handleTitleChange = (item, value) => {
-        this.props.updateSectionProperty(item, "title", value, () => {
-            this.props.loadSection()
+        this.props.updateProductProperty(item, "title", value, () => {
+            this.props.loadProduct()
             this.props.loadSite()
         })
     } 
@@ -36,25 +36,25 @@ class SectionSettings extends Component {
 
     render() {
         return (
-            <div className={"app-drawer-content-container standard-drawer section-settings-drawer section-" + this.props.section}>
-                <div className={"drawer-action-header section-" + this.props.section}>
+            <div className={"app-drawer-content-container standard-drawer product-settings-drawer product-" + this.props.product}>
+                <div className={"drawer-action-header product-" + this.props.product}>
                     
                     {/* <div className="drawer-action-header-left">
-                        {this.props.section.count} section{this.props.section.count > 1 ? "s" : ""}
+                        {this.props.product.count} product{this.props.product.count > 1 ? "s" : ""}
                     </div> */}
 
                     <div className="drawer-action-header-right">
                         <Button
-                            label="Create section"
+                            label="Create product"
                             onClick={() => {
-                                this.props.createSection({
+                                this.props.createProduct({
                                     metadata: {
                                         title: "Untitled",
                                         createdBy: this.props.user._id
                                     }
                                 }, () => {
                                     this.props.updateCollection(true)
-                                    this.props.loadSection()
+                                    this.props.loadProduct()
                                     this.props.loadSite()
                                 })
                             }}
@@ -68,11 +68,11 @@ class SectionSettings extends Component {
                     <ListResults
                         type="site"
                         resultType="site"
-                        searchCollection={this.props.searchSections}
+                        searchCollection={this.props.searchProducts}
                         onDelete={(item) => {
-                            this.props.deleteSection(item._id, item, () => {
+                            this.props.deleteProduct(item._id, item, () => {
                                 this.props.updateCollection(true)
-                                this.props.loadSection()
+                                this.props.loadProduct()
                                 this.props.loadSite()
                             })
                         }}
@@ -85,9 +85,9 @@ class SectionSettings extends Component {
                                     main: false
                                 }
                             }
-                            this.props.createSection(finalItem, () => {
+                            this.props.createProduct(finalItem, () => {
                                 this.props.updateCollection(true)
-                                this.props.loadSection()
+                                this.props.loadProduct()
                                 this.props.loadSite()
                             })
                         }}
@@ -107,20 +107,20 @@ class SectionSettings extends Component {
 function mapStateToProps(state) {
     return {
         app: state.app,
-        section: state.section,
+        product: state.product,
         user: state.app.user,
         authenticated: state.auth.authenticated,
     };
 }
 
 export default withRouter(connect(mapStateToProps, {
-    createSection,
-    searchSections,
+    createProduct,
+    searchProducts,
     updateCollection,
-    loadSection,
-    deleteSection,
-    updateSectionProperty,
+    loadProduct,
+    deleteProduct,
+    updateProductProperty,
     uncheckAll,
-    setMainSection,
+    setMainProduct,
     loadSite
-})(SectionSettings));
+})(ProductSettings));
