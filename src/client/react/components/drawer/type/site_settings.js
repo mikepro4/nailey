@@ -7,8 +7,8 @@ import { Icon, Classes, Intent, Position, Toaster } from "@blueprintjs/core";
 import qs from "qs";
 import * as _ from "lodash"
 
-import { updateCollection } from "../../../../redux/actions/appActions"
-import { createSite, searchSites, loadSite} from "../../../../redux/actions/sitesActions"
+import { updateCollection, uncheckAll } from "../../../../redux/actions/appActions"
+import { createSite, searchSites, loadSite, deleteSite, updateSiteProperty, setMainSite} from "../../../../redux/actions/sitesActions"
 
 import Button from "../../button"
 import ListResults from "../../list"
@@ -23,6 +23,13 @@ class SiteSettings extends Component {
     getQueryParams = () => {
         return qs.parse(this.props.location.search.substring(1));
     };
+    
+
+    handleTitleChange = (item, value) => {
+        this.props.updateSiteProperty(item, "title", value, () => {
+            this.props.loadSite()
+        })
+    } 
 
 
     render() {
@@ -59,6 +66,42 @@ class SiteSettings extends Component {
                         type="site"
                         resultType="site"
                         searchCollection={this.props.searchSites}
+                        onDelete={(item) => {
+                            this.props.deleteSite(item._id, item, () => {
+                                this.props.updateCollection(true)
+                                this.props.loadSite()
+                            })
+                        }}
+                        onCreate={(item) => {
+                            let finalItem = {
+                                ...item,
+                                metadata: {
+                                    ...item.metadata,
+                                    title: "Copy of " + item.metadata.title,
+                                    main: false
+                                }
+                            }
+                            this.props.createSite(finalItem, () => {
+                                this.props.updateCollection(true)
+                                this.props.loadSite()
+                            })
+                        }}
+                        onEdit={(item, value) => {
+                            this.handleTitleChange(item, value)
+                        }}
+                        mainSwitch={true}
+                        mainFunction={(item, isMain) => {
+                            this.props.uncheckAll(true, item._id)
+
+                            this.props.setMainSite(item,!isMain, () => {
+                                this.props.loadSite()
+                            })
+
+                            setTimeout(() => {
+                                this.props.uncheckAll(false, this.props.app.dontUncheck)
+                            }, 1000)
+
+                        }}
                     />
                 </div>
             </div>
@@ -71,6 +114,7 @@ class SiteSettings extends Component {
 
 function mapStateToProps(state) {
     return {
+        app: state.app,
         site: state.site,
         user: state.app.user,
         authenticated: state.auth.authenticated,
@@ -81,5 +125,9 @@ export default withRouter(connect(mapStateToProps, {
     createSite,
     searchSites,
     updateCollection,
-    loadSite
+    loadSite,
+    deleteSite,
+    updateSiteProperty,
+    uncheckAll,
+    setMainSite
 })(SiteSettings));

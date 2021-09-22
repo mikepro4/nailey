@@ -8,7 +8,6 @@ import moment from "moment"
 import ContentEditable from 'react-contenteditable'
 
 import { uncheckAll, updateCollection } from "../../../../redux/actions/appActions"
-import { setMainSite, updateSiteProperty, createSite, deleteSite, loadSite } from "../../../../redux/actions/sitesActions"
 
 import Button from "../../button"
 
@@ -25,14 +24,8 @@ class SiteView extends Component {
     };
 
     handleChange = evt => {
-        // if(evt.key === "Enter" ) {
-        //     evt.preventDefault()
-        //     console.log("here")
-        // }
         this.setState({html: evt.target.value});
-        this.props.updateSiteProperty(this.props.item, "title", evt.target.value, () => {
-            this.props.loadSite()
-        })
+        this.props.onEdit(this.props.item, evt.target.value)
     };
 
     handleKeydown = evt => {
@@ -40,10 +33,6 @@ class SiteView extends Component {
             window.getSelection().removeAllRanges()
             evt.preventDefault()
         }
-        // this.setState({html: evt.target.value});
-        // this.props.updateSiteProperty(this.props.item, "title", evt.target.value, () => {
-        //     this.props.loadSite()
-        // })
     };
 
 
@@ -67,17 +56,8 @@ class SiteView extends Component {
     }
 
     handleSwitchChange = (data) => {
-        this.props.uncheckAll(true, this.props.item._id)
-
-        this.props.setMainSite(this.props.item,!this.state.isMain, () => {
-            this.props.loadSite()
-        })
-
-        setTimeout(() => {
-                this.props.uncheckAll(false, this.props.app.dontUncheck)
-        }, 1000)
-
-
+        this.props.mainFunction(this.props.item, this.state.isMain)
+ 
         this.setState({
             isMain: !this.state.isMain
         }, () => {
@@ -89,10 +69,11 @@ class SiteView extends Component {
             <div className="site-view-container">
 
                 <div className="site-view-left">
-                    <Switch 
+                    {this.props.mainSwitch && <Switch 
                         checked={this.state.isMain} 
                         onChange={this.handleSwitchChange} 
-                    />
+                    />}
+                    
                     <div className="site-title">
                         <ContentEditable
                             ref="name"
@@ -112,10 +93,7 @@ class SiteView extends Component {
                         icon="trash"
                         minimal={true}
                         onClick={() => {
-                            this.props.deleteSite(this.props.item._id, this.props.item, () => {
-                                this.props.updateCollection(true)
-                                this.props.loadSite()
-                            })
+                            this.props.onDelete(this.props.item)
                         }}
                     />
 
@@ -123,18 +101,7 @@ class SiteView extends Component {
                         icon="duplicate"
                         minimal={true}
                         onClick={() => {
-                            let finalItem = {
-                                ...this.props.item,
-                                metadata: {
-                                    ...this.props.item.metadata,
-                                    title: "Copy of " + this.props.item.metadata.title,
-                                    main: false
-                                }
-                            }
-                            this.props.createSite(finalItem, () => {
-                                this.props.updateCollection(true)
-                                this.props.loadSite()
-                            })
+                            this.props.onCreate(this.props.item)
                         }}
                     />
 
@@ -159,11 +126,6 @@ function mapStateToProps(state) {
 }
 
 export default withRouter(connect(mapStateToProps, {
-    setMainSite,
     uncheckAll,
-    updateSiteProperty,
-    createSite,
     updateCollection,
-    deleteSite,
-    loadSite
 })(SiteView));

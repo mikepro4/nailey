@@ -159,6 +159,11 @@ class ListResults extends Component {
                 if(!this.state.updateCollection) {
                     return (<SiteView
                         item={item}
+                        onCreate={this.props.onCreate}
+                        onEdit={this.props.onEdit}
+                        onDelete={this.props.onDelete}
+                        mainSwitch={this.props.mainSwitch}
+                        mainFunction={this.props.mainFunction}
                         key={item._id}
                     />)
                 } else {
