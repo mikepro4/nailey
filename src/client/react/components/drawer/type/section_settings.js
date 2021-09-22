@@ -39,9 +39,9 @@ class SectionSettings extends Component {
             <div className={"app-drawer-content-container standard-drawer section-settings-drawer"}>
                 <div className={"drawer-action-header"}>
                     
-                    {/* <div className="drawer-action-header-left">
-                        {this.props.section.count} section{this.props.section.count > 1 ? "s" : ""}
-                    </div> */}
+                    <div className="drawer-action-header-left">
+                        Sections
+                    </div>
 
                     <div className="drawer-action-header-right">
                         <Button
