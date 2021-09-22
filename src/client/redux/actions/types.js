@@ -41,3 +41,12 @@ export const LOAD_SITE = "app/LOAD_SITE"
 export const CLEAR_SITE = "app/CLEAR_SITE"
 export const LOAD_NEW_SITE = "app/LOAD_NEW_SITE"
 export const CLEAR_NEW_SITE = "app/CLEAR_NEW_SITE"
+
+// =============================================================================
+
+// Site 
+
+export const LOAD_THEME = "app/LOAD_THEME"
+export const CLEAR_THEME = "app/CLEAR_THEME"
+export const LOAD_NEW_THEME = "app/LOAD_NEW_THEME"
+export const CLEAR_NEW_THEME = "app/CLEAR_NEW_THEME"

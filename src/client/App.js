@@ -11,6 +11,7 @@ import Drawer from "./react/components/drawer"
 import { FocusStyleManager } from "@blueprintjs/core";
 
 import { loadSite} from "../client/redux/actions/sitesActions"
+import { loadTheme} from "../client/redux/actions/themesActions"
 import { showDrawer} from "../client/redux/actions/appActions"
 import { authUser, fetchCurrentUser, clearCurrentUser } from "../client/redux/actions/authActions"
 
@@ -29,6 +30,7 @@ class App extends Component {
 	componentDidMount() {
         this.auth()
         this.props.loadSite()
+        this.props.loadTheme()
     }
 
     componentWillUnmount() {
@@ -111,6 +113,7 @@ export default {
         fetchCurrentUser, 
         clearCurrentUser,
         showDrawer,
-        loadSite
+        loadSite,
+        loadTheme
 	})(App))
 };

@@ -24,7 +24,7 @@ class EditBar extends Component {
             },
             {
                 title: "Themes",
-                drawerType: "themes-settings"
+                drawerType: "theme-settings"
             }
         ]
     }
