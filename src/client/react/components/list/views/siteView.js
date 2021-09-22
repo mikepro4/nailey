@@ -25,11 +25,27 @@ class SiteView extends Component {
     };
 
     handleChange = evt => {
+        // if(evt.key === "Enter" ) {
+        //     evt.preventDefault()
+        //     console.log("here")
+        // }
         this.setState({html: evt.target.value});
         this.props.updateSiteProperty(this.props.item, "title", evt.target.value, () => {
             this.props.loadSite()
         })
     };
+
+    handleKeydown = evt => {
+        if(evt.key === "Enter" ) {
+            window.getSelection().removeAllRanges()
+            evt.preventDefault()
+        }
+        // this.setState({html: evt.target.value});
+        // this.props.updateSiteProperty(this.props.item, "title", evt.target.value, () => {
+        //     this.props.loadSite()
+        // })
+    };
+
 
     componentDidMount() {
         if(this.props.item.metadata.main) {
@@ -79,10 +95,12 @@ class SiteView extends Component {
                     />
                     <div className="site-title">
                         <ContentEditable
+                            ref="name"
                             className="title-editable"
                             html={this.state.html} // innerHTML of the editable div
                             disabled={false} // use true to disable edition
                             onChange={this.handleChange} // handle innerHTML change
+                            onKeyDown={this.handleKeydown}
                         />
                     </div>
                 </div>
