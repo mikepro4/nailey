@@ -107,6 +107,9 @@ class SiteView extends Component {
 
                     <Button
                         icon="edit"
+                        onClick={() => {
+                            this.props.onItemEdit(this.props.item)
+                        }}
                     />
                 </div>
 

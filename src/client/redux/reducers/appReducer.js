@@ -128,7 +128,7 @@ export const appReducer = (state = initialState, action) => {
                 ...state,
                 drawerOpen: true,
                 drawerType: action.payload,
-                drawerData: drawer
+                drawerData: action.drawerData
             }
         case HIDE_DRAWER:
             return {

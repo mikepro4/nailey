@@ -162,8 +162,10 @@ class ListResults extends Component {
                         onCreate={this.props.onCreate}
                         onEdit={this.props.onEdit}
                         onDelete={this.props.onDelete}
+                        onItemEdit={this.props.onItemEdit}
                         mainSwitch={this.props.mainSwitch}
                         mainFunction={this.props.mainFunction}
+
                         key={item._id}
                     />)
                 } else {

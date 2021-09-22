@@ -7,14 +7,15 @@ import { Icon, Classes, Intent, Position, Toaster } from "@blueprintjs/core";
 import qs from "qs";
 import * as _ from "lodash"
 
-import { updateCollection, uncheckAll, showDrawer } from "../../../../redux/actions/appActions"
-import { createSite, searchSites, loadSite, deleteSite, updateSiteProperty, setMainSite} from "../../../../redux/actions/sitesActions"
+import { updateCollection, uncheckAll } from "../../../../redux/actions/appActions"
+import { createSection, searchSections, loadSection, deleteSection, updateSectionProperty, setMainSection} from "../../../../redux/actions/sectionsActions"
+import { loadSite} from "../../../../redux/actions/sitesActions"
 
 import Button from "../../button"
 import ListResults from "../../list"
 
 
-class SiteSettings extends Component {
+class SectionSettings extends Component {
 
     state = {
         loading: false
@@ -26,7 +27,8 @@ class SiteSettings extends Component {
     
 
     handleTitleChange = (item, value) => {
-        this.props.updateSiteProperty(item, "title", value, () => {
+        this.props.updateSectionProperty(item, "title", value, () => {
+            this.props.loadSection()
             this.props.loadSite()
         })
     } 
@@ -34,24 +36,25 @@ class SiteSettings extends Component {
 
     render() {
         return (
-            <div className={"app-drawer-content-container standard-drawer site-settings-drawer theme-" + this.props.theme}>
-                <div className={"drawer-action-header theme-" + this.props.theme}>
+            <div className={"app-drawer-content-container standard-drawer section-settings-drawer section-" + this.props.section}>
+                <div className={"drawer-action-header section-" + this.props.section}>
                     
-                    <div className="drawer-action-header-left">
-                        {this.props.site.count} site{this.props.site.count > 1 ? "s" : ""}
-                    </div>
+                    {/* <div className="drawer-action-header-left">
+                        {this.props.section.count} section{this.props.section.count > 1 ? "s" : ""}
+                    </div> */}
 
                     <div className="drawer-action-header-right">
                         <Button
-                            label="Create site"
+                            label="Create section"
                             onClick={() => {
-                                this.props.createSite({
+                                this.props.createSection({
                                     metadata: {
                                         title: "Untitled",
                                         createdBy: this.props.user._id
                                     }
                                 }, () => {
                                     this.props.updateCollection(true)
+                                    this.props.loadSection()
                                     this.props.loadSite()
                                 })
                             }}
@@ -65,10 +68,11 @@ class SiteSettings extends Component {
                     <ListResults
                         type="site"
                         resultType="site"
-                        searchCollection={this.props.searchSites}
+                        searchCollection={this.props.searchSections}
                         onDelete={(item) => {
-                            this.props.deleteSite(item._id, item, () => {
+                            this.props.deleteSection(item._id, item, () => {
                                 this.props.updateCollection(true)
+                                this.props.loadSection()
                                 this.props.loadSite()
                             })
                         }}
@@ -81,28 +85,28 @@ class SiteSettings extends Component {
                                     main: false
                                 }
                             }
-                            this.props.createSite(finalItem, () => {
+                            this.props.createSection(finalItem, () => {
                                 this.props.updateCollection(true)
+                                this.props.loadSection()
                                 this.props.loadSite()
                             })
                         }}
                         onEdit={(item, value) => {
                             this.handleTitleChange(item, value)
                         }}
-                        onItemEdit={(item) => {
-                            this.props.showDrawer("site-edit", item)
-                        }}
                         mainSwitch={true}
                         mainFunction={(item, isMain) => {
                             this.props.uncheckAll(true, item._id)
 
-                            this.props.setMainSite(item,!isMain, () => {
+                            this.props.setMainSection(item,!isMain, () => {
+                                this.props.loadSection()
                                 this.props.loadSite()
                             })
 
                             setTimeout(() => {
                                 this.props.uncheckAll(false, this.props.app.dontUncheck)
                             }, 1000)
+
                         }}
                     />
                 </div>
@@ -117,20 +121,20 @@ class SiteSettings extends Component {
 function mapStateToProps(state) {
     return {
         app: state.app,
-        site: state.site,
+        section: state.section,
         user: state.app.user,
         authenticated: state.auth.authenticated,
     };
 }
 
 export default withRouter(connect(mapStateToProps, {
-    createSite,
-    searchSites,
+    createSection,
+    searchSections,
     updateCollection,
-    loadSite,
-    deleteSite,
-    updateSiteProperty,
+    loadSection,
+    deleteSection,
+    updateSectionProperty,
     uncheckAll,
-    setMainSite,
-    showDrawer
-})(SiteSettings));
+    setMainSection,
+    loadSite
+})(SectionSettings));

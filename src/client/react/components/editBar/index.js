@@ -25,6 +25,10 @@ class EditBar extends Component {
             {
                 title: "Themes",
                 drawerType: "theme-settings"
+            },
+            {
+                title: "Sections",
+                drawerType: "section-settings"
             }
         ]
     }
@@ -67,9 +71,9 @@ class EditBar extends Component {
                 })}
             >
                <div className="edit-bar-left">
-                   <div className="edit-bar-title">
+                   {/* <div className="edit-bar-title">
                         Editing
-                   </div>
+                   </div> */}
 
                    <ul className="edit-bar-tab">
                        {this.renderSectionItems()}

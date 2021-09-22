@@ -50,3 +50,12 @@ export const LOAD_THEME = "app/LOAD_THEME"
 export const CLEAR_THEME = "app/CLEAR_THEME"
 export const LOAD_NEW_THEME = "app/LOAD_NEW_THEME"
 export const CLEAR_NEW_THEME = "app/CLEAR_NEW_THEME"
+
+// =============================================================================
+
+// Section 
+
+export const LOAD_SECTION = "app/LOAD_SECTION"
+export const CLEAR_SECTION = "app/CLEAR_SECTION"
+export const LOAD_NEW_SECTION = "app/LOAD_NEW_SECTION"
+export const CLEAR_NEW_SECTION = "app/CLEAR_NEW_SECTION"
