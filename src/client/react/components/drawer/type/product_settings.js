@@ -36,8 +36,8 @@ class ProductSettings extends Component {
 
     render() {
         return (
-            <div className={"app-drawer-content-container standard-drawer product-settings-drawer product-" + this.props.product}>
-                <div className={"drawer-action-header product-" + this.props.product}>
+            <div className={"app-drawer-content-container standard-drawer product-settings-drawer "}>
+                <div className={"drawer-action-header "}>
                     
                     {/* <div className="drawer-action-header-left">
                         {this.props.product.count} product{this.props.product.count > 1 ? "s" : ""}
@@ -107,7 +107,6 @@ class ProductSettings extends Component {
 function mapStateToProps(state) {
     return {
         app: state.app,
-        product: state.product,
         user: state.app.user,
         authenticated: state.auth.authenticated,
     };

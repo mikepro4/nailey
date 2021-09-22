@@ -68,3 +68,12 @@ export const LOAD_PRODUCT = "app/LOAD_PRODUCT"
 export const CLEAR_PRODUCT = "app/CLEAR_PRODUCT"
 export const LOAD_NEW_PRODUCT = "app/LOAD_NEW_PRODUCT"
 export const CLEAR_NEW_PRODUCT = "app/CLEAR_NEW_PRODUCT"
+
+// =============================================================================
+
+// Font 
+
+export const LOAD_FONT = "app/LOAD_FONT"
+export const CLEAR_FONT = "app/CLEAR_FONT"
+export const LOAD_NEW_FONT = "app/LOAD_NEW_FONT"
+export const CLEAR_NEW_FONT = "app/CLEAR_NEW_FONT"

@@ -8,14 +8,14 @@ import qs from "qs";
 import * as _ from "lodash"
 
 import { updateCollection, uncheckAll } from "../../../../redux/actions/appActions"
-import { createSection, searchSections, loadSection, deleteSection, updateSectionProperty, setMainSection} from "../../../../redux/actions/sectionsActions"
+import { createFont, searchFonts, loadFont, deleteFont, updateFontProperty, setMainFont} from "../../../../redux/actions/fontsActions"
 import { loadSite} from "../../../../redux/actions/sitesActions"
 
 import Button from "../../button"
 import ListResults from "../../list"
 
 
-class SectionSettings extends Component {
+class FontSettings extends Component {
 
     state = {
         loading: false
@@ -27,8 +27,8 @@ class SectionSettings extends Component {
     
 
     handleTitleChange = (item, value) => {
-        this.props.updateSectionProperty(item, "title", value, () => {
-            this.props.loadSection()
+        this.props.updateFontProperty(item, "title", value, () => {
+            this.props.loadFont()
             this.props.loadSite()
         })
     } 
@@ -36,25 +36,25 @@ class SectionSettings extends Component {
 
     render() {
         return (
-            <div className={"app-drawer-content-container standard-drawer section-settings-drawer"}>
+            <div className={"app-drawer-content-container standard-drawer font-settings-drawer "}>
                 <div className={"drawer-action-header"}>
                     
                     {/* <div className="drawer-action-header-left">
-                        {this.props.section.count} section{this.props.section.count > 1 ? "s" : ""}
+                        {this.props.font.count} font{this.props.font.count > 1 ? "s" : ""}
                     </div> */}
 
                     <div className="drawer-action-header-right">
                         <Button
-                            label="Create section"
+                            label="Create font"
                             onClick={() => {
-                                this.props.createSection({
+                                this.props.createFont({
                                     metadata: {
                                         title: "Untitled",
                                         createdBy: this.props.user._id
                                     }
                                 }, () => {
                                     this.props.updateCollection(true)
-                                    this.props.loadSection()
+                                    this.props.loadFont()
                                     this.props.loadSite()
                                 })
                             }}
@@ -68,11 +68,11 @@ class SectionSettings extends Component {
                     <ListResults
                         type="site"
                         resultType="site"
-                        searchCollection={this.props.searchSections}
+                        searchCollection={this.props.searchFonts}
                         onDelete={(item) => {
-                            this.props.deleteSection(item._id, item, () => {
+                            this.props.deleteFont(item._id, item, () => {
                                 this.props.updateCollection(true)
-                                this.props.loadSection()
+                                this.props.loadFont()
                                 this.props.loadSite()
                             })
                         }}
@@ -85,9 +85,9 @@ class SectionSettings extends Component {
                                     main: false
                                 }
                             }
-                            this.props.createSection(finalItem, () => {
+                            this.props.createFont(finalItem, () => {
                                 this.props.updateCollection(true)
-                                this.props.loadSection()
+                                this.props.loadFont()
                                 this.props.loadSite()
                             })
                         }}
@@ -113,13 +113,13 @@ function mapStateToProps(state) {
 }
 
 export default withRouter(connect(mapStateToProps, {
-    createSection,
-    searchSections,
+    createFont,
+    searchFonts,
     updateCollection,
-    loadSection,
-    deleteSection,
-    updateSectionProperty,
+    loadFont,
+    deleteFont,
+    updateFontProperty,
     uncheckAll,
-    setMainSection,
+    setMainFont,
     loadSite
-})(SectionSettings));
+})(FontSettings));

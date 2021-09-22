@@ -7,6 +7,7 @@ import { siteReducer } from "./siteReducer";
 import { themeReducer } from "./themeReducer";
 import { sectionReducer } from "./sectionReducer";
 import { productReducer } from "./productReducer";
+import { fontReducer } from "./fontReducer";
 
 export default (history) => combineReducers({
     router: connectRouter(history),
@@ -16,5 +17,6 @@ export default (history) => combineReducers({
     site: siteReducer,
     theme: themeReducer,
     section: sectionReducer,
-    product: productReducer
+    product: productReducer,
+    font: fontReducer
 })

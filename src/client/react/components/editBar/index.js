@@ -32,6 +32,11 @@ class EditBar extends Component {
             {
                 title: "Products",
                 drawerType: "product-settings"
+            },
+            ,
+            {
+                title: "Fonts",
+                drawerType: "font-settings"
             }
         ]
     }
@@ -94,10 +99,10 @@ class EditBar extends Component {
                         }
                     />
 
-                    <Button
+                    {/* <Button
                         label="Save"
                         onClick={() => this.props.disableEdit()}
-                    />
+                    /> */}
                </div>
             </div>
         );
