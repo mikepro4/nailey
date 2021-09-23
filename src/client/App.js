@@ -19,8 +19,8 @@ FocusStyleManager.onlyShowFocusOnTabs();
 
 class App extends Component {
 
-    static loadData(store, match) {
-		return store.dispatch(loadSite());
+    static loadData(store, match, route, path, query, request) {
+		return store.dispatch(loadSite(request.headers.host));
     }
     
 	state = {

@@ -57,15 +57,24 @@ export const createSite = (siteItem, success) => async (
 
 
 
-export const loadSite = (success) => async (
+export const loadSite = (domain, success) => async (
     dispatch,
 	getState,
 	api
 ) => {
 
+    let finalDomain = ""
+
+    if(!domain) {
+        finalDomain = window.location.hostname
+    } else {
+        finalDomain = domain
+    }
 
     await api
-        .post("/sites/main", { })
+        .post("/sites/main", {
+            domain: finalDomain
+        })
         .then(response => {
             if (success) {
                 success(response.data);

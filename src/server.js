@@ -45,42 +45,47 @@ app.get("*", (request, response) => {
 		axiosInstance,
 		"fromServer",
 		request.path
-	);
+    );
+    
+    if(request.path !== "/favicon.ico") {
+        const currentRoute = matchRoutes(Router, request.path);
 
-	const currentRoute = matchRoutes(Router, request.path);
+        const need = currentRoute.map(({ route, match }) => {
+            if (route.component) {
+                return route.component.loadData
+                    ? // the following will be passed into each component's `loadData` method:
+                        route.component.loadData(
+                            store,
+                            match,
+                            route,
+                            request.path,
+                            request.query,
+                            request
+                        )
+                    : Promise.resolve(null);
+            }
+            Promise.resolve(null);
+        });
+    
+        Promise.all(need).then(() => {
+    
+            const staticRouterContext = {};
+            const html = renderer(
+                request,
+                store,
+                buildAssets,
+                staticRouterContext,
+                history
+            );
+            if (staticRouterContext.url)
+                return response.redirect(301, staticRouterContext.url);
+            if (staticRouterContext.notFound) response.status(404);
+    
+            response.send(html);
+        });
+    }
 
-	const need = currentRoute.map(({ route, match }) => {
-		if (route.component) {
-			return route.component.loadData
-				? // the following will be passed into each component's `loadData` method:
-					route.component.loadData(
-						store,
-						match,
-						route,
-						request.path,
-						request.query
-					)
-				: Promise.resolve(null);
-		}
-		Promise.resolve(null);
-	});
-
-	Promise.all(need).then(() => {
-
-		const staticRouterContext = {};
-		const html = renderer(
-			request,
-			store,
-			buildAssets,
-			staticRouterContext,
-			history
-		);
-		if (staticRouterContext.url)
-			return response.redirect(301, staticRouterContext.url);
-		if (staticRouterContext.notFound) response.status(404);
-
-		response.send(html);
-	});
+	
 });
 
 app.listen(PORT, () => {

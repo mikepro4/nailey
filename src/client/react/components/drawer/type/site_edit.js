@@ -93,7 +93,6 @@ class SiteEdit extends Component {
                         type: "selectAsync",
                         label: "Theme",
                         loadOptions: (inputValue, callback) => {
-                            console.log(inputValue)
                             this.props.getOptions("theme", inputValue, (data) => {
 
                                 let finalOptions = data.map((item) => {
