@@ -17,6 +17,7 @@ import SectionSettings from "./type/section_settings"
 import ProductSettings from "./type/product_settings"
 import FontSettings from "./type/font_settings"
 import PageSettings from "./type/page_settings"
+import ProjectSettings from "./type/project_settings"
 
 class Drawer extends Component {
 
@@ -49,6 +50,8 @@ class Drawer extends Component {
                 return (<FontSettings hideDrawer={() => this.hideDrawer()} enablePortal/>)
             case "page-settings":
                 return (<PageSettings hideDrawer={() => this.hideDrawer()} enablePortal/>)
+            case "project-settings":
+                return (<ProjectSettings hideDrawer={() => this.hideDrawer()} enablePortal/>)
             default:
                 return ;
         }

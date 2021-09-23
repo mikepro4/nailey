@@ -28,7 +28,8 @@ class SiteEdit extends Component {
     };
 
     render() {
-        let site = this.props.site.currentSite
+        // let site = this.props.site.currentSite
+        let site = this.props.site.newSite
         let siteEditorConfiguration = [
             {
                 collapsible: false,
@@ -37,7 +38,7 @@ class SiteEdit extends Component {
                         type: "switch",
                         label: "Main site",
                         updateFunction: (value) => {
-                            this.props.setMainSite(this.props.site.currentSite, value, () => {
+                            this.props.setMainSite(site, value, () => {
                                 this.props.loadSite()
                             })
                         },

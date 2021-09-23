@@ -14,6 +14,10 @@ class EditBar extends Component {
     state = {
         sections: [
             {
+                title: "Project",
+                drawerType: "project-settings"
+            },
+            {
                 title: "Site",
                 drawerType: "site-settings"
             },

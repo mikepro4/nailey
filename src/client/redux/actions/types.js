@@ -77,3 +77,13 @@ export const LOAD_FONT = "app/LOAD_FONT"
 export const CLEAR_FONT = "app/CLEAR_FONT"
 export const LOAD_NEW_FONT = "app/LOAD_NEW_FONT"
 export const CLEAR_NEW_FONT = "app/CLEAR_NEW_FONT"
+
+
+// =============================================================================
+
+// Project 
+
+export const LOAD_PROJECT = "app/LOAD_PROJECT"
+export const CLEAR_PROJECT = "app/CLEAR_PROJECT"
+export const LOAD_NEW_PROJECT = "app/LOAD_NEW_PROJECT"
+export const CLEAR_NEW_PROJECT = "app/CLEAR_NEW_PROJECT"
