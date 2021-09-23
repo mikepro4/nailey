@@ -28,7 +28,7 @@ class EditorSection extends Component {
         switch(component.type) {
             case "switch":
                 return(
-                    <EditorSwitch key={i} options={component} switchFunction={(value) => component.switchFunction(value)}/>
+                    <EditorSwitch key={i} options={component} updateFunction={(value) => component.updateFunction(value)}/>
                 )
             case "input":
                 return(

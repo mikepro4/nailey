@@ -27,12 +27,6 @@ class SiteEdit extends Component {
         return qs.parse(this.props.location.search.substring(1));
     };
 
-    handlMainSwitch = (value) => {
-        this.props.setMainSite(this.props.site.currentSite, value, () => {
-            this.props.loadSite()
-        })
-    }
-
     render() {
         let site = this.props.site.currentSite
         let siteEditorConfiguration = [
@@ -42,7 +36,11 @@ class SiteEdit extends Component {
                     {
                         type: "switch",
                         label: "Main site",
-                        switchFunction: (value) => { this.handlMainSwitch(value) },
+                        updateFunction: (value) => { 
+                            this.props.setMainSite(this.props.site.currentSite, value, () => {
+                                this.props.loadSite()
+                            })
+                        },
                         active: site && site.metadata.main
                     }
                 ]

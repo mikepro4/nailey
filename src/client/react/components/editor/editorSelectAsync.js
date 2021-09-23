@@ -39,6 +39,7 @@ class EditorSelectAsync extends Component {
                     cacheOptions
                     loadOptions={_.debounce(this.props.options.loadOptions, 1000)}
                     defaultOptions
+                    searchable={false}
                     autoload={true}
                     defaultInputValue={this.props.options.value}
                     menuPortalTarget={document.body} 

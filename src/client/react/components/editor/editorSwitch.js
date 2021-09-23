@@ -23,7 +23,7 @@ class EditorSwitch extends Component {
         this.setState({
             active: !this.state.active
         }, () => {
-            this.props.switchFunction(this.state.active)
+            this.props.updateFunction(this.state.active)
         })
     }
 
