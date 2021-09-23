@@ -31,6 +31,7 @@ class App extends Component {
         this.auth()
         this.props.loadSite()
         this.props.loadTheme()
+        this.props.showDrawer("site-edit")
     }
 
     componentWillUnmount() {

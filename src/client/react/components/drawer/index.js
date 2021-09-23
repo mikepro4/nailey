@@ -11,6 +11,7 @@ import {
 } from '../../../redux/actions/appActions'
 
 import SiteSettings from "./type/site_settings"
+import SiteEdit from "./type/site_edit"
 import ThemeSettings from "./type/theme_settings"
 import SectionSettings from "./type/section_settings"
 import ProductSettings from "./type/product_settings"
@@ -36,6 +37,8 @@ class Drawer extends Component {
         switch (type) {
             case "site-settings":
                 return (<SiteSettings hideDrawer={() => this.hideDrawer()} enablePortal/>)
+            case "site-edit":
+                return (<SiteEdit hideDrawer={() => this.hideDrawer()} enablePortal/>)
             case "theme-settings":
                 return (<ThemeSettings hideDrawer={() => this.hideDrawer()} enablePortal/>)
             case "section-settings":

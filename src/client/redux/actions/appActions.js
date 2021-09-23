@@ -209,4 +209,37 @@ export const updateQueryString = (
 	});
 };
 
+///////////////////////////////////////////////////
 
+
+export const updateProperty = (model, item, property, value, success) => async (
+    dispatch,
+	getState,
+	api
+) => {
+    
+    let newItem = {
+        ...item,
+        metadata: {
+            ...item.metadata,
+            [property]: value
+        }
+    }
+
+    let url = "/" + model + "s/update"
+
+    await api
+        .post(url, {
+            [item + "Id"]: newItem._id, 
+            metadata: newItem.metadata, 
+        })
+        .then(response => {
+            if (success) {
+                success(response.data);
+            }
+        })
+        .catch(() => {
+        });
+}
+
+///////////////////////////////////////////////////
