@@ -101,61 +101,22 @@ class SiteEdit extends Component {
                         loadOptions: (inputValue, callback) => {
                             this.props.getOptions("theme", (data) => {
 
-                                // let newOptions = _.map(data, (item) => {
-                                //     console.log(item)
-                                //     return ({
-                                //         value: item._id,
-                                //         label: item.matadata.title
-                                //     })
-                                // });
-
-                                let finalOptions = data.map(function(item){
+                                let finalOptions = data.map((item) => {
                                     return {
                                         value: item._id,
                                         label: item.metadata.title
                                     }
                                 })
 
-
                                 callback(finalOptions);
                             })
-
-                            // this.props.searchEntities(
-                            //     {
-                            //         displayName: input,
-                            //         entityType: entityTypeId
-                            //     },
-                            //     "created",
-                            //     0,
-                            //     20,
-                            //     data => {
-                            //         let options = data.all.map(entity => ({
-                            //             value: entity._id,
-                            //             label: entity.properties.displayName
-                            //         }));
-
-                            //         let filteredOptions = _.filter(options, option => {
-                            //             return !_.isEmpty(option.label);
-                            //         });
-
-                            //         callback(null, {
-                            //             options: _.uniqBy(filteredOptions, "label"),
-                            //             complete: true
-                            //         });
-                            //     }
-                            // );
-
-                            // _.debounce(
-                            //     (inputValue, callback) => console.log(inputValue, callback),
-                            // 1000)
                         },
                         updateFunction: (value) => {
                             this.props.updateProperty("site", site, "theme", value, () => {
                                 this.props.loadSite()
                             })
                         },
-                        value: site && site.metadata.theme && site.metadata.theme.value,
-                        labelOptions: site && site.metadata.theme && site.metadata.theme.label
+                        value: site && site.metadata.theme && site.metadata.theme.label
                     }
                 ]
             },

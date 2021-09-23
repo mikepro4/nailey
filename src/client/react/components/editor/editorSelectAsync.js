@@ -40,7 +40,7 @@ class EditorSelectAsync extends Component {
                     loadOptions={_.debounce(this.props.options.loadOptions, 1000)}
                     defaultOptions
                     autoload={true}
-                    defaultInputValue={this.props.options.labelOptions}
+                    defaultInputValue={this.props.options.value}
                     menuPortalTarget={document.body} 
                     styles={{ menuPortal: base => ({ ...base, zIndex: 9999 }) }}
 				/>
