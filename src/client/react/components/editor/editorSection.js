@@ -29,7 +29,6 @@ class EditorSection extends Component {
     }
 
     conditionalRender(component, children) {
-        console.log(component.label, component.conditionalPropertyExpectedValue == component.conditionalPropertyActualValue)
         if(component.conditionalPropertyExpectedValue || component.conditionalPropertyExpectedValue === false)  {
             if(component.conditionalPropertyExpectedValue == component.conditionalPropertyActualValue) {
                 return children
