@@ -133,7 +133,7 @@ class SiteEdit extends Component {
                             value: "white",
                             label: "White"
                         }],
-                        value: site && site.metadata.color 
+                        value: site && site.metadata.color
                     },
                 ]
             },
@@ -158,13 +158,20 @@ class SiteEdit extends Component {
                 components: [
                     {
                         type: "CRUD",
-                        collectionName: "pages",
                         model: {
-                            title: "Untitled"
-                        }
+                            title: "Untitled",
+                            sections: []
+                        },
+                        property: "pages",
+                        updateFunction: (value) => {
+                            this.props.updateProperty("site", site, "pages", value, () => {
+                                this.props.loadSite()
+                            })
+                        },
+                        value: site && site.metadata.pages
                     }
                 ],
-                property: "pages"
+
             },
 
         ]

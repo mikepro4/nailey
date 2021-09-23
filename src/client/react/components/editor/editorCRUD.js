@@ -3,37 +3,84 @@ import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
 import classNames from "classnames"
 import * as _ from "lodash"
+import Button from "../button/"
+import update from "immutability-helper";
 
 class EditorCRUD extends Component {
 
     state = {
-        value: ""
+        value: []
     }
 
-    componentDidMount() { 
-        
+    componentDidMount() {
+        this.setState({
+            value: this.props.options.value
+        })
     }
 
     handleInputChange = (value) => {
-        console.log(value)
         this.setState({
             value: value
         })
         this.props.updateFunction(value)
     }
 
+    removeItem = (item) => {
+        let keyToDeactivateIndex = _.findIndex(this.state.value, item);
+        let newValue = update(this.state.value, {$splice: [[keyToDeactivateIndex, 1]] 
+        })
+
+        this.setState({
+            value: newValue
+        }, () => {
+            this.props.updateFunction(newValue)
+        })
+
+    }
+
+    renderItem = (item, i) => {
+        return (
+            <div key={i}>
+                {item.title} 
+
+                <Button 
+                    icon="trash"
+                    minimal={true}
+                    onClick={() => this.removeItem(item)}
+                />
+            </div>
+        )
+    }
+
+    addItem = () => {
+        this.setState({
+            value: this.state.value.concat(this.props.options.model)
+        }, () => {
+            this.props.updateFunction(this.state.value)
+        })
+    }
+
     render() {
-        console.log(this.props)
         return (
             <div
                 className={classNames({
                     "editor-row": true,
                     "editor-select": true,
                 })}
-            > 
+            >
                 <div className="input-label">{this.props.options.label}</div>
 
-                CRUD
+
+                {this.state.value.map((item, i) => {
+                    return this.renderItem(item, i)
+                })
+                }
+
+                <Button 
+                    icon="plus"
+                    minimal={true}
+                    onClick={() => this.addItem()}
+                />
 
             </div>
         );
