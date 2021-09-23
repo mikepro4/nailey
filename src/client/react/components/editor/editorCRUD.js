@@ -5,12 +5,17 @@ import classNames from "classnames"
 import * as _ from "lodash"
 import Button from "../button/"
 import update from "immutability-helper";
+import ContentEditable from 'react-contenteditable'
 
 class EditorCRUD extends Component {
 
-    state = {
-        value: []
-    }
+    constructor(props) {
+        super(props)
+        this.contentEditable = React.createRef();
+        this.state = {
+            value: []
+        };
+    };
 
     componentDidMount() {
         this.setState({
@@ -39,10 +44,37 @@ class EditorCRUD extends Component {
 
     }
 
-    duplicateItem = () => {
+    handleChange =(event, item) => {
+        let keyToUpdateIndex = _.findIndex(this.state.value, item);
+
+        let newItem = {
+            ...item,
+            title: event.target.value
+        }
+
+        let newValue = update(this.state.value, {
+            $splice: [[keyToUpdateIndex, 1, newItem]] 
+        })
+
+        this.setState({
+            value: newValue
+        }, () => {
+            this.props.updateFunction(newValue)
+        })
+    }
+
+    handleKeydown = evt => {
+        if(evt.key === "Enter" ) {
+            window.getSelection().removeAllRanges()
+            evt.preventDefault()
+        }
+    };
+
+
+    duplicateItem = (item) => {
         let newModel = {
-            ...this.props.options.model,
-            title: "Copy of " + this.props.options.model.title
+            ...item,
+            title: "Copy of " + item.title
         }
         this.setState({
             value: this.state.value.concat(newModel)
@@ -54,7 +86,15 @@ class EditorCRUD extends Component {
     renderItem = (item, i) => {
         return (
             <div key={i}>
-                {item.title} 
+
+                <ContentEditable
+                    ref="name"
+                    className="title-editable"
+                    html={item.title} // innerHTML of the editable div
+                    disabled={false} // use true to disable edition
+                    onChange={(event) => this.handleChange(event, item)} // handle innerHTML change
+                    onKeyDown={this.handleKeydown}
+                />
 
                 <Button 
                     icon="trash"
