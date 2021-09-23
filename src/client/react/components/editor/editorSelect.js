@@ -50,6 +50,7 @@ class EditorSelect extends Component {
 					simpleValue
 					clearable
                     searchable
+                    isSearchable={false}
                     menuPortalTarget={document.body} 
                     styles={{ menuPortal: base => ({ ...base, zIndex: 9999 }) }}
 				/>

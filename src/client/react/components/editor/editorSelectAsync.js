@@ -74,7 +74,11 @@ class EditorSelectAsync extends Component {
                     defaultOptions
                     autoload={true}
                     isClearable={false}
-                    defaultInputValue={this.props.options.value}
+                    defaultValue={{
+                        value: this.props.options.value,
+                        label: this.props.options.value
+                    }}
+                    isSearchable={false}
                     menuPortalTarget={document.body}
                     styles={customStyles}
                 />
