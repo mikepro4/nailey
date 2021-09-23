@@ -73,7 +73,6 @@ class App extends Component {
             <div className="app">
                 {this.props.currentSite ? (
                     <div>
-                        1
                         <Header />
 
                         <div className="main-section">
