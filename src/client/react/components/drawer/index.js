@@ -18,6 +18,7 @@ import ProductSettings from "./type/product_settings"
 import FontSettings from "./type/font_settings"
 import PageSettings from "./type/page_settings"
 import ProjectSettings from "./type/project_settings"
+import ProjectEdit from "./type/project_edit"
 
 class Drawer extends Component {
 
@@ -52,6 +53,8 @@ class Drawer extends Component {
                 return (<PageSettings hideDrawer={() => this.hideDrawer()} enablePortal/>)
             case "project-settings":
                 return (<ProjectSettings hideDrawer={() => this.hideDrawer()} enablePortal/>)
+            case "project-edit":
+                return (<ProjectEdit hideDrawer={() => this.hideDrawer()} enablePortal/>)
             default:
                 return ;
         }

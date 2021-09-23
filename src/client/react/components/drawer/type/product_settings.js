@@ -94,6 +94,7 @@ class ProductSettings extends Component {
                         onEdit={(item, value) => {
                             this.handleTitleChange(item, value)
                         }}
+                        
                     />
                 </div>
             </div>

@@ -7,7 +7,7 @@ import { Icon, Classes, Intent, Position, Toaster } from "@blueprintjs/core";
 import qs from "qs";
 import * as _ from "lodash"
 
-import { updateCollection, uncheckAll, updateProperty } from "../../../../redux/actions/appActions"
+import { updateCollection, uncheckAll, updateProperty, showDrawer} from "../../../../redux/actions/appActions"
 import { createProject, searchProjects, loadProject, deleteProject, updateProjectProperty, setMainProject} from "../../../../redux/actions/projectsActions"
 import { loadSite} from "../../../../redux/actions/sitesActions"
 
@@ -105,6 +105,9 @@ class ProjectSettings extends Component {
                                 this.props.uncheckAll(false, this.props.app.dontUncheck)
                             }, 1000)
                         }}
+                        onItemEdit={(item) => {
+                            this.props.showDrawer("project-edit", item)
+                        }}
                     />
                 </div>
             </div>
@@ -133,5 +136,6 @@ export default withRouter(connect(mapStateToProps, {
     uncheckAll,
     setMainProject,
     loadSite,
-    updateProperty
+    updateProperty,
+    showDrawer
 })(ProjectSettings));
