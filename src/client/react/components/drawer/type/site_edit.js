@@ -37,7 +37,7 @@ class SiteEdit extends Component {
 
     handlMainSwitch = (value) => {
         this.props.setMainSite(this.props.app.drawerData, value, () => {
-            // this.props.loadSite()
+            this.props.loadSite()
         })
     } 
 
@@ -56,11 +56,6 @@ class SiteEdit extends Component {
                         label: "Main site",
                         switchFunction: (value) => { this.handlMainSwitch(value)},
                         active: this.props.app.drawerData && this.props.app.drawerData.metadata.main
-                    },
-                    {
-                        type: "switch",
-                        label: "Preview",
-                        switchFunction: (value) => { this.handlePreviewSwitch(value)}
                     }
                 ]
             },
