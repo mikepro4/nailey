@@ -39,7 +39,23 @@ class EditorSelectAsync extends Component {
                         border: '1px solid rgba(0,0,0,0.20)'
                     }
                 })
-            }
+            },
+            indicatorSeparator: (provided, state) => {
+                return({
+                    ...provided,
+                    opacity: 0
+                })
+            },
+            dropdownIndicator: (provided, state) => {
+                return({
+                    ...provided,
+                    background: `url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOCIgaGVpZ2h0PSI1IiB2aWV3Qm94PSIwIDAgOCA1IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTggMC41QzggMC4yMiA3Ljc4IDAgNy41IDBIMC41QzAuMjIgMCAwIDAuMjIgMCAwLjVDMCAwLjYzIDAuMDUgMC43NCAwLjEzIDAuODNMMy42MyA0LjgzQzMuNzIgNC45MyAzLjg1IDUgNCA1QzQuMTUgNSA0LjI4IDQuOTMgNC4zNyA0LjgzTDcuODcgMC44M0M3Ljk1IDAuNzQgOCAwLjYzIDggMC41WiIgZmlsbD0iYmxhY2siLz4KPC9zdmc+Cg==) center center no-repeat`,
+                    '& > svg': {
+                        display: "none"
+                    },
+                    width: "34px"
+                })
+            },
         }
 
         return (
