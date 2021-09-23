@@ -13,21 +13,15 @@ class EditorSelectAsync extends Component {
     }
 
     componentDidMount() { 
-        if(this.props.options.value) {
-            // this.setState({
-            //     value:  {
-            //         value: this.props.options.value,
-            //         label: this.capitalize(this.props.options.value)
-            //     }
-            // })
-        }
+        
     }
 
     handleInputChange = (value) => {
+        console.log(value)
       this.setState({
           value: value
       })
-      this.props.updateFunction(value.value)
+      this.props.updateFunction(value)
     }
 
     render() {
@@ -41,13 +35,12 @@ class EditorSelectAsync extends Component {
                 <div className="input-label">{this.props.options.label}</div>
 
                 <AsyncSelect
-                    onInputChange={value => this.handleInputChange(value)}
+                    onChange={_.debounce(this.handleInputChange, 1)}
                     cacheOptions
-                    loadOptions={this.props.options.loadOptions}
+                    loadOptions={_.debounce(this.props.options.loadOptions, 1000)}
                     defaultOptions
-                    onInputChange={this.handleInputChange}
-					autoload={true}
-                    value={this.state.value}
+                    autoload={true}
+                    defaultInputValue={this.props.options.labelOptions}
                     menuPortalTarget={document.body} 
                     styles={{ menuPortal: base => ({ ...base, zIndex: 9999 }) }}
 				/>

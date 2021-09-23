@@ -26,12 +26,12 @@ class SiteEdit extends Component {
     getQueryParams = () => {
         return qs.parse(this.props.location.search.substring(1));
     };
-    
+
     handlMainSwitch = (value) => {
         this.props.setMainSite(this.props.site.currentSite, value, () => {
             this.props.loadSite()
         })
-    } 
+    }
 
     render() {
         let site = this.props.site.currentSite
@@ -42,9 +42,9 @@ class SiteEdit extends Component {
                     {
                         type: "switch",
                         label: "Main site",
-                        switchFunction: (value) => { this.handlMainSwitch(value)},
+                        switchFunction: (value) => { this.handlMainSwitch(value) },
                         active: site && site.metadata.main
-                    } 
+                    }
                 ]
             },
             {
@@ -55,7 +55,7 @@ class SiteEdit extends Component {
                         type: "input",
                         label: "Title",
                         property: "title",
-                        updateFunction: (value) => { 
+                        updateFunction: (value) => {
                             this.props.updateProperty("site", site, "title", value, () => {
                                 this.props.loadSite()
                             })
@@ -66,7 +66,7 @@ class SiteEdit extends Component {
                         type: "textarea",
                         label: "Description",
                         property: "description",
-                        updateFunction: (value) => { 
+                        updateFunction: (value) => {
                             this.props.updateProperty("site", site, "description", value, () => {
                                 this.props.loadSite()
                             })
@@ -87,7 +87,7 @@ class SiteEdit extends Component {
                                 label: "Active"
                             }
                         ],
-                        updateFunction: (value) => { 
+                        updateFunction: (value) => {
                             this.props.updateProperty("site", site, "status", value, () => {
                                 this.props.loadSite()
                             })
@@ -99,22 +99,25 @@ class SiteEdit extends Component {
                         label: "Theme",
                         property: "theme",
                         loadOptions: (inputValue, callback) => {
-                            this.props.getOptions("theme", (options) => {
-                                console.log(options)
+                            this.props.getOptions("theme", (data) => {
 
-                                let newOptions = options.map(theme => ({
-                                    value: theme._id,
-                                    label: theme.matadata.title
-                                }));
-                
-                                let filteredOptions = _.filter(newOptions, option => {
-                                    return !_.isEmpty(option.label);
-                                });
-                
-                                callback(null, {
-                                    options: _.uniqBy(filteredOptions, "label"),
-                                    complete: true
-                                });
+                                // let newOptions = _.map(data, (item) => {
+                                //     console.log(item)
+                                //     return ({
+                                //         value: item._id,
+                                //         label: item.matadata.title
+                                //     })
+                                // });
+
+                                let finalOptions = data.map(function(item){
+                                    return {
+                                        value: item._id,
+                                        label: item.metadata.title
+                                    }
+                                })
+
+
+                                callback(finalOptions);
                             })
 
                             // this.props.searchEntities(
@@ -130,28 +133,29 @@ class SiteEdit extends Component {
                             //             value: entity._id,
                             //             label: entity.properties.displayName
                             //         }));
-                    
+
                             //         let filteredOptions = _.filter(options, option => {
                             //             return !_.isEmpty(option.label);
                             //         });
-                    
+
                             //         callback(null, {
                             //             options: _.uniqBy(filteredOptions, "label"),
                             //             complete: true
                             //         });
                             //     }
                             // );
-                        
+
                             // _.debounce(
                             //     (inputValue, callback) => console.log(inputValue, callback),
                             // 1000)
                         },
-                        updateFunction: (value) => { 
+                        updateFunction: (value) => {
                             this.props.updateProperty("site", site, "theme", value, () => {
                                 this.props.loadSite()
                             })
                         },
-                        value: ""
+                        value: site && site.metadata.theme && site.metadata.theme.value,
+                        labelOptions: site && site.metadata.theme && site.metadata.theme.label
                     }
                 ]
             },
@@ -189,10 +193,10 @@ class SiteEdit extends Component {
         return (
             <div className="app-drawer-content-container standard-drawer site-edit-drawer">
                 <div className="drawer-action-header">
-                    
+
                     <div className="drawer-action-header-left">
-                        <div onClick={()=> this.props.showDrawer("site-settings")}>
-                            <ArrowBack/>
+                        <div onClick={() => this.props.showDrawer("site-settings")}>
+                            <ArrowBack />
                         </div>
                         <span className="drawer-action-header-title">
                             {site && site.metadata.title}
@@ -200,7 +204,7 @@ class SiteEdit extends Component {
                     </div>
 
                     <div className="drawer-action-header-right">
-                        <div onClick={()=> this.props.hideDrawer()}>
+                        <div onClick={() => this.props.hideDrawer()}>
                             <Cross />
                         </div>
                     </div>
@@ -209,10 +213,10 @@ class SiteEdit extends Component {
 
                 <div className="placeholder">
 
-                   <Editor
+                    <Editor
                         configuration={siteEditorConfiguration}
                         model="site"
-                   />
+                    />
 
                 </div>
             </div>
