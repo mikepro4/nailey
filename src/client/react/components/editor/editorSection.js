@@ -6,6 +6,7 @@ import CaretDown from "../svg/caret-down"
 import CaretUp from "../svg/caret-up"
 import EditorSwitch from "./editorSwitch"
 import EditorInput from "./editorInput"
+import EditorTextarea from "./editorTextarea"
 
 class EditorSection extends Component {
 
@@ -30,6 +31,10 @@ class EditorSection extends Component {
             case "input":
                 return(
                     <EditorInput key={i} options={component} updateFunction={(value) => component.updateFunction(value)}/>
+                )
+            case "textarea":
+                return(
+                    <EditorTextarea key={i} options={component} updateFunction={(value) => component.updateFunction(value)}/>
                 )
         }
     }

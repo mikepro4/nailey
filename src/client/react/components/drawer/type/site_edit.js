@@ -27,13 +27,6 @@ class SiteEdit extends Component {
         return qs.parse(this.props.location.search.substring(1));
     };
     
-
-    handleTitleChange = (item, value) => {
-        this.props.updateFontProperty(item, "title", value, () => {
-            this.props.loadSite()
-        })
-    } 
-
     handlMainSwitch = (value) => {
         this.props.setMainSite(this.props.site.currentSite, value, () => {
             this.props.loadSite()
@@ -72,7 +65,13 @@ class SiteEdit extends Component {
                     {
                         type: "textarea",
                         label: "Description",
-                        property: "title"
+                        property: "description",
+                        updateFunction: (value) => { 
+                            this.props.updateProperty("site", site, "description", value, () => {
+                                this.props.loadSite()
+                            })
+                        },
+                        value: site && site.metadata.description
                     },
                     {
                         type: "select",

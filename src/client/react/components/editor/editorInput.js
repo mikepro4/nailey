@@ -11,7 +11,6 @@ class EditorInput extends Component {
     }
 
     componentDidMount() { 
-        console.log(this.props.options.value)
         if(this.props.options.value) {
             this.setState({
                 value: this.props.options.value
@@ -30,9 +29,11 @@ class EditorInput extends Component {
         return (
             <div
                 className={classNames({
+                    "editor-row": true,
                     "editor-input": true,
                 })}
-            > {this.props.options.label}
+            > 
+                <div className="input-label">{this.props.options.label}</div>
                 <InputGroup 
                     asyncControl={true}
                     disabled={this.props.disabled}

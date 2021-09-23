@@ -38,6 +38,7 @@
         padding: 0 20px 20px 20px;
         font-size: 14px;
         display: flex;
+        flex-direction: column;
 
         &.editor-section-content-hidden {
             display: none;
@@ -59,5 +60,22 @@
         &:last-child {
             // border-bottom: 1px solid rgba($black, 0.1)
         }
+    }
+}
+
+.editor-row {
+    display: block;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+
+    .input-label {
+        margin: 0 0 5px 0;
+        font-size: 12px;
+    }
+
+    &:last-child {
+        margin-bottom: 10px;
     }
 }
