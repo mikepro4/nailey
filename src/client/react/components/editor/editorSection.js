@@ -8,6 +8,7 @@ import EditorSwitch from "./editorSwitch"
 import EditorInput from "./editorInput"
 import EditorTextarea from "./editorTextarea"
 import EditorSelect from "./editorSelect"
+import EditorSelectAsync from "./editorSelectAsync"
 
 class EditorSection extends Component {
 
@@ -39,7 +40,12 @@ class EditorSection extends Component {
                 )
             case "select":
                 return(
-                    <EditorSelect key={i} options={component} updateFunction={(value) => component.updateFunction(value)}/>
+                    <EditorSelect key={i} options={component} updateFunction={(value) => component.updateFunction(value)} updateFunction={(value) => component.updateFunction(value)}/>
+                )
+
+            case "selectAsync":
+                return(
+                    <EditorSelectAsync key={i} options={component} loadOptions={(value) => component.loadOptions(value)} updateFunction={(value) => component.updateFunction(value)}/>
                 )
         }
     }
