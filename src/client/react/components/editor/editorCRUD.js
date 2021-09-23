@@ -27,7 +27,8 @@ class EditorCRUD extends Component {
 
     removeItem = (item) => {
         let keyToDeactivateIndex = _.findIndex(this.state.value, item);
-        let newValue = update(this.state.value, {$splice: [[keyToDeactivateIndex, 1]] 
+        let newValue = update(this.state.value, {
+            $splice: [[keyToDeactivateIndex, 1]] 
         })
 
         this.setState({
@@ -36,6 +37,18 @@ class EditorCRUD extends Component {
             this.props.updateFunction(newValue)
         })
 
+    }
+
+    duplicateItem = () => {
+        let newModel = {
+            ...this.props.options.model,
+            title: "Copy of " + this.props.options.model.title
+        }
+        this.setState({
+            value: this.state.value.concat(newModel)
+        }, () => {
+            this.props.updateFunction(this.state.value)
+        })
     }
 
     renderItem = (item, i) => {
@@ -47,6 +60,11 @@ class EditorCRUD extends Component {
                     icon="trash"
                     minimal={true}
                     onClick={() => this.removeItem(item)}
+                />
+                <Button 
+                    icon="duplicate"
+                    minimal={true}
+                    onClick={() => this.duplicateItem(item)}
                 />
             </div>
         )
