@@ -3,10 +3,59 @@
     animation: fadeIn 0.5s  $animation_easing forwards;
   }
 
-  @for $i from 1 through 20 {
+@for $i from 1 through 20 {
     .transition-element {
       &:nth-child(#{$i}) {
         animation-delay: $i * 0.03s;
       }
     }
-  }
+}
+
+.editor-section {
+    min-height: 55px;
+    border-bottom: 1px solid rgba($black, 0.1);
+
+
+    
+    
+
+    .editor-section-header {
+        display: flex;
+        padding: 20px;
+        justify-content: space-between;
+        align-items: center;
+        line-height: 21px;
+        cursor: pointer;
+        user-select: none;
+
+        &.header-active {
+            font-weight: 600;
+        }
+
+        // .editor-section-left {
+        //     font-weight: 550;
+        // }
+    }
+
+    .editor-section-content {
+        padding: 0 20px 20px 20px;
+        font-size: 14px;
+
+        &.editor-section-content-hidden {
+            display: none;
+        }
+
+        &.editor-section-content-notCollapsible {
+            padding-top: 20px;
+        }
+        
+    }
+}
+
+.editor-sections {
+    .transition-element {
+        &:last-child {
+            // border-bottom: 1px solid rgba($black, 0.1)
+        }
+    }
+}

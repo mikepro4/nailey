@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
 import classNames from "classnames"
+import CaretDown from "../svg/caret-down"
+import CaretUp from "../svg/caret-up"
 
 class EditorSection extends Component {
 
@@ -17,14 +19,15 @@ class EditorSection extends Component {
                     "editor-section": true,
                 })}
             >
-                <div
-                    className="editor-section-header"
+                {this.props.section.collapsible && <div
+                    className={classNames({
+                        "editor-section-header": true,
+                        "header-active": this.state.active
+                    })}
                     onClick={() => {
-                        if(this.props.section.collapsible) {
-                            this.setState({
-                                active: !this.state.active
-                            })
-                        }
+                        this.setState({
+                            active: !this.state.active
+                        })
                     }}
                 >
                     <div className="editor-section-left">
@@ -32,14 +35,18 @@ class EditorSection extends Component {
                     </div>
 
                     <div className="editor-section-right">
+                        {this.state.active ? <CaretUp/> : <CaretDown/> }
+                        
                     </div>
-                </div>
+                </div>}
+                
 
                 <div
                     className={classNames({
                         "editor-section-content": true,
                         "editor-section-content-hidden": this.props.section.collapsible && !this.state.active,
                         "editor-section-content-visible": this.state.active,
+                        "editor-section-content-notCollapsible": !this.props.section.collapsible,
                     })}
                 >
                     Content

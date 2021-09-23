@@ -38,7 +38,7 @@ class SiteSettings extends Component {
                 <div className={"drawer-action-header theme-" + this.props.theme}>
                     
                     <div className="drawer-action-header-left">
-                        {this.props.site.count} site{this.props.site.count > 1 ? "s" : ""}
+                        <span className="drawer-action-header-title">{this.props.site.count} site{this.props.site.count > 1 ? "s" : ""}</span>
                     </div>
 
                     <div className="drawer-action-header-right">
