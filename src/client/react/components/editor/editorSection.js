@@ -20,7 +20,7 @@ class EditorSection extends Component {
     }
 
     componentDidMount() {
-        if(this.props.section.title == "Pages") {
+        if(this.props.section.title == "Meta") {
             this.setState({
                 active: true
             })

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
+import { connect, ReactReduxContext } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
 import classNames from "classnames"
 import * as _ from "lodash"
@@ -12,26 +12,43 @@ class EditorSelectAsync extends Component {
         value: ""
     }
 
-    componentDidMount() { 
-        
+    componentDidMount() {
+
     }
 
     handleInputChange = (value) => {
         console.log(value)
-      this.setState({
-          value: value
-      })
-      this.props.updateFunction(value)
+        this.setState({
+            value: value
+        })
+        this.props.updateFunction(value)
     }
 
     render() {
+
+        const customStyles = {
+            menuPortal: base => ({ ...base, zIndex: 9999 }),
+           
+            control: (provided, state) => {
+                return({
+                    ...provided,
+                    fontWeight: 500,
+                    boxShadow: "none",
+                    border: "1px solid rgba(0,0,0,0.15)",
+                    '&:hover': {
+                        border: '1px solid rgba(0,0,0,0.20)'
+                    }
+                })
+            }
+        }
+
         return (
             <div
                 className={classNames({
                     "editor-row": true,
                     "editor-select": true,
                 })}
-            > 
+            >
                 <div className="input-label">{this.props.options.label}</div>
 
                 <AsyncSelect
@@ -42,9 +59,9 @@ class EditorSelectAsync extends Component {
                     autoload={true}
                     isClearable={false}
                     defaultInputValue={this.props.options.value}
-                    menuPortalTarget={document.body} 
-                    styles={{ menuPortal: base => ({ ...base, zIndex: 9999 }) }}
-				/>
+                    menuPortalTarget={document.body}
+                    styles={customStyles}
+                />
 
             </div>
         );
