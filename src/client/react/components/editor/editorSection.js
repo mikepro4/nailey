@@ -10,6 +10,8 @@ import EditorTextarea from "./editorTextarea"
 import EditorSelect from "./editorSelect"
 import EditorSelectAsync from "./editorSelectAsync"
 import EditorTab from "./editorTab"
+import EditorCRUD from "./editorCRUD"
+
 
 class EditorSection extends Component {
 
@@ -18,7 +20,7 @@ class EditorSection extends Component {
     }
 
     componentDidMount() {
-        if(this.props.section.title == "Meta") {
+        if(this.props.section.title == "Pages") {
             this.setState({
                 active: true
             })
@@ -50,6 +52,10 @@ class EditorSection extends Component {
             case "tab":
                 return(
                     <EditorTab key={i} options={component} updateFunction={(value) => component.updateFunction(value)}/>
+                )
+            case "CRUD":
+                return(
+                    <EditorCRUD key={i} options={component} updateFunction={(value) => component.updateFunction(value)}/>
                 )
         }
     }
