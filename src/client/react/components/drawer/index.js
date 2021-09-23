@@ -57,8 +57,8 @@ class Drawer extends Component {
 	render() {
 
         return (
-            <div className={"app-drawer theme-" + this.props.theme + " " + classNames({
-                "full-screen": this.props.fullScreen
+            <div  className={"app-drawer theme-" + this.props.theme + " " + classNames({
+                "full-screen": this.props.fullScreen,
             })}>
                 <div 
                     className={"app-drawer-background theme-" + this.props.theme + " " + classNames({
@@ -72,7 +72,7 @@ class Drawer extends Component {
 
                 </div>
 
-                <div className={"app-drawer-content theme-" + this.props.theme + " " + classNames({
+                <div  className={"app-drawer-content theme-" + this.props.theme + " " + classNames({
                         "hide": this.state.hide
                     })}>
                     {this.renderDrawer(this.props.type)}

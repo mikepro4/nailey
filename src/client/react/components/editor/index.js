@@ -33,7 +33,7 @@ class Editor extends Component {
                     "editor": true,
                 })}
             >
-               <div className="editor-sections">
+               <div className="editor-sections " >
                     {this.renderSectionItems()}
                </div>
 

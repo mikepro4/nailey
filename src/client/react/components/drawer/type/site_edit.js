@@ -75,9 +75,24 @@ class SiteEdit extends Component {
                     },
                     {
                         type: "select",
-                        label: "Theme",
-                        property: "theme",
-                        collectionName: "themes"
+                        label: "Status",
+                        property: "status",
+                        options: [
+                            {
+                                value: "draft",
+                                label: "Draft"
+                            },
+                            {
+                                value: "active",
+                                label: "Active"
+                            }
+                        ],
+                        updateFunction: (value) => { 
+                            this.props.updateProperty("site", site, "status", value, () => {
+                                this.props.loadSite()
+                            })
+                        },
+                        value: site && site.metadata.status
                     }
                 ]
             },
