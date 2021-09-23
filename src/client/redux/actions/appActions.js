@@ -10,7 +10,9 @@ import {
     SHOW_DRAWER,
     HIDE_DRAWER,
     UPDATE_COLLECTION,
-    UNCHECK_ALL
+    UNCHECK_ALL,
+    LOAD_NEW_SITE,
+    CLEAR_NEW_SITE
 } from "./types";
 
 import moment from "moment";
@@ -126,12 +128,28 @@ export const showDrawer = (type, drawerData, success) => async (
 	getState,
 	api
 ) => {
+    dispatch({
+        type: CLEAR_NEW_SITE
+    })
+
     if(drawerData) {
         dispatch({
             type: SHOW_DRAWER,
             payload: type,
             drawerData: drawerData
         });
+
+        switch(type) {
+            case "site-edit":
+                return(
+                    dispatch({
+                        type: LOAD_NEW_SITE,
+                        payload: drawerData
+                    })
+                )
+        }
+
+
     } else {
         dispatch({
             type: SHOW_DRAWER,
@@ -143,7 +161,9 @@ export const showDrawer = (type, drawerData, success) => async (
 	if (success) {
 		success();
 	}
-	document.body.classList.add("no-scroll");
+    document.body.classList.add("no-scroll");
+    
+
 };
 
 /////////////////////////////////////////////////
@@ -156,7 +176,7 @@ export const hideDrawer = (success) => async (
     dispatch({
         type: HIDE_DRAWER
     });
-
+    
 	if (success) {
 		success();
 	}
@@ -228,6 +248,9 @@ export const updateProperty = (model, item, property, value, success) => async (
 
     let url = "/" + model + "s/update"
     let key = model + "Id"
+
+    
+
     await api
         .post(url, {
             [key]: newItem._id, 
@@ -240,6 +263,16 @@ export const updateProperty = (model, item, property, value, success) => async (
         })
         .catch(() => {
         });
+        
+    switch(model) {
+        case "site":
+            return(
+                dispatch({
+                    type: LOAD_NEW_SITE,
+                    payload: newItem
+                })
+            )
+    }
 }
 
 ///////////////////////////////////////////////////

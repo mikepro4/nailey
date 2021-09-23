@@ -52,7 +52,6 @@ class SiteEdit extends Component {
                     {
                         type: "input",
                         label: "Title",
-                        property: "title",
                         updateFunction: (value) => {
                             this.props.updateProperty("site", site, "title", value, () => {
                                 this.props.loadSite()
@@ -63,7 +62,6 @@ class SiteEdit extends Component {
                     {
                         type: "textarea",
                         label: "Description",
-                        property: "description",
                         updateFunction: (value) => {
                             this.props.updateProperty("site", site, "description", value, () => {
                                 this.props.loadSite()
@@ -74,7 +72,6 @@ class SiteEdit extends Component {
                     {
                         type: "select",
                         label: "Status",
-                        property: "status",
                         options: [
                             {
                                 value: "draft",
@@ -95,7 +92,6 @@ class SiteEdit extends Component {
                     {
                         type: "selectAsync",
                         label: "Theme",
-                        property: "theme",
                         loadOptions: (inputValue, callback) => {
                             console.log(inputValue)
                             this.props.getOptions("theme", inputValue, (data) => {
@@ -140,7 +136,85 @@ class SiteEdit extends Component {
             {
                 title: "Logo",
                 collapsible: true,
-                components: []
+                components: [
+                    {
+                        label: "Logo Type",
+                        type: "tab",
+                        updateFunction: (value) => {
+                            this.props.updateProperty("site", site, "logoType", value, () => {
+                                this.props.loadSite()
+                            })
+                        },
+                        tabOptions: [{
+                            value: "text",
+                            label: "Text"
+                        },
+                        {
+                            value: "image",
+                            label: "Image"
+                        }],
+                        value: site && site.metadata.logoType
+                    },
+                    {
+                        type: "input",
+                        label: "Logo Text",
+                        property: "title",
+                        updateFunction: (value) => {
+                            this.props.updateProperty("site", site, "logoText", value, () => {
+                                this.props.loadSite()
+                            })
+                        },
+                        value: site && site.metadata.logoText,
+                        conditionalPropertyExpectedValue: "text",
+                        conditionalPropertyActualValue: site && site.metadata.logoType
+                    },
+                    {
+                        type: "input",
+                        label: "Logo URL",
+                        updateFunction: (value) => {
+                            this.props.updateProperty("site", site, "logoUrl", value, () => {
+                                this.props.loadSite()
+                            })
+                        },
+                        value: site && site.metadata.logoUrl,
+                        conditionalPropertyExpectedValue: "image",
+                        conditionalPropertyActualValue: site && site.metadata.logoType
+                    },
+                    {
+                        type: "switch",
+                        label: "Auto logo size",
+                        updateFunction: (value) => {
+                            this.props.updateProperty("site", site, "logoAutoSize", value, () => {
+                                this.props.loadSite()
+                            })
+                        },
+                        active: site && site.metadata.logoAutoSize
+                    },
+                    {
+                        type: "numericInput",
+                        label: "Logo Width",
+                        updateFunction: (value) => {
+                            this.props.updateProperty("site", site, "logoWidth", value, () => {
+                                this.props.loadSite()
+                            })
+                        },
+                        value: site && site.metadata.logoWidth,
+                        conditionalPropertyExpectedValue: false,
+                        conditionalPropertyActualValue: site && site.metadata.logoAutoSize
+                    },
+                    {
+                        type: "numericInput",
+                        label: "Logo Height",
+                        updateFunction: (value) => {
+                            this.props.updateProperty("site", site, "logoHeight", value, () => {
+                                this.props.loadSite()
+                            })
+                        },
+                        value: site && site.metadata.logoHeight,
+                        conditionalPropertyExpectedValue: false,
+                        conditionalPropertyActualValue: site && site.metadata.logoAutoSize
+                    },
+                ]
             },
             {
                 title: "Header",

@@ -6,6 +6,7 @@ import CaretDown from "../svg/caret-down"
 import CaretUp from "../svg/caret-up"
 import EditorSwitch from "./editorSwitch"
 import EditorInput from "./editorInput"
+import EditorNumericInput from "./editorNumericInput"
 import EditorTextarea from "./editorTextarea"
 import EditorSelect from "./editorSelect"
 import EditorSelectAsync from "./editorSelectAsync"
@@ -20,10 +21,21 @@ class EditorSection extends Component {
     }
 
     componentDidMount() {
-        if(this.props.section.title == "Meta") {
+        if(this.props.section.title == "Logo") {
             this.setState({
                 active: true
             })
+        }
+    }
+
+    conditionalRender(component, children) {
+        console.log(component.label, component.conditionalPropertyExpectedValue == component.conditionalPropertyActualValue)
+        if(component.conditionalPropertyExpectedValue || component.conditionalPropertyExpectedValue === false)  {
+            if(component.conditionalPropertyExpectedValue == component.conditionalPropertyActualValue) {
+                return children
+            }
+        } else {
+            return children
         }
     }
 
@@ -31,31 +43,35 @@ class EditorSection extends Component {
         switch(component.type) {
             case "switch":
                 return(
-                    <EditorSwitch key={i} options={component} updateFunction={(value) => component.updateFunction(value)}/>
+                    this.conditionalRender(component, <EditorSwitch key={i} options={component} updateFunction={(value) => component.updateFunction(value)}/>)
                 )
             case "input":
                 return(
-                    <EditorInput key={i} options={component} updateFunction={(value) => component.updateFunction(value)}/>
+                    this.conditionalRender(component, <EditorInput key={i} options={component} updateFunction={(value) => component.updateFunction(value)}/>)
+                )
+            case "numericInput":
+                return(
+                    this.conditionalRender(component, <EditorNumericInput key={i} options={component} updateFunction={(value) => component.updateFunction(value)}/>)
                 )
             case "textarea":
                 return(
-                    <EditorTextarea key={i} options={component} updateFunction={(value) => component.updateFunction(value)}/>
+                    this.conditionalRender(component, <EditorTextarea key={i} options={component} updateFunction={(value) => component.updateFunction(value)}/>)
                 )
             case "select":
                 return(
-                    <EditorSelect key={i} options={component}  updateFunction={(value) => component.updateFunction(value)}/>
+                    this.conditionalRender(component, <EditorSelect key={i} options={component}  updateFunction={(value) => component.updateFunction(value)}/>)
                 )
             case "selectAsync":
                 return(
-                    <EditorSelectAsync key={i} options={component}  updateFunction={(value) => component.updateFunction(value)}/>
+                    this.conditionalRender(component, <EditorSelectAsync key={i} options={component}  updateFunction={(value) => component.updateFunction(value)}/>)
                 )
             case "tab":
                 return(
-                    <EditorTab key={i} options={component} updateFunction={(value) => component.updateFunction(value)}/>
+                    this.conditionalRender(component, <EditorTab key={i} options={component} updateFunction={(value) => component.updateFunction(value)}/>)
                 )
             case "CRUD":
                 return(
-                    <EditorCRUD key={i} options={component} updateFunction={(value) => component.updateFunction(value)}/>
+                    this.conditionalRender(component, <EditorCRUD key={i} options={component} updateFunction={(value) => component.updateFunction(value)}/>)
                 )
         }
     }

@@ -32,6 +32,7 @@ class EditorSwitch extends Component {
             <div
                 className={classNames({
                     "editor-switch": true,
+                    "editor-row": true
                 })}
             >
                 <Switch 
