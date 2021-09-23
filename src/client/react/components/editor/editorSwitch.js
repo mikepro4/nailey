@@ -11,7 +11,6 @@ class EditorSwitch extends Component {
     }
 
     componentDidMount() { 
-        console.log(this.props.options.active)
         if(this.props.options.active) {
             this.setState({
                 active: true

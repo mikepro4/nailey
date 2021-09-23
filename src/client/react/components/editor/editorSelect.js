@@ -34,7 +34,6 @@ class EditorSelect extends Component {
     }
 
     render() {
-        console.log(this.props.options.options)
         return (
             <div
                 className={classNames({

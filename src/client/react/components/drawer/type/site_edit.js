@@ -98,9 +98,14 @@ class SiteEdit extends Component {
                         type: "selectAsync",
                         label: "Theme",
                         property: "theme",
-                        loadOptions: () => {},
+                        loadOptions: (inputValue, callback) => {
+                            alert("lol")
+                            // _.debounce(
+                            //     (inputValue, callback) => console.log(inputValue, callback),
+                            // 1000)
+                        },
                         updateFunction: (value) => { 
-                            this.props.updateProperty("site", site, "status", value, () => {
+                            this.props.updateProperty("site", site, "theme", value, () => {
                                 this.props.loadSite()
                             })
                         },
