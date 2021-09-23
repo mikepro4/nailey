@@ -99,10 +99,12 @@ class ProjectSettings extends Component {
                             this.props.uncheckAll(true, item._id)
 
                             this.props.setMainProject(item,!isMain, () => {
+                                this.props.loadSite()
                             })
 
                             setTimeout(() => {
                                 this.props.uncheckAll(false, this.props.app.dontUncheck)
+                                this.props.loadSite()
                             }, 1000)
                         }}
                         onItemEdit={(item) => {

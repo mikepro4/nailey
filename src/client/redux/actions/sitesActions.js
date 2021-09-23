@@ -71,9 +71,16 @@ export const loadSite = (domain, success) => async (
         finalDomain = domain
     }
 
+    let projectId = ""
+
+    if(getState().project && getState().project.currentProject) {
+        projectId = getState().project.currentProject._id
+    }
+
     await api
         .post("/sites/main", {
-            domain: finalDomain
+            domain: finalDomain,
+            projectId: projectId
         })
         .then(response => {
             if (success) {
@@ -125,7 +132,10 @@ export const searchSites = (type, identifier, offset, limit, query, success) => 
 	getState,
 	api
 ) => {
-    let criteria = {}
+    let projectId = getState().project.currentProject._id
+    let criteria = {
+        projectId: projectId
+    }
 
     if(type == "user") {
         criteria = {
@@ -216,8 +226,9 @@ export const setMainSite = (siteItem, main, success) => async (
 	getState,
 	api
 ) => {
+    let projectId = getState().project.currentProject._id
     await api
-        .post("/sites/setMain", { main: main, site: siteItem })
+        .post("/sites/setMain", { main: main, site: siteItem, projectId: projectId  })
         .then(response => {
             if (success) {
                 success(response.data);

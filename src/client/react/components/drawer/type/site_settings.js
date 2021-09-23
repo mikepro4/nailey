@@ -20,6 +20,10 @@ class SiteSettings extends Component {
         loading: false
     }
 
+    componentDidMount() {
+        this.props.loadSite()
+    }
+
     getQueryParams = () => {
         return qs.parse(this.props.location.search.substring(1));
     };
@@ -33,79 +37,86 @@ class SiteSettings extends Component {
 
 
     render() {
+        
         return (
             <div className={"app-drawer-content-container standard-drawer site-settings-drawer theme-" + this.props.theme}>
-                <div className={"drawer-action-header theme-" + this.props.theme}>
-                    
-                    <div className="drawer-action-header-left">
-                        <span className="drawer-action-header-title">{this.props.site.count} site{this.props.site.count > 1 ? "s" : ""}</span>
+                {this.props.project ? <div>
+                        <div className={"drawer-action-header theme-" + this.props.theme}>
+                        
+                        <div className="drawer-action-header-left">
+                            <span className="drawer-action-header-title">{this.props.site.count} site{this.props.site.count > 1 ? "s" : ""}</span>
+                        </div>
+
+                        <div className="drawer-action-header-right">
+                            <Button
+                                label="Create site"
+                                onClick={() => {
+                                    this.props.createSite({
+                                        metadata: {
+                                            title: "Iteration " + (this.props.site.count + 1),
+                                            createdBy: this.props.user._id,
+                                            projectId: this.props.project._id
+                                        }
+                                    }, () => {
+                                        this.props.updateCollection(true)
+                                        this.props.loadSite()
+                                    })
+                                }}
+                            />
+                        
+                        </div>
                     </div>
 
-                    <div className="drawer-action-header-right">
-                        <Button
-                            label="Create site"
-                            onClick={() => {
-                                this.props.createSite({
-                                    metadata: {
-                                        title: "Untitled",
-                                        createdBy: this.props.user._id
-                                    }
-                                }, () => {
+
+                    <div className="placeholder">
+                        <ListResults
+                            type="site"
+                            resultType="site"
+                            searchCollection={this.props.searchSites}
+                            onDelete={(item) => {
+                                this.props.deleteSite(item._id, item, () => {
                                     this.props.updateCollection(true)
                                     this.props.loadSite()
                                 })
                             }}
-                        />
-                    
-                    </div>
-                </div>
-
-
-                <div className="placeholder">
-                    <ListResults
-                        type="site"
-                        resultType="site"
-                        searchCollection={this.props.searchSites}
-                        onDelete={(item) => {
-                            this.props.deleteSite(item._id, item, () => {
-                                this.props.updateCollection(true)
-                                this.props.loadSite()
-                            })
-                        }}
-                        onCreate={(item) => {
-                            let finalItem = {
-                                ...item,
-                                metadata: {
-                                    ...item.metadata,
-                                    title: "Copy of " + item.metadata.title,
-                                    main: false
+                            onCreate={(item) => {
+                                let finalItem = {
+                                    ...item,
+                                    metadata: {
+                                        ...item.metadata,
+                                        title: "Copy of " + item.metadata.title,
+                                        main: false
+                                    }
                                 }
-                            }
-                            this.props.createSite(finalItem, () => {
-                                this.props.updateCollection(true)
-                                this.props.loadSite()
-                            })
-                        }}
-                        onEdit={(item, value) => {
-                            this.handleTitleChange(item, value)
-                        }}
-                        onItemEdit={(item) => {
-                            this.props.showDrawer("site-edit", item)
-                        }}
-                        mainSwitch={true}
-                        mainFunction={(item, isMain) => {
-                            this.props.uncheckAll(true, item._id)
+                                this.props.createSite(finalItem, () => {
+                                    this.props.updateCollection(true)
+                                    this.props.loadSite()
+                                })
+                            }}
+                            onEdit={(item, value) => {
+                                this.handleTitleChange(item, value)
+                            }}
+                            onItemEdit={(item) => {
+                                this.props.showDrawer("site-edit", item)
+                            }}
+                            mainSwitch={true}
+                            mainFunction={(item, isMain) => {
+                                this.props.uncheckAll(true, item._id)
 
-                            this.props.setMainSite(item,!isMain, () => {
-                                this.props.loadSite()
-                            })
+                                this.props.setMainSite(item,!isMain, () => {
+                                    this.props.loadSite()
+                                })
 
-                            setTimeout(() => {
-                                this.props.uncheckAll(false, this.props.app.dontUncheck)
-                            }, 1000)
-                        }}
-                    />
-                </div>
+                                setTimeout(() => {
+                                    this.props.uncheckAll(false, this.props.app.dontUncheck)
+                                }, 1000)
+                            }}
+                        />
+                    </div>
+                </div>: <div className="placeholder"> Select Project</div>}
+            
+        
+                
             </div>
 
         )
@@ -120,6 +131,7 @@ function mapStateToProps(state) {
         site: state.site,
         user: state.app.user,
         authenticated: state.auth.authenticated,
+        project: state.project.currentProject
     };
 }
 

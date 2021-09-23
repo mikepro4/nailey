@@ -19,13 +19,17 @@ class SiteView extends Component {
         this.contentEditable = React.createRef();
         this.state = {
             html: this.props.item.metadata.title,
-            isMain: false
-        };
+            isMain: false,
+            updatedTitle: false
+        }
     };
 
     handleChange = evt => {
         this.setState({html: evt.target.value});
         this.props.onEdit(this.props.item, evt.target.value)
+        this.setState({
+            updatedTitle: true
+        })
     };
 
     handleKeydown = evt => {
@@ -55,8 +59,8 @@ class SiteView extends Component {
         }
     }
 
-    handleSwitchChange = (data) => {
-        this.props.mainFunction(this.props.item, this.state.isMain)
+    handleSwitchChange = (data, item) => {
+        this.props.mainFunction(item, this.state.isMain)
  
         this.setState({
             isMain: !this.state.isMain
@@ -65,13 +69,26 @@ class SiteView extends Component {
     }
 
     render() {
+        let finalItem 
+
+        if(this.state.updatedTitle) {
+            finalItem = {
+                ...this.props.item,
+                metadata: {
+                    ...this.props.item.metadata,
+                    title: this.state.html
+                }
+            }
+        } else {
+            finalItem = this.props.item
+        }
         return(
             <div className="site-view-container transition-element">
 
                 <div className="site-view-left">
                     {this.props.mainSwitch && <Switch 
                         checked={this.state.isMain} 
-                        onChange={this.handleSwitchChange} 
+                        onChange={(data) => this.handleSwitchChange(data, finalItem)} 
                     />}
                     
                     <div className="site-title">
@@ -93,7 +110,7 @@ class SiteView extends Component {
                         icon="trash"
                         minimal={true}
                         onClick={() => {
-                            this.props.onDelete(this.props.item)
+                            this.props.onDelete(finalItem)
                         }}
                     />
 
@@ -101,14 +118,14 @@ class SiteView extends Component {
                         icon="duplicate"
                         minimal={true}
                         onClick={() => {
-                            this.props.onCreate(this.props.item)
+                            this.props.onCreate(finalItem)
                         }}
                     />
 
                     <Button
                         icon="edit"
                         onClick={() => {
-                            this.props.onItemEdit(this.props.item)
+                            this.props.onItemEdit(finalItem)
                         }}
                     />
                 </div>
