@@ -247,15 +247,15 @@ export const updateProperty = (model, item, property, value, success) => async (
 ///////////////////////////////////////////////////
 
 
-export const getOptions = (model, success) => async (
+export const getOptions = (model, title, success) => async (
     dispatch,
 	getState,
 	api
 ) => {
-    
     let url = "/" + model + "s/all"
     await api
         .post(url, {
+            title: title
         })
         .then(response => {
             if (success) {

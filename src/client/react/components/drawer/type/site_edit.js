@@ -97,7 +97,8 @@ class SiteEdit extends Component {
                         label: "Theme",
                         property: "theme",
                         loadOptions: (inputValue, callback) => {
-                            this.props.getOptions("theme", (data) => {
+                            console.log(inputValue)
+                            this.props.getOptions("theme", inputValue, (data) => {
 
                                 let finalOptions = data.map((item) => {
                                     return {
