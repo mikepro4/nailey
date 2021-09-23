@@ -36,7 +36,7 @@ class SiteEdit extends Component {
                     {
                         type: "switch",
                         label: "Main site",
-                        updateFunction: (value) => { 
+                        updateFunction: (value) => {
                             this.props.setMainSite(this.props.site.currentSite, value, () => {
                                 this.props.loadSite()
                             })
@@ -115,7 +115,25 @@ class SiteEdit extends Component {
                             })
                         },
                         value: site && site.metadata.theme && site.metadata.theme.label
-                    }
+                    },
+                    {
+                        label: "Color",
+                        type: "tab",
+                        updateFunction: (value) => {
+                            this.props.updateProperty("site", site, "color", value, () => {
+                                this.props.loadSite()
+                            })
+                        },
+                        tabOptions: [{
+                            value: "black",
+                            label: "Black"
+                        },
+                        {
+                            value: "white",
+                            label: "White"
+                        }],
+                        value: site && site.metadata.color 
+                    },
                 ]
             },
             {

@@ -9,6 +9,7 @@ import EditorInput from "./editorInput"
 import EditorTextarea from "./editorTextarea"
 import EditorSelect from "./editorSelect"
 import EditorSelectAsync from "./editorSelectAsync"
+import EditorTab from "./editorTab"
 
 class EditorSection extends Component {
 
@@ -42,10 +43,13 @@ class EditorSection extends Component {
                 return(
                     <EditorSelect key={i} options={component}  updateFunction={(value) => component.updateFunction(value)}/>
                 )
-
             case "selectAsync":
                 return(
-                    <EditorSelectAsync key={i} options={component} updateFunction={(value) => component.updateFunction(value)}/>
+                    <EditorSelectAsync key={i} options={component}  updateFunction={(value) => component.updateFunction(value)}/>
+                )
+            case "tab":
+                return(
+                    <EditorTab key={i} options={component} updateFunction={(value) => component.updateFunction(value)}/>
                 )
         }
     }

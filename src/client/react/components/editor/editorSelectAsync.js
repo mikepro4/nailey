@@ -39,8 +39,8 @@ class EditorSelectAsync extends Component {
                     cacheOptions
                     loadOptions={_.debounce(this.props.options.loadOptions, 1000)}
                     defaultOptions
-                    searchable={false}
                     autoload={true}
+                    isClearable={false}
                     defaultInputValue={this.props.options.value}
                     menuPortalTarget={document.body} 
                     styles={{ menuPortal: base => ({ ...base, zIndex: 9999 }) }}
