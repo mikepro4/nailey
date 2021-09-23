@@ -5,6 +5,7 @@ import classNames from "classnames"
 import CaretDown from "../svg/caret-down"
 import CaretUp from "../svg/caret-up"
 import EditorSwitch from "./editorSwitch"
+import EditorInput from "./editorInput"
 
 class EditorSection extends Component {
 
@@ -12,11 +13,23 @@ class EditorSection extends Component {
         active: false
     }
 
+    componentDidMount() {
+        if(this.props.section.title == "Meta") {
+            this.setState({
+                active: true
+            })
+        }
+    }
+
     renderComponent = (component, i) => {
         switch(component.type) {
             case "switch":
                 return(
                     <EditorSwitch key={i} options={component} switchFunction={(value) => component.switchFunction(value)}/>
+                )
+            case "input":
+                return(
+                    <EditorInput key={i} options={component} updateFunction={(value) => component.updateFunction(value)}/>
                 )
         }
     }

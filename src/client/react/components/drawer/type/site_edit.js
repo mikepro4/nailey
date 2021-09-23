@@ -30,23 +30,18 @@ class SiteEdit extends Component {
 
     handleTitleChange = (item, value) => {
         this.props.updateFontProperty(item, "title", value, () => {
-            this.props.loadFont()
             this.props.loadSite()
         })
     } 
 
     handlMainSwitch = (value) => {
-        this.props.setMainSite(this.props.app.drawerData, value, () => {
+        this.props.setMainSite(this.props.site.currentSite, value, () => {
             this.props.loadSite()
         })
     } 
 
-    handlePreviewSwitch = (value) => {
-        console.log(value)
-    }
-
-
     render() {
+        let site = this.props.site.currentSite
         let siteEditorConfiguration = [
             {
                 collapsible: false,
@@ -55,8 +50,8 @@ class SiteEdit extends Component {
                         type: "switch",
                         label: "Main site",
                         switchFunction: (value) => { this.handlMainSwitch(value)},
-                        active: this.props.app.drawerData && this.props.app.drawerData.metadata.main
-                    }
+                        active: site && site.metadata.main
+                    } 
                 ]
             },
             {
@@ -65,8 +60,14 @@ class SiteEdit extends Component {
                 components: [
                     {
                         type: "input",
-                        label: "Main site",
-                        property: "title"
+                        label: "Title",
+                        property: "title",
+                        updateFunction: (value) => { 
+                            this.props.updateProperty("site", site, "title", value, () => {
+                                this.props.loadSite()
+                            })
+                        },
+                        value: site && site.metadata.title
                     },
                     {
                         type: "textarea",
@@ -121,14 +122,13 @@ class SiteEdit extends Component {
                             <ArrowBack/>
                         </div>
                         <span className="drawer-action-header-title">
-                            {this.props.app.drawerData && this.props.app.drawerData.metadata.title}
+                            {site && site.metadata.title}
                         </span>
                     </div>
 
                     <div className="drawer-action-header-right">
                         <div onClick={()=> this.props.hideDrawer()}>
                             <Cross />
-
                         </div>
                     </div>
                 </div>

@@ -282,11 +282,11 @@
         }
 
         .drawer-action-header-left {
-            width: 170px;
             font-size: 36px;
             font-family: "E", sans-serif;
             display: flex;
             align-items: center;
+            min-height: 46px;
 
             .svg-wrapper {
                 opacity: 0;
