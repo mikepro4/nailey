@@ -28,17 +28,29 @@ class projectEdit extends Component {
     };
 
     render() {
-        let project = this.props.app.drawerData
+        let project = this.props.project.newProject
         let projectEditorConfiguration = [
             {
-                title: "Header",
-                collapsible: true,
-                components: []
-            },
-            {
-                title: "Footer",
-                collapsible: true,
-                components: []
+                title: "Metadata",
+                collapsible: false,
+                components: [
+                    {
+                        type: "input",
+                        label: "Title",
+                        updateFunction: (value) => {
+                            this.props.updateProperty("project", project, "title", value, () => {})
+                        },
+                        value: project && project.metadata.title
+                    },
+                    {
+                        type: "input",
+                        label: "Domain",
+                        updateFunction: (value) => {
+                            this.props.updateProperty("project", project, "domain", value, () => {})
+                        },
+                        value: project && project.metadata.domain
+                    }
+                ]
             }
         ]
         return (

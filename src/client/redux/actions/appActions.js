@@ -12,6 +12,7 @@ import {
     UPDATE_COLLECTION,
     UNCHECK_ALL,
     LOAD_NEW_SITE,
+    LOAD_NEW_PROJECT,
     CLEAR_NEW_SITE
 } from "./types";
 
@@ -147,6 +148,13 @@ export const showDrawer = (type, drawerData, success) => async (
                         payload: drawerData
                     })
                 )
+            case "project-edit":
+                return(
+                    dispatch({
+                        type: LOAD_NEW_PROJECT,
+                        payload: drawerData
+                    })
+                )
         }
 
 
@@ -269,6 +277,13 @@ export const updateProperty = (model, item, property, value, success) => async (
             return(
                 dispatch({
                     type: LOAD_NEW_SITE,
+                    payload: newItem
+                })
+            )
+        case "project":
+            return(
+                dispatch({
+                    type: LOAD_NEW_PROJECT,
                     payload: newItem
                 })
             )
