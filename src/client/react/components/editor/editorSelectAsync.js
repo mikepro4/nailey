@@ -42,7 +42,10 @@ class EditorSelectAsync extends Component {
 
                 <AsyncSelect
                     onInputChange={value => this.handleInputChange(value)}
+                    cacheOptions
                     loadOptions={this.props.options.loadOptions}
+                    defaultOptions
+                    onInputChange={this.handleInputChange}
 					autoload={true}
                     value={this.state.value}
                     menuPortalTarget={document.body} 

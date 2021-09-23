@@ -12,7 +12,7 @@ import Editor from "../../editor"
 import ArrowBack from "../../svg/arrow-back"
 import Cross from "../../svg/cross"
 
-import { hideDrawer, showDrawer, updateProperty } from "../../../../redux/actions/appActions"
+import { hideDrawer, showDrawer, updateProperty, getOptions } from "../../../../redux/actions/appActions"
 
 import { setMainSite, loadSite } from "../../../../redux/actions/sitesActions"
 
@@ -99,7 +99,49 @@ class SiteEdit extends Component {
                         label: "Theme",
                         property: "theme",
                         loadOptions: (inputValue, callback) => {
-                            alert("lol")
+                            this.props.getOptions("theme", (options) => {
+                                console.log(options)
+
+                                let newOptions = options.map(theme => ({
+                                    value: theme._id,
+                                    label: theme.matadata.title
+                                }));
+                
+                                let filteredOptions = _.filter(newOptions, option => {
+                                    return !_.isEmpty(option.label);
+                                });
+                
+                                callback(null, {
+                                    options: _.uniqBy(filteredOptions, "label"),
+                                    complete: true
+                                });
+                            })
+
+                            // this.props.searchEntities(
+                            //     {
+                            //         displayName: input,
+                            //         entityType: entityTypeId
+                            //     },
+                            //     "created",
+                            //     0,
+                            //     20,
+                            //     data => {
+                            //         let options = data.all.map(entity => ({
+                            //             value: entity._id,
+                            //             label: entity.properties.displayName
+                            //         }));
+                    
+                            //         let filteredOptions = _.filter(options, option => {
+                            //             return !_.isEmpty(option.label);
+                            //         });
+                    
+                            //         callback(null, {
+                            //             options: _.uniqBy(filteredOptions, "label"),
+                            //             complete: true
+                            //         });
+                            //     }
+                            // );
+                        
                             // _.debounce(
                             //     (inputValue, callback) => console.log(inputValue, callback),
                             // 1000)
@@ -195,5 +237,6 @@ export default withRouter(connect(mapStateToProps, {
     showDrawer,
     updateProperty,
     setMainSite,
-    loadSite
+    loadSite,
+    getOptions
 })(SiteEdit));
