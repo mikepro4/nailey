@@ -186,3 +186,17 @@ $animation_easing2: cubic-bezier(.12,.77,.28,.86);
 
 
 
+@keyframes fadeInSlideLeft {
+    0% {
+      opacity: 0;
+      transform: translateX(-10px);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+}
+
+
+

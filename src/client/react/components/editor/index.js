@@ -13,7 +13,7 @@ class Editor extends Component {
     renderSectionItems(section) {
         let editSections = this.props.configuration.map((section, i) => {
             return(
-                <div key={i}>
+                <div key={i} className={"transition-element"}>
                     <EditorSection
                         section={section}
                     />

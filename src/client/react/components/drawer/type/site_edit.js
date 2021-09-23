@@ -9,6 +9,11 @@ import * as _ from "lodash"
 
 import Editor from "../../editor"
 
+import ArrowBack from "../../svg/arrow-back"
+import Cross from "../../svg/cross"
+
+import { hideDrawer, showDrawer } from "../../../../redux/actions/appActions"
+
 
 class SiteEdit extends Component {
 
@@ -100,15 +105,23 @@ class SiteEdit extends Component {
 
         ]
         return (
-            <div className={"app-drawer-content-container standard-drawer page-settings-drawer"}>
-                <div className={"drawer-action-header"}>
+            <div className="app-drawer-content-container standard-drawer site-edit-drawer">
+                <div className="drawer-action-header">
                     
                     <div className="drawer-action-header-left">
-                        Site
+                        <div onClick={()=> this.props.showDrawer("site-settings")}>
+                            <ArrowBack/>
+                        </div>
+                        <span className="drawer-action-header-title">
+                            {this.props.site.currentSite.metadata.title}
+                        </span>
                     </div>
 
                     <div className="drawer-action-header-right">
-                    
+                        <div onClick={()=> this.props.hideDrawer()}>
+                            <Cross />
+
+                        </div>
                     </div>
                 </div>
 
@@ -139,4 +152,6 @@ function mapStateToProps(state) {
 }
 
 export default withRouter(connect(mapStateToProps, {
+    hideDrawer,
+    showDrawer
 })(SiteEdit));

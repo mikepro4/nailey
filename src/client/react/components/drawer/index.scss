@@ -251,10 +251,34 @@
         background: $white;
         z-index: 100;
         margin-bottom: 5px;
-        padding: 20px;
+        padding: 10px 20px;
+
+        .svg-wrapper {
+            cursor: pointer;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .svg-wrapper {
+            opacity: 0;
+            animation: fadeInScale 0.7s  $animation_easing forwards;
+        }
+
 
         .drawer-action-header-right {
-            width: 170px;
+            display: flex;
+            align-items: center;
+
+            .main-button {
+                width: 130px;
+                height: 40px;
+                padding: 0;
+                font-size: 11px;
+                // animation: fadeInSlideLeft 0.5s 1s linear forwards;
+            }
         }
 
         .drawer-action-header-left {
@@ -263,6 +287,17 @@
             font-family: "E", sans-serif;
             display: flex;
             align-items: center;
+
+            .svg-wrapper {
+                opacity: 0;
+                animation: fadeInSlideLeft 0.2s  $animation_easing forwards;
+                margin-right: 15px;
+            }
+
+            .drawer-action-header-title {
+                opacity: 0;
+                animation: fadeInSlideLeft 0.3s 0s $animation_easing forwards;
+            }
         }
     }
 }

@@ -66,7 +66,7 @@ class SiteView extends Component {
 
     render() {
         return(
-            <div className="site-view-container">
+            <div className="site-view-container transition-element">
 
                 <div className="site-view-left">
                     {this.props.mainSwitch && <Switch 

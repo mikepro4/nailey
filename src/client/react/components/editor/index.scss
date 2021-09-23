@@ -1,0 +1,12 @@
+.transition-element {
+    opacity: 0;
+    animation: fadeIn 0.5s  $animation_easing forwards;
+  }
+
+  @for $i from 1 through 20 {
+    .transition-element {
+      &:nth-child(#{$i}) {
+        animation-delay: $i * 0.03s;
+      }
+    }
+  }
