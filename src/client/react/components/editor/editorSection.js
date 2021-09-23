@@ -4,11 +4,21 @@ import { withRouter, Link } from "react-router-dom";
 import classNames from "classnames"
 import CaretDown from "../svg/caret-down"
 import CaretUp from "../svg/caret-up"
+import EditorSwitch from "./editorSwitch"
 
 class EditorSection extends Component {
 
     state = {
         active: false
+    }
+
+    renderComponent = (component, i) => {
+        switch(component.type) {
+            case "switch":
+                return(
+                    <EditorSwitch key={i} options={component} switchFunction={(value) => component.switchFunction(value)}/>
+                )
+        }
     }
 
     render() {
@@ -49,7 +59,10 @@ class EditorSection extends Component {
                         "editor-section-content-notCollapsible": !this.props.section.collapsible,
                     })}
                 >
-                    Content
+
+                    {this.props.section.components.map((item, i) => {
+                        return this.renderComponent(item, i)
+                    })}
                 </div>
 
             </div>

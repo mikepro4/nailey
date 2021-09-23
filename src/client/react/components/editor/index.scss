@@ -16,9 +16,6 @@
     border-bottom: 1px solid rgba($black, 0.1);
 
 
-    
-    
-
     .editor-section-header {
         display: flex;
         padding: 20px;
@@ -40,6 +37,7 @@
     .editor-section-content {
         padding: 0 20px 20px 20px;
         font-size: 14px;
+        display: flex;
 
         &.editor-section-content-hidden {
             display: none;
@@ -47,6 +45,10 @@
 
         &.editor-section-content-notCollapsible {
             padding-top: 20px;
+        }
+
+        .editor-switch {
+            margin-right: 30px;
         }
         
     }

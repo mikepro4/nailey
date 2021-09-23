@@ -12,7 +12,9 @@ import Editor from "../../editor"
 import ArrowBack from "../../svg/arrow-back"
 import Cross from "../../svg/cross"
 
-import { hideDrawer, showDrawer } from "../../../../redux/actions/appActions"
+import { hideDrawer, showDrawer, updateProperty } from "../../../../redux/actions/appActions"
+
+import { setMainSite, loadSite } from "../../../../redux/actions/sitesActions"
 
 
 class SiteEdit extends Component {
@@ -33,6 +35,16 @@ class SiteEdit extends Component {
         })
     } 
 
+    handlMainSwitch = (value) => {
+        this.props.setMainSite(this.props.app.drawerData, value, () => {
+            // this.props.loadSite()
+        })
+    } 
+
+    handlePreviewSwitch = (value) => {
+        console.log(value)
+    }
+
 
     render() {
         let siteEditorConfiguration = [
@@ -40,14 +52,15 @@ class SiteEdit extends Component {
                 collapsible: false,
                 components: [
                     {
-                        type: "action",
+                        type: "switch",
                         label: "Main site",
-                        function: () => {alert("main")}
+                        switchFunction: (value) => { this.handlMainSwitch(value)},
+                        active: this.props.app.drawerData && this.props.app.drawerData.metadata.main
                     },
                     {
-                        type: "action",
+                        type: "switch",
                         label: "Preview",
-                        function: () => {alert("preview")}
+                        switchFunction: (value) => { this.handlePreviewSwitch(value)}
                     }
                 ]
             },
@@ -113,7 +126,7 @@ class SiteEdit extends Component {
                             <ArrowBack/>
                         </div>
                         <span className="drawer-action-header-title">
-                            {this.props.site.currentSite.metadata.title}
+                            {this.props.app.drawerData && this.props.app.drawerData.metadata.title}
                         </span>
                     </div>
 
@@ -153,5 +166,8 @@ function mapStateToProps(state) {
 
 export default withRouter(connect(mapStateToProps, {
     hideDrawer,
-    showDrawer
+    showDrawer,
+    updateProperty,
+    setMainSite,
+    loadSite
 })(SiteEdit));

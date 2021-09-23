@@ -227,10 +227,10 @@ export const updateProperty = (model, item, property, value, success) => async (
     }
 
     let url = "/" + model + "s/update"
-
+    let key = model + "Id"
     await api
         .post(url, {
-            [item + "Id"]: newItem._id, 
+            [key]: newItem._id, 
             metadata: newItem.metadata, 
         })
         .then(response => {
