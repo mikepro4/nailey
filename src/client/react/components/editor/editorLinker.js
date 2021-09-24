@@ -22,13 +22,17 @@ class EditorLinker extends Component {
     };
 
     componentDidMount() {
+        this.loadResults()
+        this.setState({
+            value: this.props.options.value
+        })
+    }
+
+    loadResults() {
         this.props.options.loadResults((results) => {
             this.setState({
                 results: results
             })
-        })
-        this.setState({
-            value: this.props.options.value
         })
     }
 
@@ -73,15 +77,10 @@ class EditorLinker extends Component {
     duplicateItem = (item) => {
     }
 
-    renderIcon = () => {
-        return(
-            <div className="linker-icon-container">
-                <DragHandle/>
-            </div>
-        )
-    }
-
     renderItem = (item, i) => {
+        if(item.metadata.home) {
+            return this.renderHome(item, i)
+        }
         return (
             <div className="linker-item-container" key={i}>
 
@@ -122,9 +121,9 @@ class EditorLinker extends Component {
         )
     }
 
-    renderHome = () => {
+    renderHome = (item, i) => {
         return(
-            <div className="linker-item-container">
+            <div className="linker-item-container" key={i}>
 
                 <div className="linker-item-left">
                     <div className="linker-icon-container home">
@@ -133,8 +132,8 @@ class EditorLinker extends Component {
                     <ContentEditable
                         ref="name"
                         className="title-editable"
-                        html="Home" // innerHTML of the editable div
-                        disabled={false} // use true to disable edition
+                        html={item.metadata.title ? item.metadata.title : ""} // innerHTML of the editable div
+                        disabled={true} // use true to disable edition
                         onChange={(event) => this.handleChange(event, item)} // handle innerHTML change
                         onKeyDown={this.handleKeydown}
                     />
@@ -160,11 +159,9 @@ class EditorLinker extends Component {
     }
 
     addItem = () => {
-        // this.setState({
-        //     value: this.state.value.concat(this.props.options.model)
-        // }, () => {
-        //     this.props.updateFunction(this.state.value)
-        // })
+        this.props.options.createFunction(this.state.results.length, () => {
+            this.loadResults()
+        })
     }
 
     render() {
