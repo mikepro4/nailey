@@ -46,9 +46,6 @@
         position: relative;
         z-index: 2;
 
-        .main-button {
-            width: 222px
-        }
 
         @media only screen and (max-width: $mobile) {
             display: none;

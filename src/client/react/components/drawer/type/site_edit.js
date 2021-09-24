@@ -386,7 +386,19 @@ class SiteEdit extends Component {
                         value: site && site.metadata.mainCTAURL,
                         conditionalPropertyExpectedValue: true,
                         conditionalPropertyActualValue: site && site.metadata.mainCTA
-                    }
+                    },
+                    {
+                        type: "numericInput",
+                        label: "CTA Width",
+                        updateFunction: (value) => {
+                            this.props.updateProperty("site", site, "mainCTAWidth", value, () => {
+                                this.props.loadSite()
+                            })
+                        },
+                        value: site && site.metadata.mainCTAWidth,
+                        conditionalPropertyExpectedValue: true,
+                        conditionalPropertyActualValue: site && site.metadata.mainCTA
+                    },
                 ]
             },
             {

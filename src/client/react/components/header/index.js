@@ -40,7 +40,12 @@ class Header extends Component {
             }
     
             return(
-                <div className="header-right">
+                <div 
+                    className="header-right"
+                    style={{
+                        width: this.props.site.mainCTAWidth + "px"
+                    }}
+                >
                     <motion.div
                         initial="hidden"
                         animate="visible"
