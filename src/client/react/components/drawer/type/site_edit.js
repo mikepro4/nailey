@@ -28,8 +28,8 @@ class SiteEdit extends Component {
     };
 
     render() {
-        // let site = this.props.site.currentSite
-        let site = this.props.site.newSite
+        let site = this.props.site.currentSite
+        // let site = this.props.site.newSite
         let siteEditorConfiguration = [
             {
                 collapsible: false,
@@ -188,7 +188,9 @@ class SiteEdit extends Component {
                                 this.props.loadSite()
                             })
                         },
-                        active: site && site.metadata.logoAutoSize
+                        active: site && site.metadata.logoAutoSize,
+                        conditionalPropertyExpectedValue: "image",
+                        conditionalPropertyActualValue: site && site.metadata.logoType
                     },
                     {
                         type: "numericInput",
