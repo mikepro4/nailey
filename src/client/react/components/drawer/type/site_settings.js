@@ -54,6 +54,8 @@ class SiteSettings extends Component {
                                     this.props.createSite({
                                         metadata: {
                                             title: "Iteration " + (this.props.site.count + 1),
+                                            logoType: "text",
+                                            logoText: "Iteration " + (this.props.site.count + 1),
                                             createdBy: this.props.user && this.props.user._id,
                                             projectId: this.props.project._id
                                         }
