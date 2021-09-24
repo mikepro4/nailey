@@ -9,6 +9,7 @@ import { sectionReducer } from "./sectionReducer";
 import { productReducer } from "./productReducer";
 import { fontReducer } from "./fontReducer";
 import { projectReducer } from "./projectReducer";
+import { pageReducer } from "./pageReducer";
 
 export default (history) => combineReducers({
     router: connectRouter(history),
@@ -20,5 +21,6 @@ export default (history) => combineReducers({
     section: sectionReducer,
     product: productReducer,
     font: fontReducer,
-    project: projectReducer
+    project: projectReducer,
+    page: pageReducer
 })

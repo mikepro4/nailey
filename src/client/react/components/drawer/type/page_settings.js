@@ -8,14 +8,14 @@ import qs from "qs";
 import * as _ from "lodash"
 
 import { updateCollection, uncheckAll } from "../../../../redux/actions/appActions"
-import { createFont, searchFonts, loadFont, deleteFont, updateFontProperty, setMainFont} from "../../../../redux/actions/fontsActions"
+import { createPage, searchPages, loadPage, deletePage, updatePageProperty, setMainPage} from "../../../../redux/actions/pagesActions"
 import { loadSite} from "../../../../redux/actions/sitesActions"
 
 import Button from "../../button"
 import ListResults from "../../list"
 
 
-class FontSettings extends Component {
+class PageSettings extends Component {
 
     state = {
         loading: false
@@ -27,8 +27,8 @@ class FontSettings extends Component {
     
 
     handleTitleChange = (item, value) => {
-        this.props.updateFontProperty(item, "title", value, () => {
-            this.props.loadFont()
+        this.props.updatePageProperty(item, "title", value, () => {
+            this.props.loadPage()
             this.props.loadSite()
         })
     } 
@@ -36,21 +36,65 @@ class FontSettings extends Component {
 
     render() {
         return (
-            <div className={"app-drawer-content-container standard-drawer page-settings-drawer"}>
+            <div className={"app-drawer-content-container standard-drawer page-settings-drawer "}>
                 <div className={"drawer-action-header"}>
                     
                     <div className="drawer-action-header-left">
-                        Page
+                        Pages
                     </div>
 
                     <div className="drawer-action-header-right">
+                        <Button
+                            label="Create page"
+                            onClick={() => {
+                                this.props.createPage({
+                                    metadata: {
+                                        title: "Untitled",
+                                        createdBy: this.props.user._id
+                                    }
+                                }, () => {
+                                    this.props.updateCollection(true)
+                                    this.props.loadPage()
+                                    this.props.loadSite()
+                                })
+                            }}
+                        />
                     
                     </div>
                 </div>
 
 
                 <div className="placeholder">
-                   Page
+                    <ListResults
+                        type="site"
+                        resultType="site"
+                        searchCollection={this.props.searchPages}
+                        onDelete={(item) => {
+                            this.props.deletePage(item._id, item, () => {
+                                this.props.updateCollection(true)
+                                this.props.loadPage()
+                                this.props.loadSite()
+                            })
+                        }}
+                        onCreate={(item) => {
+                            let finalItem = {
+                                ...item,
+                                metadata: {
+                                    ...item.metadata,
+                                    title: "Copy of " + item.metadata.title,
+                                    main: false
+                                }
+                            }
+                            this.props.createPage(finalItem, () => {
+                                this.props.updateCollection(true)
+                                this.props.loadPage()
+                                this.props.loadSite()
+                            })
+                        }}
+                        onEdit={(item, value) => {
+                            this.handleTitleChange(item, value)
+                        }}
+                    />
                 </div>
             </div>
 
@@ -69,13 +113,13 @@ function mapStateToProps(state) {
 }
 
 export default withRouter(connect(mapStateToProps, {
-    createFont,
-    searchFonts,
+    createPage,
+    searchPages,
     updateCollection,
-    loadFont,
-    deleteFont,
-    updateFontProperty,
+    loadPage,
+    deletePage,
+    updatePageProperty,
     uncheckAll,
-    setMainFont,
+    setMainPage,
     loadSite
-})(FontSettings));
+})(PageSettings));

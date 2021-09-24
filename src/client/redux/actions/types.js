@@ -87,3 +87,12 @@ export const LOAD_PROJECT = "app/LOAD_PROJECT"
 export const CLEAR_PROJECT = "app/CLEAR_PROJECT"
 export const LOAD_NEW_PROJECT = "app/LOAD_NEW_PROJECT"
 export const CLEAR_NEW_PROJECT = "app/CLEAR_NEW_PROJECT"
+
+// =============================================================================
+
+// Project 
+
+export const LOAD_PAGE = "app/LOAD_PAGE"
+export const CLEAR_PAGE = "app/CLEAR_PAGE"
+export const LOAD_NEW_PAGE = "app/LOAD_NEW_PAGE"
+export const CLEAR_NEW_PAGE = "app/CLEAR_NEW_PAGE"
