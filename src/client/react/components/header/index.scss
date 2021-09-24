@@ -221,17 +221,144 @@
             align-items: center;
             height: 100%;
 
-            .main-links-container {
-                z-index: 1;
+            .app-logo {
                 position: absolute;
                 top: -2px;
-                left: 0;
+                left: auto;
                 right: 0;
                 bottom: 0;
                 display: flex;
                 align-items: center;
                 justify-content: center;
             }
+
+            &.links-align-center {
+
+                .main-links-container {
+                    z-index: 1;
+                    position: absolute;
+                    top: -2px;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                &.cta-align-center {
+                    .header-right {
+                        position: absolute;
+                        top: 135px;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                }
+
+                &.cta-align-right {
+                    .header-right {
+                        position: absolute;
+                        top: 135px;
+                        left: auto;
+                        right: 0;
+                        bottom: 0;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                }
+
+                
+
+            }
+
+            &.links-align-left {
+                .header-right {
+                    position: absolute;
+                    top: 135px;
+                    left: auto;
+                    right: 0;
+                    bottom: 0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                &.cta-align-center {
+                    .header-right {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                }
+
+                &.cta-align-left {
+                    .header-right {
+                        position: absolute;
+                        top: 135px;
+                        left: 0;
+                        right: auto;
+                        bottom: 0;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                }
+            }
+
+            &.links-align-right {
+                
+
+                .main-links-container {
+                    z-index: 1;
+                    position: absolute;
+                    top: 135px;
+                    left: auto;
+                    right: 0;
+                    bottom: 0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                &.cta-align-center {
+                    .header-right {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                }
+
+                &.cta-align-right {
+                    .header-right {
+                        position: absolute;
+                        top: 222px;
+                        left: auto;
+                        right: 0;
+                        bottom: 0;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                }
+            }
+                
+
+            
         }
     
         &.logo-align-center {
