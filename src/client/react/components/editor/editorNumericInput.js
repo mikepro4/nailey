@@ -40,7 +40,6 @@ class EditorNumericInput extends Component {
                     value={this.state.value}
                     stepSize={1}
                     min={0}
-                    max={200}
                     allowNumericCharactersOnly={true}
                 />
 

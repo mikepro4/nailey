@@ -28,8 +28,8 @@ class SiteEdit extends Component {
     };
 
     render() {
-        // let site = this.props.site.currentSite
-        let site = this.props.site.newSite
+        let site = this.props.site.currentSite
+        // let site = this.props.site.newSite
         let siteEditorConfiguration = [
             {
                 collapsible: false,
@@ -131,6 +131,45 @@ class SiteEdit extends Component {
                         }],
                         value: site && site.metadata.color
                     },
+                ]
+            },,
+            {
+                title: "Sizing",
+                collapsible: true,
+                components: [
+                    {
+                        type: "switch",
+                        label: "Full width",
+                        updateFunction: (value) => {
+                            this.props.updateProperty("site", site, "fullWidth", value, () => {
+                                this.props.loadSite()
+                            })
+                        },
+                        active: site && site.metadata.fullWidth,
+                        
+                    },
+                    {
+                        type: "numericInput",
+                        label: "Max width",
+                        updateFunction: (value) => {
+                            this.props.updateProperty("site", site, "maxWidth", value, () => {
+                                this.props.loadSite()
+                            })
+                        },
+                        value: site && site.metadata.maxWidth,
+                        conditionalPropertyExpectedValue: false,
+                        conditionalPropertyActualValue: site && site.metadata.fullWidth
+                    },
+                    {
+                        type: "numericInput",
+                        label: "Mobile breakpoint",
+                        updateFunction: (value) => {
+                            this.props.updateProperty("site", site, "mobileBreakpoint", value, () => {
+                                this.props.loadSite()
+                            })
+                        },
+                        value: site && site.metadata.mobileBreakpoint,
+                    }
                 ]
             },
             {

@@ -9,6 +9,18 @@ import { motion } from "framer-motion";
 
 class Header extends Component {
 
+    getWidthValue() {
+        let finalWidth
+
+        if(this.props.site.fullWidth) {
+            finalWidth = "100%"
+        } else {
+            finalWidth = this.props.site.maxWidth + "px"
+        }
+
+        return finalWidth
+    }
+
 	render() {
         const logo = {
             visible: { 
@@ -32,7 +44,12 @@ class Header extends Component {
                     "app-header": true
                 })}
             >
-                <div className="header-wrapper">
+                <div 
+                    className="header-wrapper"
+                    style={{
+                        maxWidth: this.getWidthValue()
+                    }}
+                >
                     <MainLinks />
                     <Logo/>
 
@@ -61,6 +78,7 @@ function mapStateToProps(state) {
         user: state.app.user,
         app: state.app,
         location: state.router.location,
+        site: state.site.currentSite.metadata
 	};
 }
 
