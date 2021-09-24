@@ -64,8 +64,9 @@ class SiteEdit extends Component {
                                 this.props.loadSite()
                             })
                         },
-                        updateItemFunction: (value, item) => {
+                        updateItemFunction: (value, item, success) => {
                             this.props.updateProperty("page", item, "title", value, () => {
+                                success()
                             })
                         },
                         loadResults: (success) => {
@@ -86,6 +87,17 @@ class SiteEdit extends Component {
                         },
                         deleteFunction: (pageId, pageItem, success) => {
                             this.props.deletePage(pageId, pageItem, () => {
+                                success()
+                            })
+                        },
+                        duplicateFunction: (item, success) => {
+                            this.props.createPage({
+                                metadata: {
+                                    ...item.metadata,
+                                    title: "Copy of " + item.metadata.title,
+                                    home: false
+                                }
+                            }, () => {
                                 success()
                             })
                         },

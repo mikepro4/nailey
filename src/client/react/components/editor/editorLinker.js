@@ -51,7 +51,9 @@ class EditorLinker extends Component {
         this.setState({
             value: value
         }, () => {
-            this.props.options.updateItemFunction(value, item)
+            this.props.options.updateItemFunction(value, item, () => {
+                this.loadResults()
+            })
         })
     }
 
@@ -156,40 +158,13 @@ class EditorLinker extends Component {
         })
     }
 
-    render() {
-
-        let pages = [
-            {
-                id: 1,
-                metadata: {
-                    title: "Home",
-                    home: true
-                }
-            },
-            {
-                id: 1,
-                metadata: {
-                    title: "Services",
-                }
-            },
-            {
-                id: 1,
-                metadata: {
-                    title: "About",
-                }
-            },
-            {
-                id: 1,
-                metadata: {
-                    title: "Services",
-                }
-            }
-        ]
-
-        let filteredPages = _.filter(pages, (page,i) => {
-            return !page.metadata.home
+    duplicateItem = (item) => {
+        this.props.options.duplicateFunction(item, () => {
+            this.loadResults()
         })
+    }
 
+    render() {
         return (
             <div
                 className={classNames({
@@ -199,7 +174,6 @@ class EditorLinker extends Component {
             >
                 <div className="input-label">{this.props.options.label}</div>
 
-                {/* {this.renderHome()} */}
                 {this.state.results.map((item, i) => {
                     return this.renderItem(item, i)
                 })}
