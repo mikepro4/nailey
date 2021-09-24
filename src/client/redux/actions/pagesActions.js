@@ -246,3 +246,24 @@ export const updatePageProperty = (pageItem, property, value, success) => async 
 }
 
 
+// ===========================================================================
+
+
+export const allSitePages = (siteId, success) => async (
+    dispatch,
+	getState,
+	api
+) => {
+
+    await api
+        .post("/pages/allSitePages", {
+            siteId: siteId
+        })
+        .then(response => {
+            if (success) {
+                success(response.data);
+            }
+        })
+        .catch(() => {
+        });
+}

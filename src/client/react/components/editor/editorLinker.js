@@ -16,11 +16,17 @@ class EditorLinker extends Component {
         super(props)
         this.contentEditable = React.createRef();
         this.state = {
-            value: []
+            value: [],
+            results: []
         };
     };
 
     componentDidMount() {
+        this.props.options.loadResults((results) => {
+            this.setState({
+                results: results
+            })
+        })
         this.setState({
             value: this.props.options.value
         })
@@ -86,7 +92,7 @@ class EditorLinker extends Component {
                     <ContentEditable
                         ref="name"
                         className="title-editable"
-                        html={item.metadata.title} // innerHTML of the editable div
+                        html={item.metadata.title ? item.metadata.title : ""} // innerHTML of the editable div
                         disabled={false} // use true to disable edition
                         onChange={(event) => this.handleChange(event, item)} // handle innerHTML change
                         onKeyDown={this.handleKeydown}
@@ -204,11 +210,10 @@ class EditorLinker extends Component {
             >
                 <div className="input-label">{this.props.options.label}</div>
 
-                {this.renderHome()}
-                {filteredPages.map((item, i) => {
+                {/* {this.renderHome()} */}
+                {this.state.results.map((item, i) => {
                     return this.renderItem(item, i)
-                })
-                }
+                })}
 
                 <Button 
                     icon="plus"

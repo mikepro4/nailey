@@ -15,6 +15,7 @@ import Cross from "../../svg/cross"
 import { hideDrawer, showDrawer, updateProperty, getOptions } from "../../../../redux/actions/appActions"
 
 import { setMainSite, loadSite } from "../../../../redux/actions/sitesActions"
+import { allSitePages } from "../../../../redux/actions/pagesActions"
 
 
 class SiteEdit extends Component {
@@ -28,8 +29,8 @@ class SiteEdit extends Component {
     };
 
     render() {
-        // let site = this.props.site.currentSite
-        let site = this.props.site.newSite
+        let site = this.props.site.currentSite
+        // let site = this.props.site.newSite
         let siteEditorConfiguration = [
             
             {
@@ -61,6 +62,11 @@ class SiteEdit extends Component {
                         updateFunction: (value) => {
                             this.props.updateProperty("site", site, "pages", value, () => {
                                 this.props.loadSite()
+                            })
+                        },
+                        loadResults: (success) => {
+                            this.props.allSitePages(site._id, (results) => {
+                                success(results)
                             })
                         },
                         value: site && site.metadata.pages
@@ -482,5 +488,6 @@ export default withRouter(connect(mapStateToProps, {
     updateProperty,
     setMainSite,
     loadSite,
-    getOptions
+    getOptions,
+    allSitePages
 })(SiteEdit));
