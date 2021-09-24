@@ -331,7 +331,7 @@ class SiteEdit extends Component {
                     },
                     {
                         type: "switch",
-                        label: "Display main CTA",
+                        label: "Display CTA",
                         updateFunction: (value) => {
                             this.props.updateProperty("site", site, "mainCTA", value, () => {
                                 this.props.loadSite()
@@ -340,7 +340,7 @@ class SiteEdit extends Component {
                         active: site && site.metadata.mainCTA,
                     },
                     {
-                        label: "Main CTA Position",
+                        label: "CTA Position",
                         type: "tab",
                         updateFunction: (value) => {
                             this.props.updateProperty("site", site, "mainCTAPosition", value, () => {
@@ -365,7 +365,7 @@ class SiteEdit extends Component {
                     },
                     {
                         type: "input",
-                        label: "Main CTA Text",
+                        label: "CTA Text",
                         updateFunction: (value) => {
                             this.props.updateProperty("site", site, "mainCTAText", value, () => {
                                 this.props.loadSite()
@@ -377,7 +377,7 @@ class SiteEdit extends Component {
                     },
                     {
                         type: "input",
-                        label: "Main CTA URL",
+                        label: "CTA URL",
                         updateFunction: (value) => {
                             this.props.updateProperty("site", site, "mainCTAURL", value, () => {
                                 this.props.loadSite()
