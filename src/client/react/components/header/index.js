@@ -42,21 +42,24 @@ class Header extends Component {
             return(
                 <div 
                     className="header-right"
-                    style={{
-                        width: this.props.site.mainCTAWidth + "px"
-                    }}
+                    
                 >
-                    <motion.div
-                        initial="hidden"
-                        animate="visible"
-                        variants={logo}
-                    >
-                        <Button
-                            label={this.props.site.mainCTAText}
-                            linkUrl={this.props.site.mainCTAURL}
-                            minimal={true}
-                        />
-                    </motion.div>
+                    <div 
+                          style={{
+                            width: this.props.site.mainCTAWidth + "px"
+                    }}>
+                        <motion.div
+                            initial="hidden"
+                            animate="visible"
+                            variants={logo}
+                        >
+                            <Button
+                                label={this.props.site.mainCTAText}
+                                linkUrl={this.props.site.mainCTAURL}
+                                minimal={true}
+                            />
+                        </motion.div>
+                    </div>
                 </div>
             )
         }

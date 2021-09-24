@@ -92,6 +92,126 @@
                 align-items: center;
                 justify-content: center;
             }
+
+            &.links-align-center {
+
+                &.cta-align-center {
+                    .header-right {
+                        position: absolute;
+                        top: 135px;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        width: 100%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                }
+
+                &.cta-align-left {
+                    .header-right {
+                        position: absolute;
+                        top: 135px;
+                        left: 0;
+                        right: auto;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                }
+            }
+
+            &.links-align-left {
+                .main-links-container { 
+                    position: absolute;
+                    top: 135px;
+                    left: 0;
+                    bottom: 0;
+                    right: auto;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                &.cta-align-center {
+                    .header-right {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        width: 100%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                }
+
+                &.cta-align-left {
+                    .header-right {
+                        position: absolute;
+                        top: 222px;
+                        left: 0;
+                        right: auto;
+                        bottom: 0;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                }
+
+            }
+
+            &.links-align-right {
+                .main-links-container { 
+                    position: absolute;
+                    top: 135px;
+                    right: 0;
+                    bottom: 0;
+                    left: auto;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                &.cta-align-center {
+                    .main-links-container { 
+                        top: 0
+                    }
+
+                    .header-right {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        width: 100%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                }
+
+                &.cta-align-left {
+                    .main-links-container { 
+                        top: 0
+                    }
+                    .header-right {
+                        position: absolute;
+                        top: 135px;
+                        left: 0;
+                        right: auto;
+                        bottom: 0;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                }
+
+            }
+
+            
         }
 
         &.logo-align-right {
