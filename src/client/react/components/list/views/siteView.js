@@ -20,7 +20,8 @@ class SiteView extends Component {
         this.state = {
             html: this.props.item.metadata.title,
             isMain: false,
-            updatedTitle: false
+            updatedTitle: false,
+            updatedMain: false
         }
     };
 
@@ -28,7 +29,8 @@ class SiteView extends Component {
         this.setState({html: evt.target.value});
         this.props.onEdit(finalItem, evt.target.value)
         this.setState({
-            updatedTitle: true
+            updatedTitle: true,
+            updatedMain: true
         })
     };
 
@@ -53,7 +55,7 @@ class SiteView extends Component {
             if(this.props.item._id !== this.props.app.dontUncheck) {
                 this.setState({
                     isMain: false,
-                    html: this.props.item.metadata.title
+                    html: this.props.item.metadata.title,
                 })
             }
         }
@@ -69,20 +71,15 @@ class SiteView extends Component {
     }
 
     render() {
-        let finalItem 
-
-        if(this.state.updatedTitle) {
-            finalItem = {
-                ...this.props.item,
-                metadata: {
-                    ...this.props.item.metadata,
-                    title: this.state.html,
-                    main: this.state.isMain
-                }
+       let  finalItem = {
+            ...this.props.item,
+            metadata: {
+                ...this.props.item.metadata,
+                title: this.state.html,
+                main: this.state.isMain
             }
-        } else {
-            finalItem = this.props.item
         }
+   
         return(
             <div className="site-view-container transition-element">
 
