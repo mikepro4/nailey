@@ -45,7 +45,7 @@ class Header extends Component {
                     
                 >
                     <div 
-                          style={{
+                        style={{
                             width: this.props.site.mainCTAWidth + "px"
                     }}>
                         <motion.div
@@ -85,6 +85,9 @@ class Header extends Component {
                         "cta-align-left": this.props.site.mainCTAPosition == "left",
                         "cta-align-right": this.props.site.mainCTAPosition == "right",
                     })}
+                    style={{
+                        maxWidth: this.getWidthValue()
+                    }}
                 >
                     <Logo/>
                     <MainLinks />
@@ -107,6 +110,9 @@ class Header extends Component {
                         "cta-align-left": this.props.site.mainCTAPosition == "left",
                         "cta-align-right": this.props.site.mainCTAPosition == "right",
                     })}
+                    style={{
+                        maxWidth: this.getWidthValue()
+                    }}
                 >
                     <MainLinks />
                     <Logo/>
@@ -129,6 +135,9 @@ class Header extends Component {
                         "cta-align-left": this.props.site.mainCTAPosition == "left",
                         "cta-align-right": this.props.site.mainCTAPosition == "right",
                     })}
+                    style={{
+                        maxWidth: this.getWidthValue()
+                    }}
                 >
                     <MainLinks />
                     {this.renderCTA()}
