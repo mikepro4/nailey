@@ -20,6 +20,10 @@
         &.home {
             opacity: 1;
         }
+
+        &.drag-space {
+            width: 30px;
+        }
     }
 
     .linker-item-left {
@@ -41,4 +45,28 @@
             margin-left: 10px;
         }
     }
+}
+
+.drag-handle {
+    padding: 5px;
+    width: 25px;
+    height: 40px;
+    position: absolute;
+    left: 0px;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    cursor: pointer;
+    opacity: 0.3;
+    transition: all 1s $animation_easing;
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
+.draggable-field {
+    position: relative;
 }

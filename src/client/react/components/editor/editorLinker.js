@@ -6,18 +6,23 @@ import * as _ from "lodash"
 import Button from "../button/"
 import update from "immutability-helper";
 import ContentEditable from 'react-contenteditable'
+import HTML5Backend from "react-dnd-html5-backend";
+import { DropTarget, DragDropContext } from "react-dnd";
 
 import Home from "../../components/svg/home"
 import DragHandle from "../../components/svg/dragHandle"
 
 import EditorEditableField from "./editorEditableField"
+import DraggableField from "./editorDraggableField"
 
+@DragDropContext(HTML5Backend)
 class EditorLinker extends Component {
 
     constructor(props) {
         super(props)
         this.contentEditable = React.createRef();
         this.state = {
+            dragging: false,
             value: [],
             results: []
         };
@@ -76,8 +81,7 @@ class EditorLinker extends Component {
             <div className="linker-item-container" key={i}>
 
                 <div className="linker-item-left">
-                    <div className="linker-icon-container">
-                        <DragHandle/>
+                    <div className="linker-icon-container drag-space">
                     </div>
  
                     <EditorEditableField
@@ -164,6 +168,33 @@ class EditorLinker extends Component {
         })
     }
 
+    moveField = (dragIndex, hoverIndex) => {
+        console.log(dragIndex, hoverIndex)
+		const { results } = this.state;
+        const dragField = results[dragIndex];
+
+        this.setState(
+			update(this.state, {
+				results: {
+					$splice: [[dragIndex, 0], [hoverIndex, 1, dragField]]
+				}
+			})
+		);
+	};
+
+	dragStart = () => {
+		this.setState({
+			dragging: true,
+			
+		});
+	};
+
+	dragEnd = () => {
+		this.setState({
+            dragging: false,
+        });
+	};
+
     render() {
         return (
             <div
@@ -175,8 +206,19 @@ class EditorLinker extends Component {
                 <div className="input-label">{this.props.options.label}</div>
 
                 {this.state.results.map((item, i) => {
-                    return this.renderItem(item, i)
-                })}
+                    return (
+                        <DraggableField
+                            key={i}
+                            id={item._id}
+                            index={i}
+                            moveField={this.moveField}
+                            dragStart={this.dragStart}
+                            dragEnd={this.dragEnd}
+                        >
+                            {this.renderItem(item, i)}
+                        </DraggableField>
+                    )})
+                }
 
                 <Button 
                     icon="plus"
