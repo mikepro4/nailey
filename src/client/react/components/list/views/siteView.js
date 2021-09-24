@@ -24,9 +24,9 @@ class SiteView extends Component {
         }
     };
 
-    handleChange = evt => {
+    handleChange = (evt, finalItem) => {
         this.setState({html: evt.target.value});
-        this.props.onEdit(this.props.item, evt.target.value)
+        this.props.onEdit(finalItem, evt.target.value)
         this.setState({
             updatedTitle: true
         })
@@ -76,7 +76,8 @@ class SiteView extends Component {
                 ...this.props.item,
                 metadata: {
                     ...this.props.item.metadata,
-                    title: this.state.html
+                    title: this.state.html,
+                    main: this.state.isMain
                 }
             }
         } else {
@@ -97,7 +98,7 @@ class SiteView extends Component {
                             className="title-editable"
                             html={this.state.html} // innerHTML of the editable div
                             disabled={false} // use true to disable edition
-                            onChange={this.handleChange} // handle innerHTML change
+                            onChange={(data) => {this.handleChange(data, finalItem)}} // handle innerHTML change
                             onKeyDown={this.handleKeydown}
                         />
                     </div>

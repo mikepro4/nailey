@@ -9,6 +9,20 @@ import Nailey from "../svg/nailey"
 
 class Logo extends Component {
 
+    renderLogo() {
+        if(this.props.site.metadata.logoType == "image" && this.props.site.metadata.logoUrl) {
+            return (
+                <img src={this.props.site.metadata.logoUrl} />
+            )
+        }
+
+        if(this.props.site.metadata.logoType == "text" && this.props.site.metadata.logoText) {
+            return (
+                <div className="logo-mai-text">{this.props.site.metadata.logoText}</div>
+            )
+        }
+    }
+
 	render() {
 
         const logo = {
@@ -36,7 +50,9 @@ class Logo extends Component {
                         animate="visible"
                         variants={logo}
                     >
-                        <Link to="/" className="app-logo-name"><Leyla/></Link>
+                        <Link to="/" className="app-logo-name">
+                            {this.renderLogo()}
+                        </Link>
                     </motion.div>
                 </div>
             </div>
@@ -48,6 +64,7 @@ function mapStateToProps(state) {
 	return {
 		user: state.app.user,
         location: state.router.location,
+        site: state.site.currentSite
 	};
 }
 
