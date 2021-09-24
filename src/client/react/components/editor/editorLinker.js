@@ -10,6 +10,8 @@ import ContentEditable from 'react-contenteditable'
 import Home from "../../components/svg/home"
 import DragHandle from "../../components/svg/dragHandle"
 
+import EditorEditableField from "./editorEditableField"
+
 class EditorLinker extends Component {
 
     constructor(props) {
@@ -45,22 +47,11 @@ class EditorLinker extends Component {
 
    
 
-    handleChange =(event, item) => {
-        let keyToUpdateIndex = _.findIndex(this.state.value, item);
-
-        let newItem = {
-            ...item,
-            title: event.target.value
-        }
-
-        let newValue = update(this.state.value, {
-            $splice: [[keyToUpdateIndex, 1, newItem]] 
-        })
-
+    handleChange =(value, item) => {
         this.setState({
-            value: newValue
+            value: value
         }, () => {
-            this.props.updateFunction(newValue)
+            this.props.options.updateItemFunction(value, item)
         })
     }
 
@@ -86,13 +77,10 @@ class EditorLinker extends Component {
                     <div className="linker-icon-container">
                         <DragHandle/>
                     </div>
-                    <ContentEditable
-                        ref="name"
-                        className="title-editable"
-                        html={item.metadata.title ? item.metadata.title : ""} // innerHTML of the editable div
-                        disabled={false} // use true to disable edition
-                        onChange={(event) => this.handleChange(event, item)} // handle innerHTML change
-                        onKeyDown={this.handleKeydown}
+ 
+                    <EditorEditableField
+                        value={item.metadata.title}
+                        updateField={(value) => this.handleChange(value, item)}
                     />
 
                 </div>

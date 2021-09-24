@@ -64,6 +64,10 @@ class SiteEdit extends Component {
                                 this.props.loadSite()
                             })
                         },
+                        updateItemFunction: (value, item) => {
+                            this.props.updateProperty("page", item, "title", value, () => {
+                            })
+                        },
                         loadResults: (success) => {
                             this.props.allSitePages(site._id, (results) => {
                                 success(results)
