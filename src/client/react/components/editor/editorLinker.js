@@ -179,18 +179,20 @@ class EditorLinker extends Component {
                 })}
             >
                 <div className="input-label">{this.props.options.label}</div>
-                <DndProvider backend={HTML5Backend}>
-                    {/* {this.state.results.map((item, i) => {
+                {this.state.results.map((item, i) => {
                         return this.renderItem(item, i)
-                    })} */}
-                    <Example/>
-                </DndProvider>
-
+                    })}
+                
                 <Button 
                     icon="plus"
                     minimal={true}
                     onClick={() => this.addItem()}
                 />
+
+                <DndProvider backend={HTML5Backend}>
+                    
+                    <Example/>
+                </DndProvider>
 
             </div>
         );
