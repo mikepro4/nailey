@@ -21,6 +21,12 @@ class Header extends Component {
         return finalWidth
     }
 
+    renderLinks() {
+        if(this.props.site.mainLinks) {
+            return <MainLinks />
+        }
+    }
+
     renderCTA() {
         if(this.props.site.mainCTA) {
             const logo = {
@@ -84,13 +90,15 @@ class Header extends Component {
                         "cta-align-center": this.props.site.mainCTAPosition == "center",
                         "cta-align-left": this.props.site.mainCTAPosition == "left",
                         "cta-align-right": this.props.site.mainCTAPosition == "right",
+                        "cta-visible": this.props.site.mainCTA,
+                        "links-visible": this.props.site.mainLinks
                     })}
                     style={{
                         maxWidth: this.getWidthValue()
                     }}
                 >
                     <Logo/>
-                    <MainLinks />
+                    {this.renderLinks()}
                     {this.renderCTA()}
                 </div>
                
@@ -109,12 +117,14 @@ class Header extends Component {
                         "cta-align-center": this.props.site.mainCTAPosition == "center",
                         "cta-align-left": this.props.site.mainCTAPosition == "left",
                         "cta-align-right": this.props.site.mainCTAPosition == "right",
+                        "cta-visible": this.props.site.mainCTA,
+                        "links-visible": this.props.site.mainLinks
                     })}
                     style={{
                         maxWidth: this.getWidthValue()
                     }}
                 >
-                    <MainLinks />
+                    {this.renderLinks()}
                     <Logo/>
                     {this.renderCTA()}
                 </div>
@@ -134,12 +144,14 @@ class Header extends Component {
                         "cta-align-center": this.props.site.mainCTAPosition == "center",
                         "cta-align-left": this.props.site.mainCTAPosition == "left",
                         "cta-align-right": this.props.site.mainCTAPosition == "right",
+                        "cta-visible": this.props.site.mainCTA,
+                        "links-visible": this.props.site.mainLinks
                     })}
                     style={{
                         maxWidth: this.getWidthValue()
                     }}
                 >
-                    <MainLinks />
+                    {this.renderLinks()}
                     {this.renderCTA()}
                     <Logo/>
 

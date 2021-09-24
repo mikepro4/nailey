@@ -151,7 +151,7 @@
                 &.cta-align-left {
                     .header-right {
                         position: absolute;
-                        top: 222px;
+                        top: 150px;
                         left: 0;
                         right: auto;
                         bottom: 0;
@@ -159,14 +159,20 @@
                         align-items: center;
                         justify-content: center;
                     }
+                    &.links-visible {
+                        .header-right  {
+                            height: 222px;
+                        }
+                    }
                 }
 
             }
 
             &.links-align-right {
+
                 .main-links-container { 
                     position: absolute;
-                    top: 135px;
+                    top: 0;
                     right: 0;
                     bottom: 0;
                     left: auto;
@@ -175,43 +181,54 @@
                     justify-content: center;
                 }
 
-                &.cta-align-center {
-                    .main-links-container { 
-                        top: 0
-                    }
 
-                    .header-right {
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        right: 0;
-                        bottom: 0;
-                        width: 100%;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                    }
-                }
-
-                &.cta-align-left {
+                &.cta-visible {
                     .main-links-container { 
-                        top: 0
-                    }
-                    .header-right {
                         position: absolute;
                         top: 135px;
-                        left: 0;
-                        right: auto;
+                        right: 0;
                         bottom: 0;
+                        left: auto;
                         display: flex;
                         align-items: center;
                         justify-content: center;
                     }
+    
+                    &.cta-align-center {
+                        .main-links-container { 
+                            top: 0
+                        }
+    
+                        .header-right {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            right: 0;
+                            bottom: 0;
+                            width: 100%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                        }
+                    }
+    
+                    &.cta-align-left {
+                        .main-links-container { 
+                            top: 0
+                        }
+                        .header-right {
+                            position: absolute;
+                            top: 135px;
+                            left: 0;
+                            right: auto;
+                            bottom: 0;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                        }
+                    } 
                 }
-
             }
-
-            
         }
 
         &.logo-align-right {
@@ -403,90 +420,7 @@
                 }
             }
 
-            &.links-align-center {
-                .main-links-container { 
-                    position: absolute;
-                    top: 135px;
-                    left: 0;
-                    bottom: 0;
-                    width: 100%;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                }
-
-                &.cta-align-right {
-                    .header-right {
-                        position: absolute;
-                        top: 0;
-                        right: 0;
-                        bottom: 0;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                    }
-                }
-
-                &.cta-align-center {
-                    .header-right {
-                        position: absolute;
-                        top: 222px;
-                        right: 0;
-                        bottom: 0;
-                        width: 100%;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                    }
-                }
-
-                &.cta-align-left {
-                    .header-right {
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        right: auto;
-                        bottom: 0;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                    }
-                }
-
-               
-            }
-            &.links-align-left {
-                color: red;
-
-                &.cta-align-left { 
-                    .header-right {
-                        position: absolute;
-                        top: 135px;
-                        left: 0;
-                        right: auto;
-                        bottom: 0;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                    }
-                }
-
-                &.cta-align-center { 
-                    .header-right {
-                        position: absolute;
-                        top: 150px;
-                        right: 0;
-                        bottom: 0;
-                        width: 100%;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                    }
-                }
-            }
-
-            &.links-align-right {
-
+            &.cta-align-right {
                 .header-right {
                     position: absolute;
                     top: 0;
@@ -496,55 +430,120 @@
                     align-items: center;
                     justify-content: center;
                 }
+            }
 
-                &.cta-align-right {
+            &.cta-align-center {
+                .header-right {
+                    position: absolute;
+                    top: 150px;
+                    right: 0;
+                    bottom: 0;
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+            }
+
+            &.cta-align-left {
+                .header-right {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: auto;
+                    bottom: 0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+            }
+
+            &.links-visible {
+                &.links-align-center {
                     .main-links-container { 
                         position: absolute;
                         top: 135px;
-                        right: 0;
-                        left: auto;
-                        bottom: 0;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                    }
-                }
-
-                &.cta-align-center { 
-                    .header-right {
-                        position: absolute;
-                        top: 150px;
-                        right: 0;
+                        left: 0;
                         bottom: 0;
                         width: 100%;
                         display: flex;
                         align-items: center;
                         justify-content: center;
                     }
-
-                    .main-links-container  {
-                        position: absolute;
-                        top: 0;
-                        right: 0;
-                        bottom: 0;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
+    
+                    &.cta-align-right {
+                        .header-right {
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+                            bottom: 0;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                        }
+                    }
+    
+                    &.cta-align-center {
+                        .header-right {
+                            position: absolute;
+                            top: 222px;
+                            right: 0;
+                            bottom: 0;
+                            width: 100%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                        }
+                    }
+    
+                    &.cta-align-left {
+                        .header-right {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            right: auto;
+                            bottom: 0;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                        }
+                    }
+    
+                   
+                }
+                &.links-align-left {
+                    color: red;
+    
+                    &.cta-align-left { 
+                        .header-right {
+                            position: absolute;
+                            top: 135px;
+                            left: 0;
+                            right: auto;
+                            bottom: 0;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                        }
+                    }
+    
+                    &.cta-align-center { 
+                        .header-right {
+                            position: absolute;
+                            top: 150px;
+                            right: 0;
+                            bottom: 0;
+                            width: 100%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                        }
                     }
                 }
-
-                &.cta-align-left { 
+    
+                &.links-align-right {
+    
                     .header-right {
-                        position: absolute;
-                        left: 0;
-                        right: auto;
-                        bottom: 0;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                    }
-
-                    .main-links-container  {
                         position: absolute;
                         top: 0;
                         right: 0;
@@ -552,9 +551,69 @@
                         display: flex;
                         align-items: center;
                         justify-content: center;
+                    }
+    
+                    &.cta-align-right {
+                        .main-links-container { 
+                            position: absolute;
+                            top: 135px;
+                            right: 0;
+                            left: auto;
+                            bottom: 0;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                        }
+                    }
+    
+                    &.cta-align-center { 
+                        .header-right {
+                            position: absolute;
+                            top: 150px;
+                            right: 0;
+                            bottom: 0;
+                            width: 100%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                        }
+    
+                        .main-links-container  {
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+                            bottom: 0;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                        }
+                    }
+    
+                    &.cta-align-left { 
+                        .header-right {
+                            position: absolute;
+                            left: 0;
+                            right: auto;
+                            bottom: 0;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                        }
+    
+                        .main-links-container  {
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+                            bottom: 0;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                        }
                     }
                 }
             }
+
+            
         }
 
        
