@@ -181,18 +181,6 @@ class SiteEdit extends Component {
                         conditionalPropertyActualValue: site && site.metadata.logoType
                     },
                     {
-                        type: "switch",
-                        label: "Auto logo size",
-                        updateFunction: (value) => {
-                            this.props.updateProperty("site", site, "logoAutoSize", value, () => {
-                                this.props.loadSite()
-                            })
-                        },
-                        active: site && site.metadata.logoAutoSize,
-                        conditionalPropertyExpectedValue: "image",
-                        conditionalPropertyActualValue: site && site.metadata.logoType
-                    },
-                    {
                         type: "numericInput",
                         label: "Logo Width",
                         updateFunction: (value) => {
@@ -215,6 +203,30 @@ class SiteEdit extends Component {
                         value: site && site.metadata.logoHeight,
                         conditionalPropertyExpectedValue: false,
                         conditionalPropertyActualValue: site && site.metadata.logoAutoSize
+                    },
+                    {
+                        type: "image",
+                        updateFunction: (value) => {
+                            console.log("here", value )
+                            this.props.updateProperty("site", site, "logoUrl", value, () => {
+                                this.props.loadSite()
+                            })
+                        },
+                        value: site && site.metadata.logoUrl,
+                        conditionalPropertyExpectedValue: "image",
+                        conditionalPropertyActualValue: site && site.metadata.logoType
+                    },
+                    {
+                        type: "switch",
+                        label: "Auto logo size",
+                        updateFunction: (value) => {
+                            this.props.updateProperty("site", site, "logoAutoSize", value, () => {
+                                this.props.loadSite()
+                            })
+                        },
+                        active: site && site.metadata.logoAutoSize,
+                        conditionalPropertyExpectedValue: "image",
+                        conditionalPropertyActualValue: site && site.metadata.logoType
                     },
                 ]
             },

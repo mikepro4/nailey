@@ -12,6 +12,7 @@ import EditorSelect from "./editorSelect"
 import EditorSelectAsync from "./editorSelectAsync"
 import EditorTab from "./editorTab"
 import EditorCRUD from "./editorCRUD"
+import EditorImage from "./editorImage"
 
 
 class EditorSection extends Component {
@@ -71,6 +72,10 @@ class EditorSection extends Component {
             case "CRUD":
                 return(
                     this.conditionalRender(component, <EditorCRUD key={i} options={component} updateFunction={(value) => component.updateFunction(value)}/>)
+                )
+            case "image":
+                return(
+                    this.conditionalRender(component, <EditorImage key={i} options={component} updateFunction={(value) => component.updateFunction(value)}/>)
                 )
         }
     }

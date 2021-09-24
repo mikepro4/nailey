@@ -18,6 +18,14 @@ class EditorInput extends Component {
         }
     }
 
+    componentDidUpdate(prevprops) { 
+        if(prevprops.options.value !== this.props.options.value) {
+            this.setState({
+                value: this.props.options.value
+            })
+        }
+    }
+
     handleInputChange = (event) => {
       this.setState({
           value: event.target.value
