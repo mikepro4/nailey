@@ -12,6 +12,12 @@ import DragHandle from "../../components/svg/dragHandle"
 
 import EditorEditableField from "./editorEditableField"
 
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
+
+import Example from "./editorDraggableContainer"
+
+
 class EditorLinker extends Component {
 
     constructor(props) {
@@ -173,10 +179,12 @@ class EditorLinker extends Component {
                 })}
             >
                 <div className="input-label">{this.props.options.label}</div>
-
-                {this.state.results.map((item, i) => {
-                    return this.renderItem(item, i)
-                })}
+                <DndProvider backend={HTML5Backend}>
+                    {/* {this.state.results.map((item, i) => {
+                        return this.renderItem(item, i)
+                    })} */}
+                    <Example/>
+                </DndProvider>
 
                 <Button 
                     icon="plus"
