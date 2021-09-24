@@ -14,15 +14,15 @@ class EditBar extends Component {
     state = {
         sections: [
             {
-                title: "Project",
+                title: "Projects",
                 drawerType: "project-settings"
             },
             {
-                title: "Site",
+                title: "Sites",
                 drawerType: "site-settings"
             },
             {
-                title: "Page",
+                title: "Pages",
                 drawerType: "page-settings"
             },
             {

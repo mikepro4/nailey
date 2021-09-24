@@ -13,6 +13,7 @@ import EditorSelectAsync from "./editorSelectAsync"
 import EditorTab from "./editorTab"
 import EditorCRUD from "./editorCRUD"
 import EditorImage from "./editorImage"
+import EditorLinker from "./editorLinker"
 
 
 class EditorSection extends Component {
@@ -76,6 +77,10 @@ class EditorSection extends Component {
             case "image":
                 return(
                     this.conditionalRender(component, <EditorImage key={i} options={component} updateFunction={(value) => component.updateFunction(value)}/>)
+                )
+            case "linker":
+                return(
+                    this.conditionalRender(component, <EditorLinker key={i} options={component} updateFunction={(value) => component.updateFunction(value)}/>)
                 )
         }
     }

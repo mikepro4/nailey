@@ -1,0 +1,44 @@
+.linker-item-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba($black, 0.1);
+   
+    .linker-icon-container {
+        padding: 5px;
+        margin-right: 10px;
+        cursor: pointer;
+        opacity: 0.3;
+        transition: all 1s $animation_easing;
+
+        &:hover {
+            opacity: 1;
+        }
+
+        &.home {
+            opacity: 1;
+        }
+    }
+
+    .linker-item-left {
+        display: flex;
+        align-items: center;
+        flex-grow: 1;
+        flex-shrink: 1;
+
+        .title-editable {
+            width: 100%;
+            font-size: 18px;
+        }
+
+    }
+    .linker-item-right {
+        display: flex;
+
+        .main-button {
+            margin-left: 20px;
+        }
+    }
+}

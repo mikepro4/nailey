@@ -52,7 +52,7 @@ class SiteEdit extends Component {
                 collapsible: true,
                 components: [
                     {
-                        type: "CRUD",
+                        type: "linker",
                         model: {
                             title: "Untitled",
                             sections: []
