@@ -67,7 +67,16 @@ class Header extends Component {
         if(this.props.site.logoPosition == "left") {
             return(
                 <div 
-                    className="header-wrapper logo-align-left"
+                    className={classNames({
+                        "header-wrapper": true,
+                        "logo-align-left": true,
+                        "links-align-center": this.props.site.mainLinksPosition == "center",
+                        "links-align-left": this.props.site.mainLinksPosition == "left",
+                        "links-align-right": this.props.site.mainLinksPosition == "right",
+                        "cta-align-center": this.props.site.mainCTAPosition == "center",
+                        "cta-align-left": this.props.site.mainCTAPosition == "left",
+                        "cta-align-right": this.props.site.mainCTAPosition == "right",
+                    })}
                 >
                     <Logo/>
                     <MainLinks />
@@ -80,7 +89,16 @@ class Header extends Component {
         if(this.props.site.logoPosition == "center") {
             return(
                 <div 
-                    className="header-wrapper logo-align-center"
+                    className={classNames({
+                        "header-wrapper": true,
+                        "logo-align-center": true,
+                        "links-align-center": this.props.site.mainLinksPosition == "center",
+                        "links-align-left": this.props.site.mainLinksPosition == "left",
+                        "links-align-right": this.props.site.mainLinksPosition == "right",
+                        "cta-align-center": this.props.site.mainCTAPosition == "center",
+                        "cta-align-left": this.props.site.mainCTAPosition == "left",
+                        "cta-align-right": this.props.site.mainCTAPosition == "right",
+                    })}
                 >
                     <MainLinks />
                     <Logo/>
@@ -93,7 +111,16 @@ class Header extends Component {
         if(this.props.site.logoPosition == "right") {
             return(
                 <div 
-                    className="header-wrapper logo-align-center"
+                    className={classNames({
+                        "header-wrapper": true,
+                        "logo-align-right": true,
+                        "links-align-center": this.props.site.mainLinksPosition == "center",
+                        "links-align-left": this.props.site.mainLinksPosition == "left",
+                        "links-align-right": this.props.site.mainLinksPosition == "right",
+                        "cta-align-center": this.props.site.mainCTAPosition == "center",
+                        "cta-align-left": this.props.site.mainCTAPosition == "left",
+                        "cta-align-right": this.props.site.mainCTAPosition == "right",
+                    })}
                 >
                     <MainLinks />
                     {this.renderCTA()}
