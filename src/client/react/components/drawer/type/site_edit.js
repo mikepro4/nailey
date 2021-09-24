@@ -15,7 +15,7 @@ import Cross from "../../svg/cross"
 import { hideDrawer, showDrawer, updateProperty, getOptions } from "../../../../redux/actions/appActions"
 
 import { setMainSite, loadSite } from "../../../../redux/actions/sitesActions"
-import { allSitePages, createPage } from "../../../../redux/actions/pagesActions"
+import { allSitePages, createPage, deletePage } from "../../../../redux/actions/pagesActions"
 
 
 class SiteEdit extends Component {
@@ -80,7 +80,11 @@ class SiteEdit extends Component {
                                 success()
                             })
                         },
-                        value: site && site.metadata.pages
+                        deleteFunction: (pageId, pageItem, success) => {
+                            this.props.deletePage(pageId, pageItem, () => {
+                                success()
+                            })
+                        },
                     }
                 ],
 
@@ -501,5 +505,6 @@ export default withRouter(connect(mapStateToProps, {
     loadSite,
     getOptions,
     allSitePages,
-    createPage
+    createPage,
+    deletePage
 })(SiteEdit));

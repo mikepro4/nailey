@@ -43,9 +43,7 @@ class EditorLinker extends Component {
         this.props.updateFunction(value)
     }
 
-    removeItem = (item) => {
-
-    }
+   
 
     handleChange =(event, item) => {
         let keyToUpdateIndex = _.findIndex(this.state.value, item);
@@ -156,6 +154,12 @@ class EditorLinker extends Component {
             </div>
         )
        
+    }
+
+    removeItem = (item) => {
+        this.props.options.deleteFunction(item._id, item, () => {
+            this.loadResults()
+        })
     }
 
     addItem = () => {
