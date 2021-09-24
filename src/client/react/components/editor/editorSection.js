@@ -22,7 +22,7 @@ class EditorSection extends Component {
     }
 
     componentDidMount() {
-        if(this.props.section.title == "Sizing") {
+        if(this.props.section.title == "Header") {
             this.setState({
                 active: true
             })

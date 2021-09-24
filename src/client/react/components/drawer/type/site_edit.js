@@ -28,8 +28,8 @@ class SiteEdit extends Component {
     };
 
     render() {
-        let site = this.props.site.currentSite
-        // let site = this.props.site.newSite
+        // let site = this.props.site.currentSite
+        let site = this.props.site.newSite
         let siteEditorConfiguration = [
             {
                 collapsible: false,
@@ -272,7 +272,122 @@ class SiteEdit extends Component {
             {
                 title: "Header",
                 collapsible: true,
-                components: []
+                components: [
+                    {
+                        label: "Logo position",
+                        type: "tab",
+                        updateFunction: (value) => {
+                            this.props.updateProperty("site", site, "logoPosition", value, () => {
+                                this.props.loadSite()
+                            })
+                        },
+                        tabOptions: [{
+                            value: "left",
+                            label: "Left"
+                        },
+                        {
+                            value: "center",
+                            label: "Center"
+                        },
+                        {
+                            value: "right",
+                            label: "Right"
+                        }],
+                        value: site && site.metadata.logoPosition
+                    },
+                    {
+                        type: "switch",
+                        label: "Display main links",
+                        updateFunction: (value) => {
+                            this.props.updateProperty("site", site, "mainLinks", value, () => {
+                                this.props.loadSite()
+                            })
+                        },
+                        active: site && site.metadata.mainLinks,
+                    },
+                    {
+                        label: "Main links position",
+                        type: "tab",
+                        updateFunction: (value) => {
+                            this.props.updateProperty("site", site, "mainLinksPosition", value, () => {
+                                this.props.loadSite()
+                            })
+                        },
+                        tabOptions: [{
+                            value: "left",
+                            label: "Left"
+                        },
+                        {
+                            value: "center",
+                            label: "Center"
+                        },
+                        {
+                            value: "right",
+                            label: "Right"
+                        }],
+                        value: site && site.metadata.mainLinksPosition,
+                        conditionalPropertyExpectedValue: true,
+                        conditionalPropertyActualValue: site && site.metadata.mainLinks
+                    },
+                    {
+                        type: "switch",
+                        label: "Display main CTA",
+                        updateFunction: (value) => {
+                            this.props.updateProperty("site", site, "mainCTA", value, () => {
+                                this.props.loadSite()
+                            })
+                        },
+                        active: site && site.metadata.mainCTA,
+                    },
+                    {
+                        label: "Main CTA Position",
+                        type: "tab",
+                        updateFunction: (value) => {
+                            this.props.updateProperty("site", site, "mainCTAPosition", value, () => {
+                                this.props.loadSite()
+                            })
+                        },
+                        tabOptions: [{
+                            value: "left",
+                            label: "Left"
+                        },
+                        {
+                            value: "center",
+                            label: "Center"
+                        },
+                        {
+                            value: "right",
+                            label: "Right"
+                        }],
+                        value: site && site.metadata.mainCTAPosition,
+                        conditionalPropertyExpectedValue: true,
+                        conditionalPropertyActualValue: site && site.metadata.mainCTA
+                    },
+                    {
+                        type: "input",
+                        label: "Main CTA Text",
+                        updateFunction: (value) => {
+                            this.props.updateProperty("site", site, "mainCTAText", value, () => {
+                                this.props.loadSite()
+                            })
+                        },
+                        value: site && site.metadata.mainCTAText,
+                        conditionalPropertyExpectedValue: true,
+                        conditionalPropertyActualValue: site && site.metadata.mainCTA
+                    },
+                    {
+                        type: "input",
+                        label: "Main CTA URL",
+                        updateFunction: (value) => {
+                            this.props.updateProperty("site", site, "mainCTAURL", value, () => {
+                                this.props.loadSite()
+                            })
+                        },
+                        value: site && site.metadata.mainCTAURL,
+                        conditionalPropertyExpectedValue: true,
+                        conditionalPropertyActualValue: site && site.metadata.mainCTA
+                    }
+                ]
             },
             {
                 title: "Footer",
