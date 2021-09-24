@@ -28,9 +28,10 @@ class SiteEdit extends Component {
     };
 
     render() {
-        // let site = this.props.site.currentSite
-        let site = this.props.site.newSite
+        let site = this.props.site.currentSite
+        // let site = this.props.site.newSite
         let siteEditorConfiguration = [
+            
             {
                 collapsible: false,
                 components: [
@@ -45,6 +46,27 @@ class SiteEdit extends Component {
                         active: site && site.metadata.main
                     }
                 ]
+            },
+            {
+                title: "Pages",
+                collapsible: true,
+                components: [
+                    {
+                        type: "CRUD",
+                        model: {
+                            title: "Untitled",
+                            sections: []
+                        },
+                        property: "pages",
+                        updateFunction: (value) => {
+                            this.props.updateProperty("site", site, "pages", value, () => {
+                                this.props.loadSite()
+                            })
+                        },
+                        value: site && site.metadata.pages
+                    }
+                ],
+
             },
             {
                 title: "Meta",
@@ -405,28 +427,7 @@ class SiteEdit extends Component {
                 title: "Footer",
                 collapsible: true,
                 components: []
-            },
-            {
-                title: "Pages",
-                collapsible: true,
-                components: [
-                    {
-                        type: "CRUD",
-                        model: {
-                            title: "Untitled",
-                            sections: []
-                        },
-                        property: "pages",
-                        updateFunction: (value) => {
-                            this.props.updateProperty("site", site, "pages", value, () => {
-                                this.props.loadSite()
-                            })
-                        },
-                        value: site && site.metadata.pages
-                    }
-                ],
-
-            },
+            }
 
         ]
         return (

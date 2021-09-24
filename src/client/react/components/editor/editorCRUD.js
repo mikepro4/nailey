@@ -85,27 +85,40 @@ class EditorCRUD extends Component {
 
     renderItem = (item, i) => {
         return (
-            <div key={i}>
+            <div className="crud-item-container" key={i}>
 
-                <ContentEditable
-                    ref="name"
-                    className="title-editable"
-                    html={item.title} // innerHTML of the editable div
-                    disabled={false} // use true to disable edition
-                    onChange={(event) => this.handleChange(event, item)} // handle innerHTML change
-                    onKeyDown={this.handleKeydown}
-                />
+                <div className="crud-item-left">
+                    <ContentEditable
+                        ref="name"
+                        className="title-editable"
+                        html={item.title} // innerHTML of the editable div
+                        disabled={false} // use true to disable edition
+                        onChange={(event) => this.handleChange(event, item)} // handle innerHTML change
+                        onKeyDown={this.handleKeydown}
+                    />
 
-                <Button 
-                    icon="trash"
-                    minimal={true}
-                    onClick={() => this.removeItem(item)}
-                />
-                <Button 
-                    icon="duplicate"
-                    minimal={true}
-                    onClick={() => this.duplicateItem(item)}
-                />
+                </div>
+
+                <div className="crud-item-right">
+                    <Button 
+                        icon="trash"
+                        minimal={true}
+                        onClick={() => this.removeItem(item)}
+                    />
+                    <Button 
+                        icon="duplicate"
+                        minimal={true}
+                        onClick={() => this.duplicateItem(item)}
+                    />
+                    <Button 
+                        icon="edit"
+                        onClick={() => console.log("edit page")}
+                    />
+                    
+
+                </div>
+                
+                
             </div>
         )
     }

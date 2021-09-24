@@ -1,0 +1,27 @@
+.crud-item-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba($black, 0.1);
+
+    .crud-item-left {
+        display: flex;
+        align-items: center;
+        flex-grow: 1;
+        flex-shrink: 1;
+
+        .title-editable {
+            width: 100%;
+        }
+
+    }
+    .crud-item-right {
+        display: flex;
+
+        .main-button {
+            margin-left: 20px;
+        }
+    }
+}
