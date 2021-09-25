@@ -14,8 +14,16 @@ import EditorEditableField from "./editorEditableField"
 
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
+import { TouchBackend } from 'react-dnd-touch-backend'
 
-import Example from "./editorDraggableContainer"
+import { Preview } from 'react-dnd-preview'
+
+import EditorDraggableContainer from "./editorDraggableContainer"
+
+const generatePreview = ({itemType, item, style}) => {
+    console.log(style)
+    return <div className="item-list__item" style={style}>{itemType}</div>
+}
 
 
 class EditorLinker extends Component {
@@ -38,6 +46,7 @@ class EditorLinker extends Component {
 
     loadResults() {
         this.props.options.loadResults((results) => {
+            console.log(results)
             this.setState({
                 results: results
             })
@@ -171,6 +180,14 @@ class EditorLinker extends Component {
     }
 
     render() {
+
+        let dndBackend 
+
+        if(this.props.app.clientWidth < 500) {
+            dndBackend = TouchBackend
+        } else {
+            dndBackend = HTML5Backend
+        }
         return (
             <div
                 className={classNames({
@@ -189,9 +206,11 @@ class EditorLinker extends Component {
                     onClick={() => this.addItem()}
                 />
 
-                <DndProvider backend={HTML5Backend}>
+                <DndProvider backend={dndBackend}>
+                    <EditorDraggableContainer results={this.state.results}/>
+
+                    {dndBackend == TouchBackend ? <Preview generator={generatePreview} /> : ""}
                     
-                    <Example/>
                 </DndProvider>
 
             </div>
