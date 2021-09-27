@@ -71,6 +71,7 @@ class EditorLinker extends Component {
     }
 
     loadResults() {
+        console.log("load results")
         this.props.options.loadResults((results) => {
 
             let newResults = _.map(this.props.options.collection, (item,i) => {
@@ -86,22 +87,10 @@ class EditorLinker extends Component {
         })
     }
 
-    handleInputChange = (value) => {
-        this.setState({
-            value: value
-        })
-        this.props.updateFunction(value)
-    }
 
-   
-
-    handleChange =(value, item) => {
-        this.setState({
-            value: value
-        }, () => {
-            this.props.options.updateItemFunction(value, item, () => {
-                this.loadResults()
-            })
+    handleChange = (value, item) => {
+        this.props.options.updateItemFunction(value, item, () => {
+            this.loadResults()
         })
     }
 
@@ -255,6 +244,7 @@ class EditorLinker extends Component {
                         updateFunction={this.props.updateFunction}
                         deleteFunction={this.removeItem}
                         duplicateFunction={this.duplicateItem}
+                        handleChange={this.handleChange}
                     />
 
                     {dndBackend == TouchBackend ? <Preview generator={this.generatePreview} /> : ""}

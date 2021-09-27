@@ -142,7 +142,7 @@ class EditorDraggableContainer extends Component {
 
                     <EditorEditableField
                         value={item.metadata.title}
-                        updateField={(value) => this.handleChange(value, item)}
+                        updateField={(value) => this.props.handleChange(value, item)}
                     />
  
                 </div>
