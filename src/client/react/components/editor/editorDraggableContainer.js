@@ -81,7 +81,6 @@ class EditorDraggableContainer extends Component {
       }
 
     moveCard = (dragIndex, hoverIndex) => {
-        clearInterval(this.state.timeInterval);
         const dragCard = this.state.results[dragIndex];
 
         this.setState({
@@ -92,45 +91,25 @@ class EditorDraggableContainer extends Component {
                 ],
             })
         })
+       
         // const timeInterval = setInterval(() => {
-        //     window.dispatchEvent(new Event('resize'));
-             
-        // }, 1000);
+        //     this.simulateTouchEvent(document, "touchend", [{
+        //         x: 100,
+        //         y: 100,
+        //         id: 1
+        //     }])
+        //     clearInterval(this.state.timeInterval);
+
+        // }, 2000);
 
         // this.setState({ timeInterval });
-        const timeInterval = setInterval(() => {
-            // const touch = new Touch({
-            //     identifier: "123",
-            //     target: document.getElementById('draggableContainer'),
-            //   });
-              
-            //   const touchEvent = new TouchEvent("touchstart", {
-            //     touches: [touch],
-            //     view: window,
-            //     cancelable: true,
-            //     bubbles: true,
-            //   });
-              
-            //   target.dispatchEvent(touchEvent);
-              this.simulateTouchEvent(document, "touchend", [{
-                  x: 100,
-                  y: 100,
-                  id: 1
-              }])
-              clearInterval(this.state.timeInterval);
-            // window.dispatchEvent(new Event('touchstart'));
-            // var e = new Event('touchstart');
-            // target.dispatchEvent(e);
-
-        }, 2000);
-
-        this.setState({ timeInterval });
     }
 
     renderItem(item, i) {
+
        
         return (
-            <div className="linker-item-container" key={i}>
+            <div className="linker-item-container">
 
                 <div className="linker-item-left">
                     <div className="linker-icon-container">

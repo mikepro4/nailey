@@ -91,7 +91,7 @@ class Image extends Component {
         let transform = `translateY(0px)`;
 
         if (this.props.slowDown) {
-            transform = `translateY(${this.props.totalScrolledPixels / this.props.slowDown}px)`
+            transform= `translate3d(0, ${this.props.totalScrolledPixels / this.props.slowDown}px, 0)`;
         }
 
         return transform

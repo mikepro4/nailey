@@ -37,21 +37,24 @@ class EditorLinker extends Component {
 
         let backendOptions 
 
-            const hasNative = document && (document.elementsFromPoint || document.msElementsFromPoint)
-            
-            function getDropTargetElementsAtPoint(x, y, dropTargets) {
-                return dropTargets.filter((t) => {
-                const rect = t.getBoundingClientRect()
-                return (
-                    x >= rect.left && x <= rect.right && y <= rect.bottom && y >= rect.top
-                )
-                })
-            }
-            
-            backendOptions = {
-                getDropTargetElementsAtPoint: !hasNative && getDropTargetElementsAtPoint,
-                delay: 1000
-            }
+        const hasNative = document && (document.elementsFromPoint || document.msElementsFromPoint)
+        
+        function getDropTargetElementsAtPoint(x, y, dropTargets) {
+            return dropTargets.filter((t) => {
+            const rect = t.getBoundingClientRect()
+            return (
+                x >= rect.left && x <= rect.right && y <= rect.bottom && y >= rect.top
+            )
+            })
+        }
+        
+        backendOptions = {
+            // getDropTargetElementsAtPoint: !hasNative && getDropTargetElementsAtPoint,
+            scrollAngleRanges: [
+                { start: 30, end: 150 },
+                { start: 210, end: 330 }
+            ],
+        }
             
 
         this.loadResults()
@@ -102,12 +105,16 @@ class EditorLinker extends Component {
     }
 
     generatePreview = ({itemType, item, style}) => {
-        console.log(item)
+        console.log(style)
         let finalItem = _.findIndex(this.state.results, {
             _id: item.id
         })
-        console.log(this.state.results[finalItem])
-        return <div className="item-list__item" style={style}>{this.renderItem(this.state.results[finalItem], item.index)}</div>
+        return (
+            <div className="item-list__item" style={style}>
+                <div className="generated-preview">
+                    {this.renderItem(this.state.results[finalItem], item.index)}
+                </div>
+            </div>)
     }
     
 
@@ -228,7 +235,7 @@ class EditorLinker extends Component {
                  */}
                
 
-                <DndProvider backend={dndBackend} options={this.state.backendOptions}>
+                <DndProvider backend={dndBackend} options={this.state.backendOptions} >
                     <EditorDraggableContainer results={this.state.results}/>
 
                     {dndBackend == TouchBackend ? <Preview generator={this.generatePreview} /> : ""}

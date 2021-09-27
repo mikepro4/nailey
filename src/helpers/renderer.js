@@ -44,8 +44,12 @@ export default (
 					return accumulatorString;
 				} else return ""
 			}, "");
-	};
-	// reduxStore.dispatch(push(expressRequest.path));
+    };
+    
+    // Get Theme here
+    // console.log(reduxStore.getState().site.currentSite.metadata)
+
+    let site = reduxStore.getState().site.currentSite.metadata
 
 	const content = renderToString(
 		<Provider store={reduxStore}>

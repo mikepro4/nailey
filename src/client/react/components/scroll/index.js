@@ -39,6 +39,7 @@ class Scroll extends Component {
             document.getElementById("body").scrollTop = this.props.scrollTo
             this.props.resetScrollTo()
         }
+        
 
     }
 
@@ -48,7 +49,7 @@ class Scroll extends Component {
 
     componentDidMount() {
         let node = document.getElementById("body")
-        window.addEventListener('scroll', this.handleScroll);
+        window.addEventListener('scroll', this.handleScroll, false);
         this.props.updateTotalPixels(node.scrollHeight, node.clientWidth, node.clientHeight)
 
         this.setState({
