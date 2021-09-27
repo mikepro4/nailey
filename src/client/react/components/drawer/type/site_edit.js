@@ -29,8 +29,8 @@ class SiteEdit extends Component {
     };
 
     render() {
-        // let site = this.props.site.currentSite
-        let site = this.props.site.newSite
+        let site = this.props.site.currentSite
+        // let site = this.props.site.newSite
         let siteEditorConfiguration = [
             
             {
@@ -59,6 +59,7 @@ class SiteEdit extends Component {
                             sections: []
                         },
                         property: "pages",
+                        collection: site && site.metadata.pages,
                         updateFunction: (value) => {
                             this.props.updateProperty("site", site, "pages", value, () => {
                                 this.props.loadSite()
@@ -71,6 +72,7 @@ class SiteEdit extends Component {
                         },
                         loadResults: (success) => {
                             this.props.allSitePages(site._id, (results) => {
+                                this.props.loadSite()
                                 success(results)
                             })
                         },
@@ -79,15 +81,19 @@ class SiteEdit extends Component {
                                 metadata: {
                                     title: "Page " + count,
                                     createdBy: this.props.user._id,
-                                    siteId: site._id
+                                    siteId: site._id,
                                 }
                             }, () => {
-                                success()
+                                this.props.loadSite(() => {
+                                     success()
+                                })
                             })
                         },
                         deleteFunction: (pageId, pageItem, success) => {
                             this.props.deletePage(pageId, pageItem, () => {
-                                success()
+                                this.props.loadSite(() => {
+                                    success()
+                               })
                             })
                         },
                         duplicateFunction: (item, success) => {
@@ -95,10 +101,13 @@ class SiteEdit extends Component {
                                 metadata: {
                                     ...item.metadata,
                                     title: "Copy of " + item.metadata.title,
+                                    order: item.metadata.order + 1,
                                     home: false
                                 }
                             }, () => {
-                                success()
+                                this.props.loadSite(() => {
+                                    success()
+                               })
                             })
                         },
                     }

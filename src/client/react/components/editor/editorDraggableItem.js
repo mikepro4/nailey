@@ -62,6 +62,7 @@ export const EditorDraggableItem = ({ id, text, index, moveCard, children }) => 
         }),
     });
     const opacity = isDragging ? 0 : 1;
+
     drag(drop(ref));
     return (<div ref={ref} style={{ ...style, opacity }} data-handler-id={handlerId}>
 			{children}

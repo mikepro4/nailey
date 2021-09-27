@@ -83,6 +83,13 @@ class EditorDraggableContainer extends Component {
     moveCard = (dragIndex, hoverIndex) => {
         const dragCard = this.state.results[dragIndex];
 
+        let originalResults = _.map(this.state.results, (result, i) => {
+            return({
+                pageId: result._id,
+                order: i
+            })
+        })
+
         this.setState({
             results: update(this.state.results, {
                 $splice: [
@@ -90,7 +97,24 @@ class EditorDraggableContainer extends Component {
                     [hoverIndex, 0, dragCard],
                 ],
             })
+        }, () => {
+            
+
+            setTimeout(() => {
+                let newResults = _.map(this.state.results, (result, i) => {
+                    return({
+                        pageId: result._id,
+                        order: i
+                    })
+                })
+                if(!_.isEmpty(originalResults) && !_.isEqual(originalResults, newResults)) {
+                    console.log(newResults)
+                    this.props.updateFunction(newResults)
+                }
+            }, 500)
+            
         })
+
        
         // const timeInterval = setInterval(() => {
         //     this.simulateTouchEvent(document, "touchend", [{
@@ -127,12 +151,12 @@ class EditorDraggableContainer extends Component {
                     <Button 
                         icon="trash"
                         minimal={true}
-                        onClick={() => this.removeItem(item)}
+                        onClick={() => this.props.deleteFunction(item)}
                     />
                     <Button 
                         icon="duplicate"
                         minimal={true}
-                        onClick={() => this.duplicateItem(item)}
+                        onClick={() => this.props.duplicateFunction(item)}
                     />
                     <Button 
                         icon="edit"

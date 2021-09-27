@@ -64,12 +64,24 @@ class EditorLinker extends Component {
         })
 
     }
+    componentDidUpdate(prevprops) {
+        if(!_.isEqual(prevprops.options.collection, this.props.options.collection)) {
+            this.loadResults()
+        }
+    }
 
     loadResults() {
         this.props.options.loadResults((results) => {
-            console.log(results)
+
+            let newResults = _.map(this.props.options.collection, (item,i) => {
+                let pageIndex = _.findIndex(results, {
+                    _id: item.pageId
+                })
+
+                return (results[pageIndex])
+            })
             this.setState({
-                results: results
+                results: newResults
             })
         })
     }
@@ -102,10 +114,12 @@ class EditorLinker extends Component {
 
 
     duplicateItem = (item) => {
+        this.props.options.duplicateFunction(item, () => {
+            this.loadResults()
+        })
     }
 
     generatePreview = ({itemType, item, style}) => {
-        console.log(style)
         let finalItem = _.findIndex(this.state.results, {
             _id: item.id
         })
@@ -236,7 +250,12 @@ class EditorLinker extends Component {
                
 
                 <DndProvider backend={dndBackend} options={this.state.backendOptions} >
-                    <EditorDraggableContainer results={this.state.results}/>
+                    <EditorDraggableContainer 
+                        results={this.state.results} 
+                        updateFunction={this.props.updateFunction}
+                        deleteFunction={this.removeItem}
+                        duplicateFunction={this.duplicateItem}
+                    />
 
                     {dndBackend == TouchBackend ? <Preview generator={this.generatePreview} /> : ""}
                     
