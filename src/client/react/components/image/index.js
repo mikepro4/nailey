@@ -103,6 +103,7 @@ class Image extends Component {
                 <div className="image-wrapper"
                     ref={this.props.imageId}
                 >
+                    <img src={this.props.url} />
                 </div>
             )
         }

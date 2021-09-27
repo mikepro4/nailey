@@ -33,9 +33,14 @@ import React, { Component, useState, useCallback } from "react";
 import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
 import classNames from "classnames"
-import { Card } from './editorDraggableItem';
+import { EditorDraggableItem } from './editorDraggableItem';
 import update from 'immutability-helper';
 import * as _ from "lodash"
+import Button from "../button/"
+import EditorEditableField from "./editorEditableField"
+import DragHandle from "../../components/svg/dragHandle"
+
+
 
 class EditorDraggableContainer extends Component {
 
@@ -55,7 +60,28 @@ class EditorDraggableContainer extends Component {
         }
     }
 
+    simulateTouchEvent(element, type, touches) {
+        const touchEvents = [];
+      
+        touches.forEach((touch) => {
+          touchEvents.push(new Touch({
+            clientX: touch.x,
+            clientY: touch.y,
+            identifier: touch.id,
+            target: element,
+          }));
+        });
+      
+        element.dispatchEvent(new TouchEvent(type, {
+          touches: touchEvents,
+          view: window,
+          cancelable: true,
+          bubbles: true,
+        }));
+      }
+
     moveCard = (dragIndex, hoverIndex) => {
+        clearInterval(this.state.timeInterval);
         const dragCard = this.state.results[dragIndex];
 
         this.setState({
@@ -66,10 +92,87 @@ class EditorDraggableContainer extends Component {
                 ],
             })
         })
+        // const timeInterval = setInterval(() => {
+        //     window.dispatchEvent(new Event('resize'));
+             
+        // }, 1000);
+
+        // this.setState({ timeInterval });
+        const timeInterval = setInterval(() => {
+            // const touch = new Touch({
+            //     identifier: "123",
+            //     target: document.getElementById('draggableContainer'),
+            //   });
+              
+            //   const touchEvent = new TouchEvent("touchstart", {
+            //     touches: [touch],
+            //     view: window,
+            //     cancelable: true,
+            //     bubbles: true,
+            //   });
+              
+            //   target.dispatchEvent(touchEvent);
+              this.simulateTouchEvent(document, "touchend", [{
+                  x: 100,
+                  y: 100,
+                  id: 1
+              }])
+              clearInterval(this.state.timeInterval);
+            // window.dispatchEvent(new Event('touchstart'));
+            // var e = new Event('touchstart');
+            // target.dispatchEvent(e);
+
+        }, 2000);
+
+        this.setState({ timeInterval });
     }
 
+    renderItem(item, i) {
+       
+        return (
+            <div className="linker-item-container" key={i}>
+
+                <div className="linker-item-left">
+                    <div className="linker-icon-container">
+                        <DragHandle/>
+                    </div>
+
+                    <EditorEditableField
+                        value={item.metadata.title}
+                        updateField={(value) => this.handleChange(value, item)}
+                    />
+ 
+                </div>
+
+                <div className="linker-item-right">
+                    <Button 
+                        icon="trash"
+                        minimal={true}
+                        onClick={() => this.removeItem(item)}
+                    />
+                    <Button 
+                        icon="duplicate"
+                        minimal={true}
+                        onClick={() => this.duplicateItem(item)}
+                    />
+                    <Button 
+                        icon="edit"
+                        onClick={() => console.log("edit page")}
+                    />
+                </div>
+                
+                
+            </div>
+        )
+    }
+
+
     renderCard = (card, i) => {
-        return (<Card key={card._id} index={i} id={card._id} text={card.metadata.title} moveCard={this.moveCard}/>);
+        return (
+            <EditorDraggableItem key={card._id} index={i} id={card._id} text={card.metadata.title} moveCard={this.moveCard}>
+                {this.renderItem(card, i)}
+            </EditorDraggableItem>
+        );
     }
 
     render() {
@@ -78,9 +181,10 @@ class EditorDraggableContainer extends Component {
                 className={classNames({
                     "editor-draggable-container": true,
                 })}
+                id="draggableContainer"
             > 
 
-                <div style={{ width: "200px"}} >
+                <div >
                     {this.state.results.map((card, i) => this.renderCard(card, i))}
                 </div>
                 

@@ -5,6 +5,7 @@
     margin-bottom: 10px;
     padding-bottom: 10px;
     border-bottom: 1px solid rgba($black, 0.1);
+    position: relative;
    
     .linker-icon-container {
         padding: 5px;
@@ -36,8 +37,16 @@
     }
     .linker-item-right {
         display: flex;
+        // position: absolute;
+        // top: 0;
+        // right: 0;
+        // overflow: hidden;
+        // height: 40px;
 
         .main-button {
+            &:before {
+                display: none;
+            }
             margin-left: 10px;
         }
     }

@@ -126,6 +126,7 @@ class SectionHero extends Component {
 
                     <Image
                         className="image-2"
+                        url="https://res.cloudinary.com/hasana/image/upload/v1632640977/Rectangle_7_np80od.png"
                         imageId={2}
                         isVisible={isVisible}
                         slowDown={2}

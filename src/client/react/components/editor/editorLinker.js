@@ -20,12 +20,6 @@ import { Preview } from 'react-dnd-preview'
 
 import EditorDraggableContainer from "./editorDraggableContainer"
 
-const generatePreview = ({itemType, item, style}) => {
-    console.log(style)
-    return <div className="item-list__item" style={style}>{itemType}</div>
-}
-
-
 class EditorLinker extends Component {
 
     constructor(props) {
@@ -33,15 +27,39 @@ class EditorLinker extends Component {
         this.contentEditable = React.createRef();
         this.state = {
             value: [],
-            results: []
+            results: [],
+            backendOptions: {}
         };
     };
 
     componentDidMount() {
+        
+
+        let backendOptions 
+
+            const hasNative = document && (document.elementsFromPoint || document.msElementsFromPoint)
+            
+            function getDropTargetElementsAtPoint(x, y, dropTargets) {
+                return dropTargets.filter((t) => {
+                const rect = t.getBoundingClientRect()
+                return (
+                    x >= rect.left && x <= rect.right && y <= rect.bottom && y >= rect.top
+                )
+                })
+            }
+            
+            backendOptions = {
+                getDropTargetElementsAtPoint: !hasNative && getDropTargetElementsAtPoint,
+                delay: 1000
+            }
+            
+
         this.loadResults()
         this.setState({
-            value: this.props.options.value
+            value: this.props.options.value,
+            backendOptions: backendOptions
         })
+
     }
 
     loadResults() {
@@ -83,10 +101,17 @@ class EditorLinker extends Component {
     duplicateItem = (item) => {
     }
 
+    generatePreview = ({itemType, item, style}) => {
+        console.log(item)
+        let finalItem = _.findIndex(this.state.results, {
+            _id: item.id
+        })
+        console.log(this.state.results[finalItem])
+        return <div className="item-list__item" style={style}>{this.renderItem(this.state.results[finalItem], item.index)}</div>
+    }
+    
+
     renderItem = (item, i) => {
-        if(item.metadata.home) {
-            return this.renderHome(item, i)
-        }
         return (
             <div className="linker-item-container" key={i}>
 
@@ -188,6 +213,7 @@ class EditorLinker extends Component {
         } else {
             dndBackend = HTML5Backend
         }
+
         return (
             <div
                 className={classNames({
@@ -196,22 +222,24 @@ class EditorLinker extends Component {
                 })}
             >
                 <div className="input-label">{this.props.options.label}</div>
-                {this.state.results.map((item, i) => {
+                {/* {this.state.results.map((item, i) => {
                         return this.renderItem(item, i)
                     })}
-                
+                 */}
+               
+
+                <DndProvider backend={dndBackend} options={this.state.backendOptions}>
+                    <EditorDraggableContainer results={this.state.results}/>
+
+                    {dndBackend == TouchBackend ? <Preview generator={this.generatePreview} /> : ""}
+                    
+                </DndProvider>
+
                 <Button 
                     icon="plus"
                     minimal={true}
                     onClick={() => this.addItem()}
                 />
-
-                <DndProvider backend={dndBackend}>
-                    <EditorDraggableContainer results={this.state.results}/>
-
-                    {dndBackend == TouchBackend ? <Preview generator={generatePreview} /> : ""}
-                    
-                </DndProvider>
 
             </div>
         );
