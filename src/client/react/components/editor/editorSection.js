@@ -23,11 +23,11 @@ class EditorSection extends Component {
     }
 
     componentDidMount() {
-        if(this.props.section.title == "Pages") {
-            this.setState({
-                active: true
-            })
-        }
+        // if(this.props.section.title == "Pages") {
+        //     this.setState({
+        //         active: true
+        //     })
+        // }
     }
 
     conditionalRender(component, children) {

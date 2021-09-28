@@ -173,11 +173,13 @@ class EditorDraggableContainer extends Component {
 
 
     renderCard = (card, i) => {
-        return (
-            <EditorDraggableItem key={card._id} index={i} id={card._id} text={card.metadata.title} moveCard={this.moveCard}>
-                {this.renderItem(card, i)}
-            </EditorDraggableItem>
-        );
+        if(card) {
+            return (
+                <EditorDraggableItem key={card._id} index={i} id={card._id} text={card.metadata.title} moveCard={this.moveCard}>
+                    {this.renderItem(card, i)}
+                </EditorDraggableItem>
+            );
+        }
     }
 
     render() {

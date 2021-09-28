@@ -7,12 +7,13 @@ import { Icon, Classes, Intent, Position, Toaster } from "@blueprintjs/core";
 import qs from "qs";
 import * as _ from "lodash"
 
-import { updateCollection, uncheckAll } from "../../../../redux/actions/appActions"
-import { createPage, searchPages, loadPage, deletePage, updatePageProperty, setMainPage} from "../../../../redux/actions/pagesActions"
-import { loadSite} from "../../../../redux/actions/sitesActions"
+import { hideDrawer, showDrawer, updateProperty, getOptions, updateCollection } from "../../../../redux/actions/appActions"
 
-import Button from "../../button"
-import ListResults from "../../list"
+import { setMainSite, loadSite, loadNewSiteAsync } from "../../../../redux/actions/sitesActions"
+import { allSitePages, createPage, deletePage } from "../../../../redux/actions/pagesActions"
+
+
+import Editor from "../../editor"
 
 
 class PageSettings extends Component {
@@ -35,6 +36,76 @@ class PageSettings extends Component {
 
 
     render() {
+        let site = this.props.site.currentSite
+
+        let loadCurrent = true
+
+        let pagesEditor = [
+            {
+                components: [
+                    {
+                        type: "linker",
+                        collection: site && site.metadata.pages,
+                        updateFunction: (value) => {
+                            this.props.updateProperty("site", site, "pages", value, () => {
+                                this.props.loadNewSiteAsync(site._id, loadCurrent)
+                            })
+                        },
+                        updateItemFunction: (value, item, success) => {
+                            this.props.updateProperty("page", item, "title", value, () => {
+                                success()
+                            })
+                        },
+                        loadResults: (success) => {
+                            this.props.allSitePages(site._id, (results) => {
+                                this.props.loadNewSiteAsync(site._id, loadCurrent)
+                                success(results)
+                            })
+                        },
+                        createFunction: (count, success) => {
+                            this.props.createPage({
+                                metadata: {
+                                    title: "Page " + count,
+                                    createdBy: this.props.user._id,
+                                    siteId: site._id,
+                                },
+                                pagesCount: count
+                            }, () => {
+                                this.props.loadNewSiteAsync(site._id, loadCurrent, () => {
+                                     success()
+                                     this.props.updateCollection(true)
+                                })
+                            })
+                        },
+                        deleteFunction: (pageId, pageItem, success) => {
+                            this.props.deletePage(pageId, pageItem, () => {
+                                this.props.loadNewSiteAsync(site._id, loadCurrent, () => {
+                                    success()
+                                })
+                            })
+                        },
+                        duplicateFunction: (item, success) => {
+                            this.props.createPage({
+                                metadata: {
+                                    ...item.metadata,
+                                    title: "Copy of " + item.metadata.title,
+                                    order: item.metadata.order + 1,
+                                    home: false
+                                },
+                                pagesCount: site.metadata.pages.length
+                            }, () => {
+                                this.props.updateCollection(true)
+                                this.props.loadNewSiteAsync(site._id, loadCurrent, () => {
+                                    success()
+                                })
+                            })
+                        },
+                    }
+                ],
+
+            }
+  
+        ]
         return (
             <div className={"app-drawer-content-container standard-drawer page-settings-drawer "}>
                 <div className={"drawer-action-header"}>
@@ -44,56 +115,15 @@ class PageSettings extends Component {
                     </div>
 
                     <div className="drawer-action-header-right">
-                        <Button
-                            label="Create page"
-                            onClick={() => {
-                                this.props.createPage({
-                                    metadata: {
-                                        title: "Untitled",
-                                        createdBy: this.props.user._id
-                                    }
-                                }, () => {
-                                    this.props.updateCollection(true)
-                                    this.props.loadPage()
-                                    this.props.loadSite()
-                                })
-                            }}
-                        />
+                        
                     
                     </div>
                 </div>
 
 
                 <div className="placeholder">
-                    <ListResults
-                        type="site"
-                        resultType="site"
-                        searchCollection={this.props.searchPages}
-                        onDelete={(item) => {
-                            this.props.deletePage(item._id, item, () => {
-                                this.props.updateCollection(true)
-                                this.props.loadPage()
-                                this.props.loadSite()
-                            })
-                        }}
-                        onCreate={(item) => {
-                            let finalItem = {
-                                ...item,
-                                metadata: {
-                                    ...item.metadata,
-                                    title: "Copy of " + item.metadata.title,
-                                    main: false
-                                }
-                            }
-                            this.props.createPage(finalItem, () => {
-                                this.props.updateCollection(true)
-                                this.props.loadPage()
-                                this.props.loadSite()
-                            })
-                        }}
-                        onEdit={(item, value) => {
-                            this.handleTitleChange(item, value)
-                        }}
+                    <Editor
+                        configuration={pagesEditor}
                     />
                 </div>
             </div>
@@ -109,17 +139,20 @@ function mapStateToProps(state) {
         app: state.app,
         user: state.app.user,
         authenticated: state.auth.authenticated,
+        site: state.site
     };
 }
 
 export default withRouter(connect(mapStateToProps, {
+    hideDrawer,
+    showDrawer,
+    updateProperty,
+    setMainSite,
+    loadSite,
+    getOptions,
+    allSitePages,
     createPage,
-    searchPages,
-    updateCollection,
-    loadPage,
     deletePage,
-    updatePageProperty,
-    uncheckAll,
-    setMainPage,
-    loadSite
+    loadNewSiteAsync,
+    updateCollection
 })(PageSettings));
