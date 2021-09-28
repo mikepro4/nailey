@@ -7,7 +7,7 @@ import { Icon, Classes, Intent, Position, Toaster } from "@blueprintjs/core";
 import qs from "qs";
 import * as _ from "lodash"
 
-import { updateCollection, uncheckAll } from "../../../../redux/actions/appActions"
+import { updateCollection, uncheckAll, showDrawer } from "../../../../redux/actions/appActions"
 import { createSection, searchSections, loadSection, deleteSection, updateSectionProperty, setMainSection} from "../../../../redux/actions/sectionsActions"
 import { loadSite} from "../../../../redux/actions/sitesActions"
 
@@ -94,6 +94,9 @@ class SectionSettings extends Component {
                         onEdit={(item, value) => {
                             this.handleTitleChange(item, value)
                         }}
+                        onItemEdit={(item) => {
+                            this.props.showDrawer("section-edit", item)
+                        }}
                     />
                 </div>
             </div>
@@ -121,5 +124,6 @@ export default withRouter(connect(mapStateToProps, {
     updateSectionProperty,
     uncheckAll,
     setMainSection,
-    loadSite
+    loadSite,
+    showDrawer
 })(SectionSettings));

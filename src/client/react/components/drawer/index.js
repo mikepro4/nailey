@@ -15,6 +15,7 @@ import SiteEdit from "./type/site_edit"
 import ThemeSettings from "./type/theme_settings"
 import SectionGodSettings from "./type/section_god_settings"
 import SectionUserSettings from "./type/section_user_settings"
+import SectionEdit from "./type/section_edit"
 import ProductSettings from "./type/product_settings"
 import FontSettings from "./type/font_settings"
 import PageSettings from "./type/page_settings"
@@ -61,6 +62,8 @@ class Drawer extends Component {
                 return (<ProjectEdit hideDrawer={() => this.hideDrawer()} enablePortal/>)
             case "page-edit":
                 return (<PageEdit hideDrawer={() => this.hideDrawer()} enablePortal/>)
+            case "section-edit":
+                return (<SectionEdit hideDrawer={() => this.hideDrawer()} enablePortal/>)
             default:
                 return ;
         }

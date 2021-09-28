@@ -248,3 +248,34 @@ export const updateSectionProperty = (sectionItem, property, value, success) => 
 }
 
 
+// ===========================================================================
+
+export const loadNewSectionAsync = (sectionId, loadCurrent, success) => async (
+    dispatch,
+	getState,
+	api
+) => {
+
+    await api
+        .post("/sections/item", {
+            sectionId: sectionId
+        })
+        .then(response => {
+            if (success) {
+                success(response.data);
+            }
+
+            dispatch({
+                type: LOAD_NEW_SECTION,
+                payload: response.data
+            });
+
+            if(loadCurrent) {
+                // dispatch(loadSite())
+            }
+
+        })
+        .catch(() => {
+            // dispatch(authError('Account with this email already exists'));
+        });
+}
