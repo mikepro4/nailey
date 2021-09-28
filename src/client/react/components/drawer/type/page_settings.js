@@ -12,7 +12,7 @@ import { hideDrawer, showDrawer, updateProperty, getOptions, updateCollection } 
 import { setMainSite, loadSite, loadNewSiteAsync } from "../../../../redux/actions/sitesActions"
 import { allSitePages, createPage, deletePage } from "../../../../redux/actions/pagesActions"
 
-
+import Cross from "../../svg/cross"
 import Editor from "../../editor"
 
 
@@ -116,7 +116,9 @@ class PageSettings extends Component {
 
                     <div className="drawer-action-header-right">
                         
-                    
+                        <div onClick={() => this.props.hideDrawer()}>
+                            <Cross />
+                        </div>
                     </div>
                 </div>
 

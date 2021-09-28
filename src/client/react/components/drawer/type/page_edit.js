@@ -17,6 +17,7 @@ import { hideDrawer, showDrawer, updateProperty, getOptions } from "../../../../
 import { setMainpage, loadNewPageAsync } from "../../../../redux/actions/pagesActions"
 
 
+
 class pageEdit extends Component {
 
     state = {
