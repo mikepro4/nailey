@@ -13,6 +13,8 @@ class HomePage extends Component {
     renderPage(page) {
         if(page) {
             return(<div>{page.metadata.title}</div>)
+        } else {
+            return(<div>404</div>)
         }
     }
     
