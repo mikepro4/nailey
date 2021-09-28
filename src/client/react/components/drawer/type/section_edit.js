@@ -39,7 +39,38 @@ class SectionEdit extends Component {
                                 })
                             },
                             value: section && section.metadata.title
+                        },
+                        {
+                            type: "input",
+                            label: "Headline",
+                            updateFunction: (value) => {
+                                this.props.updateProperty("section", section, "headline", value, () => {
+                                    this.props.loadNewSectionAsync(section._id, true)
+                                })
+                            },
+                            value: section && section.metadata.headline
+                        },
+                        {
+                            type: "input",
+                            label: "Description",
+                            updateFunction: (value) => {
+                                this.props.updateProperty("section", section, "description", value, () => {
+                                    this.props.loadNewSectionAsync(section._id, true)
+                                })
+                            },
+                            value: section && section.metadata.description
+                        },
+                        {
+                            type: "switch",
+                            label: "Display CTA",
+                            updateFunction: (value) => {
+                                this.props.updateProperty("section", section, "displayCTA", value, () => {
+                                    this.props.loadNewPageAsync(section._id, true)
+                                })
+                            },
+                            active: section && section.metadata.displayCTA,
                         }
+                           
                     ]
                 }
             ]
