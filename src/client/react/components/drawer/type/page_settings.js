@@ -113,7 +113,9 @@ class PageSettings extends Component {
                 <div className={"drawer-action-header"}>
                     
                     <div className="drawer-action-header-left">
-                        Pages
+                        <span className="drawer-action-header-title">
+                            Pages
+                        </span>
                     </div>
 
                     <div className="drawer-action-header-right">

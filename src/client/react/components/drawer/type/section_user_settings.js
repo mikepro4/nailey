@@ -64,7 +64,9 @@ class SectionUserSettings extends Component {
                 <div className={"drawer-action-header"}>
                     
                     <div className="drawer-action-header-left">
-                        Sections
+                        <span className="drawer-action-header-title">
+                            Sections
+                        </span>
                     </div>
 
                     <div className="drawer-action-header-right">
