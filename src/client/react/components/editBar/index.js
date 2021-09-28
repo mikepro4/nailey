@@ -14,7 +14,7 @@ class EditBar extends Component {
     state = {
         sections: [
             {
-                title: "Projects",
+                title: "Projects [GOD]",
                 drawerType: "project-settings"
             },
             {
@@ -26,22 +26,27 @@ class EditBar extends Component {
                 drawerType: "page-settings"
             },
             {
-                title: "Themes",
-                drawerType: "theme-settings"
-            },
-            {
                 title: "Sections",
-                drawerType: "section-settings"
-            },
-            {
-                title: "Products",
-                drawerType: "product-settings"
+                drawerType: "section-user-settings"
             },
             ,
             {
-                title: "Fonts",
-                drawerType: "font-settings"
-            }
+                title: "Sections [GOD]",
+                drawerType: "section-god-settings"
+            },
+            // {
+            //     title: "Themes",
+            //     drawerType: "theme-settings"
+            // },
+            // {
+            //     title: "Products",
+            //     drawerType: "product-settings"
+            // },
+            // ,
+            // {
+            //     title: "Fonts",
+            //     drawerType: "font-settings"
+            // }
         ]
     }
 

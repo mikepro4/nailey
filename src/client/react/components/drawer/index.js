@@ -13,7 +13,8 @@ import {
 import SiteSettings from "./type/site_settings"
 import SiteEdit from "./type/site_edit"
 import ThemeSettings from "./type/theme_settings"
-import SectionSettings from "./type/section_settings"
+import SectionGodSettings from "./type/section_god_settings"
+import SectionUserSettings from "./type/section_user_settings"
 import ProductSettings from "./type/product_settings"
 import FontSettings from "./type/font_settings"
 import PageSettings from "./type/page_settings"
@@ -44,8 +45,10 @@ class Drawer extends Component {
                 return (<SiteEdit hideDrawer={() => this.hideDrawer()} enablePortal/>)
             case "theme-settings":
                 return (<ThemeSettings hideDrawer={() => this.hideDrawer()} enablePortal/>)
-            case "section-settings":
-                return (<SectionSettings hideDrawer={() => this.hideDrawer()} enablePortal/>)
+            case "section-god-settings":
+                return (<SectionGodSettings hideDrawer={() => this.hideDrawer()} enablePortal/>)
+            case "section-user-settings":
+                return (<SectionUserSettings hideDrawer={() => this.hideDrawer()} enablePortal/>)
             case "product-settings":
                 return (<ProductSettings hideDrawer={() => this.hideDrawer()} enablePortal/>)
             case "font-settings":
