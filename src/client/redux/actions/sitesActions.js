@@ -9,6 +9,8 @@ import {
     CLEAR_NEW_SITE
 } from "./types";
 
+import { loadPage } from "./pagesActions"
+
 export const getMainSite = (success) => async (
     dispatch,
 	getState,
@@ -126,6 +128,8 @@ export const loadSite = (domain, success) => async (
                 type: LOAD_SITE,
                 payload: response.data
             });
+
+            dispatch(loadPage())
 
         })
         .catch(() => {

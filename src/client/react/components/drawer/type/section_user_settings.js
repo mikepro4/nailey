@@ -7,9 +7,11 @@ import { Icon, Classes, Intent, Position, Toaster } from "@blueprintjs/core";
 import qs from "qs";
 import * as _ from "lodash"
 
-import { updateCollection, uncheckAll } from "../../../../redux/actions/appActions"
-import { createSection, searchSections, loadSection, deleteSection, updateSectionProperty, setMainSection} from "../../../../redux/actions/sectionsActions"
-import { loadSite} from "../../../../redux/actions/sitesActions"
+import { hideDrawer } from "../../../../redux/actions/appActions"
+import { loadPage} from "../../../../redux/actions/pagesActions"
+
+import Cross from "../../svg/cross"
+import Editor from "../../editor"
 
 
 class SectionUserSettings extends Component {
@@ -30,8 +32,32 @@ class SectionUserSettings extends Component {
         })
     } 
 
-
     render() {
+
+        let page = this.props.page.currentPage;
+
+        let layoutEditorConfiguration = []
+
+        if(page && page.metadata) {
+            layoutEditorConfiguration = [
+                {
+                    collapsible: false,
+                    components: [
+                        {
+                            type: "layout",
+                            updateFunction: (layout) => {
+                                console.log(layout)
+                                // this.props.updateProperty("page", page, "sections", value, () => {
+                                //     this.props.loadNewPageAsync(page._id, true)
+                                // })
+                            },
+                            value: page && page.metadata.sections
+                        }  
+                    ]
+                }
+            ]
+        }
+
         return (
             <div className={"app-drawer-content-container standard-drawer section-settings-drawer"}>
                 <div className={"drawer-action-header"}>
@@ -41,13 +67,17 @@ class SectionUserSettings extends Component {
                     </div>
 
                     <div className="drawer-action-header-right">
-           
+                        <div onClick={() => this.props.hideDrawer()}>
+                            <Cross />
+                        </div>
                     </div>
                 </div>
 
 
                 <div className="placeholder">
-                    Human sections
+                    <Editor
+                        configuration={layoutEditorConfiguration}
+                    />
                 </div>
             </div>
 
@@ -62,17 +92,11 @@ function mapStateToProps(state) {
         app: state.app,
         user: state.app.user,
         authenticated: state.auth.authenticated,
+        page: state.page
     };
 }
 
 export default withRouter(connect(mapStateToProps, {
-    createSection,
-    searchSections,
-    updateCollection,
-    loadSection,
-    deleteSection,
-    updateSectionProperty,
-    uncheckAll,
-    setMainSection,
-    loadSite
+    loadPage,
+    hideDrawer
 })(SectionUserSettings));

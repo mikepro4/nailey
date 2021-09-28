@@ -17,7 +17,7 @@ export const pageReducer = function(state = initialState, action) {
     switch(action.type) {
         case LOAD_PAGE:
             return { ...state,
-                currentPage: action.payload.main,
+                currentPage: action.payload,
             };
         case LOAD_NEW_PAGE:
             return { ...state,

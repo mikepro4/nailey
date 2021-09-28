@@ -90,9 +90,19 @@ export const CLEAR_NEW_PROJECT = "app/CLEAR_NEW_PROJECT"
 
 // =============================================================================
 
-// Project 
+// Page 
 
 export const LOAD_PAGE = "app/LOAD_PAGE"
 export const CLEAR_PAGE = "app/CLEAR_PAGE"
 export const LOAD_NEW_PAGE = "app/LOAD_NEW_PAGE"
 export const CLEAR_NEW_PAGE = "app/CLEAR_NEW_PAGE"
+
+
+// =============================================================================
+
+// Layout 
+
+export const LOAD_LAYOUT = "app/LOAD_LAYOUT"
+export const CLEAR_LAYOUT = "app/CLEAR_LAYOUT"
+export const LOAD_NEW_LAYOUT  = "app/LOAD_NEW_LAYOUT"
+export const CLEAR_NEW_LAYOUT = "app/CLEAR_NEW_LAYOUT"

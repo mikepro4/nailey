@@ -10,6 +10,7 @@ import { productReducer } from "./productReducer";
 import { fontReducer } from "./fontReducer";
 import { projectReducer } from "./projectReducer";
 import { pageReducer } from "./pageReducer";
+import { layoutReducer } from "./layoutReducer";
 
 export default (history) => combineReducers({
     router: connectRouter(history),
@@ -22,5 +23,6 @@ export default (history) => combineReducers({
     product: productReducer,
     font: fontReducer,
     project: projectReducer,
-    page: pageReducer
+    page: pageReducer,
+    layout: layoutReducer
 })

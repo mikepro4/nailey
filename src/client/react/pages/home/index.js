@@ -5,9 +5,17 @@ import { Helmet } from "react-helmet";
 import classNames from "classnames"
 import * as _ from "lodash"
 
+import { loadPage } from "../../../redux/actions/pagesActions"
+
 class HomePage extends Component {
 
     state = {
+    }
+
+    componentDidUpdate(prevprops) {
+        if(prevprops.location.pathname !== this.props.location.pathname) {
+            this.props.loadPage()
+        }
     }
 
     renderPage(page) {
@@ -18,22 +26,11 @@ class HomePage extends Component {
         }
     }
     
-    getPage() {
-        let mainPath = this.props.location.pathname
-
-        let current = _.filter(this.props.page.allPages, {
-            metadata: {
-                url: mainPath
-            }
-        })
-
-        return this.renderPage(current[0])
-    }
 
 	render() {
 		return (
      		<div className="route-content home-route">
-                {this.getPage()}
+                {this.renderPage(this.props.page.currentPage)}
             </div>
 				
 		);
@@ -50,5 +47,6 @@ function mapStateToProps(state) {
 
 export default {
 	component: withRouter(connect(mapStateToProps, {
+        loadPage
 	})(HomePage))
 }

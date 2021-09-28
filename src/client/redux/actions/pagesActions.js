@@ -65,22 +65,37 @@ export const loadPage = (success) => async (
 	api
 ) => {
 
-    await api
-        .post("/pages/main", { })
-        .then(response => {
-            if (success) {
-                
-                success(response.data);
-            }
+    let pathname = getState().router.location.pathname
+    let allPages = getState().page.allPages
 
-            dispatch({
-                type: LOAD_PAGE,
-                payload: response.data
-            });
-        })
-        .catch(() => {
-            // dispatch(authError('Account with this email already exists'));
-        });
+    let finalPage = _.filter(allPages, {
+        metadata: {
+            url: pathname
+        }
+    })
+
+
+    dispatch({
+        type: LOAD_PAGE,
+        payload: finalPage[0]
+    });
+
+    // await api
+    //     .post("/pages/main", { })
+    //     .then(response => {
+    //         if (success) {
+                
+    //             success(response.data);
+    //         }
+
+    //         dispatch({
+    //             type: LOAD_PAGE,
+    //             payload: response.data
+    //         });
+    //     })
+    //     .catch(() => {
+    //         // dispatch(authError('Account with this email already exists'));
+    //     });
 }
 
 // ===========================================================================

@@ -38,9 +38,11 @@ class App extends Component {
         //     this.props.showDrawer("page-edit")
         // })
 
-        this.props.loadNewSectionAsync("6152b301be94497dfd8e2bd4", true, () => {
-            this.props.showDrawer("section-edit")
-        })
+        // this.props.loadNewSectionAsync("6152b301be94497dfd8e2bd4", true, () => {
+        //     this.props.showDrawer("section-edit")
+        // })
+
+        this.props.showDrawer("section-user-settings")
     }
 
     componentWillUnmount() {
