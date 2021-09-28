@@ -1,29 +1,43 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, StaticRouter } from "react-router-dom";
 import classNames from "classnames"
 import { motion } from "framer-motion"
+import * as _ from "lodash"
 
 class MainLinks extends Component {
+    state = {
+        pages: []
+    }
     isActivePath = (pathname) => {
         return this.props.location.pathname.indexOf(pathname) !== -1
     }
-    render() {
 
-        let links = [
-            {
-                url: "/services",
-                name: "Services"
-            },
-            {
-                url: "/about",
-                name: "About"
-            },
-            {
-                url: "/contact",
-                name: "Contact"
-            }
-        ]
+    componentDidMount() {
+        this.setState({
+            pages: this.props.site.currentSite.metadata.pages
+        })
+    }
+
+    componentDidUpdate(prevprops) {
+        if(!_.isEqual(prevprops.site, this.props.site)) {
+            this.setState({
+                pages: this.props.site.currentSite.metadata.pages
+            })
+        }
+    }
+
+    getPageProperty(id, property) {
+        let page = _.find(this.props.page.allPages, {
+            _id: id
+        })
+
+        console.log(page)
+
+        return page.metadata[property]
+    }
+
+    render() {
 
         const list = {
             visible: { 
@@ -65,19 +79,19 @@ class MainLinks extends Component {
                     animate="visible"
                     variants={list}
                 >
-                    {links.map((link, i) => {
+                    {this.state.pages.map((page, i) => {
                         return (
                             <li
-                                key={link.url}
+                                key={i}
                                 className={classNames("main-link-container", {
-                                    "main-link-active": this.isActivePath(link.url)
+                                    "main-link-active": this.isActivePath(this.getPageProperty(page.pageId, "url"))
                                 })}
                             >   
                                 <motion.div
                                     variants={item}
                                 >
-                                    <Link to={link.url} className="main-link line-hover ">
-                                        <span className="main-link-label">{link.name}</span>
+                                    <Link to={this.getPageProperty(page.pageId, "url")} className="main-link line-hover ">
+                                        <span className="main-link-label">{this.getPageProperty(page.pageId, "title")}</span>
                                     </Link>
                                 </motion.div>
                             </li>
@@ -91,7 +105,9 @@ class MainLinks extends Component {
 
 function mapStateToProps(state) {
     return {
-        location: state.router.location
+        location: state.router.location,
+        page: state.page,
+        site: state.site
     };
 }
 
