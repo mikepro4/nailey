@@ -1,0 +1,631 @@
+
+.hero-content-container {
+    text-align: center;
+}
+
+.hero-title {
+    font-family: "G", sans-serif;
+    // font-size: 5.7vw;
+    font-size: 100px;
+    font-weight: 400;
+    background: linear-gradient(to right, rgba(204, 183, 153, 0.98), rgba(219, 197, 171, 0.92) 100%);
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    // background-size: 500% 500%;
+    background-position: center center;
+
+    @media only screen and (max-width: 1450px) {
+        font-size: 80px;
+    }
+
+    @media only screen and (max-width: 1450px) {
+        font-size: 67px;
+        line-height: 1.2em;
+    }
+
+   
+
+    @media only screen and (max-width: $mobile) {
+        max-width: 300px;
+    }
+}
+
+.hero-subTitle {
+    color: #A89479;
+    // font-size: 0.9vw;
+    font-size: 18px;
+    margin: 10px 0 50px 0;
+
+    @media only screen and (max-width: 1450px) {
+        font-size: 16px;
+    }
+
+    @media only screen and (max-width: $mobile) {
+        max-width: 250px;
+        margin: 20px auto 55px auto;
+    }
+
+    // @media only screen and (max-width: 1800px) {
+    //     font-size: 1vw;
+    // }
+
+    // @media only screen and (max-width: 1680px) {
+    //     font-size: 1.1vw;
+    // }
+
+    // @media only screen and (max-width: 1500px) {
+    //     font-size: 1.4vw;
+    // }
+
+    // @media only screen and (max-width: 1300px) {
+    //     font-size: 1.5vw;
+    // }
+
+    // @media only screen and (max-width: 1200px) {
+    //     font-size: 1.6vw;
+    // }
+
+    // @media only screen and (max-width: 1000px) {
+    //     font-size: 1.6vw;
+    // }
+
+    // @media only screen and (max-width: 800px) {
+    //     font-size: 1.7vw;
+    // }
+}
+
+.animation-text-wipe {
+    -webkit-mask-image: linear-gradient(to left, #0000 25%, #000 75%);
+    -webkit-mask-size: 500%;
+    -webkit-mask-position: 100%;
+}
+
+.animation-text-wipe.animate-in {
+    animation: text-wipe 2s 0.3s linear forwards;
+}
+
+
+@keyframes text-wipe {
+    0% {
+        -webkit-mask-position: 100%;
+    }
+
+    100% {
+        -webkit-mask-position: 0%;
+    }
+}
+
+
+.hero-button {
+    display: flex;
+    justify-content: center;
+
+    .main-button {
+        width: 222px;
+        margin: 0 10px;
+
+        @media only screen and (max-width: $mobile) {
+            width: 250px;
+        }
+    }
+}
+
+.image-1 {
+    top: 15%;
+    left: -5%;
+    height: 270px;
+    width: 270px;
+
+    @media only screen and (max-width: $mobile) {
+        display: none !important;
+    }
+}
+
+.image-2 {
+    top: 20%;
+    right: -5%;
+    height: 328px;
+    width: 328px;
+    
+
+    @media only screen and (max-width: $mobile) {
+        display: none !important;
+    }
+}
+
+.image-3 {
+    bottom: 0%;
+    left: 10%;
+    height: 255px;
+    width: 255px;
+
+    // @media only screen and (max-width: $mobile) {
+    //     bottom: -30%;
+    //     left: 40px;
+    //     height: 115px;
+    //     width: 115px;
+    // }
+
+     @media only screen and (max-width: $mobile) {
+        bottom: -35%;
+        left: 40px;
+        height: 222px;
+        width: 222px;
+    }
+}
+
+.image-4 {
+    bottom: -35%;
+    right: 15%;
+    height: 395px;
+    width: 395px;
+
+    @media only screen and (max-width: $mobile) {
+        bottom: -30%;
+        right: 40px;
+        height: 150px;
+        width: 150px;
+    }
+
+    // @media only screen and (min-width: 1700px) {
+    //     bottom: -30%;
+    // }
+}
+
+.image-5 {
+    top: -25%;
+    left: -7%;
+    height: 350px;
+    width: 350px;
+
+    @media only screen and (max-width: $mobile) {
+        top: -90%;
+        left: 40px;
+        height: 222px;
+        width: 222px;
+    }
+}
+
+.image-6 {
+    top: -20%;
+    left: 25%;
+    height: 280px;
+    width: 280px;
+
+    @media only screen and (max-width: $mobile) {
+        top: -85%;
+        right: 40px;
+        left: inherit;
+        height: 120px;
+        width: 120px;
+    }
+}
+
+.image-7 {
+    bottom: 45%;
+    left: 7%;
+    height: 180px;
+    width: 180px;
+
+    @media only screen and (max-width: $mobile) {
+        top: -45%;
+        left: 25%;
+        height: 90px;
+        width: 90px;
+    }
+}
+
+.image-8 {
+    top: -25%;
+    right: 10%;
+    height: 450px;
+    width: 450px;
+
+    @media only screen and (max-width: $mobile) {
+        top: -100%;
+        left: 50%;
+        height: 300px;
+        width: 300px;
+        margin-left: -150px;
+    }
+}
+
+.image-9 {
+    top: -47%;
+    left: -10%;
+    height: 480px;
+    width: 480px;
+
+    @media only screen and (max-width: $mobile) {
+        top: -110%;
+        left: 0;
+        height: 300px;
+        width: 300px;
+    }
+}
+
+.image-10 {
+    bottom: -30%;
+    left: 10%;
+    height: 370px;
+    width: 370px;
+
+    @media only screen and (max-width: $mobile) {
+        bottom: 130%;
+        left: 50px;
+        height: 200px;
+        width: 200px;
+    }
+}
+
+.image-11 {
+    bottom: -20%;
+    right: 5%;
+    height: 350px;
+    width: 350px;
+
+    @media only screen and (max-width: $mobile) {
+        bottom: auto;
+        top: -35%;
+        right: 30px;
+        height: 240px;
+        width: 240px;
+        
+    }
+}
+
+.image-12 {
+    bottom: -20%;
+    right: 35%;
+    height: 222px;
+    width: 222px;
+
+    @media only screen and (max-width: $mobile) {
+        bottom: 140%;
+        right: 80px;
+        height: 120px;
+        width: 120px;
+    }
+}
+
+.image-13 {
+    top: -200%;
+    left: 40%;
+    height: 250px;
+    width: 250px;
+}
+
+
+.images-container {
+    margin: 0 auto;
+    height: 100%;
+    position: relative;
+
+    @media only screen and (max-width: $mobile) {
+        max-width: 400px;
+    }
+
+}
+
+
+
+
+.section-hero {
+    height: 900px;
+    max-width: $maxWidth;
+    margin: 0 auto;
+    position: relative;
+
+    @media only screen and (max-width: 1450px) {
+        height: 850px;
+    }
+
+    @media only screen and (max-width: $mobile) {
+        height: 550px;
+        // height: inherit;
+        // overflow-x: hidden;
+    }
+    // border-bottom: 1px solid red;
+    // border-left: 1px solid red;
+    // border-right: 1px solid red;
+}
+
+.hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+}
+
+.section-text-content {
+    height: 650px;
+    margin: 0 auto;
+    max-width: $maxWidth;
+    position: relative;
+    // border-bottom: 1px solid red;
+    // border-left: 1px solid red;
+    // border-right: 1px solid red;
+    display: flex;
+    align-items: center;
+
+    @media only screen and (max-width: $mobile) {
+        padding: 20px;
+        align-items: flex-start;
+        margin-top: 200px;
+        margin-bottom: 300px;
+
+        &.first-text {
+            margin-top: 250px;
+            margin-bottom: 450px;
+        }
+
+        &.last-text {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+     }
+
+    .text-container-wrapper {
+        max-width: 1180px;
+        margin: auto;
+
+        @media only screen and (max-width: 1450px) {
+            max-width: 1000px;
+        }
+    }
+
+    .text-container {
+        width: 50%;
+        max-width: 1180px;
+        padding-left: 30px;
+
+        @media only screen and (max-width: $mobile) {
+            width: 100%;
+            max-width: 400px;
+            padding-right: 10px;
+        }
+
+        &.text-container-right {
+            margin-left: 50%;
+
+            @media only screen and (max-width: $mobile) {
+                margin-left: 0;
+            }
+        }
+
+        .text-content-headline-container {
+            position: relative;
+
+            .text-content-headline-number {
+                position: absolute;
+                top: 10px;
+                left: -30px;
+                font-size: 12px;
+
+                @media only screen and (max-width: $mobile) {
+                    left: -25px;
+                }
+            }
+
+            .text-content-headline {
+                font-size: 86px;
+                line-height: 86px;
+                font-family: "E", sans-serif;
+                letter-spacing: 0.5px;
+                margin-bottom: 20px;
+
+                @media only screen and (max-width: $mobile) {
+                    font-size: 80px;
+                    line-height: 80px;
+                }
+            }
+        }
+
+        .text-content-description {
+            p {
+                font-size: 16px;
+                line-height: 24px;
+                margin-bottom: 20px;
+                color: rgba($black, 0.6);
+
+                @media only screen and (max-width: 1450px) {
+                    font-size: 14px;
+                    line-height: 22px;
+                }
+
+     
+            }
+        }
+    }
+}
+
+.section-epic-headline {
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    margin: 0 auto;
+    max-width: $maxWidth;
+    position: relative;
+    transform: translateX(120%);
+
+    .epic-headline-wrapper {
+        will-change: transform;
+    }
+
+
+    .epic-headline {
+        font-size: 173px;
+        position: absolute;
+        white-space: nowrap;
+
+        font-family: "G", sans-serif;
+        // font-size: 5.7vw;
+        font-weight: 400;
+        background: linear-gradient(to right, rgba(204, 183, 153, 0.98), rgba(219, 197, 171, 0.92) 100%);
+    
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        // background-size: 500% 500%;
+        background-position: center center;
+        -webkit-mask-image: linear-gradient(to left, #0000 25%, #000 75%);
+        -webkit-mask-size: 500%;
+    
+    }
+
+    @media only screen and (max-width: 1700px) {
+        transform: translateX(150%);
+
+        .epic-headline {
+            font-size: 160px;
+        }
+    }
+
+    @media only screen and (max-width: 1500px) {
+        transform: translateX(170%);
+
+        .epic-headline {
+            font-size: 140px;
+        }
+    }
+
+    @media only screen and (max-width: 1400px) {
+        transform: translateX(190%);
+
+        .epic-headline {
+            font-size: 120px;
+        }
+    }
+
+    @media only screen and (max-width: $mobile) {
+        transform: translateX(190%);
+
+        .epic-headline {
+            font-size: 100px;
+        }
+    }
+}
+
+
+
+.epic-section-container {
+    position: relative;
+    // transform: translateX(-100px);
+    overflow: hidden;
+    height: 2810px;
+
+    @media only screen and (max-width: $mobile) {
+        height: 2900px;
+    }
+
+    .epic-images-container {
+        max-width: $maxWidth;
+        max-width: 1650px;
+        margin: 0 auto;
+        position: relative;
+        height: 300px;
+
+        @media only screen and (max-width: $mobile) {
+            // height: auto;
+        }
+    }
+}
+
+.section-social-media {
+    height: 1750px;
+    margin: 0 auto;
+    width: 50%;
+    position: absolute;
+    top: 0; 
+    left: 60%;
+    margin-left: -25%;
+    // border-bottom: 1px solid red;
+    // border-left: 1px solid red;
+    // border-right: 1px solid red;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    
+
+    .epic-link-label {
+        font-size: 18px;
+        white-space: nowrap;
+        @media only screen and (max-width: $mobile) {
+            font-size: 14px;
+        }
+    }
+
+    .epic-social-media-line-wrapper {
+        width: 90px;
+        margin-right: 30px;
+    }
+
+    .epic-link-line {
+        width: 0;
+        height: 1px;
+        background: $black;
+        top: 10px;
+        left: 0;
+    }
+
+    .epic-social-media-link-container {
+        display: flex;
+        align-items: center;
+    }
+
+    .epic-link-text{
+        font-size: 116px;
+        font-family: "E", sans-serif;
+    }
+
+    .epic-link-arrow {
+        margin-left: 10px;
+        position: relative;
+        top: -30px
+    }
+
+   
+
+    @media only screen and (max-width: 1700px) {
+        left: 50%;
+    }
+
+    @media only screen and (max-width: 1500px) {
+        left: 55%;
+
+        .epic-link-arrow  {
+            top: -20px;
+        }
+
+        .epic-social-media-line-wrapper {
+            width: 60px;
+        }
+
+        .epic-link-text{
+            font-size: 80px;
+        }
+    }
+
+    @media only screen and (max-width: $mobile) {
+        height: 700px;
+        margin-left: 0;
+        left: 30px;
+        width: 100%;
+
+        .epic-social-media-line-wrapper {
+            width: 30px;
+            margin-right: 20px;
+        }
+
+        .epic-link-text{
+            font-size: 60;
+        }
+    }
+}

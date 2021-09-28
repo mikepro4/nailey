@@ -13,28 +13,11 @@ export default [
 			{	
 				...Home,
 				path: "/",
+            },
+            {	
+				...Home,
+				path: "/:url",
 				exact: true,
-			},
-			{
-				...Signup,
-				path: "/auth/signup",
-				params: {
-					name: "signup"
-				}
-			},
-			{
-				...Login,
-				path: "/auth/login",
-				params: {
-					name: "login"
-				}
-			},
-			{
-				...Logout,
-				path: "/auth/logout",
-				params: {
-					name: "login"
-				}
 			}
 		]
 	}
