@@ -58,8 +58,10 @@ class SiteSettings extends Component {
                                             logoText: "Iteration " + (this.props.site.count + 1),
                                             createdBy: this.props.user && this.props.user._id,
                                             projectId: this.props.project._id
-                                        }
-                                    }, () => {
+                                        },
+                                        originalId: this.props.site._id
+                                    },
+                                    () => {
                                         this.props.updateCollection(true)
                                         this.props.loadSite()
                                     })

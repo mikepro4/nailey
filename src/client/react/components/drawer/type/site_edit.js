@@ -12,7 +12,7 @@ import Editor from "../../editor"
 import ArrowBack from "../../svg/arrow-back"
 import Cross from "../../svg/cross"
 
-import { hideDrawer, showDrawer, updateProperty, getOptions } from "../../../../redux/actions/appActions"
+import { hideDrawer, showDrawer, updateProperty, getOptions, updateCollection } from "../../../../redux/actions/appActions"
 
 import { setMainSite, loadSite, loadNewSiteAsync } from "../../../../redux/actions/sitesActions"
 import { allSitePages, createPage, deletePage } from "../../../../redux/actions/pagesActions"
@@ -80,10 +80,12 @@ class SiteEdit extends Component {
                                     title: "Page " + count,
                                     createdBy: this.props.user._id,
                                     siteId: site._id,
-                                }
+                                },
+                                pagesCount: count
                             }, () => {
                                 this.props.loadNewSiteAsync(site._id, loadCurrent, () => {
                                      success()
+                                     this.props.updateCollection(true)
                                 })
                             })
                         },
@@ -101,8 +103,10 @@ class SiteEdit extends Component {
                                     title: "Copy of " + item.metadata.title,
                                     order: item.metadata.order + 1,
                                     home: false
-                                }
+                                },
+                                pagesCount: site.metadata.pages.length
                             }, () => {
+                                this.props.updateCollection(true)
                                 this.props.loadNewSiteAsync(site._id, loadCurrent, () => {
                                     success()
                                 })
@@ -530,5 +534,6 @@ export default withRouter(connect(mapStateToProps, {
     allSitePages,
     createPage,
     deletePage,
-    loadNewSiteAsync
+    loadNewSiteAsync,
+    updateCollection
 })(SiteEdit));
