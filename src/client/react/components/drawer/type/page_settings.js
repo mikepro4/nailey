@@ -42,6 +42,7 @@ class PageSettings extends Component {
 
         let pagesEditor = [
             {
+                noPadding: true,
                 components: [
                     {
                         type: "linker",
