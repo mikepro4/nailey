@@ -40,7 +40,7 @@ class pageEdit extends Component {
                         label: "Title",
                         updateFunction: (value) => {
                             this.props.updateProperty("page", page, "title", value, () => {
-                                this.props.loadNewPageAsync(page._id)
+                                this.props.loadNewPageAsync(page._id, true)
                             })
                         },
                         value: page && page.metadata.title
@@ -50,7 +50,7 @@ class pageEdit extends Component {
                         label: "Page URL",
                         updateFunction: (value) => {
                             this.props.updateProperty("page", page, "url", value, () => {
-                                this.props.loadNewPageAsync(page._id)
+                                this.props.loadNewPageAsync(page._id, true)
                             })
                         },
                         value: page && page.metadata.url

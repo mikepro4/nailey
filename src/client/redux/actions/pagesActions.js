@@ -9,6 +9,8 @@ import {
     CLEAR_NEW_PAGE,
 } from "./types";
 
+import { loadSite } from "./sitesActions"
+
 export const getMainPage = (success) => async (
     dispatch,
 	getState,
@@ -291,7 +293,7 @@ export const loadNewPageAsync = (pageId, loadCurrent, success) => async (
             });
 
             if(loadCurrent) {
-                dispatch(loadPage())
+                dispatch(loadSite())
             }
 
         })
