@@ -1,40 +1,41 @@
 import {
-    LOAD_LAYOUT,
-    CLEAR_LAYOUT,
-    LOAD_NEW_LAYOUT,
-    CLEAR_NEW_LAYOUT,
-    LOAD_SITE
+    LOAD_LAYOUT_HOVERED,
+    LOAD_LAYOUT_ACTIVE,
+    LOAD_LAYOUT_EDITING,
+    LAYOUT_PREVIEW,
+    LAYOUT_SCROLL,
 } from '../actions/types';
 
 export const initialState = {
-    currentLayout: {},
-    newLayout: {},
-    allLayouts: {}
+    hovered: null,
+    active: null,
+    editing: null,
+    preview: false,
+    scrollTo: null
 };
 
   
 export const layoutReducer = function(state = initialState, action) {
     switch(action.type) {
-        case LOAD_LAYOUT:
+        case LOAD_LAYOUT_HOVERED:
             return { ...state,
-                currentLayout: action.payload.main,
+                hovered: action.payload,
             };
-        case LOAD_NEW_LAYOUT:
+        case LOAD_LAYOUT_ACTIVE:
             return { ...state,
-                newLayout: action.payload
+                active: action.payload,
             };
-        case LOAD_SITE:
+        case LOAD_LAYOUT_EDITING:
             return { ...state,
-                allLayouts: action.payload.allLayouts,
+                editing: action.payload,
             };
-           
-        case CLEAR_LAYOUT:
+        case LAYOUT_PREVIEW:
             return { ...state,
-                currentLayout: {}
+                preview: action.payload,
             };
-        case CLEAR_NEW_LAYOUT:
+        case LAYOUT_SCROLL:
             return { ...state,
-                newLayout: {}
+                scrollTo: action.payload,
             };
         }
 
