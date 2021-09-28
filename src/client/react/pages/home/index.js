@@ -3,17 +3,33 @@ import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import classNames from "classnames"
+import * as _ from "lodash"
 
 class HomePage extends Component {
 
     state = {
-	}
+    }
 
+    renderPage(page) {
+        return(<div>{page.metadata.title}</div>)
+    }
+    
+    getPage() {
+        let mainPath = this.props.location.pathname
+
+        let current = _.filter(this.props.page.allPages, {
+            metadata: {
+                url: mainPath
+            }
+        })
+
+        return this.renderPage(current[0])
+    }
 
 	render() {
 		return (
      		<div className="route-content home-route">
-                {this.props.location.pathname}
+                {this.getPage()}
             </div>
 				
 		);
@@ -22,7 +38,8 @@ class HomePage extends Component {
 
 function mapStateToProps(state) {
 	return {
-        app: state.app
+        app: state.app,
+        page: state.page
 	};
 }
 
