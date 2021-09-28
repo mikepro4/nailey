@@ -14,7 +14,7 @@ import Cross from "../../svg/cross"
 
 import { hideDrawer, showDrawer, updateProperty, getOptions } from "../../../../redux/actions/appActions"
 
-import { setMainSite, loadSite } from "../../../../redux/actions/sitesActions"
+import { setMainSite, loadSite, loadNewSiteAsync } from "../../../../redux/actions/sitesActions"
 import { allSitePages, createPage, deletePage } from "../../../../redux/actions/pagesActions"
 
 
@@ -29,8 +29,11 @@ class SiteEdit extends Component {
     };
 
     render() {
-        let site = this.props.site.currentSite
-        // let site = this.props.site.newSite
+        // let site = this.props.site.currentSite
+        let site = this.props.site.newSite
+
+        let loadCurrent = true
+
         let siteEditorConfiguration = [
             
             {
@@ -41,7 +44,7 @@ class SiteEdit extends Component {
                         label: "Main site",
                         updateFunction: (value) => {
                             this.props.setMainSite(site, value, () => {
-                                this.props.loadSite()
+                                this.props.loadNewSiteAsync(site._id, loadCurrent)
                             })
                         },
                         active: site && site.metadata.main
@@ -54,15 +57,10 @@ class SiteEdit extends Component {
                 components: [
                     {
                         type: "linker",
-                        model: {
-                            title: "Untitled",
-                            sections: []
-                        },
-                        property: "pages",
                         collection: site && site.metadata.pages,
                         updateFunction: (value) => {
                             this.props.updateProperty("site", site, "pages", value, () => {
-                                this.props.loadSite()
+                                this.props.loadNewSiteAsync(site._id, loadCurrent)
                             })
                         },
                         updateItemFunction: (value, item, success) => {
@@ -72,7 +70,7 @@ class SiteEdit extends Component {
                         },
                         loadResults: (success) => {
                             this.props.allSitePages(site._id, (results) => {
-                                this.props.loadSite()
+                                this.props.loadNewSiteAsync(site._id, loadCurrent)
                                 success(results)
                             })
                         },
@@ -84,16 +82,16 @@ class SiteEdit extends Component {
                                     siteId: site._id,
                                 }
                             }, () => {
-                                this.props.loadSite(() => {
+                                this.props.loadNewSiteAsync(site._id, loadCurrent, () => {
                                      success()
                                 })
                             })
                         },
                         deleteFunction: (pageId, pageItem, success) => {
                             this.props.deletePage(pageId, pageItem, () => {
-                                this.props.loadSite(() => {
+                                this.props.loadNewSiteAsync(site._id, loadCurrent, () => {
                                     success()
-                               })
+                                })
                             })
                         },
                         duplicateFunction: (item, success) => {
@@ -105,9 +103,9 @@ class SiteEdit extends Component {
                                     home: false
                                 }
                             }, () => {
-                                this.props.loadSite(() => {
+                                this.props.loadNewSiteAsync(site._id, loadCurrent, () => {
                                     success()
-                               })
+                                })
                             })
                         },
                     }
@@ -123,7 +121,7 @@ class SiteEdit extends Component {
                         label: "Title",
                         updateFunction: (value) => {
                             this.props.updateProperty("site", site, "title", value, () => {
-                                this.props.loadSite()
+                                this.props.loadNewSiteAsync(site._id, loadCurrent)
                             })
                         },
                         value: site && site.metadata.title
@@ -133,7 +131,7 @@ class SiteEdit extends Component {
                         label: "Description",
                         updateFunction: (value) => {
                             this.props.updateProperty("site", site, "description", value, () => {
-                                this.props.loadSite()
+                                this.props.loadNewSiteAsync(site._id, loadCurrent)
                             })
                         },
                         value: site && site.metadata.description
@@ -153,7 +151,7 @@ class SiteEdit extends Component {
                         ],
                         updateFunction: (value) => {
                             this.props.updateProperty("site", site, "status", value, () => {
-                                this.props.loadSite()
+                                this.props.loadNewSiteAsync(site._id, loadCurrent)
                             })
                         },
                         value: site && site.metadata.status
@@ -176,7 +174,7 @@ class SiteEdit extends Component {
                         },
                         updateFunction: (value) => {
                             this.props.updateProperty("site", site, "theme", value, () => {
-                                this.props.loadSite()
+                                this.props.loadNewSiteAsync(site._id, loadCurrent)
                             })
                         },
                         value: site && site.metadata.theme && site.metadata.theme.label
@@ -186,7 +184,7 @@ class SiteEdit extends Component {
                         type: "tab",
                         updateFunction: (value) => {
                             this.props.updateProperty("site", site, "color", value, () => {
-                                this.props.loadSite()
+                                this.props.loadNewSiteAsync(site._id, loadCurrent)
                             })
                         },
                         tabOptions: [{
@@ -210,7 +208,7 @@ class SiteEdit extends Component {
                         label: "Full width",
                         updateFunction: (value) => {
                             this.props.updateProperty("site", site, "fullWidth", value, () => {
-                                this.props.loadSite()
+                                this.props.loadNewSiteAsync(site._id, loadCurrent)
                             })
                         },
                         active: site && site.metadata.fullWidth,
@@ -221,7 +219,7 @@ class SiteEdit extends Component {
                         label: "Max width",
                         updateFunction: (value) => {
                             this.props.updateProperty("site", site, "maxWidth", value, () => {
-                                this.props.loadSite()
+                                this.props.loadNewSiteAsync(site._id, loadCurrent)
                             })
                         },
                         value: site && site.metadata.maxWidth,
@@ -233,7 +231,7 @@ class SiteEdit extends Component {
                         label: "Mobile breakpoint",
                         updateFunction: (value) => {
                             this.props.updateProperty("site", site, "mobileBreakpoint", value, () => {
-                                this.props.loadSite()
+                                this.props.loadNewSiteAsync(site._id, loadCurrent)
                             })
                         },
                         value: site && site.metadata.mobileBreakpoint,
@@ -249,7 +247,7 @@ class SiteEdit extends Component {
                         type: "tab",
                         updateFunction: (value) => {
                             this.props.updateProperty("site", site, "logoType", value, () => {
-                                this.props.loadSite()
+                                this.props.loadNewSiteAsync(site._id, loadCurrent)
                             })
                         },
                         tabOptions: [{
@@ -268,7 +266,7 @@ class SiteEdit extends Component {
                         property: "title",
                         updateFunction: (value) => {
                             this.props.updateProperty("site", site, "logoText", value, () => {
-                                this.props.loadSite()
+                                this.props.loadNewSiteAsync(site._id, loadCurrent)
                             })
                         },
                         value: site && site.metadata.logoText,
@@ -280,7 +278,7 @@ class SiteEdit extends Component {
                         label: "Logo URL",
                         updateFunction: (value) => {
                             this.props.updateProperty("site", site, "logoUrl", value, () => {
-                                this.props.loadSite()
+                                this.props.loadNewSiteAsync(site._id, loadCurrent)
                             })
                         },
                         value: site && site.metadata.logoUrl,
@@ -292,7 +290,7 @@ class SiteEdit extends Component {
                         label: "Logo Width",
                         updateFunction: (value) => {
                             this.props.updateProperty("site", site, "logoWidth", value, () => {
-                                this.props.loadSite()
+                                this.props.loadNewSiteAsync(site._id, loadCurrent)
                             })
                         },
                         value: site && site.metadata.logoWidth,
@@ -304,7 +302,7 @@ class SiteEdit extends Component {
                         label: "Logo Height",
                         updateFunction: (value) => {
                             this.props.updateProperty("site", site, "logoHeight", value, () => {
-                                this.props.loadSite()
+                                this.props.loadNewSiteAsync(site._id, loadCurrent)
                             })
                         },
                         value: site && site.metadata.logoHeight,
@@ -316,7 +314,7 @@ class SiteEdit extends Component {
                         updateFunction: (value) => {
                             console.log("here", value )
                             this.props.updateProperty("site", site, "logoUrl", value, () => {
-                                this.props.loadSite()
+                                this.props.loadNewSiteAsync(site._id, loadCurrent)
                             })
                         },
                         value: site && site.metadata.logoUrl,
@@ -328,7 +326,7 @@ class SiteEdit extends Component {
                         label: "Auto logo size",
                         updateFunction: (value) => {
                             this.props.updateProperty("site", site, "logoAutoSize", value, () => {
-                                this.props.loadSite()
+                                this.props.loadNewSiteAsync(site._id, loadCurrent)
                             })
                         },
                         active: site && site.metadata.logoAutoSize,
@@ -346,7 +344,7 @@ class SiteEdit extends Component {
                         type: "tab",
                         updateFunction: (value) => {
                             this.props.updateProperty("site", site, "logoPosition", value, () => {
-                                this.props.loadSite()
+                                this.props.loadNewSiteAsync(site._id, loadCurrent)
                             })
                         },
                         tabOptions: [{
@@ -368,7 +366,7 @@ class SiteEdit extends Component {
                         label: "Display main links",
                         updateFunction: (value) => {
                             this.props.updateProperty("site", site, "mainLinks", value, () => {
-                                this.props.loadSite()
+                                this.props.loadNewSiteAsync(site._id, loadCurrent)
                             })
                         },
                         active: site && site.metadata.mainLinks,
@@ -378,7 +376,7 @@ class SiteEdit extends Component {
                         type: "tab",
                         updateFunction: (value) => {
                             this.props.updateProperty("site", site, "mainLinksPosition", value, () => {
-                                this.props.loadSite()
+                                this.props.loadNewSiteAsync(site._id, loadCurrent)
                             })
                         },
                         tabOptions: [{
@@ -402,7 +400,7 @@ class SiteEdit extends Component {
                         label: "Display CTA",
                         updateFunction: (value) => {
                             this.props.updateProperty("site", site, "mainCTA", value, () => {
-                                this.props.loadSite()
+                                this.props.loadNewSiteAsync(site._id, loadCurrent)
                             })
                         },
                         active: site && site.metadata.mainCTA,
@@ -412,7 +410,7 @@ class SiteEdit extends Component {
                         type: "tab",
                         updateFunction: (value) => {
                             this.props.updateProperty("site", site, "mainCTAPosition", value, () => {
-                                this.props.loadSite()
+                                this.props.loadNewSiteAsync(site._id, loadCurrent)
                             })
                         },
                         tabOptions: [{
@@ -436,7 +434,7 @@ class SiteEdit extends Component {
                         label: "CTA Text",
                         updateFunction: (value) => {
                             this.props.updateProperty("site", site, "mainCTAText", value, () => {
-                                this.props.loadSite()
+                                this.props.loadNewSiteAsync(site._id, loadCurrent)
                             })
                         },
                         value: site && site.metadata.mainCTAText,
@@ -448,7 +446,7 @@ class SiteEdit extends Component {
                         label: "CTA URL",
                         updateFunction: (value) => {
                             this.props.updateProperty("site", site, "mainCTAURL", value, () => {
-                                this.props.loadSite()
+                                this.props.loadNewSiteAsync(site._id, loadCurrent)
                             })
                         },
                         value: site && site.metadata.mainCTAURL,
@@ -460,7 +458,7 @@ class SiteEdit extends Component {
                         label: "CTA Width",
                         updateFunction: (value) => {
                             this.props.updateProperty("site", site, "mainCTAWidth", value, () => {
-                                this.props.loadSite()
+                                this.props.loadNewSiteAsync(site._id, loadCurrent)
                             })
                         },
                         value: site && site.metadata.mainCTAWidth,
@@ -531,5 +529,6 @@ export default withRouter(connect(mapStateToProps, {
     getOptions,
     allSitePages,
     createPage,
-    deletePage
+    deletePage,
+    loadNewSiteAsync
 })(SiteEdit));

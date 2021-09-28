@@ -55,6 +55,35 @@ export const createSite = (siteItem, success) => async (
 
 // ===========================================================================
 
+export const loadNewSiteAsync = (siteId, loadCurrent, success) => async (
+    dispatch,
+	getState,
+	api
+) => {
+
+    await api
+        .post("/sites/item", {
+            siteId: siteId
+        })
+        .then(response => {
+            if (success) {
+                success(response.data);
+            }
+
+            dispatch({
+                type: LOAD_NEW_SITE,
+                payload: response.data
+            });
+
+            if(loadCurrent) {
+                dispatch(loadSite())
+            }
+
+        })
+        .catch(() => {
+            // dispatch(authError('Account with this email already exists'));
+        });
+}
 
 
 export const loadSite = (domain, success) => async (
@@ -77,6 +106,12 @@ export const loadSite = (domain, success) => async (
         projectId = getState().project.currentProject._id
     }
 
+    let newSite = false
+    
+    if(getState().site && getState().site.newSite) {
+        newSite = true
+    }
+
     await api
         .post("/sites/main", {
             domain: finalDomain,
@@ -91,6 +126,7 @@ export const loadSite = (domain, success) => async (
                 type: LOAD_SITE,
                 payload: response.data
             });
+
         })
         .catch(() => {
             // dispatch(authError('Account with this email already exists'));
