@@ -41,6 +41,8 @@ import EditorEditableField from "./editorEditableField"
 import DragHandle from "../../components/svg/dragHandle"
 import HomeIcon from "../../components/svg/home"
 
+import { showDrawer } from "../../../redux/actions/appActions"
+
 
 
 class EditorDraggableContainer extends Component {
@@ -162,7 +164,7 @@ class EditorDraggableContainer extends Component {
                     />
                     <Button 
                         icon="edit"
-                        onClick={() => console.log("edit page")}
+                        onClick={() => this.props.showDrawer("page-edit", item)}
                     />
                 </div>
                 
@@ -210,4 +212,5 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, {
+    showDrawer
 })(withRouter(EditorDraggableContainer));

@@ -267,3 +267,35 @@ export const allSitePages = (siteId, success) => async (
         .catch(() => {
         });
 }
+
+// ===========================================================================
+
+export const loadNewPageAsync = (pageId, loadCurrent, success) => async (
+    dispatch,
+	getState,
+	api
+) => {
+
+    await api
+        .post("/pages/item", {
+            pageId: pageId
+        })
+        .then(response => {
+            if (success) {
+                success(response.data);
+            }
+
+            dispatch({
+                type: LOAD_NEW_PAGE,
+                payload: response.data
+            });
+
+            if(loadCurrent) {
+                dispatch(loadPage())
+            }
+
+        })
+        .catch(() => {
+            // dispatch(authError('Account with this email already exists'));
+        });
+}

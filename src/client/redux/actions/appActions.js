@@ -13,6 +13,7 @@ import {
     UNCHECK_ALL,
     LOAD_NEW_SITE,
     LOAD_NEW_PROJECT,
+    LOAD_NEW_PAGE,
     CLEAR_NEW_SITE
 } from "./types";
 
@@ -152,6 +153,13 @@ export const showDrawer = (type, drawerData, success) => async (
                 return(
                     dispatch({
                         type: LOAD_NEW_PROJECT,
+                        payload: drawerData
+                    })
+                )
+            case "page-edit":
+                return(
+                    dispatch({
+                        type: LOAD_NEW_PAGE,
                         payload: drawerData
                     })
                 )
