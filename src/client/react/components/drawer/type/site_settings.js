@@ -58,8 +58,7 @@ class SiteSettings extends Component {
                                             logoText: "Iteration " + (this.props.site.count + 1),
                                             createdBy: this.props.user && this.props.user._id,
                                             projectId: this.props.project._id
-                                        },
-                                        originalId: this.props.site._id
+                                        }
                                     },
                                     () => {
                                         this.props.updateCollection(true)
@@ -90,7 +89,8 @@ class SiteSettings extends Component {
                                         ...item.metadata,
                                         title: "Copy of " + item.metadata.title,
                                         main: false
-                                    }
+                                    },
+                                    originalId: item._id
                                 }
                                 this.props.createSite(finalItem, () => {
                                     this.props.updateCollection(true)
