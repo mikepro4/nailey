@@ -39,6 +39,7 @@ import * as _ from "lodash"
 import Button from "../button/"
 import EditorEditableField from "./editorEditableField"
 import DragHandle from "../../components/svg/dragHandle"
+import HomeIcon from "../../components/svg/home"
 
 
 
@@ -137,7 +138,7 @@ class EditorDraggableContainer extends Component {
 
                 <div className="linker-item-left">
                     <div className="linker-icon-container">
-                        <DragHandle/>
+                        {item.metadata.home ? <HomeIcon /> : <DragHandle/>}
                     </div>
 
                     <EditorEditableField
@@ -148,11 +149,12 @@ class EditorDraggableContainer extends Component {
                 </div>
 
                 <div className="linker-item-right">
-                    <Button 
+                    {!item.metadata.home && <Button 
                         icon="trash"
                         minimal={true}
                         onClick={() => this.props.deleteFunction(item)}
-                    />
+                    />}
+                    
                     <Button 
                         icon="duplicate"
                         minimal={true}
