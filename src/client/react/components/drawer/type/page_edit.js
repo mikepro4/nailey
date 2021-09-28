@@ -44,6 +44,16 @@ class pageEdit extends Component {
                             })
                         },
                         value: page && page.metadata.title
+                    },
+                    {
+                        type: "input",
+                        label: "Page URL",
+                        updateFunction: (value) => {
+                            this.props.updateProperty("page", page, "url", value, () => {
+                                this.props.loadNewPageAsync(page._id)
+                            })
+                        },
+                        value: page && page.metadata.url
                     }
                 ]
             }

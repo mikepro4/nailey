@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
 import classNames from "classnames"
 import { InputGroup } from "@blueprintjs/core";
+import * as _ from "lodash"
 
 class EditorInput extends Component {
 
@@ -46,7 +47,7 @@ class EditorInput extends Component {
                     asyncControl={true}
                     disabled={this.props.disabled}
                     large={this.props.large}
-                    onChange={this.handleInputChange}
+                    onChange={_.debounce(this.handleInputChange, 1000)}
                     placeholder="Type title..."
                     small={this.props.large}
                     value={this.state.value}
