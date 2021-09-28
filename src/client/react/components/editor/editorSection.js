@@ -125,6 +125,7 @@ class EditorSection extends Component {
                         "editor-section-content-hidden": this.props.section.collapsible && !this.state.active,
                         "editor-section-content-visible": this.state.active,
                         "editor-section-content-notCollapsible": !this.props.section.collapsible,
+                        "editor-section-content-noPadding": this.props.section.noPadding,
                     })}
                 >
 

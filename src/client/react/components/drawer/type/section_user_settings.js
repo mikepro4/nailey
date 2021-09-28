@@ -42,6 +42,7 @@ class SectionUserSettings extends Component {
             layoutEditorConfiguration = [
                 {
                     collapsible: false,
+                    noPadding: true,
                     components: [
                         {
                             type: "layout",

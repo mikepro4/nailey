@@ -3,6 +3,9 @@ import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
 import classNames from "classnames"
 import * as _ from "lodash"
+import { Icon } from "@blueprintjs/core";
+
+import EditorLayoutSectionAdd from "./editorLayoutSectionAdd"
 
 class EditorLayout extends Component {
 
@@ -34,6 +37,7 @@ class EditorLayout extends Component {
     }
 
     render() {
+        console.log(this.state.sections)
         return (
             <div
                 className={classNames({
@@ -41,7 +45,7 @@ class EditorLayout extends Component {
                     "editor-layout": true,
                 })}
             > 
-                Layout editor
+                <EditorLayoutSectionAdd />
             </div>
         );
     }
@@ -52,7 +56,7 @@ function mapStateToProps(state) {
         user: state.app.user,
         app: state.app,
         location: state.router.location,
-        edit: state.app.edit
+        edit: state.app.edit,
     };
 }
 

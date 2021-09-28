@@ -61,6 +61,11 @@
         .editor-switch {
             margin-right: 30px;
         }
+
+        &.editor-section-content-noPadding {
+            padding-top: 0;
+            padding-bottom: 0;
+        }
         
     }
 }
