@@ -11,7 +11,9 @@ class HomePage extends Component {
     }
 
     renderPage(page) {
-        return(<div>{page.metadata.title}</div>)
+        if(page) {
+            return(<div>{page.metadata.title}</div>)
+        }
     }
     
     getPage() {
