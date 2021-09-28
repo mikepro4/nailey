@@ -68,6 +68,7 @@ class PageSettings extends Component {
                                     title: "Page " + count,
                                     createdBy: this.props.user._id,
                                     siteId: site._id,
+                                    url: "/"
                                 },
                                 pagesCount: count
                             }, () => {

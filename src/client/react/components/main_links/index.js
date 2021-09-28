@@ -7,7 +7,37 @@ import * as _ from "lodash"
 
 class MainLinks extends Component {
     state = {
-        pages: []
+        pages: [],
+        item: {
+            visible: {
+                y: 0,
+                opacity: 1,
+                transition: {
+                    type: "spring",
+                    stiffness: 122,
+                    damping: 22,
+
+                }
+            },
+            hidden: {
+                opacity: 0
+            },
+        },
+        list: {
+            visible: {
+                opacity: 1,
+                when: "beforeChildren",
+                transition: {
+                    duration: 1,
+                    delayChildren: 0.3,
+                    staggerChildren: 0.05,
+
+                }
+            },
+            hidden: {
+                opacity: 0
+            }
+        }
     }
     isActivePath = (pathname) => {
         return this.props.location.pathname.indexOf(pathname) !== -1
@@ -20,7 +50,7 @@ class MainLinks extends Component {
     }
 
     componentDidUpdate(prevprops) {
-        if(!_.isEqual(prevprops.site, this.props.site)) {
+        if (!_.isEqual(prevprops.site, this.props.site)) {
             this.setState({
                 pages: this.props.site.currentSite.metadata.pages
             })
@@ -31,71 +61,63 @@ class MainLinks extends Component {
         let page = _.find(this.props.page.allPages, {
             _id: id
         })
+        if(page) {
+            return page.metadata[property]
+        }
+    }
 
-        console.log(page)
+    getLink(page) {
+        let link = this.getPageProperty(page.pageId, "url")
 
-        return page.metadata[property]
+        if(link) {
+            return link
+        } else {
+            return "/"
+        }
+    }
+
+    renderPage(page, i) {
+        if(page) {
+            return (
+                <li
+                    key={i}
+                    className={classNames("main-link-container", {
+                        "main-link-active": this.isActivePath(this.getPageProperty(page.pageId, "url"))
+                    })}
+                >
+                    <motion.div
+                        variants={this.state.item}
+                    >
+                        <Link to={this.getLink(page)} className="main-link line-hover ">
+                            <span className="main-link-label">{this.getPageProperty(page.pageId, "title")}</span>
+                        </Link>
+                    </motion.div>
+                </li>
+            )
+        } 
+        
+
     }
 
     render() {
 
-        const list = {
-            visible: { 
-                opacity: 1,
-                when: "beforeChildren",
-                transition: {
-                    duration: 1,
-                    delayChildren: 0.3,
-                    staggerChildren: 0.05,
-
-                }
-            },
-            hidden: { 
-                opacity: 0 
-            },
-          }
-          
-        const item = {
-            visible: { 
-                y: 0, 
-                opacity: 1, 
-                transition: {
-                    type: "spring",
-                    stiffness: 122,
-                    damping: 22,
-
-                } 
-            },
-            hidden: { 
-                opacity: 0 
-            },
-        }
-          
-        return(
-            <div className = "main-links-container" >
+        return (
+            <div className="main-links-container" >
                 <motion.ul
                     className={classNames({ "active": !(this.props.location.pathname == "/") }, "main-links")}
                     initial="hidden"
                     animate="visible"
-                    variants={list}
+                    variants={this.state.list}
                 >
                     {this.state.pages.map((page, i) => {
-                        return (
-                            <li
-                                key={i}
-                                className={classNames("main-link-container", {
-                                    "main-link-active": this.isActivePath(this.getPageProperty(page.pageId, "url"))
-                                })}
-                            >   
-                                <motion.div
-                                    variants={item}
-                                >
-                                    <Link to={this.getPageProperty(page.pageId, "url")} className="main-link line-hover ">
-                                        <span className="main-link-label">{this.getPageProperty(page.pageId, "title")}</span>
-                                    </Link>
-                                </motion.div>
-                            </li>
-                        )
+                        if (this.getPageProperty(page.pageId, "home")) {
+                            if (this.getPageProperty(page.pageId, "displayHomeLink")) {
+                                return this.renderPage(page, i)
+                            }
+                        } else {
+                            return this.renderPage(page, i)
+                        }
+
                     })}
                 </motion.ul>
             </div >

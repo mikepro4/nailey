@@ -54,7 +54,20 @@ class pageEdit extends Component {
                             })
                         },
                         value: page && page.metadata.url
+                    },
+                    {
+                        type: "switch",
+                        label: "Display home link",
+                        updateFunction: (value) => {
+                            this.props.updateProperty("page", page, "displayHomeLink", value, () => {
+                                this.props.loadNewPageAsync(page._id, true)
+                            })
+                        },
+                        active: page && page.metadata.displayHomeLink,
+                        conditionalPropertyExpectedValue: true,
+                        conditionalPropertyActualValue: page && page.metadata.home
                     }
+                        
                 ]
             }
         ]
