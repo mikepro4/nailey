@@ -17,16 +17,17 @@ export const initialState = {
             sectionValue: "hero",
             commonProperties: [
                 {
-                    value: "mainHeadline",
-                    label: "Main Headline",
-                    defaultValue: "This is a default main headline",
-                    propertyType: "string"
+                    peropertyValue: "mainHeadline",
+                    propertyLabel: "Main Headline",
+                    value: "This is a default main headline",
+                    propertyType: "string",
+                    value: null,
                 },
                 {
-                    value: "subtitle",
-                    label: "Subtitle",
-                    defaultValue: "This is a default subtitle",
-                    propertyType: "string"
+                    peropertyValue: "subtitle",
+                    propertyLabel: "Subtitle",
+                    propertyType: "string",
+                    value: "This is a default subtitle",
                 }
             ],
             layouts: [
@@ -37,8 +38,8 @@ export const initialState = {
                         {
                             value: "displayCTA",
                             label: "Display CTA",
-                            defaultValue: true,
-                            propertyType: "boolean"
+                            propertyType: "boolean",
+                            value: true,
                         }
                     ]
                 },
@@ -49,8 +50,8 @@ export const initialState = {
                         {
                             value: "displayMainImage",
                             label: "Display Main Image",
-                            defaultValue: true,
-                            propertyType: "boolean"
+                            propertyType: "boolean",
+                            value: true
                         }
                     ]
                 }
