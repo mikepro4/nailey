@@ -14,7 +14,7 @@ class EditorLayoutSectionAdd extends Component {
 
     render() {
         return(
-            <div className="layout-add-section" onClick={() => this.props.showDrawer("layout-selector")}>
+            <div className="layout-add-section" onClick={() => this.props.showDrawer("layout-selector", { insertPosition: this.props.position })}>
                 <div className="layout-add-icon-wrapper">
                     <Icon icon="plus"/>
                 </div>

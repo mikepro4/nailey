@@ -8,6 +8,8 @@ import { Icon } from "@blueprintjs/core";
 import { hideDrawer, showDrawer } from "../../../redux/actions/appActions"
 import Button from "../../components/button"
 
+import { layoutActive } from "../../../redux/actions/layoutActions"
+
 class EditorLayoutOptionSelector extends Component {
 
     state = {
@@ -30,14 +32,16 @@ class EditorLayoutOptionSelector extends Component {
         }
     }
 
+    componentWillUnmount() {
+        this.props.layoutActive(null)
+    }
+
     selectLayout = (layout) => {
         this.props.updateFunction(layout)
-        this.props.showDrawer("layout-selector", { selectedLayout: layout})
-
     }
 
     renderButton = (option) => {
-        if (this.props.options.value == option.value) {
+        if (this.props.layout.active == option.value) {
             return (<Button
                 label="Selected"
                 minimal={true}
@@ -53,10 +57,14 @@ class EditorLayoutOptionSelector extends Component {
 
     toggleLayoutOption(option) {
         if (this.props.options.value == option.value) {
-            this.props.showDrawer("layout-selector", { selectedLayout: null })
+            this.props.layoutActive(null)
         } else {
-            this.selectLayout(option.value)
+            this.props.layoutActive(option.value)
+            this.props.showDrawer("section-user-settings")
         }
+        
+
+        this.selectLayout(option.value)
     }
 
 
@@ -65,7 +73,7 @@ class EditorLayoutOptionSelector extends Component {
             <div
                 className={classNames({
                     "layout-option-container": true,
-                    "layout-option-active": this.props.options.value == option.value
+                    "layout-option-active": this.props.layout.active == option.value
                 })}
                 onClick={() => this.toggleLayoutOption(option)}
                 key={i}
@@ -108,10 +116,12 @@ function mapStateToProps(state) {
         app: state.app,
         location: state.router.location,
         edit: state.app.edit,
+        layout: state.layout
     };
 }
 
 export default connect(mapStateToProps, {
     hideDrawer,
-    showDrawer
+    showDrawer,
+    layoutActive
 })(withRouter(EditorLayoutOptionSelector));

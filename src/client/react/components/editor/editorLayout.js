@@ -41,7 +41,7 @@ class EditorLayout extends Component {
         return(
             <div key={i}>
                 {section.label}
-                <EditorLayoutSectionAdd />
+                <EditorLayoutSectionAdd  position={i}/>
             </div>
         )
     }
@@ -60,14 +60,13 @@ class EditorLayout extends Component {
         let sections = this.props.page.metadata.sections
         
         if(sections.length < 1) {
-            return(<EditorLayoutSectionAdd />)
+            return(<EditorLayoutSectionAdd position={0}/>)
         } else {
             return(this.renderSections(sections))
         }
     }
 
     render() {
-        console.log(this.props.page.metadata.sections)
         return (
             <div
                 className={classNames({

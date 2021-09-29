@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
 import classNames from "classnames"
 import { Icon, Classes, Intent, Position, Toaster } from "@blueprintjs/core";
+import update from "immutability-helper";
 
 import qs from "qs";
 import * as _ from "lodash"
@@ -33,22 +34,28 @@ class LayoutSelector extends Component {
             value: value
         })
 
-        let finalLayout = _.concat(page.metadata.sections, selectedLayout)
 
-        if(drawerData && drawerData.insertPosition) {
+        let newProperties = _.concat(commonProperties, selectedLayout[0].properties)
 
-        } else {
-            finalLayout = _.map(finalLayout, (item) => {
 
-                let newProperties = _.concat(commonProperties, item.properties)
+        let finalSelectedLayout = {
+            ...selectedLayout[0],
+            section: section,
+            properties: newProperties
+        }
 
-                let newItem = {
-                    ...item,
-                    section: section,
-                    properties: newProperties
-                }
-                return newItem
-            })
+        let finalLayout
+
+        if(drawerData && drawerData.insertPosition >= 0 && finalSelectedLayout) {
+            if(page.metadata.sections.length == 0) {
+                finalLayout = finalSelectedLayout
+            } else {
+
+                finalLayout = update(page.metadata.sections, {
+                    $splice: [[drawerData.insertPosition +1 , 0, finalSelectedLayout]]
+                });
+
+            }
         }
 
         this.props.updateProperty("page", page, "sections", finalLayout, () => {
