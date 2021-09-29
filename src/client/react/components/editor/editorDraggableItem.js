@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { useDrag, useDrop } from 'react-dnd';
+import classNames from "classnames"
 const style = {
     marginBottom: '.5rem',
     backgroundColor: 'white',
@@ -64,7 +65,9 @@ export const EditorDraggableItem = ({ id, text, index, moveCard, children }) => 
     const opacity = isDragging ? 0 : 1;
 
     drag(drop(ref));
-    return (<div ref={ref} style={{ ...style, opacity }} data-handler-id={handlerId}>
+    return (<div ref={ref} className={(classNames({
+        "isDragging": isDragging
+    }))} style={{ ...style, opacity }} data-handler-id={handlerId}>
 			{children}
 		</div>);
 };

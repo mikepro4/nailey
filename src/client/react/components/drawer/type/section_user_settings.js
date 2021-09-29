@@ -80,6 +80,8 @@ class SectionUserSettings extends Component {
 
     }
 
+
+
     render() {
 
         let page = this.props.page.currentPage;
@@ -95,10 +97,9 @@ class SectionUserSettings extends Component {
                         {
                             type: "layout",
                             updateFunction: (layout) => {
-                                console.log(layout)
-                                // this.props.updateProperty("page", page, "sections", value, () => {
-                                //     this.props.loadNewPageAsync(page._id, true)
-                                // })
+                                this.props.updateProperty("page", page, "sections", layout, () => {
+                                    this.props.loadSite()
+                                })
                             },
                             deleteFunction: (position) => {
                                 this.deletePage(position)
