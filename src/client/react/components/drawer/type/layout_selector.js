@@ -37,13 +37,12 @@ class LayoutSelector extends Component {
 
         let newProperties = _.concat(commonProperties, selectedLayout[0].properties)
 
-
         let finalSelectedLayout = {
             ...selectedLayout[0],
             sectionName: sectionName,
             sectionValue: section,
             properties: newProperties,
-            activeCategories: page.metadata.sections[section].activeCategories,
+            activeCategories: this.props.layout.allLayouts[section].activeCategories,
             id: uuidv4()
         }
 
