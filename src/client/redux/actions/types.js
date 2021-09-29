@@ -103,7 +103,7 @@ export const CLEAR_NEW_PAGE = "app/CLEAR_NEW_PAGE"
 // Layout 
 
 export const LOAD_LAYOUT_HOVERED = "app/LOAD_LAYOUT_HOVERED"
-export const LOAD_LAYOUT_ACTIVE  = "app/CLEAR_LAYOUT_ACTIVE"
+export const LOAD_LAYOUT_ACTIVE  = "app/LOAD_LAYOUT_ACTIVE"
 export const LOAD_LAYOUT_EDITING = "app/LOAD_LAYOUT_EDITING"
 export const LAYOUT_PREVIEW  = "app/LAYOUT_PREVIEW"
 export const LAYOUT_SCROLL = "app/LAYOUT_SCROLL"

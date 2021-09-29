@@ -72,6 +72,7 @@ class EditorLayout extends Component {
                         <div 
                             className="layout-section-details-container"
                             onClick={() => {
+                                this.props.layoutActive(section.id)
                                 this.props.showDrawer("layout-selector", { 
                                     replacePosition: i, 
                                     replaceValue: section.value, 

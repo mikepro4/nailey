@@ -33,7 +33,7 @@ class EditorLayoutOptionSelector extends Component {
     }
 
     componentWillUnmount() {
-        this.props.layoutActive(null)
+        // this.props.layoutActive(null)
     }
 
     selectLayout = (layout) => {
