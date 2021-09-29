@@ -11,7 +11,52 @@ export const initialState = {
     active: null,
     editing: null,
     preview: false,
-    scrollTo: null
+    scrollTo: null,
+    allLayouts: {
+        hero: {
+            sectionValue: "hero",
+            commonProperties: [
+                {
+                    value: "mainHeadline",
+                    label: "Main Headline",
+                    defaultValue: "This is a default main headline",
+                    propertyType: "string"
+                },
+                {
+                    value: "subtitle",
+                    label: "Subtitle",
+                    defaultValue: "This is a default subtitle",
+                    propertyType: "string"
+                }
+            ],
+            layouts: [
+                {
+                    value: "layout1",
+                    label: "Layout 1",
+                    properties: [
+                        {
+                            value: "displayCTA",
+                            label: "Display CTA",
+                            defaultValue: true,
+                            propertyType: "boolean"
+                        }
+                    ]
+                },
+                {
+                    value: "layout2",
+                    label: "Layout 2",
+                    properties: [
+                        {
+                            value: "displayMainImage",
+                            label: "Display Main Image",
+                            defaultValue: true,
+                            propertyType: "boolean"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
 };
 
   

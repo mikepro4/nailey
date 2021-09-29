@@ -13,13 +13,60 @@ import ArrowBack from "../../svg/arrow-back"
 import Button from "../../button"
 import Cross from "../../svg/cross"
 
-import { hideDrawer, showDrawer } from "../../../../redux/actions/appActions"
+import { hideDrawer, showDrawer, updateProperty } from "../../../../redux/actions/appActions"
+import { loadSite} from "../../../../redux/actions/sitesActions"
 
 
 class LayoutSelector extends Component {
 
     state = {
-        loading: false
+        loading: false 
+    }
+
+    updatePage(value, section) {
+        let drawerData = this.props.app.drawerData
+        let layouts = this.props.layout.allLayouts[section].layouts
+        let page = this.props.page.currentPage
+
+        let selectedLayout = _.filter(layouts, {
+            value: value
+        })
+
+        let finalLayout = []
+
+        if(drawerData.insertPosition) {
+
+        } else {
+            finalLayout = _.map(selectedLayout, (item) => {
+                console.log(item)
+                let newItem = {
+                    ...item,
+                    section: section
+                }
+                return newItem
+            })
+        }
+
+        this.props.updateProperty("page", page, "sections", finalLayout, () => {
+            this.props.loadSite()
+        })
+
+        // if(page && page.metadata.sections.length < 0) {
+        
+        // } else {
+        //     console.log("here")
+        // }
+
+        
+
+        // this.props.updateProperty("page", this.props.page, "title", value, () => {
+        //     this.props.loadNewPageAsync(page._id, true)
+        // })
+        // if(drawerData && drawerData.updatePosition) {
+        //   this.props.updateProperty("page", page, "title", value, () => {
+        //     this.props.loadNewPageAsync(page._id, true)
+        // })  
+        // }
     }
 
     render() {
@@ -34,22 +81,9 @@ class LayoutSelector extends Component {
                 components: [
                    {
                     type: "layoutOptionSelector",
-                    options: [
-                        {
-                            value: "layout1",
-                            label: "Layout 1"
-                        },
-                        {
-                            value: "layout2",
-                            label: "Layout 2"
-                        },
-                        {
-                            value: "layout3",
-                            label: "Layout 3"
-                        }
-                    ],
+                    options: this.props.layout.allLayouts.hero.layouts,
                     updateFunction: (value) => {
-                        console.log(value)
+                        this.updatePage(value, "hero")
                     },
                     value: drawerData && drawerData.selectedLayout
                    }
@@ -126,10 +160,13 @@ function mapStateToProps(state) {
         page: state.page,
         user: state.app.user,
         authenticated: state.auth.authenticated,
+        layout: state.layout
     };
 }
 
 export default withRouter(connect(mapStateToProps, {
     hideDrawer,
-    showDrawer
+    showDrawer,
+    updateProperty,
+    loadSite
 })(LayoutSelector));
