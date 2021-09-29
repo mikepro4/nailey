@@ -15,7 +15,9 @@
     .transition-element {
         &:last-child {
             .editor-section {
-                border-bottom: none;
+                &.editor-section-noBottom {
+                    border-bottom: none;
+                }
             }
         }
     }
@@ -64,7 +66,7 @@
 
         &.editor-section-content-noPadding {
             padding-top: 0;
-            padding-bottom: 0;
+            padding-bottom: 0
         }
         
     }

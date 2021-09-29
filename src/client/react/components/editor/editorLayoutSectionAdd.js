@@ -5,6 +5,8 @@ import classNames from "classnames"
 import * as _ from "lodash"
 import { Icon } from "@blueprintjs/core";
 
+import { showDrawer } from "../../../redux/actions/appActions"
+
 class EditorLayoutSectionAdd extends Component {
 
     state = {
@@ -12,7 +14,7 @@ class EditorLayoutSectionAdd extends Component {
 
     render() {
         return(
-            <div className="layout-add-section">
+            <div className="layout-add-section" onClick={() => this.props.showDrawer("layout-selector")}>
                 <div className="layout-add-icon-wrapper">
                     <Icon icon="plus"/>
                 </div>
@@ -31,4 +33,5 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, {
+    showDrawer
 })(withRouter(EditorLayoutSectionAdd));

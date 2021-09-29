@@ -7,6 +7,7 @@ import { Icon } from "@blueprintjs/core";
 
 import EditorLayoutSectionAdd from "./editorLayoutSectionAdd"
 
+
 class EditorLayout extends Component {
 
     state = {

@@ -28,6 +28,12 @@ class EditorSection extends Component {
         //         active: true
         //     })
         // }
+
+        if(this.props.section.forceOpen) {
+            this.setState({
+                active: true
+            })
+        }
     }
 
     conditionalRender(component, children) {
@@ -95,6 +101,7 @@ class EditorSection extends Component {
             <div
                 className={classNames({
                     "editor-section": true,
+                    "editor-section-noBottom": this.props.section.noPadding,
                 })}
             >
                 {this.props.section.collapsible && <div
