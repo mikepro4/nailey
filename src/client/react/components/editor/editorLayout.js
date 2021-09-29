@@ -37,7 +37,37 @@ class EditorLayout extends Component {
         this.props.updateFunction(sections)
     }
 
+    renderSection(section, i) {
+        return(
+            <div key={i}>
+                {section.label}
+                <EditorLayoutSectionAdd />
+            </div>
+        )
+    }
+
+    renderSections(sections) {
+        return(
+            <div>
+                {sections.map((item, i) => {
+                    return this.renderSection(item, i)
+                })}
+            </div>
+        )
+    }
+
+    renderSectionsScreen() {
+        let sections = this.props.page.metadata.sections
+        
+        if(sections.length < 1) {
+            return(<EditorLayoutSectionAdd />)
+        } else {
+            return(this.renderSections(sections))
+        }
+    }
+
     render() {
+        console.log(this.props.page.metadata.sections)
         return (
             <div
                 className={classNames({
@@ -45,7 +75,7 @@ class EditorLayout extends Component {
                     "editor-layout": true,
                 })}
             > 
-                <EditorLayoutSectionAdd />
+                {this.renderSectionsScreen()}
             </div>
         );
     }
@@ -57,6 +87,7 @@ function mapStateToProps(state) {
         app: state.app,
         location: state.router.location,
         edit: state.app.edit,
+        page: state.page.currentPage
     };
 }
 

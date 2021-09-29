@@ -25,6 +25,7 @@ class LayoutSelector extends Component {
 
     updatePage(value, section) {
         let drawerData = this.props.app.drawerData
+        let commonProperties = this.props.layout.allLayouts[section].commonProperties
         let layouts = this.props.layout.allLayouts[section].layouts
         let page = this.props.page.currentPage
 
@@ -32,16 +33,19 @@ class LayoutSelector extends Component {
             value: value
         })
 
-        let finalLayout = []
+        let finalLayout = _.concat(page.metadata.sections, selectedLayout)
 
-        if(drawerData.insertPosition) {
+        if(drawerData && drawerData.insertPosition) {
 
         } else {
-            finalLayout = _.map(selectedLayout, (item) => {
-                console.log(item)
+            finalLayout = _.map(finalLayout, (item) => {
+
+                let newProperties = _.concat(commonProperties, item.properties)
+
                 let newItem = {
                     ...item,
-                    section: section
+                    section: section,
+                    properties: newProperties
                 }
                 return newItem
             })
@@ -51,22 +55,6 @@ class LayoutSelector extends Component {
             this.props.loadSite()
         })
 
-        // if(page && page.metadata.sections.length < 0) {
-        
-        // } else {
-        //     console.log("here")
-        // }
-
-        
-
-        // this.props.updateProperty("page", this.props.page, "title", value, () => {
-        //     this.props.loadNewPageAsync(page._id, true)
-        // })
-        // if(drawerData && drawerData.updatePosition) {
-        //   this.props.updateProperty("page", page, "title", value, () => {
-        //     this.props.loadNewPageAsync(page._id, true)
-        // })  
-        // }
     }
 
     render() {
