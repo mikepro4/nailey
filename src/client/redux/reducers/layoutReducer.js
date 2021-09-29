@@ -6,7 +6,7 @@ import {
     LAYOUT_SCROLL,
 } from '../actions/types';
 
-import { categories } from "../../react/sections/categories"
+import { fieldCategories } from "../../react/sections/fieldCategories"
 
 export const initialState = {
     hovered: null,
@@ -18,18 +18,18 @@ export const initialState = {
         hero: {
             sectionValue: "hero",
             activeCategories: [
-                categories[0], categories[1]
+                fieldCategories[0], fieldCategories[1]
             ],
             commonProperties: [
                 {
-                    category: categories[0],
+                    category: fieldCategories[0],
                     propertyValue: "mainHeadline",
                     propertyLabel: "Main Headline",
                     value: "This is a default main headline",
                     propertyType: "string",
                 },
                 {
-                    category: categories[0],
+                    category: fieldCategories[0],
                     propertyValue: "subtitle",
                     propertyLabel: "Subtitle",
                     propertyType: "string",
@@ -42,7 +42,7 @@ export const initialState = {
                     label: "Layout 1",
                     properties: [
                         {
-                            category: categories[1],
+                            category: fieldCategories[1],
                             propertyValue: "displayCTA",
                             propertyLabel: "Display CTA",
                             propertyType: "boolean",
@@ -55,7 +55,7 @@ export const initialState = {
                     label: "Layout 2",
                     properties: [
                         {
-                            category: categories[0],
+                            category: fieldCategories[0],
                             propertyValue: "displayMainImage",
                             propertyLabel: "Display Main Image",
                             propertyType: "boolean",

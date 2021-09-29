@@ -44,7 +44,7 @@ class App extends Component {
 
         // this.props.showDrawer("section-user-settings")
        
-        // this.props.showDrawer("layout-selector", { forceOpen: 1})
+        this.props.showDrawer("layout-selector")
         
 
         // Section editor open

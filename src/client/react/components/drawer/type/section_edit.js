@@ -17,7 +17,7 @@ import { hideDrawer, showDrawer, updateProperty, getOptions } from "../../../../
 import { loadSite} from "../../../../redux/actions/sitesActions"
 import { setMainsection, loadNewSectionAsync } from "../../../../redux/actions/sectionsActions"
 
-import { categories, categoriesIcons, categoriesTitles } from "../../../sections/categories"
+import { fieldCategories, fieldCategoriesIcons, fieldCategoriesTitles } from "../../../sections/fieldCategories"
 
 class SectionEdit extends Component {
 
@@ -106,9 +106,10 @@ class SectionEdit extends Component {
                 return (this.getComponent(field, i))
             })
             return {
-                title: categoriesTitles[i],
-                icon: categoriesIcons[i],
+                title: fieldCategoriesTitles[i],
+                icon: fieldCategoriesIcons[i],
                 collapsible: true,
+                forceOpen: true,
                 components: fields
             }
         })
