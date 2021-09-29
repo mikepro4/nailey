@@ -58,10 +58,7 @@ class EditorLayout extends Component {
     }
 
     moveCard = (dragIndex, hoverIndex) => {
-        console.log(dragIndex, hoverIndex)
         const dragCard = this.state.sections[dragIndex];
-
-        let originalResults = this.state.sections
 
         this.setState({
             sections: update(this.state.sections, {
@@ -88,72 +85,75 @@ class EditorLayout extends Component {
         
 
         return(
-            <EditorDraggableItem key={section.id} index={i} id={section.id} moveCard={this.moveCard}>
                 <div 
                     className="layout-section-container" key={i}
                 >
+                    <EditorDraggableItem key={section.id} index={i} id={section.id} moveCard={this.moveCard}>
 
-                    <div 
-                        className={classNames({
-                            "layout-section": true,
-                            "layout-section-active": this.props.layout.active == section.id
-                        })}
-                        onClick={() => {
-                            this.toggleLayoutActive(section.id)
-                        }}
-                    >
-                        <div className="layout-section-left">
-                            <div className="layout-section-drag-handle">
-                                <DragHandle />
-                            </div>
-
-                            <div 
-                                className="layout-section-details-container"
-                                onClick={() => {
-                                    this.props.layoutActive(section.id)
-                                    this.props.showDrawer("layout-selector", { 
-                                        replacePosition: i, 
-                                        replaceValue: section.value, 
-                                        sectionOpen: section.sectionName,
-                                        forceOpen: section.sectionValue
-                                    })}
-                                }
-                            >
-                                <div className="layout-section-details-section-name">
-                                    {section.sectionName}
+                        <div 
+                            className={classNames({
+                                "layout-section": true,
+                                "layout-section-active": this.props.layout.active == section.id
+                            })}
+                            onClick={() => {
+                                this.toggleLayoutActive(section.id)
+                            }}
+                        >
+                            <div className="layout-section-left">
+                                <div className="layout-section-drag-handle">
+                                    <DragHandle />
                                 </div>
 
-                                <div className="layout-section-details-layout-name">
-                                    <span className="layout-name-container">
-                                        {section.label}
-                                    </span>
-                                    <span className="layout-name-icon">
-                                        <Icon icon="caret-down"/>
-                                    </span>
+                                <div 
+                                    className="layout-section-details-container"
+                                    onClick={() => {
+                                        this.props.layoutActive(section.id)
+                                        this.props.showDrawer("layout-selector", { 
+                                            replacePosition: i, 
+                                            replaceValue: section.value, 
+                                            sectionOpen: section.sectionName,
+                                            forceOpen: section.sectionValue
+                                        })}
+                                    }
+                                >
+                                    <div className="layout-section-details-section-name">
+                                        {section.sectionName}
+                                    </div>
+
+                                    <div className="layout-section-details-layout-name">
+                                        <span className="layout-name-container">
+                                            {section.label}
+                                        </span>
+                                        <span className="layout-name-icon">
+                                            <Icon icon="caret-down"/>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div className="layout-section-right">
-                            <Button 
-                                icon="trash"
-                                minimal={true}
-                                onClick={() => this.props.options.deleteFunction(i)}
-                            />
-                            <Button 
-                                icon="duplicate"
-                                minimal={true}
-                                onClick={() => this.props.options.duplicateFunction(i, section)}
-                            />
-                            <Button 
-                                icon="edit"
-                                onClick={() => console.log("edit page")}
-                            />
+                            <div className="layout-section-right">
+                                <Button 
+                                    icon="trash"
+                                    minimal={true}
+                                    onClick={() => this.props.options.deleteFunction(i)}
+                                />
+                                <Button 
+                                    icon="duplicate"
+                                    minimal={true}
+                                    onClick={() => this.props.options.duplicateFunction(i, section)}
+                                />
+                                <Button 
+                                    icon="edit"
+                                    onClick={() => console.log("edit page")}
+                                />
+                            </div>
                         </div>
-                    </div>
+                    </EditorDraggableItem>
+
                     <EditorLayoutSectionAdd  position={i}/>
+
+
                 </div>
-            </EditorDraggableItem>
         )
     }
 

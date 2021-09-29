@@ -25,10 +25,6 @@ class SectionUserSettings extends Component {
         loading: false
     }
 
-    getQueryParams = () => {
-        return qs.parse(this.props.location.search.substring(1));
-    };
-
     componentDidMount = () => {
         let drawerData = this.props.app.drawerData
 
@@ -37,19 +33,7 @@ class SectionUserSettings extends Component {
         }
     }
     
-
-    handleTitleChange = (item, value) => {
-        this.props.updateSectionProperty(item, "title", value, () => {
-            this.props.loadSection()
-            this.props.loadSite()
-        })
-    } 
-
-    deleteSection = () => {
-
-    }
-
-    deletePage(position) {
+    deleteSection(position) {
         let page = this.props.page.currentPage
 
         let finalLayout = update(page.metadata.sections, {
@@ -62,7 +46,7 @@ class SectionUserSettings extends Component {
 
     }
 
-    duplicatePage(position, item) {
+    duplicateSection(position, item) {
         let page = this.props.page.currentPage
 
         let newItem = {
@@ -102,10 +86,10 @@ class SectionUserSettings extends Component {
                                 })
                             },
                             deleteFunction: (position) => {
-                                this.deletePage(position)
+                                this.deleteSection(position)
                             },
                             duplicateFunction: (position, item) => {
-                                this.duplicatePage(position, item)
+                                this.duplicateSection(position, item)
                             },
                             value: page && page.metadata.sections
                         }  
