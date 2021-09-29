@@ -23,21 +23,34 @@ class LayoutSelector extends Component {
 
     render() {
 
+        let drawerData = this.props.app.drawerData
         let layoutSelectorConfiguration = [
-            
             {
                 id: 1,
                 title: "Hero",
                 collapsible: true,
-                forceOpen: this.props.app.drawerData && this.props.app.drawerData.forceOpen == 1,
+                forceOpen: drawerData && drawerData.forceOpen == 1,
                 components: [
                    {
-                    type: "switch",
-                    label: "Main site",
+                    type: "layoutOptionSelector",
+                    options: [
+                        {
+                            value: "layout1",
+                            label: "Layout 1"
+                        },
+                        {
+                            value: "layout2",
+                            label: "Layout 2"
+                        },
+                        {
+                            value: "layout1",
+                            label: "Layout 2"
+                        }
+                    ],
                     updateFunction: (value) => {
                         console.log(value)
                     },
-                    active: false
+                    value: drawerData && drawerData.selectedLayout
                    }
                 ]
             },

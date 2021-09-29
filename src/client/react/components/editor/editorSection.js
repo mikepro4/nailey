@@ -15,6 +15,7 @@ import EditorCRUD from "./editorCRUD"
 import EditorImage from "./editorImage"
 import EditorLinker from "./editorLinker"
 import EditorLayout from "./editorLayout"
+import EditorLayoutOptionSelector from "./editorLayoutOptionSelector"
 
 class EditorSection extends Component {
 
@@ -91,6 +92,10 @@ class EditorSection extends Component {
             case "layout":
                 return(
                     this.conditionalRender(component, <EditorLayout key={i} options={component} updateFunction={(value) => component.updateFunction(value)}/>)
+                )
+            case "layoutOptionSelector":
+                return(
+                    this.conditionalRender(component, <EditorLayoutOptionSelector key={i} options={component} updateFunction={(value) => component.updateFunction(value)}/>)
                 )
         }
     }
