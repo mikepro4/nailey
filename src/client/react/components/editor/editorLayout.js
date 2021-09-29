@@ -38,7 +38,6 @@ class EditorLayout extends Component {
     }
 
     render() {
-        console.log(this.state.sections)
         return (
             <div
                 className={classNames({

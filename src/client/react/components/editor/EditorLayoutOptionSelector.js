@@ -5,48 +5,95 @@ import classNames from "classnames"
 import * as _ from "lodash"
 import { Icon } from "@blueprintjs/core";
 
-import EditorLayoutSectionAdd from "./editorLayoutSectionAdd"
-
+import { hideDrawer, showDrawer } from "../../../redux/actions/appActions"
+import Button from "../../components/button"
 
 class EditorLayoutOptionSelector extends Component {
 
     state = {
-        sections: []
+        options: []
     }
 
-    componentDidMount() { 
-        if(this.props.options.value) {
+    componentDidMount() {
+        if (this.props.options.options) {
             this.setState({
-                sections: this.props.options.value
+                options: this.props.options.options
             })
         }
     }
 
-    componentDidUpdate(prevprops) { 
-        if(prevprops.options.value !== this.props.options.value) {
+    componentDidUpdate(prevprops) {
+        if (prevprops.options.options !== this.props.options.options) {
             this.setState({
-                sections: this.props.options.value
+                options: this.props.options.options
             })
         }
     }
 
-    handleInputChange = (sections) => {
-        this.setState({
-            sections: sections
-        })
-        this.props.updateFunction(sections)
+    selectLayout = (layout) => {
+        this.props.updateFunction(layout)
+        this.props.showDrawer("layout-selector", { selectedLayout: layout})
+
+    }
+
+    renderButton = (option) => {
+        if (this.props.options.value == option.value) {
+            return (<Button
+                label="Selected"
+                minimal={true}
+                onClick={() => {
+                    this.props.showDrawer("layout-selector", { selectedLayout: null })
+                }}
+            />)
+        } else {
+            return (
+                <Button
+                    icon="plus"
+                    minimal={true}
+                    onClick={() => {
+                        this.selectLayout(option.value)
+                    }}
+                />
+            )
+        }
+    }
+
+    renderItem = (option, i) => {
+        return (
+            <div
+                className={classNames({
+                    "layout-option-container": true,
+                    "layout-option-active": this.props.options.value == option.value
+                })}
+                key={i}
+
+            >
+
+                <div className="layout-option-left">
+                    <div className="layout-option-title">
+                        {option.label}
+                    </div>
+                </div>
+
+                <div className="layout-option-right">
+                    {this.renderButton(option)}
+                </div>
+
+            </div>
+        )
     }
 
     render() {
-        console.log(this.state.sections)
         return (
             <div
                 className={classNames({
                     "editor-row": true,
                     "editor-layout-option-selector": true,
                 })}
-            > 
-                Layout option selector
+            >
+                {this.state.options.map((item, i) => {
+                    return (this.renderItem(item, i))
+                })}
             </div>
         );
     }
@@ -62,4 +109,6 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, {
+    hideDrawer,
+    showDrawer
 })(withRouter(EditorLayoutOptionSelector));

@@ -43,8 +43,8 @@ class LayoutSelector extends Component {
                             label: "Layout 2"
                         },
                         {
-                            value: "layout1",
-                            label: "Layout 2"
+                            value: "layout3",
+                            label: "Layout 3"
                         }
                     ],
                     updateFunction: (value) => {
