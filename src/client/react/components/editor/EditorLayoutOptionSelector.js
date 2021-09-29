@@ -41,7 +41,7 @@ class EditorLayoutOptionSelector extends Component {
     }
 
     renderButton = (option) => {
-        if (this.props.layout.active == option.value) {
+        if (this.props.options.value == option.value) {
             return (<Button
                 label="Selected"
                 minimal={true}
@@ -57,7 +57,7 @@ class EditorLayoutOptionSelector extends Component {
 
     toggleLayoutOption(option) {
         if (this.props.options.value == option.value) {
-            this.props.layoutActive(null)
+            // this.props.layoutActive(null)
         } else {
             this.props.layoutActive(option.value)
             this.props.showDrawer("section-user-settings")
@@ -73,7 +73,7 @@ class EditorLayoutOptionSelector extends Component {
             <div
                 className={classNames({
                     "layout-option-container": true,
-                    "layout-option-active": this.props.layout.active == option.value
+                    "layout-option-active": this.props.options.value == option.value
                 })}
                 onClick={() => this.toggleLayoutOption(option)}
                 key={i}

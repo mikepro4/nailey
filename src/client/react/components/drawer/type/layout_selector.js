@@ -42,6 +42,7 @@ class LayoutSelector extends Component {
         let finalSelectedLayout = {
             ...selectedLayout[0],
             sectionName: sectionName,
+            sectionValue: section,
             properties: newProperties,
             id: uuidv4()
         }
@@ -89,7 +90,7 @@ class LayoutSelector extends Component {
                 id: 1,
                 title: "Hero",
                 collapsible: true,
-                forceOpen: drawerData && drawerData.forceOpen == 1,
+                forceOpen: drawerData && drawerData.forceOpen == "hero",
                 components: [
                    {
                     type: "layoutOptionSelector",
@@ -97,7 +98,7 @@ class LayoutSelector extends Component {
                     updateFunction: (value) => {
                         this.updatePage(value, "hero", "Hero")
                     },
-                    value: drawerData && drawerData.selectedLayout
+                    value: drawerData && drawerData.replaceValue
                    }
                 ]
             },
