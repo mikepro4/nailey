@@ -7,6 +7,8 @@ import { Icon } from "@blueprintjs/core";
 import DragHandle from "../svg/dragHandle"
 import Button from "../button"  
 
+import { showDrawer } from "../../../redux/actions/appActions"
+import { layoutActive } from "../../../redux/actions/layoutActions"
 import EditorLayoutSectionAdd from "./editorLayoutSectionAdd"
 
 
@@ -39,17 +41,40 @@ class EditorLayout extends Component {
         this.props.updateFunction(sections)
     }
 
+    toggleLayoutActive(layoutId) {
+        if(this.props.layout.active == layoutId) {
+            this.props.layoutActive(null)
+        } else {
+            this.props.layoutActive(layoutId)
+        }
+    }
+
     renderSection(section, i) {
         return(
-            <div className="layout-section-container" key={i}>
+            <div 
+                className="layout-section-container" key={i}
+            >
 
-                <div className="layout-section">
+                <div 
+                    className={classNames({
+                        "layout-section": true,
+                        "layout-section-active": this.props.layout.active == section.id
+                    })}
+                    onClick={() => {
+                        this.toggleLayoutActive(section.id)
+                    }}
+                >
                     <div className="layout-section-left">
                         <div className="layout-section-drag-handle">
                             <DragHandle />
                         </div>
 
-                        <div className="layout-section-details-container">
+                        <div 
+                            className="layout-section-details-container"
+                            onClick={() => {
+                                this.props.showDrawer("layout-selector", { replacePosition: i })}
+                            }
+                        >
                             <div className="layout-section-details-section-name">
                                 {section.sectionName}
                             </div>
@@ -127,9 +152,12 @@ function mapStateToProps(state) {
         app: state.app,
         location: state.router.location,
         edit: state.app.edit,
-        page: state.page.currentPage
+        page: state.page.currentPage,
+        layout: state.layout,
     };
 }
 
 export default connect(mapStateToProps, {
+    showDrawer,
+    layoutActive
 })(withRouter(EditorLayout));

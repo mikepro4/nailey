@@ -118,6 +118,9 @@
                 border: 1px solid rgba($black, 0.2);
             }
 
+            &.layout-section-active {
+                border: 1px solid rgba($black, 1);
+            }
 
             .layout-section-left {
                 display: flex;
@@ -127,6 +130,7 @@
                     margin: 0 20px 0 0;
                     transition: all 0.2s $animation_easing;
                     opacity: 0.3;
+                    cursor: move;
 
                     &:hover {
                         opacity: 1;
@@ -136,6 +140,7 @@
                 .layout-section-details-container {
                     position: relative;
                     top: -2px;
+                    cursor: pointer;
 
                     .layout-section-details-section-name {
                         font-size: 14px;

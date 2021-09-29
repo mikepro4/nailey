@@ -13,6 +13,7 @@ import Editor from "../../editor"
 import ArrowBack from "../../svg/arrow-back"
 import Button from "../../button"
 import Cross from "../../svg/cross"
+import { v4 as uuidv4 } from 'uuid';
 
 import { hideDrawer, showDrawer, updateProperty } from "../../../../redux/actions/appActions"
 import { loadSite} from "../../../../redux/actions/sitesActions"
@@ -41,7 +42,8 @@ class LayoutSelector extends Component {
         let finalSelectedLayout = {
             ...selectedLayout[0],
             sectionName: sectionName,
-            properties: newProperties
+            properties: newProperties,
+            id: uuidv4()
         }
 
         let finalLayout
@@ -53,6 +55,18 @@ class LayoutSelector extends Component {
 
                 finalLayout = update(page.metadata.sections, {
                     $splice: [[drawerData.insertPosition +1 , 0, finalSelectedLayout]]
+                });
+
+            }
+        }
+
+        if(drawerData && drawerData.replacePosition >= 0 && finalSelectedLayout) {
+            if(page.metadata.sections.length == 0) {
+                finalLayout = finalSelectedLayout
+            } else {
+
+                finalLayout = update(page.metadata.sections, {
+                    $splice: [[drawerData.insertPosition, 1, finalSelectedLayout]]
                 });
 
             }
