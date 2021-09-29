@@ -4,6 +4,8 @@ import { withRouter, Link } from "react-router-dom";
 import classNames from "classnames"
 import * as _ from "lodash"
 import { Icon } from "@blueprintjs/core";
+import DragHandle from "../svg/dragHandle"
+import Button from "../button"  
 
 import EditorLayoutSectionAdd from "./editorLayoutSectionAdd"
 
@@ -39,8 +41,47 @@ class EditorLayout extends Component {
 
     renderSection(section, i) {
         return(
-            <div key={i}>
-                {section.label}
+            <div className="layout-section-container" key={i}>
+
+                <div className="layout-section">
+                    <div className="layout-section-left">
+                        <div className="layout-section-drag-handle">
+                            <DragHandle />
+                        </div>
+
+                        <div className="layout-section-details-container">
+                            <div className="layout-section-details-section-name">
+                                {section.sectionName}
+                            </div>
+
+                            <div className="layout-section-details-layout-name">
+                                <span className="layout-name-container">
+                                    {section.label}
+                                </span>
+                                <span className="layout-name-icon">
+                                    <Icon icon="caret-down"/>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="layout-section-right">
+                        <Button 
+                            icon="trash"
+                            minimal={true}
+                            onClick={() => console.log("trash")}
+                        />
+                        <Button 
+                            icon="duplicate"
+                            minimal={true}
+                            onClick={() => console.log("duplicate")}
+                        />
+                        <Button 
+                            icon="edit"
+                            onClick={() => console.log("edit page")}
+                        />
+                    </div>
+                </div>
                 <EditorLayoutSectionAdd  position={i}/>
             </div>
         )
@@ -48,7 +89,7 @@ class EditorLayout extends Component {
 
     renderSections(sections) {
         return(
-            <div>
+            <div className="layout-section-wrapper">
                 {sections.map((item, i) => {
                     return this.renderSection(item, i)
                 })}

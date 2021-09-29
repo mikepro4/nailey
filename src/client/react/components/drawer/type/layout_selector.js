@@ -24,7 +24,7 @@ class LayoutSelector extends Component {
         loading: false 
     }
 
-    updatePage(value, section) {
+    updatePage(value, section, sectionName) {
         let drawerData = this.props.app.drawerData
         let commonProperties = this.props.layout.allLayouts[section].commonProperties
         let layouts = this.props.layout.allLayouts[section].layouts
@@ -40,7 +40,7 @@ class LayoutSelector extends Component {
 
         let finalSelectedLayout = {
             ...selectedLayout[0],
-            section: section,
+            sectionName: sectionName,
             properties: newProperties
         }
 
@@ -78,7 +78,7 @@ class LayoutSelector extends Component {
                     type: "layoutOptionSelector",
                     options: this.props.layout.allLayouts.hero.layouts,
                     updateFunction: (value) => {
-                        this.updatePage(value, "hero")
+                        this.updatePage(value, "hero", "Hero")
                     },
                     value: drawerData && drawerData.selectedLayout
                    }

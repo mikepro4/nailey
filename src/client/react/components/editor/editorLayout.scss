@@ -13,7 +13,7 @@
         top: 9px;
         left: 0;
         width: calc(50% - 20px);
-        border: 1px solid rgba($black, 0.1);
+        border-top: 1px solid rgba($black, 0.1);
         z-index: 1;
         transition: all 0.2s ease;
     }
@@ -24,7 +24,7 @@
         top: 9px;
         right: 0;
         width: calc(50% - 20px);
-        border: 1px solid rgba($black, 0.1);
+        border-top: 1px solid rgba($black, 0.1);
         z-index: 1;
         transition: all 0.2s ease;
     }
@@ -32,11 +32,17 @@
 
     .layout-add-icon-wrapper {
         z-index: 2;
+        opacity: 0.3;
+        transition: all 0.2s ease;
     }
 
     &:hover {
-       &:after, &:before {
-        border: 1px solid rgba($black, 1);
+        .layout-add-icon-wrapper {
+            opacity: 1;
+        }
+
+        &:after, &:before {
+            border-top: 1px solid rgba($black, 1);
        } 
     }
 }
@@ -90,6 +96,75 @@
         .layout-option-title {
             font-weight: 600;
             color: $white
+        }
+    }
+}
+
+.layout-section-wrapper {
+
+    .layout-section-container {
+
+        .layout-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid rgba($black, 0.1);
+            padding: 10px 10px 10px 20px;
+            margin: 10px 0 10px 0;
+            transition: all 0.2s $animation_easing;
+            cursor: pointer;
+
+            &:hover {
+                border: 1px solid rgba($black, 0.2);
+            }
+
+
+            .layout-section-left {
+                display: flex;
+                align-items: center;
+
+                .layout-section-drag-handle {
+                    margin: 0 20px 0 0;
+                    transition: all 0.2s $animation_easing;
+                    opacity: 0.3;
+
+                    &:hover {
+                        opacity: 1;
+                    }
+                }
+
+                .layout-section-details-container {
+                    position: relative;
+                    top: -2px;
+
+                    .layout-section-details-section-name {
+                        font-size: 14px;
+                        opacity: 0.4;
+                    }
+
+                    .layout-section-details-layout-name {
+                        font-size: 16px;
+                        font-weight: 600;
+
+                        .layout-name-container {
+                            margin: 0 3px 0 0;
+                        }
+
+                        .layout-name-icon {
+                            position: relative;
+                            top: -1px;
+                        }
+                    }
+                }
+            }
+
+            .layout-section-right {
+                display: flex;
+
+                .main-button {
+                    margin-left: 10px;
+                }
+            }
         }
     }
 }
