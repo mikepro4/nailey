@@ -6,9 +6,13 @@ import { Icon, Classes, Intent, Position, Toaster } from "@blueprintjs/core";
 
 import qs from "qs";
 import * as _ from "lodash"
+import update from "immutability-helper";
 
-import { hideDrawer } from "../../../../redux/actions/appActions"
+import { v4 as uuidv4 } from 'uuid';
+
+import { hideDrawer, updateProperty } from "../../../../redux/actions/appActions"
 import { loadPage} from "../../../../redux/actions/pagesActions"
+import { loadSite } from "../../../../redux/actions/sitesActions"
 import { layoutActive} from "../../../../redux/actions/layoutActions"
 
 import Cross from "../../svg/cross"
@@ -41,6 +45,41 @@ class SectionUserSettings extends Component {
         })
     } 
 
+    deleteSection = () => {
+
+    }
+
+    deletePage(position) {
+        let page = this.props.page.currentPage
+
+        let finalLayout = update(page.metadata.sections, {
+            $splice: [[position, 1]]
+        });
+
+        this.props.updateProperty("page", page, "sections", finalLayout, () => {
+            this.props.loadSite()
+        })
+
+    }
+
+    duplicatePage(position, item) {
+        let page = this.props.page.currentPage
+
+        let newItem = {
+            ...item,
+            id: uuidv4()
+        }
+
+        let finalLayout = update(page.metadata.sections, {
+            $splice: [[position, 0, newItem]]
+        });
+
+        this.props.updateProperty("page", page, "sections", finalLayout, () => {
+            this.props.loadSite()
+        })
+
+    }
+
     render() {
 
         let page = this.props.page.currentPage;
@@ -60,6 +99,12 @@ class SectionUserSettings extends Component {
                                 // this.props.updateProperty("page", page, "sections", value, () => {
                                 //     this.props.loadNewPageAsync(page._id, true)
                                 // })
+                            },
+                            deleteFunction: (position) => {
+                                this.deletePage(position)
+                            },
+                            duplicateFunction: (position, item) => {
+                                this.duplicatePage(position, item)
                             },
                             value: page && page.metadata.sections
                         }  
@@ -111,5 +156,7 @@ function mapStateToProps(state) {
 export default withRouter(connect(mapStateToProps, {
     loadPage,
     hideDrawer,
-    layoutActive
+    layoutActive,
+    loadSite,
+    updateProperty
 })(SectionUserSettings));

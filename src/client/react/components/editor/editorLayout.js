@@ -100,12 +100,12 @@ class EditorLayout extends Component {
                         <Button 
                             icon="trash"
                             minimal={true}
-                            onClick={() => console.log("trash")}
+                            onClick={() => this.props.options.deleteFunction(i)}
                         />
                         <Button 
                             icon="duplicate"
                             minimal={true}
-                            onClick={() => console.log("duplicate")}
+                            onClick={() => this.props.options.duplicateFunction(i, section)}
                         />
                         <Button 
                             icon="edit"
