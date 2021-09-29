@@ -11,6 +11,7 @@ import Editor from "../../editor"
 
 import ArrowBack from "../../svg/arrow-back"
 import Button from "../../button"
+import Cross from "../../svg/cross"
 
 import { hideDrawer, showDrawer } from "../../../../redux/actions/appActions"
 
@@ -97,12 +98,11 @@ class LayoutSelector extends Component {
                         </span>
                     </div>
 
-                    <div className="drawer-action-header-right">
-                        <Button
-                            label="Cancel"
-                            onClick={() => {
+                    <div className="drawer-action-header-right" onClick={() => {
                                 this.props.showDrawer("section-user-settings")
-                            }}
+                            }}>
+                        <Cross
+                            
                         />
                     </div>
                 </div>

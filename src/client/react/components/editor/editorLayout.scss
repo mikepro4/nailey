@@ -40,3 +40,56 @@
        } 
     }
 }
+
+.layout-option-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 0 0 15px;
+    background: rgba($black, 0.05);
+    margin-bottom: 10px;
+    align-items: center;
+    transition: all 0.2s $animation_easing;
+    cursor: pointer;
+
+    &:hover {
+        background: rgba($black, 0.1); 
+    }
+
+    .layout-option-title {
+        font-size: 14px;
+        position: relative;
+        top: -2px;
+        transition: all 0.2s $animation_easing;
+    }
+
+    .main-button  {
+        width: 40px;
+        height: 40px;
+        padding-top: 0;
+        padding-top: 0;
+        transition: all 0.3s;
+
+        &.main-button-minimal {
+            padding: 0;
+            width: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+
+            .main-button-text {
+                transition: all 0.2s;
+                color: $white;
+            }
+        }
+    }
+
+    &.layout-option-active {
+        background: $black;
+
+        .layout-option-title {
+            font-weight: 600;
+            color: $white
+        }
+    }
+}

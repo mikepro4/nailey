@@ -41,22 +41,24 @@ class EditorLayoutOptionSelector extends Component {
             return (<Button
                 label="Selected"
                 minimal={true}
-                onClick={() => {
-                    this.props.showDrawer("layout-selector", { selectedLayout: null })
-                }}
             />)
         } else {
             return (
                 <Button
                     icon="plus"
-                    minimal={true}
-                    onClick={() => {
-                        this.selectLayout(option.value)
-                    }}
                 />
             )
         }
     }
+
+    toggleLayoutOption(option) {
+        if (this.props.options.value == option.value) {
+            this.props.showDrawer("layout-selector", { selectedLayout: null })
+        } else {
+            this.selectLayout(option.value)
+        }
+    }
+
 
     renderItem = (option, i) => {
         return (
@@ -65,6 +67,7 @@ class EditorLayoutOptionSelector extends Component {
                     "layout-option-container": true,
                     "layout-option-active": this.props.options.value == option.value
                 })}
+                onClick={() => this.toggleLayoutOption(option)}
                 key={i}
 
             >
