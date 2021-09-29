@@ -46,6 +46,8 @@ class LayoutSelector extends Component {
             id: uuidv4()
         }
 
+        this.props.showDrawer("section-user-settings", {selectId: finalSelectedLayout.id })
+
         let finalLayout
 
         if(drawerData && drawerData.insertPosition >= 0 && finalSelectedLayout) {
@@ -66,11 +68,12 @@ class LayoutSelector extends Component {
             } else {
 
                 finalLayout = update(page.metadata.sections, {
-                    $splice: [[drawerData.insertPosition, 1, finalSelectedLayout]]
+                    $splice: [[drawerData.replacePosition, 1, finalSelectedLayout]]
                 });
 
             }
         }
+
 
         this.props.updateProperty("page", page, "sections", finalLayout, () => {
             this.props.loadSite()
@@ -127,6 +130,16 @@ class LayoutSelector extends Component {
                 ]
             }
         ]
+
+        let selectPosition
+
+        if(drawerData) {
+            if(drawerData.insertPosition) {
+                selectPosition = drawerData.insertPosition
+            } else if(drawerData.replacePosition) {
+                selectPosition = drawerData.replacePosition
+            }
+        }
 
         return (
             <div className="app-drawer-content-container standard-drawer page-edit-drawer">

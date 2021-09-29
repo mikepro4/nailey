@@ -9,6 +9,7 @@ import * as _ from "lodash"
 
 import { hideDrawer } from "../../../../redux/actions/appActions"
 import { loadPage} from "../../../../redux/actions/pagesActions"
+import { layoutActive} from "../../../../redux/actions/layoutActions"
 
 import Cross from "../../svg/cross"
 import Editor from "../../editor"
@@ -23,6 +24,14 @@ class SectionUserSettings extends Component {
     getQueryParams = () => {
         return qs.parse(this.props.location.search.substring(1));
     };
+
+    componentDidMount = () => {
+        let drawerData = this.props.app.drawerData
+
+        if(drawerData && drawerData.selectId) {
+            this.props.layoutActive(drawerData.selectId)
+        }
+    }
     
 
     handleTitleChange = (item, value) => {
@@ -101,5 +110,6 @@ function mapStateToProps(state) {
 
 export default withRouter(connect(mapStateToProps, {
     loadPage,
-    hideDrawer
+    hideDrawer,
+    layoutActive
 })(SectionUserSettings));
