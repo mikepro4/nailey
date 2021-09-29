@@ -15,7 +15,7 @@ export const sectionReducer = function(state = initialState, action) {
     switch(action.type) {
         case LOAD_SECTION:
             return { ...state,
-                currentSection: action.payload.main,
+                currentSection: action.payload,
             };
         case LOAD_NEW_SECTION:
             return { ...state,

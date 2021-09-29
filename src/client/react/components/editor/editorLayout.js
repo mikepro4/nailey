@@ -10,6 +10,7 @@ import Button from "../button"
 import { EditorDraggableItem } from "../editor/editorDraggableItem";
 import { showDrawer } from "../../../redux/actions/appActions"
 import { layoutActive } from "../../../redux/actions/layoutActions"
+import { loadSection } from "../../../redux/actions/sectionsActions"
 import EditorLayoutSectionAdd from "./editorLayoutSectionAdd"
 
 
@@ -69,12 +70,7 @@ class EditorLayout extends Component {
             })
         }, () => {
             
-
-            // setTimeout(() => {
-                // if(!_.isEmpty(originalResults) && !_.isEqual(originalResults, this.state.sections)) {
-                    this.props.updateFunction(this.state.sections)
-                // }
-            // }, 500)
+            this.props.updateFunction(this.state.sections)
             
         })
 
@@ -144,7 +140,10 @@ class EditorLayout extends Component {
                                 />
                                 <Button 
                                     icon="edit"
-                                    onClick={() => console.log("edit page")}
+                                    onClick={() => {
+                                        this.props.showDrawer("section-edit")
+                                        this.props.loadSection(section.id)
+                                    }}
                                 />
                             </div>
                         </div>
@@ -191,7 +190,7 @@ class EditorLayout extends Component {
 
                     {this.renderSections(this.state.sections)}
 
-                    {dndBackend == TouchBackend ? <Preview generator={this.generatePreview} /> : ""}
+                    {/* {dndBackend == TouchBackend ? <Preview generator={this.generatePreview} /> : ""} */}
                     
                 </DndProvider>
                )
@@ -225,5 +224,6 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, {
     showDrawer,
-    layoutActive
+    layoutActive,
+    loadSection
 })(withRouter(EditorLayout));

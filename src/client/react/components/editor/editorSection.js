@@ -16,6 +16,7 @@ import EditorImage from "./editorImage"
 import EditorLinker from "./editorLinker"
 import EditorLayout from "./editorLayout"
 import EditorLayoutOptionSelector from "./editorLayoutOptionSelector"
+import { Icon } from "@blueprintjs/core";
 
 class EditorSection extends Component {
 
@@ -100,6 +101,16 @@ class EditorSection extends Component {
         }
     }
 
+    maybeRenderIcon() { 
+        if(this.props.section.icon) {
+            return (
+                <div className="section-icon-container">
+                    <Icon icon={this.props.section.icon} />
+                </div>
+            )
+        }
+    }
+
     render() {
 
         return (
@@ -121,6 +132,7 @@ class EditorSection extends Component {
                     }}
                 >
                     <div className="editor-section-left">
+                        {this.maybeRenderIcon()}
                         {this.props.section.title}
                     </div>
 

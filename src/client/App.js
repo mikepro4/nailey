@@ -15,7 +15,7 @@ import { loadTheme} from "../client/redux/actions/themesActions"
 import { showDrawer} from "../client/redux/actions/appActions"
 import { authUser, fetchCurrentUser, clearCurrentUser } from "../client/redux/actions/authActions"
 import { loadNewPageAsync } from "../client/redux/actions/pagesActions"
-import { loadNewSectionAsync } from "../client/redux/actions/sectionsActions"
+import {  loadSection  } from "../client/redux/actions/sectionsActions"
 
 FocusStyleManager.onlyShowFocusOnTabs();
 
@@ -42,8 +42,14 @@ class App extends Component {
         //     this.props.showDrawer("section-edit")
         // })
 
-        this.props.showDrawer("section-user-settings")
+        // this.props.showDrawer("section-user-settings")
+       
         // this.props.showDrawer("layout-selector", { forceOpen: 1})
+        
+
+        // Section editor open
+        // this.props.loadSection("b452605d-d1b4-455c-8212-fe5e70ea23fb")
+        // this.props.showDrawer("section-edit")
     }
 
     componentWillUnmount() {
@@ -127,7 +133,6 @@ export default {
         showDrawer,
         loadSite,
         loadTheme,
-        loadNewPageAsync,
-        loadNewSectionAsync
+        loadSection
 	})(App))
 };

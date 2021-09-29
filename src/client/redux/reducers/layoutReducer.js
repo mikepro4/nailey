@@ -6,6 +6,8 @@ import {
     LAYOUT_SCROLL,
 } from '../actions/types';
 
+import { categories } from "../../react/sections/categories"
+
 export const initialState = {
     hovered: null,
     active: null,
@@ -15,16 +17,20 @@ export const initialState = {
     allLayouts: {
         hero: {
             sectionValue: "hero",
+            activeCategories: [
+                categories[0], categories[1]
+            ],
             commonProperties: [
                 {
-                    peropertyValue: "mainHeadline",
+                    category: categories[0],
+                    propertyValue: "mainHeadline",
                     propertyLabel: "Main Headline",
                     value: "This is a default main headline",
                     propertyType: "string",
-                    value: null,
                 },
                 {
-                    peropertyValue: "subtitle",
+                    category: categories[0],
+                    propertyValue: "subtitle",
                     propertyLabel: "Subtitle",
                     propertyType: "string",
                     value: "This is a default subtitle",
@@ -36,8 +42,9 @@ export const initialState = {
                     label: "Layout 1",
                     properties: [
                         {
-                            value: "displayCTA",
-                            label: "Display CTA",
+                            category: categories[1],
+                            propertyValue: "displayCTA",
+                            propertyLabel: "Display CTA",
                             propertyType: "boolean",
                             value: true,
                         }
@@ -48,8 +55,9 @@ export const initialState = {
                     label: "Layout 2",
                     properties: [
                         {
-                            value: "displayMainImage",
-                            label: "Display Main Image",
+                            category: categories[0],
+                            propertyValue: "displayMainImage",
+                            propertyLabel: "Display Main Image",
                             propertyType: "boolean",
                             value: true
                         }

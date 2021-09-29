@@ -35,7 +35,6 @@ class LayoutSelector extends Component {
             value: value
         })
 
-
         let newProperties = _.concat(commonProperties, selectedLayout[0].properties)
 
 
@@ -44,6 +43,7 @@ class LayoutSelector extends Component {
             sectionName: sectionName,
             sectionValue: section,
             properties: newProperties,
+            activeCategories: page.metadata.sections[section].activeCategories,
             id: uuidv4()
         }
 
