@@ -4,14 +4,14 @@ import { withRouter, Link } from "react-router-dom";
 import classNames from "classnames"
 import * as _ from "lodash"
 
-import Layout1 from "./layout1"
+import LayoutOne from "./layout_one"
 
 class HeroSection extends Component {
 
     renderLayout(section) {
         switch(section.value) {
             case "layout1":
-                return(<Layout1 section={this.props.section}/>)
+                return(<LayoutOne section={this.props.section}/>)
          }
     }
 
