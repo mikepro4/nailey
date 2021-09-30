@@ -121,9 +121,8 @@ class SectionHero extends Component {
                                 variants={heroButton}
                             >
                                 <Button
-                                    label={this.props.app.site.ctaText}
-                                    linkUrl={this.props.app.site.ctaUrl}
-                                    onClick={() => { alert("lol") }}
+                                    label={this.props.site.metadata.mainCTAText}
+                                    linkUrl={this.props.site.metadata.mainCTAURL}
                                 />
                             </motion.div>
                         )}
@@ -140,7 +139,8 @@ function mapStateToProps(state) {
         totalScrolledPixels: state.app.totalScrolledPixels,
         clientHeight: state.app.clientHeight,
         app: state.app,
-        page: state.page
+        page: state.page,
+        site: state.site.currentSite
     };
 }
 
