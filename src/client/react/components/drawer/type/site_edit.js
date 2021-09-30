@@ -52,6 +52,36 @@ class SiteEdit extends Component {
                 ]
             },
             {
+                title: "CTA",
+                collapsible: true,
+                components: [
+                    {
+                        type: "input",
+                        label: "CTA Text",
+                        updateFunction: (value) => {
+                            this.props.updateProperty("site", site, "mainCTAText", value, () => {
+                                this.props.loadNewSiteAsync(site._id, loadCurrent)
+                            })
+                        },
+                        value: site && site.metadata.mainCTAText,
+                        conditionalPropertyExpectedValue: true,
+                        conditionalPropertyActualValue: site && site.metadata.mainCTA
+                    },
+                    {
+                        type: "input",
+                        label: "CTA URL",
+                        updateFunction: (value) => {
+                            this.props.updateProperty("site", site, "mainCTAURL", value, () => {
+                                this.props.loadNewSiteAsync(site._id, loadCurrent)
+                            })
+                        },
+                        value: site && site.metadata.mainCTAURL,
+                        conditionalPropertyExpectedValue: true,
+                        conditionalPropertyActualValue: site && site.metadata.mainCTA
+                    }
+                ]
+            },
+            {
                 title: "Pages",
                 collapsible: true,
                 components: [
@@ -435,30 +465,6 @@ class SiteEdit extends Component {
                         conditionalPropertyActualValue: site && site.metadata.mainCTA
                     },
                     {
-                        type: "input",
-                        label: "CTA Text",
-                        updateFunction: (value) => {
-                            this.props.updateProperty("site", site, "mainCTAText", value, () => {
-                                this.props.loadNewSiteAsync(site._id, loadCurrent)
-                            })
-                        },
-                        value: site && site.metadata.mainCTAText,
-                        conditionalPropertyExpectedValue: true,
-                        conditionalPropertyActualValue: site && site.metadata.mainCTA
-                    },
-                    {
-                        type: "input",
-                        label: "CTA URL",
-                        updateFunction: (value) => {
-                            this.props.updateProperty("site", site, "mainCTAURL", value, () => {
-                                this.props.loadNewSiteAsync(site._id, loadCurrent)
-                            })
-                        },
-                        value: site && site.metadata.mainCTAURL,
-                        conditionalPropertyExpectedValue: true,
-                        conditionalPropertyActualValue: site && site.metadata.mainCTA
-                    },
-                    {
                         type: "numericInput",
                         label: "CTA Width",
                         updateFunction: (value) => {
@@ -469,7 +475,7 @@ class SiteEdit extends Component {
                         value: site && site.metadata.mainCTAWidth,
                         conditionalPropertyExpectedValue: true,
                         conditionalPropertyActualValue: site && site.metadata.mainCTA
-                    },
+                    }
                 ]
             },
             {
