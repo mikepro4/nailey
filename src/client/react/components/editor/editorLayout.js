@@ -13,14 +13,7 @@ import { layoutActive } from "../../../redux/actions/layoutActions"
 import { loadSection } from "../../../redux/actions/sectionsActions"
 import EditorLayoutSectionAdd from "./editorLayoutSectionAdd"
 
-
-import { DndProvider } from 'react-dnd'
-import { HTML5Backend } from 'react-dnd-html5-backend'
-import { TouchBackend } from 'react-dnd-touch-backend'
-
-import { Preview } from 'react-dnd-preview'
-
-
+ 
 class EditorLayout extends Component {
 
     state = {
@@ -190,13 +183,7 @@ class EditorLayout extends Component {
             return(<EditorLayoutSectionAdd position={0}/>)
         } else {
 
-            let dndBackend 
-
-            if(this.props.app.clientWidth < 500) {
-                dndBackend = TouchBackend
-            } else {
-                dndBackend = HTML5Backend
-            }
+        
             return(<div>{this.renderSections(this.state.sections)}</div>)
 
         //     return(

@@ -15,7 +15,7 @@ import EditorCRUD from "./editorCRUD"
 import EditorImage from "./editorImage"
 import EditorLinker from "./editorLinker"
 import EditorLayout from "./editorLayout"
-import EditorLayoutOptionSelector from "./editorLayoutOptionSelector"
+// import EditorLayoutOptionSelector from "./editorLayoutOptionSelector"
 import { Icon } from "@blueprintjs/core";
 
 class EditorSection extends Component {
@@ -94,10 +94,10 @@ class EditorSection extends Component {
                 return(
                     this.conditionalRender(component, <EditorLayout key={i} options={component} updateFunction={(value) => component.updateFunction(value)}/>)
                 )
-            case "layoutOptionSelector":
-                return(
-                    this.conditionalRender(component, <EditorLayoutOptionSelector key={i} options={component} updateFunction={(value) => component.updateFunction(value)}/>)
-                )
+            // case "layoutOptionSelector":
+            //     return(
+            //         this.conditionalRender(component, <EditorLayoutOptionSelector key={i} options={component} updateFunction={(value) => component.updateFunction(value)}/>)
+            //     )
         }
     }
 
