@@ -41,6 +41,12 @@ class EditorLayout extends Component {
                 sections: this.props.options.value
             })
         }
+
+        // if(!_.isEqual(prevprops.page, this.props.page)) {
+        //     this.setState({
+        //         sections: this.props.options.value
+        //     })
+        // }
     }
 
     handleInputChange = (sections) => {
@@ -85,7 +91,15 @@ class EditorLayout extends Component {
                 <div 
                     className="layout-section-container" key={i}
                 >
-                    <EditorDraggableItem key={section.id} index={i} id={section.id} moveCard={_.debounce(this.moveCard, 1)}>
+                    <EditorDraggableItem 
+                        key={section.id} 
+                        index={i} 
+                        id={section.id} 
+                        moveCard={_.debounce(this.moveCard, 1)}
+                        style={{
+                            backgroundColor: "white"
+                        }}
+                    >
 
                         <div 
                             className={classNames({
@@ -183,16 +197,17 @@ class EditorLayout extends Component {
             } else {
                 dndBackend = HTML5Backend
             }
+            return(<div>{this.renderSections(this.state.sections)}</div>)
 
-            return(
-                <DndProvider backend={dndBackend} options={this.state.backendOptions} >
+        //     return(
+        //         <DndProvider backend={dndBackend} options={this.state.backendOptions} >
 
-                    {this.renderSections(this.state.sections)}
+        //             {this.renderSections(this.state.sections)}
 
-                    {/* {dndBackend == TouchBackend ? <Preview generator={this.generatePreview} /> : ""} */}
+        //             {/* {dndBackend == TouchBackend ? <Preview generator={this.generatePreview} /> : ""} */}
                     
-                </DndProvider>
-               )
+        //         </DndProvider>
+        //        )
         }
     }
 

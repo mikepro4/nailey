@@ -19,6 +19,10 @@ import { authUser, fetchCurrentUser, clearCurrentUser } from "../client/redux/ac
 import { loadNewPageAsync } from "../client/redux/actions/pagesActions"
 import {  loadSection  } from "../client/redux/actions/sectionsActions"
 
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
+import { TouchBackend } from 'react-dnd-touch-backend'
+
 FocusStyleManager.onlyShowFocusOnTabs();
 
 class App extends Component {
@@ -94,28 +98,43 @@ class App extends Component {
 
 
 	render() {
-        return (
-            <div className="app">
-                {this.props.currentSite ? (
-                    <div>
-                        <Header />
 
-                        <div className="main-section">
-                        <div className="app-route-container">
-                            {renderRoutes(this.props.route.routes)}
+        let dndBackend 
+
+        if(this.props.app.clientWidth < 500) {
+            dndBackend = TouchBackend
+        } else {
+            dndBackend = HTML5Backend
+        }
+
+        return (
+            
+            <div className="app">
+                <DndProvider backend={HTML5Backend} >
+
+                    {this.props.currentSite ? (
+                        <div>
+                            <Header />
+
+                            <div className="main-section">
+                            <div className="app-route-container">
+                                {renderRoutes(this.props.route.routes)}
+                            </div>
                         </div>
                     </div>
-                </div>
-                ) :  (
-                    <div>Select site</div>
-                )}
+                    ) :  (
+                        <div>Select site</div>
+                    )}
                 
 
-                <Scroll/>
+                    <Scroll/>
 
-                {this.props.drawerOpen && <Drawer type={this.props.drawerType} />}
+                    {this.props.drawerOpen && <Drawer type={this.props.drawerType} />}
 
-                {this.editComponents()}
+                    {this.editComponents()}
+
+                </DndProvider>
+               
             </div>
         )
 		
@@ -123,7 +142,8 @@ class App extends Component {
 }
 function mapStateToProps(state) {
 	return {
-		appReducer: state.appReducer,
+        appReducer: state.appReducer,
+        app: state.app,
         user: state.app.user,
         edit: state.app.edit,
         drawerOpen: state.app.drawerOpen,

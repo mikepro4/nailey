@@ -238,7 +238,7 @@ class EditorLinker extends Component {
                  */}
                
 
-                <DndProvider backend={dndBackend} options={this.state.backendOptions} >
+                {/* <DndProvider backend={dndBackend} options={this.state.backendOptions} > */}
                     <EditorDraggableContainer 
                         results={this.state.results} 
                         updateFunction={this.props.updateFunction}
@@ -247,9 +247,9 @@ class EditorLinker extends Component {
                         handleChange={this.handleChange}
                     />
 
-                    {dndBackend == TouchBackend ? <Preview generator={this.generatePreview} /> : ""}
+                    {/* {dndBackend == TouchBackend ? <Preview generator={this.generatePreview} /> : ""}
                     
-                </DndProvider>
+                </DndProvider> */}
 
                 <Button 
                     icon="plus"

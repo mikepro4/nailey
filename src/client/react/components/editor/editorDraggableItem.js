@@ -1,12 +1,8 @@
 import React, { useRef } from "react";
 import { useDrag, useDrop } from 'react-dnd';
 import classNames from "classnames"
-const style = {
-    marginBottom: '.5rem',
-    backgroundColor: 'white',
-    cursor: 'move',
-};
-export const EditorDraggableItem = ({ id, text, index, moveCard, children }) => {
+
+export const EditorDraggableItem = ({ id, text, index, moveCard, children, offset, style }) => {
     const ref = useRef(null);
     const [{ handlerId }, drop] = useDrop({
         accept: "CARD",
@@ -27,8 +23,16 @@ export const EditorDraggableItem = ({ id, text, index, moveCard, children }) => 
             }
             // Determine rectangle on screen
             const hoverBoundingRect = ref.current.getBoundingClientRect();
+
+            let finalOffset 
+
+            if(offset) {
+                finalOffset = offset
+            } else {
+                finalOffset = 2
+            }
             // Get vertical middle
-            const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
+            const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / offset;
             // Determine mouse position
             const clientOffset = monitor.getClientOffset();
             // Get pixels to the top

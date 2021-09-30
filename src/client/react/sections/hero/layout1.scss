@@ -6,15 +6,15 @@
         margin: 0 auto;
         position: relative;
         
-            @media only screen and (max-width: 1450px) {
-                height: 850px;
-            }
-        
-            @media only screen and (max-width: $mobile) {
-                height: 550px;
-            }
+        @media only screen and (max-width: 1450px) {
+            height: 850px;
         }
-        
+    
+        @media only screen and (max-width: $mobile) {
+            height: 550px;
+        }
+    }
+    
     .section-container {
         display: flex;
         align-items: center;
