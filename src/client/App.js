@@ -14,7 +14,7 @@ import { FocusStyleManager } from "@blueprintjs/core";
 
 import { loadSite} from "../client/redux/actions/sitesActions"
 import { loadTheme} from "../client/redux/actions/themesActions"
-import { showDrawer, hideDrawer} from "../client/redux/actions/appActions"
+import { showDrawer, hideDrawer, setScrollTo} from "../client/redux/actions/appActions"
 import { authUser, fetchCurrentUser, clearCurrentUser } from "../client/redux/actions/authActions"
 import { loadNewPageAsync } from "../client/redux/actions/pagesActions"
 import {  loadSection  } from "../client/redux/actions/sectionsActions"
@@ -40,7 +40,13 @@ class App extends Component {
 		this.props.hideDrawer()
     }
 
+    @keydown("ctrl + s")
+	showSectionSettings() {
+		this.props.showDrawer("section-user-settings")
+    }
+
 	componentDidMount() {
+        this.props.setScrollTo(0)
         this.auth()
         this.props.loadSite()
         this.props.loadTheme()
@@ -69,7 +75,13 @@ class App extends Component {
     componentDidUpdate(prevprops) {
         if(prevprops.user !== this.props.user) {
             // this.props.clearCurrentUser()
-		}
+        }
+
+        
+        if(this.props.location.pathname !== prevprops.location.pathname) {
+            console.log("here")
+            this.props.setScrollTo(0)
+        }
     }
     
     auth() {
@@ -161,6 +173,7 @@ export default {
         loadSite,
         loadTheme,
         loadSection,
-        hideDrawer
+        hideDrawer,
+        setScrollTo
 	})(App))
 };

@@ -69,7 +69,7 @@ class EditorLayout extends Component {
                 ],
             })
         }, () => {
-
+            document.getElementById("section-"+ this.state.sections[dragIndex].id).scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
             this.props.updateFunction(this.state.sections)
 
         })
