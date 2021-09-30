@@ -28,7 +28,13 @@ class SectionEdit extends Component {
     updateField(field, value) {
 
         let page = this.props.page.currentPage
-        let indexOfEditingSection = _.findIndex(page.metadata.sections,this.props.section.currentSection)
+        let indexOfEditingSection = _.findIndex(page.metadata.sections,{
+            id: this.props.section.currentSection.id
+        })
+
+        // if error on update
+        // console.log(indexOfEditingSection)
+        // console.log(page.metadata.sections,this.props.section.currentSection)
 
         let fieldToUpdate = _.filter(this.props.section.currentSection.properties, {
             propertyValue: field.propertyValue

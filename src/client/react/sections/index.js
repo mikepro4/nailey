@@ -21,9 +21,9 @@ class Sections extends Component {
                     "section-editable": this.props.app.edit
                 })}
                 onClick={() => {
-                    this.props.loadSection(section.id)
-                    this.props.showDrawer("section-edit", { replacePosition: i })
                     this.props.layoutActive(section.id)
+                    this.props.showDrawer("section-edit")
+                    this.props.loadSection(section.id)
                 }
                 }
             >
