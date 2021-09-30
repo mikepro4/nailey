@@ -54,7 +54,7 @@ class Sections extends Component {
                 ],
             })
         }, () => {
-            console.log(this.state.sections)
+            // console.log(this.state.sections)
             // this.props.updateFunction(this.state.sections)
             this.props.updateProperty("page", this.props.page.currentPage, "sections", this.state.sections, () => {
                 this.props.loadSite()
@@ -63,6 +63,12 @@ class Sections extends Component {
             
         })
 
+    }
+
+    showEditDrawer(section) {
+        this.props.layoutActive(section.id)
+        this.props.showDrawer("section-edit")
+        this.props.loadSection(section.id)
     }
 
     sectionWrapper(section, component, i) {
@@ -84,9 +90,12 @@ class Sections extends Component {
                         this.props.layoutActive(section.id)
                     }}
                     onClick={() => {
-                        this.props.layoutActive(section.id)
-                        this.props.showDrawer("section-edit")
-                        this.props.loadSection(section.id)
+                        if(this.props.app.drawerType == "section-edit") {
+                            this.showEditDrawer(section)
+                        }
+                    }}
+                    onDoubleClick={() => {
+                        this.showEditDrawer(section)
                     }
                     }
                 >
