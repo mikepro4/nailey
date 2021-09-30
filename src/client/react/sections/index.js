@@ -11,13 +11,13 @@ import { TouchBackend } from 'react-dnd-touch-backend'
 
 import HeroSection from "./hero";
 
-import { loadSite} from "../../redux/actions/sitesActions"
+import { loadSite } from "../../redux/actions/sitesActions"
 import { showDrawer, updateProperty } from "../../redux/actions/appActions"
 import { loadSection } from "../../redux/actions/sectionsActions"
 import { layoutActive } from "../../redux/actions/layoutActions"
 import { loadPage } from "../../redux/actions/pagesActions"
 
-import  { EditorDraggableItem } from "../components/editor/editorDraggableItem"
+import { EditorDraggableItem } from "../components/editor/editorDraggableItem"
 
 class Sections extends Component {
 
@@ -28,14 +28,14 @@ class Sections extends Component {
         };
     };
 
-    componentDidMount() { 
+    componentDidMount() {
         this.setState({
             sections: this.props.page.currentPage.metadata.sections
         })
     }
 
-    componentDidUpdate(prevprops) { 
-        if(!_.isEqual(prevprops.page.currentPage.metadata.sections, this.props.page.currentPage.metadata.sections)) {
+    componentDidUpdate(prevprops) {
+        if (!_.isEqual(prevprops.page.currentPage.metadata.sections, this.props.page.currentPage.metadata.sections)) {
             this.setState({
                 sections: this.props.page.currentPage.metadata.sections
             })
@@ -59,7 +59,7 @@ class Sections extends Component {
                 this.props.loadSite()
                 this.props.loadPage()
             })
-            
+
         })
 
     }
@@ -70,42 +70,54 @@ class Sections extends Component {
         this.props.loadSection(section.id)
     }
 
-    sectionWrapper(section, component, i) {
+    renderSectionContent(section, component, i) {
         return (
-            <EditorDraggableItem 
-                key={section.id} 
-                index={i} 
-                id={section.id} 
-                moveCard={_.debounce(this.moveCard, 1)}
-            >
-
-                <div
-                    className={classNames({
-                        "section-wrapper": true,
-                        "section-active": this.props.layout.active == section.id,
-                        "section-editable": this.props.app.edit
-                    })}
-                    onMouseDown={() => {
-                        this.props.layoutActive(section.id)
-                        let node = document.getElementById("editor-section-"+ section.id)
-                        if(node) {
-                            document.getElementById("editor-section-"+ section.id).scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" })
-                        }
-                    }}
-                    onClick={() => {
-                        if(this.props.app.drawerType == "section-edit") {
-                            this.showEditDrawer(section)
-                        }
-                    }}
-                    onDoubleClick={() => {
+            <div
+                className={classNames({
+                    "section-wrapper": true,
+                    "section-active": this.props.layout.active == section.id,
+                    "section-editable": this.props.app.edit
+                })}
+                onMouseDown={() => {
+                    this.props.layoutActive(section.id)
+                    let node = document.getElementById("editor-section-" + section.id)
+                    if (node) {
+                        document.getElementById("editor-section-" + section.id).scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" })
+                    }
+                }}
+                onClick={() => {
+                    if (this.props.app.drawerType == "section-edit") {
                         this.showEditDrawer(section)
                     }
+                }}
+                onDoubleClick={() => {
+                    if(this.props.edit) {
+                        this.showEditDrawer(section)
                     }
-                >
-                    {component}
-                </div>
-            </EditorDraggableItem>
+                }
+                }
+            >
+                {component}
+            </div>
         )
+    }
+
+    sectionWrapper(section, component, i) {
+        if(this.props.app.edit) {
+            return (
+                <EditorDraggableItem
+                    key={section.id}
+                    index={i}
+                    id={section.id}
+                    moveCard={_.debounce(this.moveCard, 1)}
+                >
+                    {this.renderSectionContent(section, component, i)}
+                </EditorDraggableItem>
+            )
+        } else {
+            return this.renderSectionContent(section, component, i)
+        }
+        
     }
 
     renderSection(section, i) {
@@ -123,9 +135,9 @@ class Sections extends Component {
         let page = this.props.page.currentPage
         let finalSections = _.map(this.state.sections, (section, i) => {
             return (
-                
+
                 <div className="transition-element" id={"section-" + section.id} key={i}>
-                        {this.renderSection(section, i)}
+                    {this.renderSection(section, i)}
                 </div>
             )
         })
@@ -140,7 +152,7 @@ class Sections extends Component {
                     "main-sections": true
                 })}
             >
-                    {this.renderSections()}
+                {this.renderSections()}
             </div>
         );
     }
