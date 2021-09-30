@@ -33,10 +33,19 @@ class EditorEditableField extends Component {
 
     handleKeydown = evt => {
         if(evt.key === "Enter" ) {
+            // this.props.updateField(event.target.value )
             window.getSelection().removeAllRanges()
             evt.preventDefault()
         }
     };
+
+    componentDidUpdate = (prevprops) => {
+        // if(this.props.value !== prevprops.value) {
+        //     this.setState({
+        //         value: this.props.value
+        //     })
+        // }
+    }
 
     render() {
         return (

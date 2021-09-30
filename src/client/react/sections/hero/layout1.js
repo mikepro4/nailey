@@ -12,6 +12,7 @@ import EditorEditableField from "../../components/editor/editorEditableField"
 import { loadSite } from "../../../redux/actions/sitesActions"
 import { updateProperty } from "../../../redux/actions/appActions"
 import { loadPage } from "../../../redux/actions/pagesActions"
+import { loadSection } from "../../../redux/actions/sectionsActions"
 
 class SectionHero extends Component {
     state = {
@@ -64,6 +65,8 @@ class SectionHero extends Component {
         this.props.updateProperty("page", page, "sections", finalLayout, () => {
             this.props.loadSite()
             this.props.loadPage()
+            this.props.loadSection(section.id)
+
         })
 
     }
@@ -184,5 +187,6 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps, {
     updateProperty,
     loadSite,
-    loadPage
+    loadPage,
+    loadSection
 })(SectionHero);
