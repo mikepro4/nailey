@@ -44,12 +44,12 @@ class App extends Component {
 
         // this.props.showDrawer("section-user-settings")
        
-        this.props.showDrawer("layout-selector")
+        // this.props.showDrawer("layout-selector")
         
 
         // Section editor open
-        // this.props.loadSection("b452605d-d1b4-455c-8212-fe5e70ea23fb")
-        // this.props.showDrawer("section-edit")
+        this.props.loadSection("1fd46fd8-5775-4520-af18-dd0704c33f41")
+        this.props.showDrawer("section-edit")
     }
 
     componentWillUnmount() {

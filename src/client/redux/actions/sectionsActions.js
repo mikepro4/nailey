@@ -28,3 +28,16 @@ export const loadSection = (id, success) => async (
         payload: section[0]
     });
 }
+
+// ===========================================================================
+
+export const findProperty = (section, property, success) => async (
+    dispatch,
+	getState,
+	api
+) => {
+    let finalProperty = _.filter(section.properties, {
+        propertyValue: property
+    })
+    return resovle(finalProperty[0])
+}

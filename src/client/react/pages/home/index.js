@@ -7,6 +7,8 @@ import * as _ from "lodash"
 
 import { loadPage } from "../../../redux/actions/pagesActions"
 
+import Sections from "../../sections/index"
+
 class HomePage extends Component {
 
     state = {
@@ -20,7 +22,7 @@ class HomePage extends Component {
 
     renderPage(page) {
         if(page) {
-            return(<div>{page.metadata.title}</div>)
+            return(<div><Sections/></div>)
         } else {
             return(<div>404</div>)
         }

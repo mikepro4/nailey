@@ -47,7 +47,7 @@ class EditorInput extends Component {
                     asyncControl={true}
                     disabled={this.props.disabled}
                     large={this.props.large}
-                    onChange={_.debounce(this.handleInputChange, 1000)}
+                    onChange={_.debounce(this.handleInputChange, 200)}
                     placeholder="Type title..."
                     small={this.props.large}
                     value={this.state.value}
