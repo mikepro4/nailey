@@ -10,6 +10,9 @@ class SectionHero extends Component {
     };
 
     componentDidMount() {
+        this.setState({
+            visible: true
+        })
     }
 
     getPose() {
@@ -120,11 +123,12 @@ class SectionHero extends Component {
     }
 }
 
-function mapStateToProps({ app }) {
+function mapStateToProps(state) {
     return {
-        totalScrolledPixels: app.totalScrolledPixels,
-        clientHeight: app.clientHeight,
-        app: app
+        totalScrolledPixels: state.app.totalScrolledPixels,
+        clientHeight: state.app.clientHeight,
+        app: state.app,
+        page: state.page
     };
 }
 

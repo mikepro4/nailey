@@ -4,6 +4,7 @@ import { withRouter, Link } from "react-router-dom";
 import classNames from "classnames"
 import * as _ from "lodash"
 import HeroSection from "./hero";
+import layout1 from "./hero/layout1";
 
 class Sections extends Component {
 
@@ -47,7 +48,8 @@ function mapStateToProps(state) {
         user: state.app.user,
         app: state.app,
         location: state.router.location,
-        page: state.page
+        page: state.page,
+        layout: state.layout
 	};
 }
 
