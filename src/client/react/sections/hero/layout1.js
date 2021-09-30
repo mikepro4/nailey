@@ -14,6 +14,8 @@ import { updateProperty } from "../../../redux/actions/appActions"
 import { loadPage } from "../../../redux/actions/pagesActions"
 import { loadSection } from "../../../redux/actions/sectionsActions"
 
+import EditableContent from "../helpers/editableContent"
+
 class SectionHero extends Component {
     state = {
     };
@@ -27,52 +29,6 @@ class SectionHero extends Component {
     getPose() {
         return getPose(this.refs.screen, this.props.clientHeight, this.props.totalScrolledPixels, 1.5)
     }
-
-    updateProperty = (value, property, section) => {
-
-        let toChangeProperty = _.filter(this.props.section.properties, {
-            propertyValue: property
-        })
-
-        let indexPropertyToUpdate = _.findIndex(section.properties, {
-            propertyValue: property
-        })
-
-        let newValue = {
-            ...toChangeProperty[0],
-            value: value
-        }
-
-        let newProperties = update(section.properties, {
-            $splice: [[indexPropertyToUpdate, 1, newValue]]
-        })
-
-        let page = this.props.page.currentPage
-
-        let newSection = {
-            ...section,
-            properties: newProperties
-        }
-
-        let indexSectionToUpdate = _.findIndex(page.metadata.sections, {
-            id: section.id
-        })
-
-        let finalLayout = update(page.metadata.sections, {
-            $splice: [[indexSectionToUpdate, 1, newSection]]
-        })
-
-        this.props.updateProperty("page", page, "sections", finalLayout, () => {
-            this.props.loadSite()
-            this.props.loadPage()
-            setTimeout(() => {
-                this.props.loadSection(section.id)
-
-            }, 100)
-        })
-
-    }
-
 
     render() {
         const heroTitle = {
@@ -141,12 +97,9 @@ class SectionHero extends Component {
                             animate={this.getPose()}
                             variants={heroTitle}
                         >
-                            <EditorEditableField
-                                value={findProperty(this.props.section, "mainHeadline").value}
-                                updateField={(value) => {
-                                    this.updateProperty(value, "mainHeadline", this.props.section)
-                                }
-                                }
+                            <EditableContent
+                                section={this.props.section}
+                                property="mainHeadline"
                             />
                         </motion.div>
                         <motion.div
@@ -155,7 +108,10 @@ class SectionHero extends Component {
                             animate={this.getPose()}
                             variants={heroSubtitle}
                         >
-                            {findProperty(this.props.section, "subtitle").value}
+                            <EditableContent
+                                section={this.props.section}
+                                property="subtitle"
+                            />
                         </motion.div>
                         <motion.div
                             className="hero-button"

@@ -14,6 +14,7 @@ class EditorEditableField extends Component {
         this.contentEditable = React.createRef();
         this.state = {
             value: "",
+            focused: false
         };
     };
 
@@ -34,18 +35,19 @@ class EditorEditableField extends Component {
 
     handleKeydown = evt => {
         if(evt.key === "Enter" ) {
-            this.props.updateField(evt.target.value )
             window.getSelection().removeAllRanges()
             evt.preventDefault()
         }
     };
 
     componentDidUpdate = (prevprops) => {
-        // if(this.props.value !== prevprops.value) {
-        //     this.setState({
-        //         value: this.props.value
-        //     })
-        // }
+        if(this.props.value !== prevprops.value) {
+            if(!this.state.focused) {
+                this.setState({
+                    value: this.props.value
+                })
+            }
+        }
     }
 
     render() {
@@ -57,6 +59,16 @@ class EditorEditableField extends Component {
                 disabled={false} 
                 onChange={(event) => this.handleChange(event)} 
                 onKeyDown={this.handleKeydown}
+                onBlur={()=> {
+                    this.setState({
+                        focused: false
+                    })
+                }}
+                onFocus={()=> {
+                    this.setState({
+                        focused: true
+                    })
+                }}
             />
         );
     }

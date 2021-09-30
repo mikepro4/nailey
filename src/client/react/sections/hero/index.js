@@ -17,7 +17,6 @@ class HeroSection extends Component {
 
 	render() {
         let section = this.props.section
-
         return (
             <div 
                 className={classNames({
