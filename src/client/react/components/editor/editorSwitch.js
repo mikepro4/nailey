@@ -18,6 +18,13 @@ class EditorSwitch extends Component {
         }
     }
 
+    componentDidUpdate(prevprops) {
+        if(prevprops.options.active !== this.props.options.active) {
+            this.setState({
+                active: this.props.options.active
+            })
+        }
+    }
     handleSwitchChange = (data) => {
  
         this.setState({
