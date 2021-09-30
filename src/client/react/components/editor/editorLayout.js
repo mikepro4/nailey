@@ -92,9 +92,7 @@ class EditorLayout extends Component {
                                 "layout-section": true,
                                 "layout-section-active": this.props.layout.active == section.id
                             })}
-                            onClick={() => {
-                                this.toggleLayoutActive(section.id)
-                            }}
+                            onMouseDown={() => this.props.layoutActive(section.id)}
                         >
                             <div className="layout-section-left">
                                 <div className="layout-section-drag-handle">
