@@ -12,7 +12,7 @@ import { layoutActive } from "../../redux/actions/layoutActions"
 
 class Sections extends Component {
 
-    sectionWrapper(section, component) {
+    sectionWrapper(section, component, i) {
         return (
             <div
                 className={classNames({
@@ -22,7 +22,7 @@ class Sections extends Component {
                 })}
                 onClick={() => {
                     this.props.loadSection(section.id)
-                    this.props.showDrawer("section-edit")
+                    this.props.showDrawer("section-edit", { replacePosition: i })
                     this.props.layoutActive(section.id)
                 }
                 }
@@ -37,7 +37,7 @@ class Sections extends Component {
 
         switch (section.sectionValue) {
             case "hero":
-                return (this.sectionWrapper(section, <HeroSection section={section} position={i} />))
+                return (this.sectionWrapper(section, <HeroSection section={section} position={i} />, i))
             case "textBlock":
                 return (<div>Hero</div>)
         }
