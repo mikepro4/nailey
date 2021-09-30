@@ -34,7 +34,11 @@ class EditorEditableField extends Component {
     }
 
     handleKeydown = evt => {
-        this.props.updateField(evt.target.value.innerHTML)
+        let value = evt.target.innerHTML
+
+        if(value) {
+            this.props.updateField(evt.target.innerHTML)
+        }
 
         if(evt.key === "Enter" ) {
             window.getSelection().removeAllRanges()
