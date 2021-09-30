@@ -18,6 +18,8 @@ import { v4 as uuidv4 } from 'uuid';
 import { hideDrawer, showDrawer, updateProperty } from "../../../../redux/actions/appActions"
 import { loadSite} from "../../../../redux/actions/sitesActions"
 
+import { categories, categoriesIcons, categoriesTitles } from "../../../sections/categories"
+
 
 class LayoutSelector extends Component {
 
@@ -27,8 +29,12 @@ class LayoutSelector extends Component {
 
     updatePage(value, section, sectionName) {
         let drawerData = this.props.app.drawerData
-        let commonProperties = this.props.layout.allLayouts[section].commonProperties
-        let layouts = this.props.layout.allLayouts[section].layouts
+
+        let sectionToChange = _.filter(this.props.layout.allLayouts, {
+            sectionValue: section
+        })
+        let commonProperties = sectionToChange[0].commonProperties
+        let layouts = sectionToChange[0].layouts
         let page = this.props.page.currentPage
 
         let selectedLayout = _.filter(layouts, {
@@ -42,7 +48,7 @@ class LayoutSelector extends Component {
             sectionName: sectionName,
             sectionValue: section,
             properties: newProperties,
-            activeCategories: this.props.layout.allLayouts[section].activeCategories,
+            activeCategories: sectionToChange[0].activeCategories,
             id: uuidv4()
         }
 
@@ -81,55 +87,39 @@ class LayoutSelector extends Component {
 
     }
 
+    renderSection() {
+
+    }
+
+    generateSections = (drawerData) => {
+
+        let newCategories = _.map(categories, (section, i) => {
+
+            return {
+                    id: 1,
+                    title: categoriesTitles[i],
+                    collapsible: true,
+                    forceOpen: drawerData && drawerData.forceOpen && drawerData.forceOpen == section,
+                    components: [
+                       {
+                        type: "layoutOptionSelector",
+                        options: this.props.layout.allLayouts[i] ? this.props.layout.allLayouts[i].layouts : [],
+                        updateFunction: (value) => {
+                            this.updatePage(value, "hero", "Hero")
+                        },
+                        value: drawerData && drawerData.replaceValue
+                       }
+                    ]
+                }
+        })
+
+        return newCategories
+    }
+
     render() {
 
         let drawerData = this.props.app.drawerData
-        let layoutSelectorConfiguration = [
-            {
-                id: 1,
-                title: "Hero",
-                collapsible: true,
-                forceOpen: drawerData && drawerData.forceOpen == "hero",
-                components: [
-                   {
-                    type: "layoutOptionSelector",
-                    options: this.props.layout.allLayouts.hero.layouts,
-                    updateFunction: (value) => {
-                        this.updatePage(value, "hero", "Hero")
-                    },
-                    value: drawerData && drawerData.replaceValue
-                   }
-                ]
-            },
-            {
-                title: "Text Block",
-                collapsible: true,
-                components: [
-                   
-                ]
-            },
-            {
-                title: "Headline",
-                collapsible: true,
-                components: [
-                   
-                ]
-            },
-            {
-                title: "Media",
-                collapsible: true,
-                components: [
-                   
-                ]
-            },
-            {
-                title: "Lists",
-                collapsible: true,
-                components: [
-                   
-                ]
-            }
-        ]
+        let layoutSelectorConfiguration = this.generateSections(drawerData)
 
         let selectPosition
 

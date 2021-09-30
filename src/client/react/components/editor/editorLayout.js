@@ -84,7 +84,7 @@ class EditorLayout extends Component {
                 <div 
                     className="layout-section-container" key={i}
                 >
-                    <EditorDraggableItem key={section.id} index={i} id={section.id} moveCard={this.moveCard}>
+                    <EditorDraggableItem key={section.id} index={i} id={section.id} moveCard={_.debounce(this.moveCard, 1)}>
 
                         <div 
                             className={classNames({

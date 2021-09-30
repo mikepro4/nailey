@@ -7,6 +7,7 @@ import {
 } from '../actions/types';
 
 import { fieldCategories } from "../../react/sections/fieldCategories"
+import { categories } from "../../react/sections/categories"
 
 export const initialState = {
     hovered: null,
@@ -14,9 +15,9 @@ export const initialState = {
     editing: null,
     preview: false,
     scrollTo: null,
-    allLayouts: {
-        hero: {
-            sectionValue: "hero",
+    allLayouts: [
+        {
+            sectionValue: categories[0],
             activeCategories: [
                 fieldCategories[0], fieldCategories[1]
             ],
@@ -65,7 +66,7 @@ export const initialState = {
                 }
             ]
         }
-    }
+    ]
 };
 
   

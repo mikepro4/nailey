@@ -1,20 +1,20 @@
 export const categories = [
-    "text",
-    "buttons",
-    "media",
-    "settings"
+    "hero",
+    "textBlock",
+    "headline",
+    "media"
 ]
 
 export const categoriesIcons = [
-    "font",
-    "hand-up",
-    "media",
-    "settings"
+    null,
+    null,
+    null,
+    null
 ]
 
 export const categoriesTitles = [
-    "Text",
-    "Buttons",
-    "Media",
-    "Settings"
+    "Hero",
+    "Text block",
+    "Headline",
+    "Media"
 ]
