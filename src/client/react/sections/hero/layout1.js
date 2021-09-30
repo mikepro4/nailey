@@ -6,6 +6,13 @@ import Image from "../../components/image"
 import { getPose, findProperty } from "../helpers"
 import classNames from "classnames";
 
+import update from "immutability-helper";
+import EditorEditableField from "../../components/editor/editorEditableField"
+
+import { loadSite } from "../../../redux/actions/sitesActions"
+import { updateProperty } from "../../../redux/actions/appActions"
+import { loadPage } from "../../../redux/actions/pagesActions"
+
 class SectionHero extends Component {
     state = {
     };
@@ -17,57 +24,99 @@ class SectionHero extends Component {
     }
 
     getPose() {
-       return getPose(this.refs.screen, this.props.clientHeight, this.props.totalScrolledPixels, 1.5)
+        return getPose(this.refs.screen, this.props.clientHeight, this.props.totalScrolledPixels, 1.5)
     }
+
+    updateProperty = (value, property, section) => {
+
+        let toChangeProperty = _.filter(this.props.section.properties, {
+            propertyValue: property
+        })
+
+        let indexPropertyToUpdate = _.findIndex(section.properties, {
+            propertyValue: property
+        })
+
+        let newValue = {
+            ...toChangeProperty[0],
+            value: value
+        }
+
+        let newProperties = update(section.properties, {
+            $splice: [[indexPropertyToUpdate, 1, newValue]]
+        })
+
+        let page = this.props.page.currentPage
+
+        let newSection = {
+            ...section,
+            properties: newProperties
+        }
+
+        let indexSectionToUpdate = _.findIndex(page.metadata.sections, {
+            id: section.id
+        })
+
+        let finalLayout = update(page.metadata.sections, {
+            $splice: [[indexSectionToUpdate, 1, newSection]]
+        })
+
+        this.props.updateProperty("page", page, "sections", finalLayout, () => {
+            this.props.loadSite()
+            this.props.loadPage()
+        })
+
+    }
+
 
     render() {
         const heroTitle = {
-            visible: { 
+            visible: {
                 opacity: 1,
-                scale: 1, 
+                scale: 1,
                 transition: {
                     duration: 1,
-                } 
+                }
             },
-            hidden: { 
+            hidden: {
                 opacity: 0,
                 scale: 0.99
             },
         }
 
         const heroSubtitle = {
-            visible: { 
-                scale: 1, 
+            visible: {
+                scale: 1,
                 y: 0,
                 opacity: 1,
                 transition: {
                     duration: 1,
                     delay: 0.25
-                } 
+                }
             },
-            hidden: { 
+            hidden: {
                 scale: 0.99,
                 opacity: 0
             },
         }
 
         const heroButton = {
-            visible: { 
-                scale: 1, 
+            visible: {
+                scale: 1,
                 opacity: 1,
                 transition: {
                     duration: 1,
                     delay: 0.35
-                } 
+                }
             },
-            hidden: { 
+            hidden: {
                 scale: 1,
                 opacity: 0
             },
         }
 
         return (
-            <div 
+            <div
                 className="section-edge section-hero" ref="screen"
                 className={
                     classNames({
@@ -87,7 +136,14 @@ class SectionHero extends Component {
                             animate={this.getPose()}
                             variants={heroTitle}
                         >
-                            {findProperty(this.props.section, "mainHeadline").value}
+                            <EditorEditableField
+                                value={findProperty(this.props.section, "mainHeadline").value}
+                                updateField={(value) => {
+                                    this.updateProperty(value, "mainHeadline", this.props.section)
+
+                                }
+                                }
+                            />
                         </motion.div>
                         <motion.div
                             className="hero-subtitle"
@@ -125,4 +181,8 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps, {})(SectionHero);
+export default connect(mapStateToProps, {
+    updateProperty,
+    loadSite,
+    loadPage
+})(SectionHero);
