@@ -9,7 +9,22 @@ import Logout from "../react/pages/auth/logout"
 export default [
 	{
 		...App,
-		routes: [
+		routes: [,
+            {	
+				...Signup,
+				path: "/auth/signup",
+				exact: true,
+			},
+            {	
+				...Logout,
+				path: "/auth/logout",
+				exact: true,
+            },
+            {	
+				...Login,
+				path: "/auth/login",
+				exact: true,
+			},
 			{	
 				...Home,
 				path: "/",
@@ -18,7 +33,7 @@ export default [
 				...Home,
 				path: "/:url",
 				exact: true,
-			}
+            }
 		]
 	}
 ];
