@@ -6,30 +6,30 @@ import * as _ from "lodash"
 import update from "immutability-helper";
 import { Icon } from "@blueprintjs/core";
 import DragHandle from "../svg/dragHandle"
-import Button from "../button"  
+import Button from "../button"
 import { EditorDraggableItem } from "../editor/editorDraggableItem";
-import { showDrawer } from "../../../redux/actions/appActions"
+import { showDrawer, setScrollTo } from "../../../redux/actions/appActions"
 import { layoutActive } from "../../../redux/actions/layoutActions"
 import { loadSection } from "../../../redux/actions/sectionsActions"
 import EditorLayoutSectionAdd from "./editorLayoutSectionAdd"
 
- 
+
 class EditorLayout extends Component {
 
     state = {
         sections: []
     }
 
-    componentDidMount() { 
-        if(this.props.options.value) {
+    componentDidMount() {
+        if (this.props.options.value) {
             this.setState({
                 sections: this.props.options.value
             })
         }
     }
 
-    componentDidUpdate(prevprops) { 
-        if(prevprops.options.value !== this.props.options.value) {
+    componentDidUpdate(prevprops) {
+        if (prevprops.options.value !== this.props.options.value) {
             this.setState({
                 sections: this.props.options.value
             })
@@ -69,101 +69,108 @@ class EditorLayout extends Component {
                 ],
             })
         }, () => {
-            
+
             this.props.updateFunction(this.state.sections)
-            
+
         })
 
     }
 
 
     renderSection(section, i) {
-        
 
-        return(
-                <div 
-                    className="layout-section-container" key={i}
+
+        return (
+            <div
+                className="layout-section-container" key={i}
+                id={"editor-section-" + section.id}
+            >
+                <EditorDraggableItem
+                    key={section.id}
+                    index={i}
+                    id={section.id}
+                    moveCard={_.debounce(this.moveCard, 1)}
+                    style={{
+                        backgroundColor: "white"
+                    }}
                 >
-                    <EditorDraggableItem 
-                        key={section.id} 
-                        index={i} 
-                        id={section.id} 
-                        moveCard={_.debounce(this.moveCard, 1)}
-                        style={{
-                            backgroundColor: "white"
-                        }}
+
+                    <div
+                        className={classNames({
+                            "layout-section": true,
+                            "layout-section-active": this.props.layout.active == section.id
+                        })}
+                        onMouseDown={() => {
+                            // this.props.setScrollTo(1000)
+                            this.props.layoutActive(section.id)
+                            document.getElementById("section-"+ section.id).scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
+                        }
+                        }
                     >
-
-                        <div 
-                            className={classNames({
-                                "layout-section": true,
-                                "layout-section-active": this.props.layout.active == section.id
-                            })}
-                            onMouseDown={() => this.props.layoutActive(section.id)}
-                        >
-                            <div className="layout-section-left">
-                                <div className="layout-section-drag-handle">
-                                    <DragHandle />
-                                </div>
-
-                                <div 
-                                    className="layout-section-details-container"
-                                    onClick={() => {
-                                        this.props.layoutActive(section.id)
-                                        this.props.showDrawer("layout-selector", { 
-                                            replacePosition: i, 
-                                            replaceValue: section.value, 
-                                            sectionOpen: section.sectionName,
-                                            forceOpen: section.sectionValue
-                                        })}
-                                    }
-                                >
-                                    <div className="layout-section-details-section-name">
-                                        {section.sectionName}
-                                    </div>
-
-                                    <div className="layout-section-details-layout-name">
-                                        <span className="layout-name-container">
-                                            {section.label}
-                                        </span>
-                                        <span className="layout-name-icon">
-                                            <Icon icon="caret-down"/>
-                                        </span>
-                                    </div>
-                                </div>
+                        <div className="layout-section-left">
+                            <div className="layout-section-drag-handle">
+                                <DragHandle />
                             </div>
 
-                            <div className="layout-section-right">
-                                <Button 
-                                    icon="trash"
-                                    minimal={true}
-                                    onClick={() => this.props.options.deleteFunction(i)}
-                                />
-                                <Button 
-                                    icon="duplicate"
-                                    minimal={true}
-                                    onClick={() => this.props.options.duplicateFunction(i, section)}
-                                />
-                                <Button 
-                                    icon="edit"
-                                    onClick={() => {
-                                        this.props.showDrawer("section-edit")
-                                        this.props.loadSection(section.id)
-                                    }}
-                                />
+                            <div
+                                className="layout-section-details-container"
+                                onClick={() => {
+                                    this.props.layoutActive(section.id)
+                                    this.props.showDrawer("layout-selector", {
+                                        replacePosition: i,
+                                        replaceValue: section.value,
+                                        sectionOpen: section.sectionName,
+                                        forceOpen: section.sectionValue
+                                    })
+                                }
+                                }
+                            >
+                                <div className="layout-section-details-section-name">
+                                    {section.sectionName}
+                                </div>
+
+                                <div className="layout-section-details-layout-name">
+                                    <span className="layout-name-container">
+                                        {section.label}
+                                    </span>
+                                    <span className="layout-name-icon">
+                                        <Icon icon="caret-down" />
+                                    </span>
+                                </div>
                             </div>
                         </div>
-                    </EditorDraggableItem>
 
-                    <EditorLayoutSectionAdd  position={i}/>
+                        <div className="layout-section-right">
+                            <Button
+                                icon="trash"
+                                minimal={true}
+                                onClick={() => this.props.options.deleteFunction(i)}
+                            />
+                            <Button
+                                icon="duplicate"
+                                minimal={true}
+                                onClick={() => this.props.options.duplicateFunction(i, section)}
+                            />
+                            <Button
+                                icon="edit"
+                                onClick={() => {
+                                    this.props.showDrawer("section-edit")
+                                    this.props.loadSection(section.id)
+                                }}
+                            />
+                        </div>
+                    </div>
+                </EditorDraggableItem>
+
+                <EditorLayoutSectionAdd position={i} />
 
 
-                </div>
+            </div>
         )
     }
 
     renderSections(sections) {
-        return(
+        return (
             <div className="layout-section-wrapper">
                 {sections.map((item, i) => {
                     return this.renderSection(item, i)
@@ -172,29 +179,29 @@ class EditorLayout extends Component {
         )
     }
 
-    generatePreview = ({itemType, item, style}) => {
-        return this.renderSection(item, 0) 
+    generatePreview = ({ itemType, item, style }) => {
+        return this.renderSection(item, 0)
     }
 
     renderSectionsScreen() {
         let sections = this.props.page.metadata.sections
-        
-        if(sections.length < 1) {
-            return(<EditorLayoutSectionAdd position={0}/>)
+
+        if (sections.length < 1) {
+            return (<EditorLayoutSectionAdd position={0} />)
         } else {
 
-        
-            return(<div>{this.renderSections(this.state.sections)}</div>)
 
-        //     return(
-        //         <DndProvider backend={dndBackend} options={this.state.backendOptions} >
+            return (<div>{this.renderSections(this.state.sections)}</div>)
 
-        //             {this.renderSections(this.state.sections)}
+            //     return(
+            //         <DndProvider backend={dndBackend} options={this.state.backendOptions} >
 
-        //             {/* {dndBackend == TouchBackend ? <Preview generator={this.generatePreview} /> : ""} */}
-                    
-        //         </DndProvider>
-        //        )
+            //             {this.renderSections(this.state.sections)}
+
+            //             {/* {dndBackend == TouchBackend ? <Preview generator={this.generatePreview} /> : ""} */}
+
+            //         </DndProvider>
+            //        )
         }
     }
 
@@ -205,7 +212,7 @@ class EditorLayout extends Component {
                     "editor-row": true,
                     "editor-layout": true,
                 })}
-            > 
+            >
                 {this.renderSectionsScreen()}
             </div>
         );
@@ -226,5 +233,6 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps, {
     showDrawer,
     layoutActive,
-    loadSection
+    loadSection,
+    setScrollTo
 })(withRouter(EditorLayout));

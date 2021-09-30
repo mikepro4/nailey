@@ -36,8 +36,10 @@ class Scroll extends Component {
 
        
         if(prevProps.scrollTo !== this.props.scrollTo) {
-            document.getElementById("body").scrollTop = this.props.scrollTo
-            this.props.resetScrollTo()
+            if( this.props.scrollTo) {
+                document.getElementById("body").scrollTop = this.props.scrollTo
+                this.props.resetScrollTo()
+            }
         }
         
 

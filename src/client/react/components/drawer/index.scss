@@ -44,6 +44,7 @@
         position: relative;    
         overflow-y: auto;
         background: $white;
+        scroll-margin-top: 66px;
         color: $black;
         z-index: 2;
         width: 100%;
@@ -161,6 +162,7 @@
 .standard-drawer {
     max-height: 95%;
     overflow-y: auto;
+    scroll-margin-top: 66px;
 
     &.action-drawer {
         max-height: 99%;

@@ -82,7 +82,19 @@ class LayoutSelector extends Component {
 
 
         this.props.updateProperty("page", page, "sections", finalLayout, () => {
-            this.props.loadSite()
+            this.props.loadSite(null, () => {
+                setTimeout(() => {
+                    let node1 = document.getElementById("editor-section-"+ finalSelectedLayout.id)
+                    if(node1) {
+                        document.getElementById("editor-section-"+ finalSelectedLayout.id).scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" })
+                    }
+        
+                    let node2 = document.getElementById("section-"+ finalSelectedLayout.id)
+                    if(node2) {
+                        document.getElementById("section-"+ finalSelectedLayout.id).scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" })
+                    }
+                }, 10)
+            })
         })
 
     }

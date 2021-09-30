@@ -13,7 +13,9 @@ import {
     SHOW_DRAWER,
     HIDE_DRAWER,
     UPDATE_COLLECTION,
-    UNCHECK_ALL
+    UNCHECK_ALL,
+    SCROLL_TO,
+	SCROLL_TO_RESET
 } from "../actions/types";
 
 export const initialState = {
@@ -137,6 +139,16 @@ export const appReducer = (state = initialState, action) => {
                 drawerType: null,
                 drawerData: null,
                 suggestions: []
+            }
+        case SCROLL_TO:
+            return {
+                ...state,
+                scrollTo: action.payload
+            }
+        case SCROLL_TO_RESET:
+            return {
+                ...state,
+                scrollTo: null
             }
         default:
             return state;

@@ -5,7 +5,7 @@ import classNames from "classnames"
 import * as _ from "lodash"
 import { Icon } from "@blueprintjs/core";
 
-import { hideDrawer, showDrawer } from "../../../redux/actions/appActions"
+import { hideDrawer, showDrawer, setScrollTo} from "../../../redux/actions/appActions"
 import Button from "../../components/button"
 
 import { layoutActive } from "../../../redux/actions/layoutActions"
@@ -123,5 +123,6 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps, {
     hideDrawer,
     showDrawer,
-    layoutActive
+    layoutActive,
+    setScrollTo
 })(withRouter(EditorLayoutOptionSelector));

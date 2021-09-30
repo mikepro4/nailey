@@ -87,6 +87,10 @@ class Sections extends Component {
                     })}
                     onMouseDown={() => {
                         this.props.layoutActive(section.id)
+                        let node = document.getElementById("editor-section-"+ section.id)
+                        if(node) {
+                            document.getElementById("editor-section-"+ section.id).scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" })
+                        }
                     }}
                     onClick={() => {
                         if(this.props.app.drawerType == "section-edit") {
@@ -119,7 +123,8 @@ class Sections extends Component {
         let page = this.props.page.currentPage
         let finalSections = _.map(this.state.sections, (section, i) => {
             return (
-                <div className="transition-element" key={i}>
+                
+                <div className="transition-element" id={"section-" + section.id} key={i}>
                         {this.renderSection(section, i)}
                 </div>
             )
