@@ -10,7 +10,6 @@ import { HTML5Backend } from 'react-dnd-html5-backend'
 import { TouchBackend } from 'react-dnd-touch-backend'
 
 import HeroSection from "./hero";
-import layout1 from "./hero/layout1";
 
 import { loadSite} from "../../redux/actions/sitesActions"
 import { showDrawer, updateProperty } from "../../redux/actions/appActions"
