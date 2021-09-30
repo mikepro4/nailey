@@ -91,7 +91,7 @@ class Sections extends Component {
                     }
                 }}
                 onDoubleClick={() => {
-                    if(this.props.edit) {
+                    if(this.props.app.edit) {
                         this.showEditDrawer(section)
                     }
                 }

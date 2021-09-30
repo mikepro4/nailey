@@ -113,18 +113,21 @@ class SectionHero extends Component {
                                 property="subtitle"
                             />
                         </motion.div>
-                        <motion.div
-                            className="hero-button"
-                            initial="hidden"
-                            animate={this.getPose()}
-                            variants={heroButton}
-                        >
-                            <Button
-                                label={this.props.app.site.ctaText}
-                                linkUrl={this.props.app.site.ctaUrl}
-                                onClick={() => { alert("lol") }}
-                            />
-                        </motion.div>
+                        {findProperty(this.props.section, "displayCTA").value && (
+                            <motion.div
+                                className="hero-button"
+                                initial="hidden"
+                                animate={this.getPose()}
+                                variants={heroButton}
+                            >
+                                <Button
+                                    label={this.props.app.site.ctaText}
+                                    linkUrl={this.props.app.site.ctaUrl}
+                                    onClick={() => { alert("lol") }}
+                                />
+                            </motion.div>
+                        )}
+
                     </div>
                 </div>
             </div>
