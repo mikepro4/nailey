@@ -51,11 +51,12 @@ class EditorLayout extends Component {
     }
 
     toggleLayoutActive(layoutId) {
-        if(this.props.layout.active == layoutId) {
-            this.props.layoutActive(null)
-        } else {
-            this.props.layoutActive(layoutId)
-        }
+        // if(this.props.layout.active == layoutId) {
+        //     this.props.layoutActive()
+        // } else {
+        //     this.props.layoutActive(layoutId)
+        // }
+        this.props.layoutActive(layoutId)
     }
 
     moveCard = (dragIndex, hoverIndex) => {
