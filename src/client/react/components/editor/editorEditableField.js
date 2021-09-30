@@ -27,8 +27,11 @@ class EditorEditableField extends Component {
         this.setState({
             value: event.target.value
         }, () => {
-            this.props.updateField(event.target.value )
+           
         })
+        setTimeout(() => {
+            this.props.updateField(event.target.value)
+        }, 500)
     }
 
     handleKeydown = evt => {
@@ -40,11 +43,11 @@ class EditorEditableField extends Component {
     };
 
     componentDidUpdate = (prevprops) => {
-        // if(this.props.value !== prevprops.value) {
-        //     this.setState({
-        //         value: this.props.value
-        //     })
-        // }
+        if(this.props.value !== prevprops.value) {
+            this.setState({
+                value: this.props.value
+            })
+        }
     }
 
     render() {

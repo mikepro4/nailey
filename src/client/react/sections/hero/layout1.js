@@ -5,7 +5,7 @@ import Button from "../../components/button"
 import Image from "../../components/image"
 import { getPose, findProperty } from "../helpers"
 import classNames from "classnames";
-
+import * as _ from "lodash"
 import update from "immutability-helper";
 import EditorEditableField from "../../components/editor/editorEditableField"
 
@@ -143,7 +143,6 @@ class SectionHero extends Component {
                                 value={findProperty(this.props.section, "mainHeadline").value}
                                 updateField={(value) => {
                                     this.updateProperty(value, "mainHeadline", this.props.section)
-
                                 }
                                 }
                             />
