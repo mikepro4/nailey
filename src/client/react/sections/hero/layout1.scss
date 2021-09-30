@@ -1,0 +1,112 @@
+.hero-section-container {
+
+    .section-hero {
+        height: 900px;
+        max-width: $maxWidth;
+        margin: 0 auto;
+        position: relative;
+        
+            @media only screen and (max-width: 1450px) {
+                height: 850px;
+            }
+        
+            @media only screen and (max-width: $mobile) {
+                height: 550px;
+            }
+        }
+        
+    .section-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 2;
+    }
+
+    .hero-content-container {
+        text-align: center;
+    
+        .hero-title {
+            font-family: "G", sans-serif;
+            font-size: 100px;
+            font-weight: 400;
+            background: linear-gradient(to right, rgba(204, 183, 153, 0.98), rgba(219, 197, 171, 0.92) 100%);
+        
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            // background-size: 500% 500%;
+            background-position: center center;
+        
+            @media only screen and (max-width: 1450px) {
+                font-size: 80px;
+            }
+        
+            @media only screen and (max-width: 1450px) {
+                font-size: 67px;
+                line-height: 1.2em;
+            }
+        
+        
+        
+            @media only screen and (max-width: $mobile) {
+                max-width: 300px;
+            }
+        }
+        
+        .hero-subTitle {
+            color: #A89479;
+            // font-size: 0.9vw;
+            font-size: 18px;
+            margin: 10px 0 50px 0;
+        
+            @media only screen and (max-width: 1450px) {
+                font-size: 16px;
+            }
+        
+            @media only screen and (max-width: $mobile) {
+                max-width: 250px;
+                margin: 20px auto 55px auto;
+            }
+        }
+    
+        .animation-text-wipe {
+            -webkit-mask-image: linear-gradient(to left, #0000 25%, #000 75%);
+            -webkit-mask-size: 500%;
+            -webkit-mask-position: 100%;
+        }
+        
+        .animation-text-wipe.animate-in {
+            animation: text-wipe 2s 0.3s linear forwards;
+        }
+        
+        @keyframes text-wipe {
+            0% {
+                -webkit-mask-position: 100%;
+            }
+        
+            100% {
+                -webkit-mask-position: 0%;
+            }
+        }
+        
+        
+        .hero-button {
+            display: flex;
+            justify-content: center;
+        
+            .main-button {
+                width: 222px;
+                margin: 0 10px;
+        
+                @media only screen and (max-width: $mobile) {
+                    width: 250px;
+                }
+            }
+        }
+    }
+}
+

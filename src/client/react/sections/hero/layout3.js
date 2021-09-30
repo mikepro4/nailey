@@ -3,8 +3,7 @@ import { connect } from "react-redux";
 import { motion } from "framer-motion";
 import Button from "../../components/button"
 import Image from "../../components/image"
-import { getPose, findProperty } from "../helpers"
-import classNames from "classnames";
+import { findProperty } from "../helpers"
 
 class SectionHero extends Component {
     state = {
@@ -17,7 +16,17 @@ class SectionHero extends Component {
     }
 
     getPose() {
-       return getPose(this.refs.screen, this.props.clientHeight, this.props.totalScrolledPixels, 1.5)
+        if (this.refs.screen) {
+            let node = this.refs.screen
+            let bodyHeight = this.props.clientHeight
+            if (node && (this.refs.screen.offsetTop <= (this.props.totalScrolledPixels + (bodyHeight / 1.5)))) {
+                return "visible"
+            } else {
+                return "hidden"
+            }
+        } else {
+            return "hidden"
+        }
     }
 
     render() {
@@ -66,18 +75,16 @@ class SectionHero extends Component {
             },
         }
 
+        let isVisible = false
+
+        if(this.getPose() == "visible") {
+            isVisible = true
+        }
+
         return (
-            <div 
-                className="section-edge section-hero" ref="screen"
-                className={
-                    classNames({
-                        "section-edge": true,
-                        "section-hero": true
-                    })
-                }
-            >
+            <div className="section-hero" ref="screen">
                 <div
-                    className="section-container"
+                    className="hero-container"
                 >
 
                     <div className="hero-content-container">

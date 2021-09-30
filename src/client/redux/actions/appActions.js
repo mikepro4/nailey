@@ -23,6 +23,7 @@ import * as _ from "lodash";
 import qs from "qs";
 import axios from "axios";
 
+import { layoutActive } from "./layoutActions"
 
 /////////////////////////////////////////////////
 
@@ -200,6 +201,8 @@ export const hideDrawer = (success) => async (
     dispatch({
         type: HIDE_DRAWER
     });
+
+    dispatch(layoutActive(null))
     
 	if (success) {
 		success();

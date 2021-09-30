@@ -15,7 +15,11 @@ class Sections extends Component {
     sectionWrapper(section, component) {
         return (
             <div
-                className="section-wrapper"
+                className={classNames({
+                    "section-wrapper": true,
+                    "section-active": this.props.layout.active == section.id,
+                    "section-editable": this.props.app.edit
+                })}
                 onClick={() => {
                     this.props.loadSection(section.id)
                     this.props.showDrawer("section-edit")
@@ -42,7 +46,7 @@ class Sections extends Component {
     renderSections() {
         let page = this.props.page.currentPage
         let finalSections = _.map(page.metadata.sections, (section, i) => {
-            return (<div key={i}>{this.renderSection(section, i)}</div>)
+            return (<div className="transition-element" key={i}>{this.renderSection(section, i)}</div>)
         })
         return finalSections
     }
@@ -69,7 +73,8 @@ function mapStateToProps(state) {
         app: state.app,
         location: state.router.location,
         page: state.page,
-        layout: state.layout
+        layout: state.layout,
+        section: state.section
     };
 }
 
