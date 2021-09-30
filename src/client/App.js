@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
 import { renderRoutes } from "react-router-config";
 import classNames from "classnames";
+import keydown from "react-keydown";
+
 import Scroll from "./react/components/scroll"
 import Header from "./react/components/header"
 import UserMenu from "./react/components/userMenu"
@@ -12,7 +14,7 @@ import { FocusStyleManager } from "@blueprintjs/core";
 
 import { loadSite} from "../client/redux/actions/sitesActions"
 import { loadTheme} from "../client/redux/actions/themesActions"
-import { showDrawer} from "../client/redux/actions/appActions"
+import { showDrawer, hideDrawer} from "../client/redux/actions/appActions"
 import { authUser, fetchCurrentUser, clearCurrentUser } from "../client/redux/actions/authActions"
 import { loadNewPageAsync } from "../client/redux/actions/pagesActions"
 import {  loadSection  } from "../client/redux/actions/sectionsActions"
@@ -27,7 +29,12 @@ class App extends Component {
     
 	state = {
 		appVisible: false
-	}
+    }
+    
+    @keydown("esc")
+	hideDrawer() {
+		this.props.hideDrawer()
+    }
 
 	componentDidMount() {
         this.auth()
@@ -48,8 +55,8 @@ class App extends Component {
         
 
         // Section editor open
-        this.props.loadSection("1fd46fd8-5775-4520-af18-dd0704c33f41")
-        this.props.showDrawer("section-edit")
+        // this.props.loadSection("1fd46fd8-5775-4520-af18-dd0704c33f41")
+        // this.props.showDrawer("section-edit")
     }
 
     componentWillUnmount() {
@@ -133,6 +140,7 @@ export default {
         showDrawer,
         loadSite,
         loadTheme,
-        loadSection
+        loadSection,
+        hideDrawer
 	})(App))
 };

@@ -138,7 +138,7 @@ class SectionEdit extends Component {
                         </div>
     
                         <div className="drawer-action-header-right">
-                            <div onClick={() => this.props.showDrawer("section-user-settings")}>
+                            <div onClick={() => this.props.hideDrawer()}>
                                 <Cross />
                             </div>
                         </div>
