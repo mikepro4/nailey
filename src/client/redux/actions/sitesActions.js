@@ -120,17 +120,21 @@ export const loadSite = (domain, success) => async (
             projectId: projectId
         })
         .then(response => {
+
             if (success) {
                 success(response.data);
             }
 
             dispatch({
                 type: LOAD_SITE,
-                payload: response.data
+                payload: response.data,
+                pathname: getState().router.location.pathname
             });
 
             dispatch(loadPage())
 
+
+           
         })
         .catch(() => {
             // dispatch(authError('Account with this email already exists'));

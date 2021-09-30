@@ -6,6 +6,8 @@ import {
     LOAD_SITE
 } from '../actions/types';
 
+import * as _ from "lodash";
+
 export const initialState = {
     currentPage: {},
     newPage: {},
@@ -24,9 +26,33 @@ export const pageReducer = function(state = initialState, action) {
                 newPage: action.payload
             };
         case LOAD_SITE:
+            let pathname = action.pathname
+            let allPages = action.payload.allPages
+
+            let finalPage = _.filter(allPages, {
+                metadata: {
+                    url: pathname
+                }
+            })
+
             return { ...state,
                 allPages: action.payload.allPages,
+                currentPage: finalPage[0]
             };
+    
+        // case LOAD_SITE:
+            // let pathname = state.router.location.pathname
+            // let allPages = state.page.allPages
+            // console.log(state)
+        
+            // let finalPage = _.filter(allPages, {
+            //     metadata: {
+            //         url: pathname
+            //     }
+            // })
+            // return { ...state,
+                // currentPage: finalPage[0]
+            // };
            
         case CLEAR_PAGE:
             return { ...state,

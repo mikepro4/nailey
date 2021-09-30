@@ -13,7 +13,7 @@ class EditorEditableField extends Component {
         super(props)
         this.contentEditable = React.createRef();
         this.state = {
-            value: "",
+            value: this.props.value,
             focused: false
         };
     };

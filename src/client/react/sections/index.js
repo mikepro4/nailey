@@ -21,9 +21,13 @@ import { loadPage } from "../../redux/actions/pagesActions"
 import  { EditorDraggableItem } from "../components/editor/editorDraggableItem"
 
 class Sections extends Component {
-    state = {
-        sections: []
-    }
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            sections: this.props.page.currentPage.metadata.sections
+        };
+    };
 
     componentDidMount() { 
         this.setState({
@@ -116,13 +120,6 @@ class Sections extends Component {
     }
 
     render() {
-        let dndBackend 
-
-        if(this.props.app.clientWidth < 500) {
-            dndBackend = TouchBackend
-        } else {
-            dndBackend = HTML5Backend
-        }
 
         return (
             <div
