@@ -63,12 +63,13 @@ class SectionHero extends Component {
         })
 
         this.props.updateProperty("page", page, "sections", finalLayout, () => {
-            this.props.loadSite()
-            this.props.loadPage()
-            setTimeout(() => {
-                this.props.loadSection(section.id)
-
-            }, 100)
+            this.props.loadSite(null, () => {
+                this.props.loadPage()
+                setTimeout(() => {
+                    this.props.loadSection(section.id)
+                }, 10)
+            })
+           
         })
 
     }
