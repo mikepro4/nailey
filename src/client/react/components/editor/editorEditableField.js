@@ -29,25 +29,23 @@ class EditorEditableField extends Component {
         }, () => {
            
         })
-        setTimeout(() => {
-            this.props.updateField(event.target.value)
-        }, 500)
+        this.props.updateField(event.target.value)
     }
 
     handleKeydown = evt => {
         if(evt.key === "Enter" ) {
-            // this.props.updateField(event.target.value )
+            this.props.updateField(evt.target.value )
             window.getSelection().removeAllRanges()
             evt.preventDefault()
         }
     };
 
     componentDidUpdate = (prevprops) => {
-        if(this.props.value !== prevprops.value) {
-            this.setState({
-                value: this.props.value
-            })
-        }
+        // if(this.props.value !== prevprops.value) {
+        //     this.setState({
+        //         value: this.props.value
+        //     })
+        // }
     }
 
     render() {
