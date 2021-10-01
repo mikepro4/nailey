@@ -35,7 +35,6 @@
             font-size: 100px;
             font-weight: 400;
             background: linear-gradient(to right, rgba(204, 183, 153, 0.98), rgba(219, 197, 171, 0.92) 100%);
-        
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             // background-size: 500% 500%;
@@ -49,8 +48,6 @@
                 font-size: 67px;
                 line-height: 1.2em;
             }
-        
-        
         
             @media only screen and (max-width: $mobile) {
                 max-width: 300px;

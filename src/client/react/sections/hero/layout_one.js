@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { motion } from "framer-motion";
+import { withRouter, Link } from "react-router-dom";
 import Button from "../../components/button"
 import Image from "../../components/image"
 import { getPose, findProperty } from "../helpers"
@@ -21,9 +22,13 @@ class SectionHero extends Component {
     };
 
     componentDidMount() {
+        console.log("mount")
         this.setState({
             visible: true
         })
+    }
+
+    componentDidUpdate(prevprops) {
     }
 
     getPose() {
@@ -78,13 +83,14 @@ class SectionHero extends Component {
 
         return (
             <div
-                className="section-edge section-hero" ref="screen"
                 className={
                     classNames({
                         "section-edge": true,
                         "section-hero": true
                     })
                 }
+                ref="screen"
+                id={"layout-" + this.props.section.id}
             >
                 <div
                     className="section-container"
@@ -92,7 +98,11 @@ class SectionHero extends Component {
 
                     <div className="hero-content-container">
                         <motion.div
-                            className="hero-title animation-text-wipe animate-in"
+                            className={classNames({
+                                "hero-title": true,
+                                "animation-text-wipe": true,
+                                "animate-in": this.state.visible
+                            })}
                             initial="hidden"
                             animate={this.getPose()}
                             variants={heroTitle}
@@ -144,9 +154,9 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps, {
+export default withRouter(connect(mapStateToProps, {
     updateProperty,
     loadSite,
     loadPage,
     loadSection
-})(SectionHero);
+})(SectionHero));

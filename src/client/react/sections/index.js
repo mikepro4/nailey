@@ -125,7 +125,7 @@ class Sections extends Component {
 
         switch (section.sectionValue) {
             case "hero":
-                return (this.sectionWrapper(section, <HeroSection section={section} position={i} offset={0.5} />, i))
+                return (this.sectionWrapper(section, <HeroSection section={section} key={section.id} position={i} offset={0.5} />, i))
             case "textBlock":
                 return (<div>Hero</div>)
         }
@@ -169,11 +169,11 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps, {
+export default withRouter(connect(mapStateToProps, {
     loadSection,
     showDrawer,
     layoutActive,
     updateProperty,
     loadSite,
     loadPage
-})(withRouter(Sections));
+})(withRouter(Sections)));
