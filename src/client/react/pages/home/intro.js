@@ -20,7 +20,7 @@ class Intro extends Component {
             },
             hidden: {
                 opacity: 0,
-                scale: 0.99
+                scale: 0.98
             },
         },
         item: {
@@ -45,7 +45,7 @@ class Intro extends Component {
                 transition: {
                     duration: 1,
                     delayChildren: 0.3,
-                    staggerChildren: 0.1,
+                    staggerChildren: 0.05,
                     delay: 0.2
                 }
             },
