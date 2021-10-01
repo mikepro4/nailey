@@ -82,7 +82,7 @@ class App extends Component {
         // Section editor open
         // this.props.loadSection("1fd46fd8-5775-4520-af18-dd0704c33f41")
         // this.props.showDrawer("section-edit")
-        this.props.showDrawer("domain-settings")
+        // this.props.showDrawer("domain-settings")
     }
 
     componentWillUnmount() {
