@@ -7,11 +7,23 @@
     // opacity: 0.12;
     transition: all 2s $animation_easing;
 
+    @media only screen and (max-width: $mobile) {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0
+    }
+
    
     .epic-title {
         font-family: "E", sans-serif;
         font-size: 146px;
         transition: all 2s $animation_easing;
+
+        @media only screen and (max-width: $mobile) {
+            font-size: 70px;
+        }
     }
 
     .epic-add-section-container {

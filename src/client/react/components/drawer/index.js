@@ -23,6 +23,7 @@ import PageEdit from "./type/page_edit"
 import ProjectSettings from "./type/project_settings"
 import ProjectEdit from "./type/project_edit"
 import LayoutSelector from "./type/layout_selector"
+import DomainSettings from "./type/domain_settings"
 
 class Drawer extends Component {
 
@@ -67,6 +68,8 @@ class Drawer extends Component {
                 return (<SectionEdit hideDrawer={() => this.hideDrawer()} enablePortal/>)
             case "layout-selector":
                 return (<LayoutSelector hideDrawer={() => this.hideDrawer()} enablePortal/>)
+            case "domain-settings":
+                return (<DomainSettings hideDrawer={() => this.hideDrawer()} enablePortal/>)
             default:
                 return ;
         }

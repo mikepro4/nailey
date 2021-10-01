@@ -107,7 +107,7 @@ class EpicAddSection extends Component {
                     variants={container}
                     onClick={() => {
                         this.props.enableEdit()
-                        this.props.showDrawer("layout-selector", { forceOpen: "hero"})
+                        this.props.showDrawer("layout-selector", { forceOpen: "hero", insertPosition: 0})
                     }}
                 >
                     <div className="epic-plus">

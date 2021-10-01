@@ -6,6 +6,7 @@ import MainLinks from "../main_links"
 import Logo from "../logo"
 import Button from "../button"
 import { motion } from "framer-motion";
+import Epic from "../svg/epic"
 
 import { disableEdit, showDrawer, hideDrawer} from "../../../redux/actions/appActions"
 
@@ -13,10 +14,10 @@ class EditBar extends Component {
 
     state = {
         sections: [
-            {
-                title: "Projects",
-                drawerType: "project-settings"
-            },
+            // {
+            //     title: "Projects",
+            //     drawerType: "project-settings"
+            // },
             {
                 title: "Sites",
                 drawerType: "site-settings"
@@ -29,14 +30,22 @@ class EditBar extends Component {
                 title: "Sections",
                 drawerType: "section-user-settings"
             },
-            // {
-            //     title: "Themes",
-            //     drawerType: "theme-settings"
-            // },
-            // {
-            //     title: "Products",
-            //     drawerType: "product-settings"
-            // },
+            {
+                title: "Domain",
+                drawerType: "domain-settings"
+            },
+            {
+                title: "Collections",
+                drawerType: "collection-settings"
+            },
+            {
+                title: "Media",
+                drawerType: "media-settings"
+            },
+            {
+                title: "Themes",
+                drawerType: "theme-settings"
+            },
             // ,
             // {
             //     title: "Fonts",
@@ -83,9 +92,9 @@ class EditBar extends Component {
                 })}
             >
                <div className="edit-bar-left">
-                   {/* <div className="edit-bar-title">
-                        Editing
-                   </div> */}
+                   <div className="edit-bar-logo">
+                       <Epic/>
+                   </div>
 
                    <ul className="edit-bar-tab">
                        {this.renderSectionItems()}

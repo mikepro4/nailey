@@ -52,6 +52,103 @@ class SiteEdit extends Component {
                 ]
             },
             {
+                title: "Logo",
+                collapsible: true,
+                components: [
+                    {
+                        label: "Logo Type",
+                        type: "tab",
+                        updateFunction: (value) => {
+                            this.props.updateProperty("site", site, "logoType", value, () => {
+                                this.props.loadNewSiteAsync(site._id, loadCurrent)
+                            })
+                        },
+                        tabOptions: [{
+                            value: "text",
+                            label: "Text"
+                        },
+                        {
+                            value: "image",
+                            label: "Image"
+                        }],
+                        value: site && site.metadata.logoType
+                    },
+                    {
+                        type: "input",
+                        label: "Logo Text",
+                        property: "title",
+                        updateFunction: (value) => {
+                            this.props.updateProperty("site", site, "logoText", value, () => {
+                                this.props.loadNewSiteAsync(site._id, loadCurrent)
+                            })
+                        },
+                        value: site && site.metadata.logoText,
+                        conditionalPropertyExpectedValue: "text",
+                        conditionalPropertyActualValue: site && site.metadata.logoType
+                    },
+                    {
+                        type: "input",
+                        label: "Logo URL",
+                        updateFunction: (value) => {
+                            this.props.updateProperty("site", site, "logoUrl", value, () => {
+                                this.props.loadNewSiteAsync(site._id, loadCurrent)
+                            })
+                        },
+                        value: site && site.metadata.logoUrl,
+                        conditionalPropertyExpectedValue: "image",
+                        conditionalPropertyActualValue: site && site.metadata.logoType
+                    },
+                    {
+                        type: "numericInput",
+                        label: "Logo Width",
+                        updateFunction: (value) => {
+                            this.props.updateProperty("site", site, "logoWidth", value, () => {
+                                this.props.loadNewSiteAsync(site._id, loadCurrent)
+                            })
+                        },
+                        value: site && site.metadata.logoWidth,
+                        conditionalPropertyExpectedValue: false,
+                        conditionalPropertyActualValue: site && site.metadata.logoAutoSize
+                    },
+                    {
+                        type: "numericInput",
+                        label: "Logo Height",
+                        updateFunction: (value) => {
+                            this.props.updateProperty("site", site, "logoHeight", value, () => {
+                                this.props.loadNewSiteAsync(site._id, loadCurrent)
+                            })
+                        },
+                        value: site && site.metadata.logoHeight,
+                        conditionalPropertyExpectedValue: false,
+                        conditionalPropertyActualValue: site && site.metadata.logoAutoSize
+                    },
+                    {
+                        type: "image",
+                        updateFunction: (value) => {
+                            console.log("here", value )
+                            this.props.updateProperty("site", site, "logoUrl", value, () => {
+                                this.props.loadNewSiteAsync(site._id, loadCurrent)
+                            })
+                        },
+                        value: site && site.metadata.logoUrl,
+                        conditionalPropertyExpectedValue: "image",
+                        conditionalPropertyActualValue: site && site.metadata.logoType
+                    },
+                    {
+                        type: "switch",
+                        label: "Auto logo size",
+                        updateFunction: (value) => {
+                            this.props.updateProperty("site", site, "logoAutoSize", value, () => {
+                                this.props.loadNewSiteAsync(site._id, loadCurrent)
+                            })
+                        },
+                        active: site && site.metadata.logoAutoSize,
+                        conditionalPropertyExpectedValue: "image",
+                        conditionalPropertyActualValue: site && site.metadata.logoType
+                    },
+                ]
+            },
+            {
                 title: "CTA",
                 collapsible: true,
                 components: [
@@ -76,6 +173,114 @@ class SiteEdit extends Component {
                             })
                         },
                         value: site && site.metadata.mainCTAURL,
+                        conditionalPropertyExpectedValue: true,
+                        conditionalPropertyActualValue: site && site.metadata.mainCTA
+                    }
+                ]
+            },
+            {
+                title: "Header",
+                collapsible: true,
+                components: [
+                    {
+                        label: "Logo position",
+                        type: "tab",
+                        updateFunction: (value) => {
+                            this.props.updateProperty("site", site, "logoPosition", value, () => {
+                                this.props.loadNewSiteAsync(site._id, loadCurrent)
+                            })
+                        },
+                        tabOptions: [{
+                            value: "left",
+                            label: "Left"
+                        },
+                        {
+                            value: "center",
+                            label: "Center"
+                        },
+                        {
+                            value: "right",
+                            label: "Right"
+                        }],
+                        value: site && site.metadata.logoPosition
+                    },
+                    {
+                        type: "switch",
+                        label: "Display main links",
+                        updateFunction: (value) => {
+                            this.props.updateProperty("site", site, "mainLinks", value, () => {
+                                this.props.loadNewSiteAsync(site._id, loadCurrent)
+                            })
+                        },
+                        active: site && site.metadata.mainLinks,
+                    },
+                    {
+                        label: "Main links position",
+                        type: "tab",
+                        updateFunction: (value) => {
+                            this.props.updateProperty("site", site, "mainLinksPosition", value, () => {
+                                this.props.loadNewSiteAsync(site._id, loadCurrent)
+                            })
+                        },
+                        tabOptions: [{
+                            value: "left",
+                            label: "Left"
+                        },
+                        {
+                            value: "center",
+                            label: "Center"
+                        },
+                        {
+                            value: "right",
+                            label: "Right"
+                        }],
+                        value: site && site.metadata.mainLinksPosition,
+                        conditionalPropertyExpectedValue: true,
+                        conditionalPropertyActualValue: site && site.metadata.mainLinks
+                    },
+                    {
+                        type: "switch",
+                        label: "Display CTA",
+                        updateFunction: (value) => {
+                            this.props.updateProperty("site", site, "mainCTA", value, () => {
+                                this.props.loadNewSiteAsync(site._id, loadCurrent)
+                            })
+                        },
+                        active: site && site.metadata.mainCTA,
+                    },
+                    {
+                        label: "CTA Position",
+                        type: "tab",
+                        updateFunction: (value) => {
+                            this.props.updateProperty("site", site, "mainCTAPosition", value, () => {
+                                this.props.loadNewSiteAsync(site._id, loadCurrent)
+                            })
+                        },
+                        tabOptions: [{
+                            value: "left",
+                            label: "Left"
+                        },
+                        {
+                            value: "center",
+                            label: "Center"
+                        },
+                        {
+                            value: "right",
+                            label: "Right"
+                        }],
+                        value: site && site.metadata.mainCTAPosition,
+                        conditionalPropertyExpectedValue: true,
+                        conditionalPropertyActualValue: site && site.metadata.mainCTA
+                    },
+                    {
+                        type: "numericInput",
+                        label: "CTA Width",
+                        updateFunction: (value) => {
+                            this.props.updateProperty("site", site, "mainCTAWidth", value, () => {
+                                this.props.loadNewSiteAsync(site._id, loadCurrent)
+                            })
+                        },
+                        value: site && site.metadata.mainCTAWidth,
                         conditionalPropertyExpectedValue: true,
                         conditionalPropertyActualValue: site && site.metadata.mainCTA
                     }
@@ -204,211 +409,6 @@ class SiteEdit extends Component {
                             })
                         },
                         value: site && site.metadata.mobileBreakpoint,
-                    }
-                ]
-            },
-            {
-                title: "Logo",
-                collapsible: true,
-                components: [
-                    {
-                        label: "Logo Type",
-                        type: "tab",
-                        updateFunction: (value) => {
-                            this.props.updateProperty("site", site, "logoType", value, () => {
-                                this.props.loadNewSiteAsync(site._id, loadCurrent)
-                            })
-                        },
-                        tabOptions: [{
-                            value: "text",
-                            label: "Text"
-                        },
-                        {
-                            value: "image",
-                            label: "Image"
-                        }],
-                        value: site && site.metadata.logoType
-                    },
-                    {
-                        type: "input",
-                        label: "Logo Text",
-                        property: "title",
-                        updateFunction: (value) => {
-                            this.props.updateProperty("site", site, "logoText", value, () => {
-                                this.props.loadNewSiteAsync(site._id, loadCurrent)
-                            })
-                        },
-                        value: site && site.metadata.logoText,
-                        conditionalPropertyExpectedValue: "text",
-                        conditionalPropertyActualValue: site && site.metadata.logoType
-                    },
-                    {
-                        type: "input",
-                        label: "Logo URL",
-                        updateFunction: (value) => {
-                            this.props.updateProperty("site", site, "logoUrl", value, () => {
-                                this.props.loadNewSiteAsync(site._id, loadCurrent)
-                            })
-                        },
-                        value: site && site.metadata.logoUrl,
-                        conditionalPropertyExpectedValue: "image",
-                        conditionalPropertyActualValue: site && site.metadata.logoType
-                    },
-                    {
-                        type: "numericInput",
-                        label: "Logo Width",
-                        updateFunction: (value) => {
-                            this.props.updateProperty("site", site, "logoWidth", value, () => {
-                                this.props.loadNewSiteAsync(site._id, loadCurrent)
-                            })
-                        },
-                        value: site && site.metadata.logoWidth,
-                        conditionalPropertyExpectedValue: false,
-                        conditionalPropertyActualValue: site && site.metadata.logoAutoSize
-                    },
-                    {
-                        type: "numericInput",
-                        label: "Logo Height",
-                        updateFunction: (value) => {
-                            this.props.updateProperty("site", site, "logoHeight", value, () => {
-                                this.props.loadNewSiteAsync(site._id, loadCurrent)
-                            })
-                        },
-                        value: site && site.metadata.logoHeight,
-                        conditionalPropertyExpectedValue: false,
-                        conditionalPropertyActualValue: site && site.metadata.logoAutoSize
-                    },
-                    {
-                        type: "image",
-                        updateFunction: (value) => {
-                            console.log("here", value )
-                            this.props.updateProperty("site", site, "logoUrl", value, () => {
-                                this.props.loadNewSiteAsync(site._id, loadCurrent)
-                            })
-                        },
-                        value: site && site.metadata.logoUrl,
-                        conditionalPropertyExpectedValue: "image",
-                        conditionalPropertyActualValue: site && site.metadata.logoType
-                    },
-                    {
-                        type: "switch",
-                        label: "Auto logo size",
-                        updateFunction: (value) => {
-                            this.props.updateProperty("site", site, "logoAutoSize", value, () => {
-                                this.props.loadNewSiteAsync(site._id, loadCurrent)
-                            })
-                        },
-                        active: site && site.metadata.logoAutoSize,
-                        conditionalPropertyExpectedValue: "image",
-                        conditionalPropertyActualValue: site && site.metadata.logoType
-                    },
-                ]
-            },
-            {
-                title: "Header",
-                collapsible: true,
-                components: [
-                    {
-                        label: "Logo position",
-                        type: "tab",
-                        updateFunction: (value) => {
-                            this.props.updateProperty("site", site, "logoPosition", value, () => {
-                                this.props.loadNewSiteAsync(site._id, loadCurrent)
-                            })
-                        },
-                        tabOptions: [{
-                            value: "left",
-                            label: "Left"
-                        },
-                        {
-                            value: "center",
-                            label: "Center"
-                        },
-                        {
-                            value: "right",
-                            label: "Right"
-                        }],
-                        value: site && site.metadata.logoPosition
-                    },
-                    {
-                        type: "switch",
-                        label: "Display main links",
-                        updateFunction: (value) => {
-                            this.props.updateProperty("site", site, "mainLinks", value, () => {
-                                this.props.loadNewSiteAsync(site._id, loadCurrent)
-                            })
-                        },
-                        active: site && site.metadata.mainLinks,
-                    },
-                    {
-                        label: "Main links position",
-                        type: "tab",
-                        updateFunction: (value) => {
-                            this.props.updateProperty("site", site, "mainLinksPosition", value, () => {
-                                this.props.loadNewSiteAsync(site._id, loadCurrent)
-                            })
-                        },
-                        tabOptions: [{
-                            value: "left",
-                            label: "Left"
-                        },
-                        {
-                            value: "center",
-                            label: "Center"
-                        },
-                        {
-                            value: "right",
-                            label: "Right"
-                        }],
-                        value: site && site.metadata.mainLinksPosition,
-                        conditionalPropertyExpectedValue: true,
-                        conditionalPropertyActualValue: site && site.metadata.mainLinks
-                    },
-                    {
-                        type: "switch",
-                        label: "Display CTA",
-                        updateFunction: (value) => {
-                            this.props.updateProperty("site", site, "mainCTA", value, () => {
-                                this.props.loadNewSiteAsync(site._id, loadCurrent)
-                            })
-                        },
-                        active: site && site.metadata.mainCTA,
-                    },
-                    {
-                        label: "CTA Position",
-                        type: "tab",
-                        updateFunction: (value) => {
-                            this.props.updateProperty("site", site, "mainCTAPosition", value, () => {
-                                this.props.loadNewSiteAsync(site._id, loadCurrent)
-                            })
-                        },
-                        tabOptions: [{
-                            value: "left",
-                            label: "Left"
-                        },
-                        {
-                            value: "center",
-                            label: "Center"
-                        },
-                        {
-                            value: "right",
-                            label: "Right"
-                        }],
-                        value: site && site.metadata.mainCTAPosition,
-                        conditionalPropertyExpectedValue: true,
-                        conditionalPropertyActualValue: site && site.metadata.mainCTA
-                    },
-                    {
-                        type: "numericInput",
-                        label: "CTA Width",
-                        updateFunction: (value) => {
-                            this.props.updateProperty("site", site, "mainCTAWidth", value, () => {
-                                this.props.loadNewSiteAsync(site._id, loadCurrent)
-                            })
-                        },
-                        value: site && site.metadata.mainCTAWidth,
-                        conditionalPropertyExpectedValue: true,
-                        conditionalPropertyActualValue: site && site.metadata.mainCTA
                     }
                 ]
             },
