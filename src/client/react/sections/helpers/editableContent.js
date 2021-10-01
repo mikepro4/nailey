@@ -69,24 +69,28 @@ class SectionHero extends Component {
                     this.props.loadSection(section.id)
                 }, 10)
             })
-           
+
         })
 
     }
 
 
     render() {
-
-        return (
-            <EditorEditableField
-                value={findProperty(this.props.section, this.props.property).value}
-                updateField={(value) => {
-                    this.updateProperty(value, this.props.property, this.props.section)
-                }
-                }
-            />
-        )
+        if (this.props.app.edit) {
+            return (
+                <EditorEditableField
+                    value={findProperty(this.props.section, this.props.property).value}
+                    updateField={(value) => {
+                        this.updateProperty(value, this.props.property, this.props.section)
+                    }
+                    }
+                />
+            )
+        } else {
+            return findProperty(this.props.section, this.props.property).value
+        }
     }
+
 }
 
 function mapStateToProps(state) {
