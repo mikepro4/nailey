@@ -19,6 +19,8 @@ import { loadPage } from "../../redux/actions/pagesActions"
 
 import { EditorDraggableItem } from "../components/editor/editorDraggableItem"
 
+import EpicAddSection from "./epic_add_section"
+
 class Sections extends Component {
 
     constructor(props) {
@@ -141,7 +143,14 @@ class Sections extends Component {
                 </div>
             )
         })
-        return finalSections
+
+        if(finalSections.length == 0) {
+            return (<EpicAddSection/>)
+        } else {
+            return (finalSections)
+        }
+
+
     }
 
     render() {
