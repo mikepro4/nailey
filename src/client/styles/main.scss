@@ -77,7 +77,7 @@ body {
 // -------------------------
 
 ::selection {
-  background: $black;
+  background: rgba($black, 0.2);
   color: $offWhite;
 }
 

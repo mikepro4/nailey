@@ -21,6 +21,11 @@ class EditorLayout extends Component {
     }
 
     componentDidMount() {
+        setTimeout(() => {
+            if(this.props.layout.active) {
+                document.getElementById("editor-section-" + this.props.layout.active).scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
+            }
+        }, 500)
         if (this.props.options.value) {
             this.setState({
                 sections: this.props.options.value

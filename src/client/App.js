@@ -12,12 +12,12 @@ import EditBar from "./react/components/editBar"
 import Drawer from "./react/components/drawer"
 import { FocusStyleManager } from "@blueprintjs/core";
 
-import { loadSite} from "../client/redux/actions/sitesActions"
-import { loadTheme} from "../client/redux/actions/themesActions"
-import { showDrawer, hideDrawer, setScrollTo, enableEdit, disableEdit} from "../client/redux/actions/appActions"
+import { loadSite } from "../client/redux/actions/sitesActions"
+import { loadTheme } from "../client/redux/actions/themesActions"
+import { showDrawer, hideDrawer, setScrollTo, enableEdit, disableEdit } from "../client/redux/actions/appActions"
 import { authUser, fetchCurrentUser, clearCurrentUser } from "../client/redux/actions/authActions"
 import { loadNewPageAsync } from "../client/redux/actions/pagesActions"
-import {  loadSection  } from "../client/redux/actions/sectionsActions"
+import { loadSection } from "../client/redux/actions/sectionsActions"
 
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
@@ -28,34 +28,39 @@ FocusStyleManager.onlyShowFocusOnTabs();
 class App extends Component {
 
     static loadData(store, match, route, path, query, request) {
-		return store.dispatch(loadSite(request.headers.host));
+        return store.dispatch(loadSite(request.headers.host));
     }
-    
-	state = {
-		appVisible: false
+
+    state = {
+        appVisible: false
     }
-    
+
     @keydown("esc")
-	hideDrawer() {
-		this.props.hideDrawer()
+    hideDrawer() {
+        this.props.hideDrawer()
     }
 
     @keydown("ctrl + s")
-	showSectionSettings() {
-		this.props.showDrawer("section-user-settings")
+    showSectionSettings() {
+        if (this.props.app.user && this.props.app.edit) {
+            this.props.showDrawer("section-user-settings")
+        }
     }
 
     @keydown("ctrl + e")
     toggleEdit() {
-        if(this.props.app.edit) {
-            this.props.disableEdit()
-            this.props.hideDrawer()
-        } else {
-            this.props.enableEdit()
+        if (this.props.app.user) {
+            if (this.props.app.edit) {
+                this.props.disableEdit()
+                this.props.hideDrawer()
+            } else {
+                this.props.enableEdit()
+            }
         }
     }
 
-	componentDidMount() {
+
+    componentDidMount() {
         this.props.setScrollTo(0)
         this.auth()
         this.props.loadSite()
@@ -70,9 +75,9 @@ class App extends Component {
         // })
 
         // this.props.showDrawer("section-user-settings")
-       
+
         // this.props.showDrawer("layout-selector")
-        
+
 
         // Section editor open
         // this.props.loadSection("1fd46fd8-5775-4520-af18-dd0704c33f41")
@@ -80,57 +85,57 @@ class App extends Component {
     }
 
     componentWillUnmount() {
-    }     
-    
+    }
+
     componentDidUpdate(prevprops) {
-        if(prevprops.user !== this.props.user) {
+        if (prevprops.user !== this.props.user) {
             // this.props.clearCurrentUser()
         }
 
-        
-        if(this.props.location.pathname !== prevprops.location.pathname) {
+
+        if (this.props.location.pathname !== prevprops.location.pathname) {
             console.log("here")
             this.props.setScrollTo(0)
         }
     }
-    
-    auth() {
-		const token = localStorage.getItem('token');
-		if (token) {
-			this.props.authUser()
-			this.loadUser()
-		} else {
-			
-		}
-	}
 
-	loadUser() {
-		this.props.fetchCurrentUser(() => {
-		})
+    auth() {
+        const token = localStorage.getItem('token');
+        if (token) {
+            this.props.authUser()
+            this.loadUser()
+        } else {
+
+        }
     }
-    
+
+    loadUser() {
+        this.props.fetchCurrentUser(() => {
+        })
+    }
+
     editComponents() {
-        return(
+        return (
             <div>
-                {this.props.user && <UserMenu/>}
-                <EditBar/>
+                {this.props.user && <UserMenu />}
+                <EditBar />
             </div>
         )
     }
 
 
-	render() {
+    render() {
 
-        let dndBackend 
+        let dndBackend
 
-        if(this.props.app.clientWidth < 500) {
+        if (this.props.app.clientWidth < 500) {
             dndBackend = TouchBackend
         } else {
             dndBackend = HTML5Backend
         }
 
         return (
-            
+
             <div className="app">
                 <DndProvider backend={HTML5Backend} >
 
@@ -139,31 +144,31 @@ class App extends Component {
                             <Header />
 
                             <div className="main-section">
-                            <div className="app-route-container">
-                                {renderRoutes(this.props.route.routes)}
+                                <div className="app-route-container">
+                                    {renderRoutes(this.props.route.routes)}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    ) :  (
-                        <div>Select site</div>
-                    )}
-                
+                    ) : (
+                            <div>Select site</div>
+                        )}
 
-                    <Scroll/>
+
+                    <Scroll />
 
                     {this.props.drawerOpen && <Drawer type={this.props.drawerType} />}
 
                     {this.editComponents()}
 
                 </DndProvider>
-               
+
             </div>
         )
-		
-	}
+
+    }
 }
 function mapStateToProps(state) {
-	return {
+    return {
         appReducer: state.appReducer,
         app: state.app,
         user: state.app.user,
@@ -171,13 +176,13 @@ function mapStateToProps(state) {
         drawerOpen: state.app.drawerOpen,
         drawerType: state.app.drawerType,
         currentSite: state.site.currentSite
-	};
+    };
 }
 
 export default {
-	component: withRouter(connect(mapStateToProps, {
-        authUser, 
-        fetchCurrentUser, 
+    component: withRouter(connect(mapStateToProps, {
+        authUser,
+        fetchCurrentUser,
         clearCurrentUser,
         showDrawer,
         loadSite,
@@ -187,5 +192,5 @@ export default {
         setScrollTo,
         enableEdit,
         disableEdit
-	})(App))
+    })(App))
 };
