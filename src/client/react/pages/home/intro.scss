@@ -1,0 +1,37 @@
+.epic-intro {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    .epic-intro-title {
+        font-size: 666px;
+        font-family: "E", sans-serif;
+
+        @media only screen and (max-width: $mobile) {
+            font-size: 66px;
+        }
+
+    }
+
+    .epic-auth-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .main-button {
+            width: 222px;
+            margin: 0 20px;
+        }
+    }
+
+    .epic-intro-container {
+        position: relative;
+        top: -100px
+    }
+}

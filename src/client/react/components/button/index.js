@@ -19,6 +19,7 @@ class Button extends Component {
         return this.props.linkUrl && this.props.linkUrl.length > 0
     }
 
+
     getButtonLabel() {
         if (this.props.label) {
             return <span className="main-button-text">{this.props.label}</span>
@@ -46,6 +47,14 @@ class Button extends Component {
             "icon-button": this.props.icon
         })
 
+        if(this.props.internalLink) {
+            return (
+                <Link to={this.props.linkUrl} className={buttonClasses} title={this.props.title}>
+                    {this.getButtonLabel()}
+                </Link>
+            )
+        }
+
         if (this.isLink()) {
             return (
                 <a href={this.props.linkUrl} target="_blank" className={buttonClasses} title={this.props.title}>
@@ -53,6 +62,8 @@ class Button extends Component {
                 </a>
             )
         }
+
+       
 
         return (
             <button 

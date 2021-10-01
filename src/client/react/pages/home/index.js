@@ -9,6 +9,8 @@ import { loadPage } from "../../../redux/actions/pagesActions"
 
 import Sections from "../../sections/index"
 
+import Intro from "./intro"
+
 class HomePage extends Component {
 
     state = {
@@ -30,12 +32,17 @@ class HomePage extends Component {
     
 
 	render() {
-		return (
-     		<div className="route-content home-route">
-                {this.renderPage(this.props.page.currentPage)}
-            </div>
-				
-		);
+        if(this.props.app.user) {
+            return (
+                <div className="route-content home-route">
+                   {this.renderPage(this.props.page.currentPage)}
+               </div>
+                   
+           );
+        } else {
+            return(<Intro />)
+        }
+		
 	}
 }
 

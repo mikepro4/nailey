@@ -140,9 +140,9 @@ class App extends Component {
             <div className="app">
                 <DndProvider backend={HTML5Backend} >
 
-                    {this.props.currentSite ? (
+                    {this.props.currentSite  ? (
                         <div>
-                            <Header />
+                            {this.props.user && <Header /> }
 
                             <div className="main-section">
                                 <div className="app-route-container">
