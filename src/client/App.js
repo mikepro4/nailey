@@ -14,7 +14,7 @@ import { FocusStyleManager } from "@blueprintjs/core";
 
 import { loadSite} from "../client/redux/actions/sitesActions"
 import { loadTheme} from "../client/redux/actions/themesActions"
-import { showDrawer, hideDrawer, setScrollTo} from "../client/redux/actions/appActions"
+import { showDrawer, hideDrawer, setScrollTo, enableEdit, disableEdit} from "../client/redux/actions/appActions"
 import { authUser, fetchCurrentUser, clearCurrentUser } from "../client/redux/actions/authActions"
 import { loadNewPageAsync } from "../client/redux/actions/pagesActions"
 import {  loadSection  } from "../client/redux/actions/sectionsActions"
@@ -43,6 +43,16 @@ class App extends Component {
     @keydown("ctrl + s")
 	showSectionSettings() {
 		this.props.showDrawer("section-user-settings")
+    }
+
+    @keydown("ctrl + e")
+    toggleEdit() {
+        if(this.props.app.edit) {
+            this.props.disableEdit()
+            this.props.hideDrawer()
+        } else {
+            this.props.enableEdit()
+        }
     }
 
 	componentDidMount() {
@@ -174,6 +184,8 @@ export default {
         loadTheme,
         loadSection,
         hideDrawer,
-        setScrollTo
+        setScrollTo,
+        enableEdit,
+        disableEdit
 	})(App))
 };
