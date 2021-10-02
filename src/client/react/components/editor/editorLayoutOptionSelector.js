@@ -4,11 +4,15 @@ import { withRouter, Link } from "react-router-dom";
 import classNames from "classnames"
 import * as _ from "lodash"
 import { Icon } from "@blueprintjs/core";
+import { v4 as uuidv4 } from 'uuid';
 
 import { hideDrawer, showDrawer, setScrollTo} from "../../../redux/actions/appActions"
 import Button from "../../components/button"
 
+import { loadNewPage, clearNewPage } from "../../../redux/actions/pagesActions"
 import { layoutActive } from "../../../redux/actions/layoutActions"
+
+import update from "immutability-helper";
 
 class EditorLayoutOptionSelector extends Component {
 
@@ -30,10 +34,6 @@ class EditorLayoutOptionSelector extends Component {
                 options: this.props.options.options
             })
         }
-    }
-
-    componentWillUnmount() {
-        // this.props.layoutActive(null)
     }
 
     selectLayout = (layout) => {
@@ -67,6 +67,59 @@ class EditorLayoutOptionSelector extends Component {
         this.selectLayout(option.value)
     }
 
+    layoutHover(option) {
+        console.log("layoutHover", option)
+
+        let section = this.props.options.section
+
+        let sectionToChange = _.filter(this.props.layout.allLayouts, {
+            sectionValue: section
+        })
+        let commonProperties = sectionToChange[0].commonProperties
+        let layouts = sectionToChange[0].layouts
+        let page = this.props.page.currentPage
+
+        let selectedLayout = _.filter(layouts, {
+            value: option.value
+        })
+
+        let newProperties = _.concat(commonProperties, selectedLayout[0].properties)
+
+        let finalSelectedLayout = {
+            ...selectedLayout[0],
+            sectionName: "",
+            sectionValue: section,
+            properties: newProperties,
+            activeCategories: sectionToChange[0].activeCategories,
+            id: uuidv4()
+        }
+
+        let finalLayout
+
+        if(page.metadata.sections.length == 0) {
+            finalLayout = [finalSelectedLayout]
+        } else {
+
+            finalLayout = update(page.metadata.sections, {
+                $splice: [[this.props.app.drawerData.insertPosition +1 , 0, finalSelectedLayout]]
+            });
+
+        }
+
+        this.props.loadNewPage({
+            ...this.props.page.currentPage,
+            metadata: {
+                ...this.props.page.currentPage.metadata,
+                sections: finalLayout
+            }
+        })
+
+    }
+
+    layoutHoverOut(option) {
+        // console.log("layoutHoverOut", this.props.page.currentPage)
+        this.props.clearNewPage()
+    }
 
     renderItem = (option, i) => {
         return (
@@ -76,6 +129,12 @@ class EditorLayoutOptionSelector extends Component {
                     "layout-option-active": this.props.options.value == option.value
                 })}
                 onClick={() => this.toggleLayoutOption(option)}
+                onMouseEnter={() => {
+                    this.layoutHover(option)
+                }}
+                onMouseLeave={() => {
+                    this.layoutHoverOut(option)
+                }}
                 key={i}
 
             >
@@ -116,7 +175,8 @@ function mapStateToProps(state) {
         app: state.app,
         location: state.router.location,
         edit: state.app.edit,
-        layout: state.layout
+        layout: state.layout,
+        page: state.page
     };
 }
 
@@ -124,5 +184,7 @@ export default connect(mapStateToProps, {
     hideDrawer,
     showDrawer,
     layoutActive,
-    setScrollTo
+    setScrollTo,
+    loadNewPage, 
+    clearNewPage
 })(withRouter(EditorLayoutOptionSelector));

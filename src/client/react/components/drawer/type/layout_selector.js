@@ -115,9 +115,10 @@ class LayoutSelector extends Component {
                     components: [
                        {
                         type: "layoutOptionSelector",
+                        section: section,
                         options: this.props.layout.allLayouts[i] ? this.props.layout.allLayouts[i].layouts : [],
                         updateFunction: (value) => {
-                            this.updatePage(value, "hero", "Hero")
+                            this.updatePage(value, categories[i], categoriesTitles[i])
                         },
                         value: drawerData && drawerData.replaceValue
                        }

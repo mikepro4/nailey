@@ -42,6 +42,22 @@ class Sections extends Component {
                 sections: this.props.page.currentPage.metadata.sections
             })
         }
+
+        if(!_.isEqual(this.props.page.newPage, prevprops.page.newPage)) {
+            if(this.props.page.newPage && this.props.page.newPage.metadata && this.props.page.newPage.metadata.sections) {
+                this.setState({
+                    sections: this.props.page.newPage.metadata.sections
+                })
+            } else {
+                this.setState({
+                    sections: this.props.page.currentPage.metadata.sections
+                })
+            }
+
+            // this.setState({
+            //     sections: this.props.page.newPage.metadata.sections
+            // })
+        }
     }
 
     moveCard = (dragIndex, hoverIndex) => {
@@ -134,7 +150,7 @@ class Sections extends Component {
     }
 
     renderSections() {
-        let page = this.props.page.currentPage
+        console.log(this.state.sections)
         let finalSections = _.map(this.state.sections, (section, i) => {
             return (
 
@@ -154,7 +170,6 @@ class Sections extends Component {
     }
 
     render() {
-
         return (
             <div
                 className={classNames({
