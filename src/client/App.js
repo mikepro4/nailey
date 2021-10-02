@@ -81,7 +81,7 @@ class App extends Component {
 
         // Section editor open
         // this.props.loadSection("1fd46fd8-5775-4520-af18-dd0704c33f41")
-        this.props.showDrawer("layout-selector", { insertPosition: 1, forceOpen: "hero"})
+        // this.props.showDrawer("layout-selector", { insertPosition: 1, forceOpen: "hero"})
         // this.props.showDrawer("domain-settings")
     }
 

@@ -68,6 +68,7 @@ class EditorLayoutOptionSelector extends Component {
     }
 
     layoutHover(option) {
+        this.props.layoutActive(null)
         console.log("layoutHover", option)
 
         let section = this.props.options.section
@@ -118,6 +119,7 @@ class EditorLayoutOptionSelector extends Component {
 
     layoutHoverOut(option) {
         // console.log("layoutHoverOut", this.props.page.currentPage)
+        this.props.layoutActive(option.value)
         this.props.clearNewPage()
     }
 
