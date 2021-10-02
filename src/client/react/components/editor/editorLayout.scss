@@ -92,6 +92,11 @@
 
     &.layout-option-active {
         background: $black;
+        cursor: default;
+
+        .main-button {
+            cursor: default;
+        }
 
         .layout-option-title {
             font-weight: 600;

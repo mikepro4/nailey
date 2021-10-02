@@ -56,82 +56,86 @@ class EditorLayoutOptionSelector extends Component {
     }
 
     toggleLayoutOption(option) {
+        console.log(this.props.options.value, option.value)
         if (this.props.options.value == option.value) {
             // this.props.layoutActive(null)
         } else {
             this.props.layoutActive(option.value)
             this.props.showDrawer("section-user-settings")
+            this.selectLayout(option.value)
         }
         
 
-        this.selectLayout(option.value)
     }
 
     layoutHover(option) {
-        let drawerData = this.props.app.drawerData
+        if(this.props.options.value !== option.value) {
+            let drawerData = this.props.app.drawerData
 
-        if(!drawerData.replacePosition) {
-            this.props.layoutActive(null)
-        }
-
-        let section = this.props.options.section
-
-        let sectionToChange = _.filter(this.props.layout.allLayouts, {
-            sectionValue: section
-        })
-        let commonProperties = sectionToChange[0].commonProperties
-        let layouts = sectionToChange[0].layouts
-        let page = this.props.page.currentPage
-
-        let selectedLayout = _.filter(layouts, {
-            value: option.value
-        })
-
-        let newProperties = _.concat(commonProperties, selectedLayout[0].properties)
-
-        let finalSelectedLayout = {
-            ...selectedLayout[0],
-            sectionName: "",
-            sectionValue: section,
-            properties: newProperties,
-            activeCategories: sectionToChange[0].activeCategories,
-            id: uuidv4()
-        }
-
-
-        let finalLayout
-
-        if(drawerData && drawerData.insertPosition >= 0 && finalSelectedLayout) {
-            if(page.metadata.sections.length == 0) {
-                finalLayout = [finalSelectedLayout]
-            } else {
-
-                finalLayout = update(page.metadata.sections, {
-                    $splice: [[drawerData.insertPosition +1 , 0, finalSelectedLayout]]
-                });
-
+            if(!drawerData.replacePosition) {
+                this.props.layoutActive(null)
             }
-        }
-
-        if(drawerData && drawerData.replacePosition >= 0 && finalSelectedLayout) {
-            if(page.metadata.sections.length == 0) {
-                finalLayout = [finalSelectedLayout]
-            } else {
-
-                finalLayout = update(page.metadata.sections, {
-                    $splice: [[drawerData.replacePosition, 1, finalSelectedLayout]]
-                });
-
+    
+            let section = this.props.options.section
+    
+            let sectionToChange = _.filter(this.props.layout.allLayouts, {
+                sectionValue: section
+            })
+            let commonProperties = sectionToChange[0].commonProperties
+            let layouts = sectionToChange[0].layouts
+            let page = this.props.page.currentPage
+    
+            let selectedLayout = _.filter(layouts, {
+                value: option.value
+            })
+    
+            let newProperties = _.concat(commonProperties, selectedLayout[0].properties)
+    
+            let finalSelectedLayout = {
+                ...selectedLayout[0],
+                sectionName: "",
+                sectionValue: section,
+                properties: newProperties,
+                activeCategories: sectionToChange[0].activeCategories,
+                id: uuidv4()
             }
-        }
-        this.props.loadNewPage({
-            ...this.props.page.currentPage,
-            metadata: {
-                ...this.props.page.currentPage.metadata,
-                sections: finalLayout
+    
+    
+            let finalLayout
+    
+            if(drawerData && drawerData.insertPosition >= 0 && finalSelectedLayout) {
+                if(page.metadata.sections.length == 0) {
+                    finalLayout = [finalSelectedLayout]
+                } else {
+    
+                    finalLayout = update(page.metadata.sections, {
+                        $splice: [[drawerData.insertPosition +1 , 0, finalSelectedLayout]]
+                    });
+    
+                }
             }
-        })
-
+    
+            if(drawerData && drawerData.replacePosition >= 0 && finalSelectedLayout) {
+                if(page.metadata.sections.length == 0) {
+                    finalLayout = [finalSelectedLayout]
+                } else {
+    
+                    finalLayout = update(page.metadata.sections, {
+                        $splice: [[drawerData.replacePosition, 1, finalSelectedLayout]]
+                    });
+    
+                }
+            }
+            this.props.loadNewPage({
+                ...this.props.page.currentPage,
+                metadata: {
+                    ...this.props.page.currentPage.metadata,
+                    sections: finalLayout
+                }
+            })
+    
+        }
+        
     }
 
     layoutHoverOut(option) {
