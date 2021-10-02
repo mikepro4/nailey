@@ -68,8 +68,11 @@ class EditorLayoutOptionSelector extends Component {
     }
 
     layoutHover(option) {
-        this.props.layoutActive(null)
-        console.log("layoutHover", option)
+        let drawerData = this.props.app.drawerData
+
+        if(!drawerData.replacePosition) {
+            this.props.layoutActive(null)
+        }
 
         let section = this.props.options.section
 
@@ -95,18 +98,32 @@ class EditorLayoutOptionSelector extends Component {
             id: uuidv4()
         }
 
+
         let finalLayout
 
-        if(page.metadata.sections.length == 0) {
-            finalLayout = [finalSelectedLayout]
-        } else {
+        if(drawerData && drawerData.insertPosition >= 0 && finalSelectedLayout) {
+            if(page.metadata.sections.length == 0) {
+                finalLayout = [finalSelectedLayout]
+            } else {
 
-            finalLayout = update(page.metadata.sections, {
-                $splice: [[this.props.app.drawerData.insertPosition +1 , 0, finalSelectedLayout]]
-            });
+                finalLayout = update(page.metadata.sections, {
+                    $splice: [[drawerData.insertPosition +1 , 0, finalSelectedLayout]]
+                });
 
+            }
         }
 
+        if(drawerData && drawerData.replacePosition >= 0 && finalSelectedLayout) {
+            if(page.metadata.sections.length == 0) {
+                finalLayout = [finalSelectedLayout]
+            } else {
+
+                finalLayout = update(page.metadata.sections, {
+                    $splice: [[drawerData.replacePosition, 1, finalSelectedLayout]]
+                });
+
+            }
+        }
         this.props.loadNewPage({
             ...this.props.page.currentPage,
             metadata: {

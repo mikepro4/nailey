@@ -3,31 +3,29 @@ import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
 import classNames from "classnames"
 import * as _ from "lodash"
+import { findProperty } from "../helpers"
 
-import Layout1 from "./layout1"
-import Layout2 from "./layout2"
+class HeroSectionLayout1 extends Component {
 
-class HeroSection extends Component {
+    renderLayout() {
 
-    renderLayout(section) {
-        switch(section.value) {
-            case "layout1":
-                return(<Layout1 section={this.props.section}/>)
-            case "layout2":
-                return(<Layout2 section={this.props.section}/>)
-         }
     }
 
 	render() {
         let section = this.props.section
+        console.log(section.value)
         return (
             <div 
                 className={classNames({
-                    "hero-section-container": true
+                    "main-section": true,
+                    [section.value]: true,
+                    [section.sectionValue]: true
                 })}
             >
 
-                {this.renderLayout(section)}
+                {findProperty(section, "mainHeadline").value}
+                {findProperty(section, "subtitle").value}
+                
                
             </div>
         );
@@ -44,4 +42,4 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, {
-})(withRouter(HeroSection));
+})(withRouter(HeroSectionLayout1));
