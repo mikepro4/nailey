@@ -26,7 +26,7 @@ export const initialState = {
     scrollTo: null,
     menuOpen: false,
     user: null,
-    edit: false,
+    edit: true,
     site: {
         title: "Nailey",
         subtitle: "Your nail artist",

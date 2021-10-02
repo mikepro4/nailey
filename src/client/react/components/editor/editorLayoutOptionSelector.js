@@ -133,6 +133,9 @@ class EditorLayoutOptionSelector extends Component {
                     sections: finalLayout
                 }
             })
+            setTimeout(() => {
+                document.getElementById("section-"+ finalSelectedLayout.id).scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
+            }, 1)
     
         }
         
