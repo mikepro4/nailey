@@ -137,7 +137,12 @@ class App extends Component {
 
         return (
 
-            <div className="app">
+            <div 
+                className={classNames({
+                    "app": true,
+                    "editing": this.props.app.edit
+                })}
+            >
                 <DndProvider backend={HTML5Backend} >
 
                     {this.props.currentSite  ? (

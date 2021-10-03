@@ -20,6 +20,7 @@ import { loadPage } from "../../redux/actions/pagesActions"
 import { EditorDraggableItem } from "../components/editor/editorDraggableItem"
 
 import EpicAddSection from "./epic_add_section"
+import AddSection from "./add_section"
 
 class Sections extends Component {
 
@@ -156,6 +157,7 @@ class Sections extends Component {
 
                 <div className="transition-element" id={"section-" + section.id} key={i}>
                     {this.renderSection(section, i)}
+                    <AddSection/>
                 </div>
             )
         })
