@@ -122,79 +122,72 @@ class Sections extends Component {
         )
     }
 
-    regularTrack(section, position, i) {
-        let node
+    regularTrack(section, position, i, x, y, node) {
+        if (this.props.app.clientY + this.state.addButtonArea > y &&
+            this.props.app.clientY - this.state.addButtonArea < y) {
+            if (this.state.hoverSection == section.id) {
 
-        if (position == "top") {
-            node = document.getElementById("section-top-add-" + section.id)
-        } else if (position == "bottom") {
-            node = document.getElementById("section-bottom-add-" + section.id)
-        }
-
-        if (node) {
-            let y = node.getBoundingClientRect().y
-
-            if (this.props.app.clientY + this.state.addButtonArea  > y && 
-                this.props.app.clientY - this.state.addButtonArea  < y) {
-                if (this.state.hoverSection == section.id) {
+                if (this.props.app.clientX > x && this.props.app.clientX < x + node.clientWidth) {
                     return true
                 }
             }
         }
     }
 
-    activeTrack(section, position, i, hoverIndex, activeIndex) {
-        let node
-
+    activeTrack(section, position, i, x, y, node) {
         if (position == "top") {
-            node = document.getElementById("section-top-add-" + section.id)
-        } else if (position == "bottom") {
-            node = document.getElementById("section-bottom-add-" + section.id)
+            if (this.props.app.clientY + this.state.addButtonArea > y &&
+                this.props.app.clientY - this.state.addButtonArea < y
+            ) {
+                if (this.props.app.clientX > x && this.props.app.clientX < x + node.clientWidth) {
+                    return true
+                }
+            }
         }
 
-        if (node) {
-            let y = node.getBoundingClientRect().y
+        if (position == "bottom") {
+            let offsetFix = 0
 
-            if(position == "top") {
-                if (this.props.app.clientY + this.state.addButtonArea > y  && 
-                    this.props.app.clientY - this.state.addButtonArea < y
-                ) {
+            if (i == this.state.sections.length - 1) {
+                offsetFix = -100
+            }
+
+            if (this.props.app.clientY + this.state.addButtonArea - 25 > y &&
+                this.props.app.clientY - this.state.addButtonArea + offsetFix < y
+            ) {
+                if (this.props.app.clientX > x && this.props.app.clientX < x + node.clientWidth) {
                     return true
                 }
             }
-
-            if(position == "bottom") {
-                let offsetFix = 0
-
-                if( i == this.state.sections.length -1) {
-                    offsetFix = -100
-                }
-
-                if (this.props.app.clientY + this.state.addButtonArea - 25 > y  && 
-                    this.props.app.clientY - this.state.addButtonArea + offsetFix < y
-                ) {
-                    return true
-                }
-            }
-
         }
     }
 
     addDisplay(section, position, i) {
-        let hoverIndex = _.findIndex(this.state.sections, ({
-            id: this.state.hoverSection
-        }))
-
-
         let activeIndex = _.findIndex(this.state.sections, ({
             id: this.props.layout.active
         }))
 
-        if (activeIndex >= 0) {
-            return this.activeTrack(section, position, i, hoverIndex, activeIndex)
-        } else {
-            return this.regularTrack(section, position, i)
+        let node
+
+        if (position == "top") {
+            node = document.getElementById("section-top-add-" + section.id)
+        } else if (position == "bottom") {
+            node = document.getElementById("section-bottom-add-" + section.id)
         }
+
+        if (node) {
+
+            let y = node.getBoundingClientRect().y
+            let x = node.getBoundingClientRect().x
+
+            if (activeIndex >= 0) {
+                return this.activeTrack(section, position, i, x, y, node)
+            } else {
+                return this.regularTrack(section, position, i, x, y, node)
+            }
+        }
+
+
     }
 
     sectionWrapper(section, component, i) {
@@ -209,17 +202,22 @@ class Sections extends Component {
                 >
 
                     <div
-                        id={"section-top-add-" + section.id}
                         className={classNames({
                             "section-add-container": true,
                             "section-top-add": true,
                             "display-add-section": this.addDisplay(section, "top", i)
                         })}
                     >
-                        <AddSection 
-                            active={section.id == this.props.layout.active} 
-                            insertPosition={(i-1)}
-                        />
+                        <div
+                            className="add-section"
+                            id={"section-top-add-" + section.id}
+                        >
+                            <AddSection
+                                active={section.id == this.props.layout.active}
+                                insertPosition={(i - 1)}
+                            />
+                        </div>
+
                     </div>
 
                     <EditorDraggableItem
@@ -232,17 +230,21 @@ class Sections extends Component {
                     </EditorDraggableItem>
 
                     <div
-                        id={"section-bottom-add-" + section.id}
                         className={classNames({
                             "section-add-container": true,
                             "section-bottom-add": true,
                             "display-add-section": this.addDisplay(section, "bottom", i)
                         })}
                     >
-                        <AddSection 
-                            active={section.id == this.props.layout.active} 
-                            insertPosition={i}
-                        />
+                        <div
+                            className="add-section"
+                            id={"section-bottom-add-" + section.id}
+                        >
+                            <AddSection
+                                active={section.id == this.props.layout.active}
+                                insertPosition={i}
+                            />
+                        </div>
                     </div>
                 </div>
 

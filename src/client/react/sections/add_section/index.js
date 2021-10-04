@@ -14,24 +14,14 @@ class AddSection extends Component {
 
         return (
             <div 
-                className={classNames({
-                    "add-section": true,
-                    "editing": this.props.app.edit,
-                    // "active": this.props.active
-                })}
+                className="epic-plus-container"
+                onClick={() => {
+                    this.props.showDrawer("layout-selector", {
+                        insertPosition: this.props.insertPosition
+                    })
+                }}
             >
-
-                <div 
-                    className="epic-plus-container"
-                    onClick={() => {
-                        this.props.showDrawer("layout-selector", {
-                            insertPosition: this.props.insertPosition
-                        })
-                    }}
-                >
-                    <Icon icon="plus" />
-                </div>
-
+                <Icon icon="plus" />
             </div>
         );
 	}
