@@ -200,25 +200,26 @@ class Sections extends Component {
                         hoverSection: section.id
                     })}
                 >
-
-                    <div
-                        className={classNames({
-                            "section-add-container": true,
-                            "section-top-add": true,
-                            "display-add-section": this.addDisplay(section, "top", i)
-                        })}
-                    >
+                    {i !== 0 && (
                         <div
-                            className="add-section"
-                            id={"section-top-add-" + section.id}
+                            className={classNames({
+                                "section-add-container": true,
+                                "section-top-add": true,
+                                "display-add-section": this.addDisplay(section, "top", i)
+                            })}
                         >
-                            <AddSection
-                                active={section.id == this.props.layout.active}
-                                insertPosition={(i - 1)}
-                            />
+                            <div
+                                className="add-section"
+                                id={"section-top-add-" + section.id}
+                            >
+                                <AddSection
+                                    active={section.id == this.props.layout.active}
+                                    insertPosition={(i - 1)}
+                                />
+                            </div>
                         </div>
+                    )}
 
-                    </div>
 
                     <EditorDraggableItem
                         key={section.id}

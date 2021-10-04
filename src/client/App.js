@@ -81,8 +81,17 @@ class App extends Component {
 
         // Section editor open
         // this.props.loadSection("1fd46fd8-5775-4520-af18-dd0704c33f41")
+
+       
+        // setTimeout(() => {
+        //     this.props.showDrawer("section-edit")
+        // }, 1)
         // this.props.showDrawer("layout-selector", { insertPosition: 1, forceOpen: "hero"})
         // this.props.showDrawer("domain-settings")
+        
+        // Perfect section editor open
+        // this.props.loadSection("c5429a51-38b4-45c9-ad67-b28d01f99e4c")
+        // this.props.showDrawer("section-edit")
     }
 
     componentWillUnmount() {

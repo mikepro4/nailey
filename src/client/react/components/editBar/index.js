@@ -31,20 +31,20 @@ class EditBar extends Component {
                 drawerType: "section-user-settings"
             },
             {
-                title: "Domain",
-                drawerType: "domain-settings"
+                title: "Media",
+                drawerType: "media-settings"
             },
             {
                 title: "Collections",
                 drawerType: "collection-settings"
             },
             {
-                title: "Media",
-                drawerType: "media-settings"
-            },
-            {
                 title: "Themes",
                 drawerType: "theme-settings"
+            },
+            {
+                title: "Domain",
+                drawerType: "domain-settings"
             },
             // ,
             // {
