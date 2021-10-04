@@ -3,7 +3,6 @@
     justify-content: center;
     align-self: center;
     position: absolute;
-    bottom: 0;
     left: 0;
     right: 0;
     width: 100%;
@@ -16,5 +15,50 @@
     border: 1px solid rgba($black, 0.2);
     z-index: 1000;
     position: relative;
-    top: 20px;
 }
+
+.epic-section-container{
+    position: relative;
+}
+
+.section-bottom-add {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    bottom: 0;
+    visibility: hidden;
+
+    .epic-plus-container {
+        top: 0px;
+    }
+
+    &.display-add-section {
+        visibility: visible;
+    }
+}
+
+.section-top-add {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    top: 20px;
+    visibility: hidden;
+
+    .epic-plus-container {
+        top: -20px;
+    }
+
+    &.display-add-section {
+        visibility: visible;
+    }
+}
+
