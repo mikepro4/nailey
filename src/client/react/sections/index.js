@@ -124,12 +124,12 @@ class Sections extends Component {
     // renderMousePositions(section) {
     //     let bottomNode = document.getElementById("section-bottom-add-" + section.id)
     //     let sectionNode = document.getElementById("epic-section-" + section.id)
-       
+
     //     if(bottomNode) {
 
     //         let y = bottomNode.getBoundingClientRect().y
     //         let displayStatus = "no"
-    
+
     //         if(this.state.clientY + 100 > y && this.state.clientY - 100 < y) {
     //             displayStatus = "yes"
     //         }
@@ -154,12 +154,12 @@ class Sections extends Component {
     // renderMousePositions(section) {
     //     let bottomNode = document.getElementById("section-top-add-" + section.id)
     //     let sectionNode = document.getElementById("epic-section-" + section.id)
-       
+
     //     if(bottomNode) {
 
     //         let y = bottomNode.getBoundingClientRect().y
     //         let displayStatus = "no"
-    
+
     //         if(this.state.clientY + 100 > y && this.state.clientY - 100 < y) {
     //             displayStatus = "yes"
     //         }
@@ -220,6 +220,7 @@ class Sections extends Component {
     // }
 
     addDisplay(section, position, i) {
+
         // hover index is less than active index
 
         let hoverIndex = _.findIndex(this.state.sections, ({
@@ -230,51 +231,74 @@ class Sections extends Component {
         let activeIndex = _.findIndex(this.state.sections, ({
             id: this.props.layout.active
         }))
+        let node
 
-        
 
-        if(activeIndex > hoverIndex) {
-            console.log("preserve top")
-        }
+        if (activeIndex >= 0) {
+            console.log("active track")
+        } else {
+            console.log("regular track")
+            if (position == "top") {
+                node = document.getElementById("section-top-add-" + section.id)
+            } else if (position == "bottom") {
+                node = document.getElementById("section-bottom-add-" + section.id)
+            }
 
-        let node 
+            if (node) {
+                let y = node.getBoundingClientRect().y
 
-        if(position == "top") {
-            node = document.getElementById("section-top-add-" + section.id)
-        } else if (position == "bottom") {
-            node = document.getElementById("section-bottom-add-" + section.id)
-        }
-
-        if(node) {
-            let y = node.getBoundingClientRect().y
-
-            if(this.state.clientY + 100 > y && this.state.clientY - 100 < y) {
-                if(this.state.hoverSection == section.id) {
-                    return true
+                if (this.state.clientY + 100 > y && this.state.clientY - 100 < y) {
+                    if (this.state.hoverSection == section.id) {
+                        return true
+                    }
                 }
             }
         }
+
+
+
+
+        // if(activeIndex > hoverIndex) {
+        //     // console.log("preserve top")
+        // }
+
+
+        // if(position == "top") {
+        //     node = document.getElementById("section-top-add-" + section.id)
+        // } else if (position == "bottom") {
+        //     node = document.getElementById("section-bottom-add-" + section.id)
+        // }
+
+        // if(node) {
+        //     let y = node.getBoundingClientRect().y
+
+        //     if(this.state.clientY + 100 > y && this.state.clientY - 100 < y) {
+        //         if(this.state.hoverSection == section.id) {
+        //             return true
+        //         }
+        //     }
+        // }
     }
 
     sectionWrapper(section, component, i) {
         if (this.props.app.edit) {
             return (
-                <div 
+                <div
                     className="epic-section-container"
                     id={"epic-section-" + section.id}
                     onMouseEnter={() => this.setState({
                         hoverSection: section.id
                     })}
                 >
-                    
-                    <div 
+
+                    <div
                         id={"section-top-add-" + section.id}
                         className={classNames({
                             "section-top-add": true,
                             "display-add-section": this.addDisplay(section, "top", i)
                         })}
                     >
-                        <AddSection active={section.id == this.props.layout.active}/>
+                        <AddSection active={section.id == this.props.layout.active} />
                     </div>
 
                     <EditorDraggableItem
@@ -287,15 +311,15 @@ class Sections extends Component {
                     </EditorDraggableItem>
 
                     {/* {this.renderMousePositions(section)} */}
-                    
-                    <div 
+
+                    <div
                         id={"section-bottom-add-" + section.id}
                         className={classNames({
                             "section-bottom-add": true,
                             "display-add-section": this.addDisplay(section, "bottom", i)
                         })}
                     >
-                        <AddSection active={section.id == this.props.layout.active}/>
+                        <AddSection active={section.id == this.props.layout.active} />
                     </div>
                 </div>
 
@@ -342,7 +366,7 @@ class Sections extends Component {
             clientX: e.clientX,
             pageY: e.pageY
         })
-	}
+    }
 
     render() {
         return (
