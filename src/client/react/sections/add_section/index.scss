@@ -7,6 +7,15 @@
     right: 0;
     width: 100%;
 
+    
+
+    // &:hover {
+    //     .section-bottom-add,
+    //     .section-bottom-add  {
+    //         visibility: visible;
+    //     }
+    // }
+
     .epic-plus-container {
         cursor: pointer;
         padding: 10px;
@@ -68,5 +77,26 @@
     &.display-add-section {
         visibility: visible;
     }
+
 }
 
+// .section-add-container {
+//     visibility: hidden;
+// }
+
+// .epic-section-container {
+//     &:hover {
+//         .section-add-container {
+//             visibility: visible;
+//         }
+//     }
+// }
+
+
+// .section-add {
+//     visibility: hidden;
+
+//     &:hover { 
+//         visibility: visible;
+//     }
+// }

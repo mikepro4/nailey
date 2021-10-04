@@ -332,11 +332,15 @@ class Sections extends Component {
                     onMouseEnter={() => this.setState({
                         hoverSection: section.id
                     })}
+                    onMouseLeave={() => this.setState({
+                        hoverSection: null
+                    })}
                 >
 
                     <div
                         id={"section-top-add-" + section.id}
                         className={classNames({
+                            "section-add-container": true,
                             "section-top-add": true,
                             "display-add-section": this.addDisplay(section, "top", i)
                         })}
@@ -358,6 +362,7 @@ class Sections extends Component {
                     <div
                         id={"section-bottom-add-" + section.id}
                         className={classNames({
+                            "section-add-container": true,
                             "section-bottom-add": true,
                             "display-add-section": this.addDisplay(section, "bottom", i)
                         })}
