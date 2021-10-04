@@ -219,6 +219,62 @@ class Sections extends Component {
     //     }
     // }
 
+    regularTrack(section, position, i) {
+        let node
+
+        if (position == "top") {
+            node = document.getElementById("section-top-add-" + section.id)
+        } else if (position == "bottom") {
+            node = document.getElementById("section-bottom-add-" + section.id)
+        }
+
+        if (node) {
+            let y = node.getBoundingClientRect().y
+
+            if (this.state.clientY + 100 > y && this.state.clientY - 100 < y) {
+                if (this.state.hoverSection == section.id) {
+                    return true
+                }
+            }
+        }
+    }
+
+    activeTrack(section, position, i, hoverIndex, activeIndex) {
+        let node
+
+        if (position == "top") {
+            node = document.getElementById("section-top-add-" + section.id)
+        } else if (position == "bottom") {
+            node = document.getElementById("section-bottom-add-" + section.id)
+        }
+
+        if (node) {
+            let y = node.getBoundingClientRect().y
+
+            if(position == "top" && section.id == this.props.layout.active) {
+                if (this.state.clientY + 100 > y && this.state.clientY - 100 < y) {
+                    return true
+                }
+            }
+
+            // if(activeIndex > hoverIndex) {
+            //     if(position == "top" && section.id == this.props.layout.active) {
+            //         if (this.state.clientY + 100 > y && this.state.clientY - 100 < y) {
+            //             return true
+            //         }
+            //     }
+            // } else {
+
+            // }
+
+            // if (this.state.clientY + 100 > y && this.state.clientY - 100 < y) {
+            //     if (this.state.hoverSection == section.id) {
+            //         return true
+            //     }
+            // }
+        }
+    }
+
     addDisplay(section, position, i) {
 
         // hover index is less than active index
@@ -231,31 +287,12 @@ class Sections extends Component {
         let activeIndex = _.findIndex(this.state.sections, ({
             id: this.props.layout.active
         }))
-        let node
-
 
         if (activeIndex >= 0) {
-            console.log("active track")
+            return this.activeTrack(section, position, i, hoverIndex, activeIndex)
         } else {
-            console.log("regular track")
-            if (position == "top") {
-                node = document.getElementById("section-top-add-" + section.id)
-            } else if (position == "bottom") {
-                node = document.getElementById("section-bottom-add-" + section.id)
-            }
-
-            if (node) {
-                let y = node.getBoundingClientRect().y
-
-                if (this.state.clientY + 100 > y && this.state.clientY - 100 < y) {
-                    if (this.state.hoverSection == section.id) {
-                        return true
-                    }
-                }
-            }
+            return this.regularTrack(section, position, i)
         }
-
-
 
 
         // if(activeIndex > hoverIndex) {
