@@ -22,6 +22,19 @@
         border: 1px solid rgba($black, 0.2);
         z-index: 1000;
         position: relative;
+        transition: border 1s $animation_easing;
+
+        svg {
+            transition: fill 1s $animation_easing;
+            fill: rgba($black, 0.3)
+        }
+
+        &:hover {
+            border: 1px solid rgba($black, 1);
+            svg {
+                fill: rgba($black, 1)
+            }
+        }
     }
 
     &.active {
