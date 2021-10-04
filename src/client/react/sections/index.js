@@ -151,70 +151,107 @@ class Sections extends Component {
     //     }
     // }
 
-    renderMousePositions(section) {
-        let bottomNode = document.getElementById("section-top-add-" + section.id)
-        let sectionNode = document.getElementById("epic-section-" + section.id)
+    // renderMousePositions(section) {
+    //     let bottomNode = document.getElementById("section-top-add-" + section.id)
+    //     let sectionNode = document.getElementById("epic-section-" + section.id)
        
-        if(bottomNode) {
+    //     if(bottomNode) {
 
-            let y = bottomNode.getBoundingClientRect().y
-            let displayStatus = "no"
+    //         let y = bottomNode.getBoundingClientRect().y
+    //         let displayStatus = "no"
     
-            if(this.state.clientY + 100 > y && this.state.clientY - 100 < y) {
-                displayStatus = "yes"
-            }
-            return(
-                <div className="mouse-positions">
-                    <div>{this.state.clientX} / {this.state.clientY} / {this.state.pageY}</div>
-                    <div>{y}</div>
-                    <div>{displayStatus}</div>
-                    <div>
-                        {sectionNode.getBoundingClientRect().x} / 
-                        {sectionNode.getBoundingClientRect().y} / 
-                        {sectionNode.getBoundingClientRect().height}
-                    </div>
-                    <div>
-                        {this.state.hoverSection}
-                    </div>
-                </div>
-            )
-        }
-    }
+    //         if(this.state.clientY + 100 > y && this.state.clientY - 100 < y) {
+    //             displayStatus = "yes"
+    //         }
+    //         return(
+    //             <div className="mouse-positions">
+    //                 <div>{this.state.clientX} / {this.state.clientY} / {this.state.pageY}</div>
+    //                 <div>{y}</div>
+    //                 <div>{displayStatus}</div>
+    //                 <div>
+    //                     {sectionNode.getBoundingClientRect().x} / 
+    //                     {sectionNode.getBoundingClientRect().y} / 
+    //                     {sectionNode.getBoundingClientRect().height}
+    //                 </div>
+    //                 <div>
+    //                     {this.state.hoverSection}
+    //                 </div>
+    //             </div>
+    //         )
+    //     }
+    // }
 
-    bottomAddDisplay(section) {
-        let bottomNode = document.getElementById("section-bottom-add-" + section.id)
-        let sectionNode = document.getElementById("epic-section-" + section.id)
-        if(bottomNode) {
-            let y = bottomNode.getBoundingClientRect().y
-            let sectionHeight = sectionNode.getBoundingClientRect().height
+    // bottomAddDisplay(section) {
+    //     let bottomNode = document.getElementById("section-bottom-add-" + section.id)
+    //     let sectionNode = document.getElementById("epic-section-" + section.id)
+    //     if(bottomNode) {
+    //         let y = bottomNode.getBoundingClientRect().y
+    //         let sectionHeight = sectionNode.getBoundingClientRect().height
+
+    //         if(this.state.clientY + 100 > y && this.state.clientY - 100 < y) {
+    //             if(this.state.hoverSection == section.id) {
+    //                 return true
+    //             } else {
+    //                 return false
+    //             }
+    //         } else {
+    //             return false
+    //         }
+    //     }
+    // }
+
+    // topAddDisplay(section) {
+    //     let bottomNode = document.getElementById("section-top-add-" + section.id)
+    //     let sectionNode = document.getElementById("epic-section-" + section.id)
+    //     if(bottomNode) {
+    //         let y = bottomNode.getBoundingClientRect().y
+    //         let sectionHeight = sectionNode.getBoundingClientRect().height
+
+    //         if(this.state.clientY + 100 > y && this.state.clientY - 100 < y) {
+    //             if(this.state.hoverSection == section.id) {
+    //                 return true
+    //             } else {
+    //                 return false
+    //             }
+    //         } else {
+    //             return false
+    //         }
+    //     }
+    // }
+
+    addDisplay(section, position, i) {
+        // hover index is less than active index
+
+        let hoverIndex = _.findIndex(this.state.sections, ({
+            id: this.state.hoverSection
+        }))
+
+
+        let activeIndex = _.findIndex(this.state.sections, ({
+            id: this.props.layout.active
+        }))
+
+        
+
+        if(activeIndex > hoverIndex) {
+            console.log("preserve top")
+        }
+
+        let node 
+
+        if(position == "top") {
+            node = document.getElementById("section-top-add-" + section.id)
+        } else if (position == "bottom") {
+            node = document.getElementById("section-bottom-add-" + section.id)
+        }
+
+        if(node) {
+            let y = node.getBoundingClientRect().y
 
             if(this.state.clientY + 100 > y && this.state.clientY - 100 < y) {
                 if(this.state.hoverSection == section.id) {
                     return true
-                } else {
-                    return false
                 }
-            } else {
-                return false
-            }
-        }
-    }
-
-    topAddDisplay(section) {
-        let bottomNode = document.getElementById("section-top-add-" + section.id)
-        let sectionNode = document.getElementById("epic-section-" + section.id)
-        if(bottomNode) {
-            let y = bottomNode.getBoundingClientRect().y
-            let sectionHeight = sectionNode.getBoundingClientRect().height
-
-            if(this.state.clientY + 100 > y && this.state.clientY - 100 < y) {
-                if(this.state.hoverSection == section.id) {
-                    return true
-                } else {
-                    return false
-                }
-            } else {
-                return false
             }
         }
     }
@@ -234,10 +271,10 @@ class Sections extends Component {
                         id={"section-top-add-" + section.id}
                         className={classNames({
                             "section-top-add": true,
-                            "display-add-section": this.topAddDisplay(section)
+                            "display-add-section": this.addDisplay(section, "top", i)
                         })}
                     >
-                        <AddSection/>
+                        <AddSection active={section.id == this.props.layout.active}/>
                     </div>
 
                     <EditorDraggableItem
@@ -255,10 +292,10 @@ class Sections extends Component {
                         id={"section-bottom-add-" + section.id}
                         className={classNames({
                             "section-bottom-add": true,
-                            "display-add-section": this.bottomAddDisplay(section)
+                            "display-add-section": this.addDisplay(section, "bottom", i)
                         })}
                     >
-                        <AddSection/>
+                        <AddSection active={section.id == this.props.layout.active}/>
                     </div>
                 </div>
 
@@ -281,7 +318,6 @@ class Sections extends Component {
     }
 
     renderSections() {
-        console.log(this.state.sections)
         let finalSections = _.map(this.state.sections, (section, i) => {
             return (
 

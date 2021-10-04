@@ -16,7 +16,8 @@ class AddSection extends Component {
             <div 
                 className={classNames({
                     "add-section": true,
-                    "editing": this.props.app.edit
+                    "editing": this.props.app.edit,
+                    "active": this.props.active
                 })}
             >
 

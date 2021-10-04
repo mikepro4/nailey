@@ -6,16 +6,24 @@
     left: 0;
     right: 0;
     width: 100%;
+
+    .epic-plus-container {
+        cursor: pointer;
+        padding: 10px;
+        background: $white;
+        border: 1px solid rgba($black, 0.2);
+        z-index: 1000;
+        position: relative;
+    }
+
+    &.active {
+        .epic-plus-container {
+            border: 1px solid rgba($black, 1);
+        }
+    }
+    
 }
 
-.epic-plus-container {
-    cursor: pointer;
-    padding: 10px;
-    background: $white;
-    border: 1px solid rgba($black, 0.2);
-    z-index: 1000;
-    position: relative;
-}
 
 .epic-section-container{
     position: relative;
