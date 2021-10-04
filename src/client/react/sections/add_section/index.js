@@ -15,7 +15,7 @@ class AddSection extends Component {
         return (
             <div 
                 className="epic-plus-container"
-                onClick={() => {
+                onMouseDown={() => {
                     this.props.showDrawer("layout-selector", {
                         insertPosition: this.props.insertPosition
                     })

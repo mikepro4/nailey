@@ -22,7 +22,8 @@
         border: 1px solid rgba($black, 0.2);
         z-index: 1000;
         position: relative;
-        transition: border 1s $animation_easing;
+        transition: border 1s $animation_easing, transform 0.1s $animation_easing;
+        user-select: none;
 
         svg {
             transition: fill 1s $animation_easing;
@@ -30,6 +31,14 @@
         }
 
         &:hover {
+            border: 1px solid rgba($black, 1);
+            svg {
+                fill: rgba($black, 1)
+            }
+        }
+
+        &:active {
+            transform: scale(0.3);
             border: 1px solid rgba($black, 1);
             svg {
                 fill: rgba($black, 1)
