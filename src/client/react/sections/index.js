@@ -257,6 +257,12 @@ class Sections extends Component {
                 }
             }
 
+            if(position == "bottom" && section.id == this.props.layout.active) {
+                if (this.state.clientY + 100 > y && this.state.clientY - 100 < y) {
+                    return true
+                }
+            }
+
             // if(activeIndex > hoverIndex) {
             //     if(position == "top" && section.id == this.props.layout.active) {
             //         if (this.state.clientY + 100 > y && this.state.clientY - 100 < y) {
