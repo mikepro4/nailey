@@ -18,6 +18,8 @@ export const HIDE_DRAWER = "app/HIDE_DRAWER";
 export const UPDATE_COLLECTION = "app/UPDATE_COLLECTION";
 export const UNCHECK_ALL = "app/UNCHECK_ALL";
 
+export const MOUSE_MOVE = "app/MOUSE_MOVE";
+
 // =============================================================================
 
 // Auth 

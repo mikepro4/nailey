@@ -15,7 +15,8 @@ import {
     UPDATE_COLLECTION,
     UNCHECK_ALL,
     SCROLL_TO,
-	SCROLL_TO_RESET
+    SCROLL_TO_RESET,
+    MOUSE_MOVE
 } from "../actions/types";
 
 export const initialState = {
@@ -23,6 +24,9 @@ export const initialState = {
     clientWidth: 0,
     clientHeight: 0,
     totalScrolledPixels: 0,
+    clientX: 0,
+    clientY: 0,
+    pageY: 0,
     scrollTo: null,
     menuOpen: false,
     user: null,
@@ -65,6 +69,13 @@ export const initialState = {
 
 export const appReducer = (state = initialState, action) => {
     switch (action.type) {
+        case MOUSE_MOVE:
+            return {
+                ...state,
+                clientX: action.payload.clientX,
+                clientY: action.payload.clientY,
+                pageY: action.payload.pageY
+            }
         case ENABLE_EDIT:
             return {
                 ...state,

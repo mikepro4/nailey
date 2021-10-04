@@ -14,7 +14,7 @@ import { FocusStyleManager } from "@blueprintjs/core";
 
 import { loadSite } from "../client/redux/actions/sitesActions"
 import { loadTheme } from "../client/redux/actions/themesActions"
-import { showDrawer, hideDrawer, setScrollTo, enableEdit, disableEdit } from "../client/redux/actions/appActions"
+import { showDrawer, hideDrawer, setScrollTo, enableEdit, disableEdit, mouseMove } from "../client/redux/actions/appActions"
 import { authUser, fetchCurrentUser, clearCurrentUser } from "../client/redux/actions/authActions"
 import { loadNewPageAsync } from "../client/redux/actions/pagesActions"
 import { loadSection } from "../client/redux/actions/sectionsActions"
@@ -124,6 +124,9 @@ class App extends Component {
         )
     }
 
+    onMouseMove = (e) => {
+        this.props.mouseMove(e.clientX, e.clientY, e.pageY)
+    }
 
     render() {
 
@@ -142,6 +145,7 @@ class App extends Component {
                     "app": true,
                     "editing": this.props.app.edit
                 })}
+                onMouseMove={this.onMouseMove.bind(this)}
             >
                 <DndProvider backend={HTML5Backend} >
 
@@ -197,6 +201,7 @@ export default {
         hideDrawer,
         setScrollTo,
         enableEdit,
-        disableEdit
+        disableEdit,
+        mouseMove
     })(App))
 };

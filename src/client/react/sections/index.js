@@ -27,6 +27,7 @@ class Sections extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            addButtonArea: 100,
             sections: this.props.page.currentPage.metadata.sections
         };
     };
@@ -121,104 +122,6 @@ class Sections extends Component {
         )
     }
 
-    // renderMousePositions(section) {
-    //     let bottomNode = document.getElementById("section-bottom-add-" + section.id)
-    //     let sectionNode = document.getElementById("epic-section-" + section.id)
-
-    //     if(bottomNode) {
-
-    //         let y = bottomNode.getBoundingClientRect().y
-    //         let displayStatus = "no"
-
-    //         if(this.state.clientY + 100 > y && this.state.clientY - 100 < y) {
-    //             displayStatus = "yes"
-    //         }
-    //         return(
-    //             <div className="mouse-positions">
-    //                 <div>{this.state.clientX} / {this.state.clientY} / {this.state.pageY}</div>
-    //                 <div>{y}</div>
-    //                 <div>{displayStatus}</div>
-    //                 <div>
-    //                     {sectionNode.getBoundingClientRect().x} / 
-    //                     {sectionNode.getBoundingClientRect().y} / 
-    //                     {sectionNode.getBoundingClientRect().height}
-    //                 </div>
-    //                 <div>
-    //                     {this.state.hoverSection}
-    //                 </div>
-    //             </div>
-    //         )
-    //     }
-    // }
-
-    // renderMousePositions(section) {
-    //     let bottomNode = document.getElementById("section-top-add-" + section.id)
-    //     let sectionNode = document.getElementById("epic-section-" + section.id)
-
-    //     if(bottomNode) {
-
-    //         let y = bottomNode.getBoundingClientRect().y
-    //         let displayStatus = "no"
-
-    //         if(this.state.clientY + 100 > y && this.state.clientY - 100 < y) {
-    //             displayStatus = "yes"
-    //         }
-    //         return(
-    //             <div className="mouse-positions">
-    //                 <div>{this.state.clientX} / {this.state.clientY} / {this.state.pageY}</div>
-    //                 <div>{y}</div>
-    //                 <div>{displayStatus}</div>
-    //                 <div>
-    //                     {sectionNode.getBoundingClientRect().x} / 
-    //                     {sectionNode.getBoundingClientRect().y} / 
-    //                     {sectionNode.getBoundingClientRect().height}
-    //                 </div>
-    //                 <div>
-    //                     {this.state.hoverSection}
-    //                 </div>
-    //             </div>
-    //         )
-    //     }
-    // }
-
-    // bottomAddDisplay(section) {
-    //     let bottomNode = document.getElementById("section-bottom-add-" + section.id)
-    //     let sectionNode = document.getElementById("epic-section-" + section.id)
-    //     if(bottomNode) {
-    //         let y = bottomNode.getBoundingClientRect().y
-    //         let sectionHeight = sectionNode.getBoundingClientRect().height
-
-    //         if(this.state.clientY + 100 > y && this.state.clientY - 100 < y) {
-    //             if(this.state.hoverSection == section.id) {
-    //                 return true
-    //             } else {
-    //                 return false
-    //             }
-    //         } else {
-    //             return false
-    //         }
-    //     }
-    // }
-
-    // topAddDisplay(section) {
-    //     let bottomNode = document.getElementById("section-top-add-" + section.id)
-    //     let sectionNode = document.getElementById("epic-section-" + section.id)
-    //     if(bottomNode) {
-    //         let y = bottomNode.getBoundingClientRect().y
-    //         let sectionHeight = sectionNode.getBoundingClientRect().height
-
-    //         if(this.state.clientY + 100 > y && this.state.clientY - 100 < y) {
-    //             if(this.state.hoverSection == section.id) {
-    //                 return true
-    //             } else {
-    //                 return false
-    //             }
-    //         } else {
-    //             return false
-    //         }
-    //     }
-    // }
-
     regularTrack(section, position, i) {
         let node
 
@@ -231,7 +134,8 @@ class Sections extends Component {
         if (node) {
             let y = node.getBoundingClientRect().y
 
-            if (this.state.clientY + 100 > y && this.state.clientY - 100 < y) {
+            if (this.props.app.clientY + this.state.addButtonArea  > y && 
+                this.props.app.clientY - this.state.addButtonArea  < y) {
                 if (this.state.hoverSection == section.id) {
                     return true
                 }
@@ -251,40 +155,32 @@ class Sections extends Component {
         if (node) {
             let y = node.getBoundingClientRect().y
 
-            if(position == "top" && section.id == this.props.layout.active) {
-                if (this.state.clientY + 100 > y && this.state.clientY - 100 < y) {
+            if(position == "top") {
+                if (this.props.app.clientY + this.state.addButtonArea > y  && 
+                    this.props.app.clientY - this.state.addButtonArea < y
+                ) {
                     return true
                 }
             }
 
-            if(position == "bottom" && section.id == this.props.layout.active) {
-                if (this.state.clientY + 100 > y && this.state.clientY - 100 < y) {
+            if(position == "bottom") {
+                let offsetFix = 0
+
+                if( i == this.state.sections.length -1) {
+                    offsetFix = -100
+                }
+
+                if (this.props.app.clientY + this.state.addButtonArea - 25 > y  && 
+                    this.props.app.clientY - this.state.addButtonArea + offsetFix < y
+                ) {
                     return true
                 }
             }
 
-            // if(activeIndex > hoverIndex) {
-            //     if(position == "top" && section.id == this.props.layout.active) {
-            //         if (this.state.clientY + 100 > y && this.state.clientY - 100 < y) {
-            //             return true
-            //         }
-            //     }
-            // } else {
-
-            // }
-
-            // if (this.state.clientY + 100 > y && this.state.clientY - 100 < y) {
-            //     if (this.state.hoverSection == section.id) {
-            //         return true
-            //     }
-            // }
         }
     }
 
     addDisplay(section, position, i) {
-
-        // hover index is less than active index
-
         let hoverIndex = _.findIndex(this.state.sections, ({
             id: this.state.hoverSection
         }))
@@ -299,28 +195,6 @@ class Sections extends Component {
         } else {
             return this.regularTrack(section, position, i)
         }
-
-
-        // if(activeIndex > hoverIndex) {
-        //     // console.log("preserve top")
-        // }
-
-
-        // if(position == "top") {
-        //     node = document.getElementById("section-top-add-" + section.id)
-        // } else if (position == "bottom") {
-        //     node = document.getElementById("section-bottom-add-" + section.id)
-        // }
-
-        // if(node) {
-        //     let y = node.getBoundingClientRect().y
-
-        //     if(this.state.clientY + 100 > y && this.state.clientY - 100 < y) {
-        //         if(this.state.hoverSection == section.id) {
-        //             return true
-        //         }
-        //     }
-        // }
     }
 
     sectionWrapper(section, component, i) {
@@ -332,9 +206,6 @@ class Sections extends Component {
                     onMouseEnter={() => this.setState({
                         hoverSection: section.id
                     })}
-                    onMouseLeave={() => this.setState({
-                        hoverSection: null
-                    })}
                 >
 
                     <div
@@ -345,7 +216,10 @@ class Sections extends Component {
                             "display-add-section": this.addDisplay(section, "top", i)
                         })}
                     >
-                        <AddSection active={section.id == this.props.layout.active} />
+                        <AddSection 
+                            active={section.id == this.props.layout.active} 
+                            insertPosition={(i-1)}
+                        />
                     </div>
 
                     <EditorDraggableItem
@@ -357,8 +231,6 @@ class Sections extends Component {
                         {this.renderSectionContent(section, component, i)}
                     </EditorDraggableItem>
 
-                    {/* {this.renderMousePositions(section)} */}
-
                     <div
                         id={"section-bottom-add-" + section.id}
                         className={classNames({
@@ -367,7 +239,10 @@ class Sections extends Component {
                             "display-add-section": this.addDisplay(section, "bottom", i)
                         })}
                     >
-                        <AddSection active={section.id == this.props.layout.active} />
+                        <AddSection 
+                            active={section.id == this.props.layout.active} 
+                            insertPosition={i}
+                        />
                     </div>
                 </div>
 
@@ -408,21 +283,12 @@ class Sections extends Component {
 
     }
 
-    onMouseMove = (e) => {
-        this.setState({
-            clientY: e.clientY,
-            clientX: e.clientX,
-            pageY: e.pageY
-        })
-    }
-
     render() {
         return (
             <div
                 className={classNames({
                     "main-sections": true
                 })}
-                onMouseMove={this.onMouseMove.bind(this)}
             >
                 {this.renderSections()}
             </div>

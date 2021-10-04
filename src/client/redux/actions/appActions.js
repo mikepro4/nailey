@@ -15,7 +15,8 @@ import {
     LOAD_NEW_PROJECT,
     LOAD_NEW_PAGE,
     LOAD_NEW_SECTION,
-    CLEAR_NEW_SITE
+    CLEAR_NEW_SITE,
+    MOUSE_MOVE
 } from "./types";
 
 import moment from "moment";
@@ -24,6 +25,22 @@ import qs from "qs";
 import axios from "axios";
 
 import { layoutActive } from "./layoutActions"
+
+export const mouseMove = (clientX, clientY, pageY) => async (
+    dispatch,
+	getState,
+	api
+) => {
+    dispatch({
+        type: MOUSE_MOVE,
+        payload: {
+            clientX: clientX,
+            clientY: clientY,
+            pageY: pageY
+        }
+    });
+};
+
 
 /////////////////////////////////////////////////
 
